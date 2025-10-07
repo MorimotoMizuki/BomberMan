@@ -1,0 +1,20 @@
+﻿  block.cpp
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\block.cpp(26,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\block.cpp(26,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  bomb.cpp
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  explosion.cpp
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\explosion.cpp(28,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\explosion.cpp(28,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  game.cpp
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\game.cpp(49,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  player.cpp
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  コードを生成中...
+  BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\x64\Debug\BomberMan_MorimotoMizuki.exe
