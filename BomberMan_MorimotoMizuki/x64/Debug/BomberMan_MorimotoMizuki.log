@@ -1,20 +1,41 @@
-﻿  block.cpp
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\block.cpp(26,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\block.cpp(26,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+﻿  3D_function.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,140): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  block.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,90): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,138): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,129): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,137): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,128): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,192): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,126): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(26,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(26,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  CCamera.cpp
+  2D_function.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,143): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,202): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
   bomb.cpp
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\bomb.cpp(39,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   explosion.cpp
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\explosion.cpp(28,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\explosion.cpp(28,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(28,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(28,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   game.cpp
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\game.cpp(49,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(49,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  library_function.cpp
+  main.cpp
+  My_function.cpp
   player.cpp
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\BomberMan_MorimotoMizuki\player.cpp(26,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   コードを生成中...
-  BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan_MorimotoMizuki\x64\Debug\BomberMan_MorimotoMizuki.exe
+  LINK : 前回のインクリメンタル リンクで C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+  BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe
