@@ -1,41 +1,1228 @@
 ﻿  3D_function.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,140): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '3D_function.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,140): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,90): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,138): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,129): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,137): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,128): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,192): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,126): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
   block.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,90): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,138): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,129): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,137): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,128): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,192): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,126): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(26,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(26,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(26,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(26,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   CCamera.cpp
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'CCamera.cpp' をコンパイルしています)
+  
   2D_function.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,143): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,202): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '2D_function.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,143): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,202): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
   bomb.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(39,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   explosion.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(28,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(28,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(28,22): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(28,15): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   game.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(49,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(49,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
   library_function.cpp
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'library_function.cpp' をコンパイルしています)
+  
   main.cpp
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
   My_function.cpp
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'My_function.cpp' をコンパイルしています)
+  
   player.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\dxlib\DxLib.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataType.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxCompileConfig.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(443,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxDataTypeWin.h(1089,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(406,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(803,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1328,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(1842,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(155,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxFunctionWin.h(337,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2183,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2377,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2572,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2716,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2821,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(2954,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3064,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3242,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3381,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3544,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3735,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3844,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(3931,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4080,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4586,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4750,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(4917,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5069,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5258,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5396,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'player.cpp' をコンパイルしています)
+  
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(26,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   コードを生成中...
-  LINK : 前回のインクリメンタル リンクで C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
-  BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe
+  BomberMan_MorimotoMizuki.vcxproj -> C:\Users\GA3\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe
