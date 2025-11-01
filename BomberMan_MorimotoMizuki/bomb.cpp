@@ -1,5 +1,6 @@
 #include"obj.h"
 #include"function.h"
+#include"map.h"
 
 CBomb::CBomb(Point p, int diedFrame)
 {
@@ -8,7 +9,12 @@ CBomb::CBomb(Point p, int diedFrame)
 	ImgWidth  = IMGSIZE64;
 	ImgHeight = IMGSIZE64;
 
-	pos = p;
+	int mapX = p.x / IMGSIZE64;
+	int mapY = p.y / IMGSIZE64;
+
+	pos.x = mapX * CHIP_SIZE;
+	pos.y = mapY * CHIP_SIZE + (WINDOW_HEADER - IMGSIZE64);
+
 	DiedFrame = diedFrame;
 
 	ID = Obj_Id::BOMB;
@@ -20,6 +26,16 @@ CBomb::CBomb(Point p, int diedFrame)
 
 int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 {
+	//プレイヤーを取得
+	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
+
+	//プレイヤーの座標がスクロールする座標になった場合
+	if (p->pos.x == DRAW_CHIP_W * CHIP_SIZE / 2)
+	{
+		//プレイヤーの移動と逆方向に移動
+		pos.x -= p->vec.x;
+	}
+
 	SurvivalFrame++;
 	if (SurvivalFrame >= DiedFrame)
 	{
@@ -37,6 +53,9 @@ void CBomb::Draw()
 {
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
+
+	//デバッグ
+	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y);
 }
 
 //爆弾アニメーション処理
@@ -70,17 +89,5 @@ CBomb::~CBomb()
 void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base)
 {
 	//爆発エフェクト生成 
-	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, ExplosionEffectId::eCENTER));
-
-	//爆弾レベル別で生成するエフェクトの変更
-	switch (gPlayerStatus.bombLevel)
-	{
-	case 1:
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	}
-
+	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, gPlayerStatus.bombLevel));
 }

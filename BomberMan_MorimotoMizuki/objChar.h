@@ -25,7 +25,7 @@ public:
 	int sound[8]{ -1,-1,-1,-1,-1,-1,-1,-1 };
 
 	~Character() { 
-		DeleteGraph(img);
+		//DeleteGraph(img);
 		for (int i = 0; i < 8; i++) DeleteSoundMem(sound[i]);
 	}
 };

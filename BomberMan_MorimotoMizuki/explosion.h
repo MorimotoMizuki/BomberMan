@@ -6,15 +6,46 @@ class CExplosion : public BaseVector
 {
 public:
 
+	//爆発の削除フレーム数
+	static constexpr auto EXPLOSION_DELETE_FRAME = 15;
+
+	//爆発のアニメーション数
+	static constexpr auto EXPLOSION_ANIM_NUM = 5;
+
+	//爆発のアニメーションフレーム数
+	static constexpr auto EXPLOSION_ANIM_FRAME = EXPLOSION_DELETE_FRAME / EXPLOSION_ANIM_NUM;
+
+	//爆発の画像の数
+	static constexpr auto EXPLOSION_IMG_NUM = 12;
+
+	//爆発アニメーションの順番
+	static constexpr int EXPLOSION_ANIM_ORDER[EXPLOSION_ANIM_NUM] = { 2,3,2,1,0 };
+
 public:
 
-	CExplosion(Point, ExplosionEffectId);
+	//座標, 爆弾レベル
+	CExplosion(Point, int);
 	~CExplosion();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
 
+	//爆発アニメーション処理
+	bool ExplosionAnim(int animMax, int* index);
+
+	//爆弾描画(レベル別)
+	//ずれ分の座標x、y、描画個数、縦or横
+	void DrawExplosion(float, float, int, ExplosionEffectId);
+
 private:
 
-	//エフェクトID
-	ExplosionEffectId EffectId;
+	//爆弾レベル
+	int	BombLevel;
+
+	//爆発の画像ハンドル配列
+	int ExplosionImgHandle[EXPLOSION_IMG_NUM];
+	//アニメーションの画像インデックス
+	int AnimIndex{ 0 };
+	//アニメーションカウント
+	int AnimCnt{ 0 };
+
 };

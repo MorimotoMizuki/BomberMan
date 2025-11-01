@@ -20,22 +20,16 @@ CGame::CGame(CManager* p) :CScene(p)
 {
 	base.emplace_back((unique_ptr<BaseVector>)new CPlayer());
 
-	Point bp{ 0,WINDOW_HEADER };
-	for (int i = 0; i < 16; i++)
-	{
-		base.emplace_back((unique_ptr<BaseVector>)new CBlock(bp,Obj_Id::NORMALBLOCK));
-		bp.x += 64;
-	}
-
+	//マップマネージャー
+	map = std::make_unique<CMap>();
+	map->LoadMap();	//マップデータ読み込み
+	map->Map_Obj_Creation(base);//マップ生成
 }
 
 //更新処理
 int CGame::Update()
 {
-	//ヘッダーの背景
-	DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
-	//ゲーム背景
-	DrawBox(0, WINDOW_HEADER, WINDOW_WIDTH, WINDOW_HEIGHT, GetColor(56, 135, 0), 1);
+	map->Action(base);
 
 	//更新処理
 	for (int i = 0; i < base.size(); i++)
@@ -60,7 +54,12 @@ void CGame::Draw()
 {
 	//オブジェクト個数
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Object_Count = %d", base.size());
-	
+
+	//ヘッダーの背景
+	DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
+	//ゲーム背景
+	DrawBox(0, WINDOW_HEADER, WINDOW_WIDTH, WINDOW_HEIGHT, GetColor(56, 135, 0), 1);
+
 	for (int i = 0; i < base.size(); i++)
 		if(base[i]->FLAG) base[i]->Draw();
 

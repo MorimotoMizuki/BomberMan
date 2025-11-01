@@ -6,8 +6,7 @@ enum Obj_Id
 	PLAYER = 1,
 	ENEMY,
 	BOMB,
-	NORMALBLOCK,
-	CRASHBLOCK,
+	BLOCK,
 	EXPLOSION,
 	ITEM,
 };
@@ -25,12 +24,14 @@ enum Pri_Id
 //爆発エフェクトID
 enum ExplosionEffectId
 {
-	eCENTER,	//中心
-	eMIDDLE,	//中間
-	eLEFT,
-	eRIGHT,
-	eUP,
-	eDOWN,
+	SIZE0,
+	SIZE1,
+	SIZE2,
+	SIZE3,
+
+	CENTER = 0,
+	VERTICAL = 4,
+	HORIZONTAL = 8,
 };
 
 // 行動ID

@@ -1,11 +1,20 @@
 #include"obj.h"
 #include"function.h"
+#include"map.h"
 
 CPlayer::CPlayer()
 {
 	LoadDivGraph("image\\player.png", PLAYER_IMG_NUM, 3, 4, IMGSIZE16, IMGSIZE16, PlayerImgHandle);
-	ImgWidth  = IMGSIZE64;
+
+	ImgWidth = IMGSIZE64;
 	ImgHeight = IMGSIZE64;
+
+	//マップ上の初期位置
+	m_pos.x = 64;
+	m_pos.y = 160;
+
+	//描画位置
+	pos = m_pos;
 
 	ID  = Obj_Id::PLAYER;
 	pri = Pri_Id::pPLAYER;
@@ -13,8 +22,25 @@ CPlayer::CPlayer()
 
 int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 {
+	//プレイヤーの移動処理
 	PlayerMove();
 
+	//ブロックオブジェクトと判定
+	for (int i = 0; i < base.size(); i++)
+	{
+		if (base[i]->ID == BLOCK)
+		{
+			if (((CBlock*)base[i].get())->tipNo == 0)
+			{
+				HitCheck_Box_Circle(this, base[i].get(), 32);
+			}
+		}
+	}
+
+	//座標更新
+	m_pos = Add_Point_Vector(m_pos, vec);
+
+	//爆弾配置処理
 	PutExplosion(base);
 
 	return 0;
@@ -23,10 +49,13 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 void CPlayer::Draw()
 {
 	//画像描画
-	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
+	DrawExtendGraph(pos.x, pos.y, pos.x + IMGSIZE64, pos.y + IMGSIZE64, PlayerImgHandle[AnimIndex], true);
+
+	Point posCenter{ pos.x + ImgWidth / 2, pos.y + ImgHeight / 2 };
+	DrawPixel(posCenter.x, posCenter.y, GetColor(255, 0, 0));
 
 	//デバッグ
-	//DrawFormatString(0, 150, GetColor(255, 255, 255), "%f", pos.y);
+	DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", posCenter.x, posCenter.y);
 }
 
 CPlayer::~CPlayer()
@@ -62,19 +91,6 @@ void CPlayer::PlayerMove()
 		vec.y = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::DOWN, &AnimIndex);
 	}
-
-	//座標更新
-	pos = Add_Point_Vector(pos, vec);
-
-	//範囲外処理
-	if (pos.x < 0)
-		pos.x = 0;
-	if (pos.x + ImgWidth > WINDOW_WIDTH)
-		pos.x = (float)WINDOW_WIDTH - (float)ImgWidth;
-	if (pos.y < 0)
-		pos.y = 0;
-	if (pos.y + ImgHeight > WINDOW_HEIGHT)
-		pos.y = (float)WINDOW_HEIGHT - (float)ImgHeight;
 }
 
 //プレイヤーのアニメーション処理

@@ -168,7 +168,7 @@ void Del_ListObj(list<unique_ptr<Base>>& base, int ID) {
 		}
 	}
 }
-void Del_ListObj(vector<unique_ptr<Base>>& base, int ID) {
+void Del_ListObj(vector<unique_ptr<BaseVector>>& base, int ID) {
 	for (int i = 0; i < base.size(); i++) {
 		if (base[i]->ID == ID) {
 			base[i]->FLAG = false;

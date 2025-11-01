@@ -40,6 +40,11 @@ public:
 	//爆弾を置く処理
 	void PutExplosion(vector<unique_ptr<BaseVector>>&);
 
+public:
+
+	//マップの位置
+	Point m_pos{ 0,0 };
+
 private:
 
 	//プレイヤーの画像ハンドル配列
@@ -50,5 +55,4 @@ private:
 	int AnimCnt{ PLAYER_ANIM_FRAME };
 	//直前のアニメーションID保存用
 	AnimMaxId KeepAnimMaxId{ AnimMaxId::LEFT };
-
 };

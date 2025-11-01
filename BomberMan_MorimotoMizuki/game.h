@@ -2,6 +2,7 @@
 #pragma once
 #include "objBase.h"
 #include "CCamera.h"
+#include"map.h"
 
 class CGame :public CScene
 {
@@ -22,6 +23,9 @@ public:
 
 	int Update();//更新処理
 	void Draw();//描画処理
+
+	//マップManager
+	std::unique_ptr<CMap> map;
 
 	//CCamera* camera;//カメラオブジェクト
 };

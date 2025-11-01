@@ -1,16 +1,22 @@
 #include"obj.h"
 #include"function.h"
 
-CBlock::CBlock(Point p, int id)
+CBlock::CBlock(Point p, int No, int _img)
 {
-	img = LoadGraph("image\\normal_block.png");
+	img = _img;
 
-	pos = p;
 	ImgWidth  = IMGSIZE64;
 	ImgHeight = IMGSIZE64;
 
+	pos = p;
 
-	ID = id;
+	//切り取り位置 : 16 -> 画像の横チップ数
+	CutX = (No % 16) * ImgWidth;
+	CutY = (No / 16) * ImgHeight;
+
+	tipNo = No;
+
+	ID = Obj_Id::BLOCK;
 	pri = Pri_Id::pBLOCK;
 }
 
@@ -23,7 +29,15 @@ int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 void CBlock::Draw()
 {
 	//画像描画
-	DrawGraph(pos.x, pos.y, img, true);
+	DrawRectGraph(
+		pos.x, pos.y,
+		CutX, CutY,
+		ImgWidth, ImgHeight,
+		img,
+		false	//不透過
+	);
+
+	//DrawFormatString(pos.x, pos.y, GetColor(255, 0, 0), "%.2f\n%.2f", pos.x, pos.y);
 }
 
 CBlock::~CBlock()

@@ -34,7 +34,7 @@ void Del_SpecifiedObj(vector<unique_ptr<Base>>&, int);
 
 //指定オブジェクトをリストから削除(FLAGをfalseにする)
 void Del_ListObj(list<unique_ptr<Base>>&, int);
-void Del_ListObj(vector<unique_ptr<Base>>&, int);
+void Del_ListObj(vector<unique_ptr<BaseVector>>&, int);
 
 //指定オブジェクトをリストから削除範囲(FLAGをfalseにする)
 void Del_ListObj(list<unique_ptr<Base>>&, int, int);
