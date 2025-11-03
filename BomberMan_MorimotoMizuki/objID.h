@@ -3,12 +3,14 @@
 //オブジェクトID
 enum Obj_Id
 {
-	PLAYER = 1,
+	NONE = -1,
+	BLOCK,
+	ITEM,
+	GOAL,
+	PLAYER,
 	ENEMY,
 	BOMB,
-	BLOCK,
 	EXPLOSION,
-	ITEM,
 };
 
 //オブジェクト表示順番

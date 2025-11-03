@@ -2,14 +2,17 @@
 #include"function.h"
 #include"map.h"
 
-CExplosion::CExplosion(Point p, int bombLevel)
+CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 {
 	LoadDivGraph("image\\explosion.png", EXPLOSION_IMG_NUM, 4, 3, IMGSIZE32, IMGSIZE32, ExplosionImgHandle);
 
-	ImgWidth  = IMGSIZE64;
-	ImgHeight = IMGSIZE64;
+	ImgWidth  = CHIP_SIZE;
+	ImgHeight = CHIP_SIZE;
 
 	pos = p;
+
+	//爆弾の座標
+	BombPos = bombP;
 
 	//爆弾レベル
 	BombLevel = bombLevel;
@@ -43,10 +46,10 @@ void CExplosion::Draw()
 	//中央
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex]], true);
 	//上,下,左,右
-	DrawExplosion(0, -ImgHeight	, BombLevel, ExplosionEffectId::VERTICAL);
-	DrawExplosion(0,  ImgHeight	, BombLevel, ExplosionEffectId::VERTICAL);
-	DrawExplosion(-ImgWidth, 0, BombLevel, ExplosionEffectId::HORIZONTAL);
-	DrawExplosion( ImgWidth, 0, BombLevel, ExplosionEffectId::HORIZONTAL);
+	DrawExplosion( 0, -1	, BombLevel, ExplosionEffectId::VERTICAL);
+	DrawExplosion( 0,  1	, BombLevel, ExplosionEffectId::VERTICAL);
+	DrawExplosion(-1,  0	, BombLevel, ExplosionEffectId::HORIZONTAL);
+	DrawExplosion( 1,  0	, BombLevel, ExplosionEffectId::HORIZONTAL);
 }
 
 CExplosion::~CExplosion()
@@ -79,20 +82,32 @@ bool CExplosion::ExplosionAnim(int animMax, int* index)
 //ずれ分の座標x、y、描画個数、縦or横
 void CExplosion::DrawExplosion(float addPosX, float addPosY, int num, ExplosionEffectId dir)
 {
-	Point movePos{ addPosX, addPosY };
+	Point movePos{ addPosX * CHIP_SIZE, addPosY * CHIP_SIZE };
 
-	Point drawPos{ pos.x + addPosX, pos.y + addPosY };
+	Point drawPos{ pos.x + movePos.x, pos.y + movePos.y };
 
+	MapPoint systemPos{ BombPos.x, BombPos.y };
+	
 	for (int i = 0; i < num; i++)
 	{
-		//ここで隣がブロックの場合は終了の処理を書く ,また　クラッシュブロックだったら壊す
-
+		systemPos = {	systemPos.x + static_cast<int>(addPosX),
+						systemPos.y + static_cast<int>(addPosY)
+		};
+		//先の升目がブロックの場合は描画終了
+		if (gNowMap[systemPos.y][systemPos.x] == Obj_Id::BLOCK)
+		{
+			return;
+		}
 		 
 		//爆発描画
 		DrawExtendGraph(drawPos.x, drawPos.y, drawPos.x + ImgWidth, drawPos.y + ImgHeight,
 			ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex] + static_cast<int>(dir)], true);
 
+		//描画座標更新
 		drawPos.x += movePos.x;
 		drawPos.y += movePos.y;
+		//システム上の座標更新
+		systemPos.x += static_cast<int>(addPosX);
+		systemPos.y += static_cast<int>(addPosY);
 	}
 }

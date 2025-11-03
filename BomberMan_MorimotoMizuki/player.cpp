@@ -50,12 +50,12 @@ void CPlayer::Draw()
 {
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + IMGSIZE64, pos.y + IMGSIZE64, PlayerImgHandle[AnimIndex], true);
-
-	Point posCenter{ pos.x + ImgWidth / 2, pos.y + ImgHeight / 2 };
-	DrawPixel(posCenter.x, posCenter.y, GetColor(255, 0, 0));
-
+	
 	//デバッグ
-	DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", posCenter.x, posCenter.y);
+	DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
+	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+
+	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE), static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE));
 }
 
 CPlayer::~CPlayer()
@@ -124,6 +124,17 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	if (gNowBombNum >= gPlayerStatus.bombPutNum)
 		return;
 
+	//一つのブロックの情報を取得
+	CBlock* b = (CBlock*)Get_obj(base, BLOCK);
+	int bMapX = b->pos.x / CHIP_SIZE;
+	//マップ上のずれを計算
+	float displacement = (bMapX * CHIP_SIZE) - b->pos.x;
+
+	//プレイヤーの中心座標を計算
+	Point centerPos = { pos.x + ImgWidth / 2, pos.y + ImgHeight / 2 };
+
+	//爆弾を置くシステム上の座標を計算
+	MapPoint putMapPos = { (m_pos.x + ImgWidth / 2) / CHIP_SIZE, ((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE };
 	//爆弾生成
-	base.emplace_back((unique_ptr<BaseVector>)new CBomb(pos));
+	base.emplace_back((unique_ptr<BaseVector>)new CBomb(centerPos, displacement, putMapPos));
 }

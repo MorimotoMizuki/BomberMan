@@ -21,4 +21,6 @@ public:
 
 private:
 
+	//画面スクロールによる座標のずれ
+	Point DisplacementPos{ 0,0 };
 };

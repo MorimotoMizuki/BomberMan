@@ -27,6 +27,16 @@ constexpr auto WINDOW_HEADER = 96;	//画面上のサイズ
 constexpr auto WINDOW_WIDTH = 1024;	//横幅 64*16
 constexpr auto WINDOW_HEIGHT = IMGSIZE64 * 13 + WINDOW_HEADER;	//縦幅 64*13+48
 
+//マップ全体のマップチップ数
+constexpr auto MAP_CHIP_W = 31;
+constexpr auto MAP_CHIP_H = 13;
+
+//描画するマップチップ数(描画画面のサイズ)
+constexpr auto DRAW_CHIP_W = 15;
+constexpr auto DRAW_CHIP_H = 13;
+
+//マップチップのサイズ
+constexpr auto CHIP_SIZE = IMGSIZE64;
 
 //2D用
  struct Point {
@@ -35,6 +45,10 @@ constexpr auto WINDOW_HEIGHT = IMGSIZE64 * 13 + WINDOW_HEADER;	//縦幅 64*13+48
  struct Vector {
 	float x, y;
 };
+
+ struct MapPoint {
+	 int x, y;
+ };
 
 //3D用
 struct Point3 {
@@ -62,6 +76,9 @@ struct Vector3 {
 extern PlayerStatus gPlayerStatus;
 //現在設置している爆弾の数
 extern int gNowBombNum;
+
+//現在のマップ[y][x]
+extern int gNowMap[MAP_CHIP_H][MAP_CHIP_W];
 
 //カメラ情報クラス(main.h)
 //class CCameraInfo {

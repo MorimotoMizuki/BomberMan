@@ -23,8 +23,8 @@ public:
 
 public:
 
-	//座標, 爆弾レベル
-	CExplosion(Point, int);
+	//描画座標,システム上の座標 爆弾レベル
+	CExplosion(Point, MapPoint, int);
 	~CExplosion();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
@@ -47,5 +47,8 @@ private:
 	int AnimIndex{ 0 };
 	//アニメーションカウント
 	int AnimCnt{ 0 };
+
+	//爆弾の座標
+	MapPoint BombPos{ 0,0 };
 
 };

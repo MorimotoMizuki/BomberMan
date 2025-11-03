@@ -15,6 +15,9 @@ PlayerStatus gPlayerStatus = {
 //現在の設置している爆弾の数
 int gNowBombNum = 0;
 
+//現在のマップ[y][x]
+int gNowMap[MAP_CHIP_H][MAP_CHIP_W] = { 0 };
+
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
 {

@@ -1,11 +1,4 @@
-﻿  bomb.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(12,11): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(13,11): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(15,15): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(16,27): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(58,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(58,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(58,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(58,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  LINK : 前回のインクリメンタル リンクで C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+﻿  block.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(39,13): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(39,6): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe

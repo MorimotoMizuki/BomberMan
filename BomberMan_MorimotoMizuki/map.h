@@ -8,17 +8,6 @@
 #include<sstream>
 #include<vector>
 
-//マップ全体のマップチップ数
-constexpr auto MAP_CHIP_W = 31;
-constexpr auto MAP_CHIP_H = 13;
-
-//描画するマップチップ数(描画画面のサイズ)
-constexpr auto DRAW_CHIP_W = 15;
-constexpr auto DRAW_CHIP_H = 13;
-
-//マップチップのサイズ
-constexpr auto CHIP_SIZE = IMGSIZE64;
-
 class CMap {
 
 private:

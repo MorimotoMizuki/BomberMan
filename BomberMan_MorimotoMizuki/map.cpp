@@ -38,6 +38,7 @@ void CMap::LoadMap()
 			for (int x = 0; x < MAP_CHIP_W; x++)
 			{
 				map[y][x] = stoi(strv.at(x));//•¶Žš—ñ‚ð”’l‚É•ÏŠ·‚µ‚Ä•Û‘¶
+				gNowMap[y][x] = map[y][x];
 			}
 		}
 

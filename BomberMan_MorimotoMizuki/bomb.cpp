@@ -2,23 +2,32 @@
 #include"function.h"
 #include"map.h"
 
-CBomb::CBomb(Point p, int diedFrame)
+CBomb::CBomb(Point p,float displacement,MapPoint mapPos, int diedFrame)
 {
 	LoadDivGraph("image\\bomb.png", BOMB_IMG_NUM, 3, 1, IMGSIZE16, IMGSIZE16, BombImgHandle);
 
-	ImgWidth  = IMGSIZE64;
-	ImgHeight = IMGSIZE64;
+	ImgWidth  = CHIP_SIZE;
+	ImgHeight = CHIP_SIZE;
 
-	int mapX = p.x / IMGSIZE64;
-	int mapY = p.y / IMGSIZE64;
+	//画面上の升目を計算
+	DrawMap.x = p.x / CHIP_SIZE;
+	DrawMap.y = (p.y - IMGSIZE64 / 2) / CHIP_SIZE;
 
-	pos.x = mapX * CHIP_SIZE;
-	pos.y = mapY * CHIP_SIZE + (WINDOW_HEADER - IMGSIZE64);
+	//座標を升目 * チップサイズ - 画面上のずれ　で計算
+	pos.x = DrawMap.x * CHIP_SIZE - displacement;
+	pos.y = DrawMap.y * CHIP_SIZE + (WINDOW_HEADER - CHIP_SIZE);
 
+	//システム上の座標を設定
+	SystemMap = mapPos;
+
+	//爆弾の削除フレーム数設定
 	DiedFrame = diedFrame;
 
 	ID = Obj_Id::BOMB;
 	pri = Pri_Id::pBOMB;
+
+	//現在のマップに爆弾を配置
+	gNowMap[SystemMap.y][SystemMap.x] = ID;
 
 	//設置している爆弾の数 : 増加
 	gNowBombNum++;
@@ -53,9 +62,6 @@ void CBomb::Draw()
 {
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
-
-	//デバッグ
-	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y);
 }
 
 //爆弾アニメーション処理
@@ -75,7 +81,6 @@ void CBomb::BombAnim(int animMax, int* index)
 		*index = 0;
 	else
 		*index += 1;
-
 }
 
 
@@ -88,6 +93,9 @@ CBomb::~CBomb()
 //爆発エフェクト
 void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base)
 {
+	//システム上のマップから爆弾を削除
+	gNowMap[SystemMap.y][SystemMap.x] = Obj_Id::NONE;
+
 	//爆発エフェクト生成 
-	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, gPlayerStatus.bombLevel));
+	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemMap, gPlayerStatus.bombLevel));
 }
