@@ -1,0 +1,64 @@
+﻿  3D_function.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,140): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(26,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,90): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(28,138): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,129): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(31,204): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(33,137): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,128): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(36,192): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,78): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\3D_function.cpp(38,126): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  block.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(39,13): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(39,6): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  CCamera.cpp
+  2D_function.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,143): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\2D_function.cpp(36,202): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  bomb.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(13,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(14,36): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(18,32): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(64,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(64,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(64,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(64,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  explosion.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(47,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(47,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(47,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(47,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(103,73): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(103,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(103,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(103,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  game.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(46,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  library_function.cpp
+  main.cpp
+  map.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(56,15): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(56,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(56,42): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(56,42): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(95,12): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(96,12): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  My_function.cpp
+  player.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(52,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(52,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(52,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(52,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(129,12): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(137,50): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(137,50): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(137,107): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(137,107): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  コード生成しています。
+  Previous IPDB not found, fall back to full compilation.
+  All 606 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan\x64\Release\BomberMan_MorimotoMizuki.exe
