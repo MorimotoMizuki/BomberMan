@@ -34,7 +34,7 @@ public:
 
 	//爆弾描画(レベル別)
 	//ずれ分の座標x、y、描画個数、縦or横
-	void DrawExplosion(float, float, int, ExplosionEffectId);
+	std::tuple<Point, Point, int> DrawExplosion(float, float, int, ExplosionEffectId);
 
 private:
 
@@ -51,4 +51,12 @@ private:
 	//爆弾の座標
 	MapPoint BombPos{ 0,0 };
 
+	//本体からのずれ座標とカウントのデータ
+	//(本体からのずれ座標, 爆発方向, 爆発する数)
+	std::vector<std::tuple<Point, Point, int>> ExplosionPointData = {
+		{ {0, 0},{0, 0}, 0 },
+		{ {0, 0},{0, 0}, 0 },
+		{ {0, 0},{0, 0}, 0 },
+		{ {0, 0},{0, 0}, 0 }
+	};
 };

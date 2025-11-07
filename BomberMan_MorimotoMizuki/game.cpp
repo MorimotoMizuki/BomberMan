@@ -59,7 +59,7 @@ void CGame::Draw()
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Object_Count = %d", base.size());
 
 	//ÉwÉbÉ_Å[ÇÃîwåi
-	DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
+	//DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
 	//ÉQÅ[ÉÄîwåi
 	DrawBox(0, WINDOW_HEADER, WINDOW_WIDTH, WINDOW_HEIGHT, GetColor(56, 135, 0), 1);
 

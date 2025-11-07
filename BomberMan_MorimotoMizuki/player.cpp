@@ -30,7 +30,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	{
 		if (base[i]->ID == BLOCK)
 		{
-			if (((CBlock*)base[i].get())->tipNo == 0)
+			if (((CBlock*)base[i].get())->tipNo >= 0)
 			{
 				HitCheck_Box_Circle(this, base[i].get(), 32);
 			}

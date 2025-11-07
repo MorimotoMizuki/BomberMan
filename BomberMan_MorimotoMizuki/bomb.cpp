@@ -62,6 +62,10 @@ void CBomb::Draw()
 {
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
+
+	//DrawFormatString(pos.x + 30, pos.y, GetColor(255, 0, 0), "%.f\n%.f", pos.x, pos.y);
+	DrawFormatString(pos.x + 30, pos.y, GetColor(255, 0, 0), "%d\n%d", SystemMap.x, SystemMap.y);
+
 }
 
 //爆弾アニメーション処理

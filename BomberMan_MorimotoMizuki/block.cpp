@@ -1,7 +1,7 @@
 #include"obj.h"
 #include"function.h"
 
-CBlock::CBlock(Point p, int No, int _img)
+CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
 {
 	img = _img;
 
@@ -16,6 +16,8 @@ CBlock::CBlock(Point p, int No, int _img)
 
 	tipNo = No;
 
+	SystemPos = system_p;
+
 	ID = Obj_Id::BLOCK;
 	pri = Pri_Id::pBLOCK;
 }
@@ -23,11 +25,13 @@ CBlock::CBlock(Point p, int No, int _img)
 int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//プレイヤーを取得
-	//CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	//if (p->vec.x == 0.0f)
-	//	DisplacementPos.x = p->m_pos.x - p->pos.x;
-	//if (p->vec.y == 0.0f)
-	//	DisplacementPos.y = p->m_pos.y - p->pos.y;
+	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
+	if (p->vec.x == 0.0f) {
+		DisplacementPos.x = p->m_pos.x - p->pos.x;
+	}
+	if (p->vec.y == 0.0f) {
+		DisplacementPos.y = p->m_pos.y - p->pos.y;
+	}
 
 	return 0;
 }
@@ -43,7 +47,8 @@ void CBlock::Draw()
 		false	//不透過
 	);
 
-	//DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%.f\n%.f", pos.x + DisplacementPos.x, pos.y - WINDOW_HEADER + DisplacementPos.y);
+	//DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%d\n%d", SystemPos.x * 64, SystemPos.y * 64);
+	DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%d\n%d", SystemPos.x, SystemPos.y);
 
 }
 

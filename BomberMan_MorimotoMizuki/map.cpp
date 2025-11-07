@@ -54,7 +54,9 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 		for (int x = 0; x < MAP_CHIP_W; x++)
 		{
 			Point p{ x * CHIP_SIZE, y * CHIP_SIZE + WINDOW_HEADER };
-			base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, map[y][x], img));
+			MapPoint s_p{ x, y };
+			//if(map[y][x] != -1)
+				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, map[y][x], img));
 		}
 	}
 }
@@ -100,6 +102,13 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 					m_camera.y + ChipY * CHIP_SIZE + +WINDOW_HEADER
 	};
 
+	Point disPos{ p->m_pos.x - p->pos.x, -WINDOW_HEADER };
+
+	if (p->pos.x < 480)
+		disPos = { 0.0f,-WINDOW_HEADER };
+	else if (p->pos.x > 480)
+		disPos = { 960.0f,-WINDOW_HEADER };
+
 	//マップチップを生成
 	Point chipPos{ DrawPos.x, DrawPos.y };	//描画位置
 	for (int y = 0; y < DRAW_CHIP_H; y++)
@@ -107,8 +116,12 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 		chipPos.x = DrawPos.x;
 		for (int x = 0; x < DRAW_CHIP_W + 2; x++)
 		{
-			//ブロック生成
-			base.emplace_back((unique_ptr<BaseVector>)new CBlock(chipPos, map[y + ChipY][x + ChipX], img));
+			MapPoint s_p{ (chipPos.x + disPos.x) / 64, (chipPos.y + disPos.y) / 64 };
+			//if (map[y + ChipY][x + ChipX] != -1)
+			{
+				//ブロック生成
+				base.emplace_back((unique_ptr<BaseVector>)new CBlock(chipPos, s_p, map[y + ChipY][x + ChipX], img));
+			}
 			chipPos.x += CHIP_SIZE;
 		}
 		chipPos.y += CHIP_SIZE;
