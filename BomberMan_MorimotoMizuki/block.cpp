@@ -22,6 +22,8 @@ CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
 	pri = Pri_Id::pBLOCK;
 }
 
+int CBlock::aaa{ 0 };
+
 int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//ƒvƒŒƒCƒ„[‚ğæ“¾
