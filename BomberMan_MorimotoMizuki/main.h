@@ -64,13 +64,14 @@ struct Vector3 {
 
  struct PlayerStatus {
 	 
+	 //ライフ
+	 int life;
 	 //移動速度
 	 float speed;
 	 //設置可能な爆弾の数
 	 int bombPutNum;
 	 //爆弾の威力のレベル
 	 int bombLevel;
-
  };
 
 //プレイヤーのステータス
@@ -79,7 +80,13 @@ extern PlayerStatus gPlayerStatus;
 extern int gNowBombNum;
 
 //現在のマップ[y][x]
-extern int gNowMap[MAP_CHIP_H][MAP_CHIP_W];
+extern int gNowMap[MAP_CHIP_H + 1][MAP_CHIP_W + 1];
+
+//ゲームの状態
+extern GamePhaseId gGamePhase;
+
+//現在のステージ番号
+extern int gNowStageNum;
 
 //カメラ情報クラス(main.h)
 //class CCameraInfo {

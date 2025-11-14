@@ -16,13 +16,14 @@ CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
 
 	tipNo = No;
 
+	if (tipNo == 1)
+		LoadDivGraph("image\\player.png", CRASH_IMG_NUM, 2, 1, IMGSIZE64, IMGSIZE64, CrashAnimImgHandle);
+
 	SystemPos = system_p;
 
 	ID = Obj_Id::BLOCK;
 	pri = Pri_Id::pBLOCK;
 }
-
-int CBlock::aaa{ 0 };
 
 int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 {
@@ -35,26 +36,55 @@ int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 		DisplacementPos.y = p->m_pos.y - p->pos.y;
 	}
 
+	//クラッシュアニメーション
+	CrashBlockAnim();
+
 	return 0;
 }
 
 void CBlock::Draw()
 {
 	//画像描画
-	DrawRectGraph(
-		pos.x, pos.y,
-		CutX, CutY,
-		ImgWidth, ImgHeight,
-		img,
-		false	//不透過
-	);
+	if (IsCrash)
+	{
+		DrawRectGraph(pos.x, pos.y, CutX, CutY, ImgWidth, ImgHeight, CrashAnimImgHandle[AnimIndex], false);
+	}
+	else
+	{
+		DrawRectGraph(pos.x, pos.y, CutX, CutY, ImgWidth, ImgHeight, img, false);
+	}
 
 	//DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%d\n%d", SystemPos.x * 64, SystemPos.y * 64);
-	DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%d\n%d", SystemPos.x, SystemPos.y);
+	DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%d", IsCrash);
 
 }
 
 CBlock::~CBlock()
 {
 
+}
+
+void CBlock::CrashBlockAnim()
+{
+	if (tipNo != 1) return;
+
+	if (!IsCrash) return;
+
+	//アニメーションカウントが定数未満の場合は終了
+	if (AnimCnt < CRASH_ANIM_FRAME)
+	{
+		AnimCnt++;//インクリメント
+		return;
+	}
+
+	//初期化
+	AnimCnt = 0;
+
+	if (AnimIndex >= CRASH_IMG_NUM)
+	{
+		//FLAG = false;
+		return;
+	}
+	else
+		AnimIndex += 1;
 }

@@ -33,39 +33,8 @@ int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)
 		pos.x -= p->vec.x;
 	}
 
-	//ブロックオブジェクトと判定
-	if (std::get<0>(ExplosionPointData[0]).x != 0)
-	{
-		for (int i = 0; i < base.size(); i++)
-		{
-			if (base[i]->ID == BLOCK)
-			{
-				if (((CBlock*)base[i].get())->tipNo == 1)
-				{
-					Point blockPos = base[i].get()->pos;
-					MapPoint systemBlockPos = ((CBlock*)base[i].get())->SystemPos;
-
-					DrawFormatString(0, 50, GetColor(255, 0, 0), "%.f\n%.f", blockPos.x, blockPos.y - WINDOW_HEADER);
-					DrawFormatString(100, 50, GetColor(255, 0, 0), "%.f\n%.f", pos.x, pos.y - WINDOW_HEADER);
-					for (int i = 0; i < 4; i++)
-					{
-						Point startPos = { pos.x + std::get<0>(ExplosionPointData[i]).x ,pos.y + std::get<0>(ExplosionPointData[i]).y };
-						Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 32,
-										 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 32 };
-
-
-						if (blockPos.x < startPos.x + expPos.x && blockPos.x + 64 > startPos.x + expPos.x &&
-							blockPos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && blockPos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
-						{
-							//マップのデータ削除
-							gNowMap[systemBlockPos.y][systemBlockPos.x] = Obj_Id::NONE;
-							base[i].get()->FLAG = false;
-						}
-					}
-				}
-			}
-		}
-	}
+	//当たり判定
+	HitAction(base);
 
 	//爆発アニメーション処理
 	if (!ExplosionAnim(EXPLOSION_ANIM_NUM, &AnimIndex))
@@ -86,10 +55,86 @@ void CExplosion::Draw()
 	ExplosionPointData[2] = DrawExplosion(-1,  0	, BombLevel, ExplosionEffectId::HORIZONTAL);
 	ExplosionPointData[3] = DrawExplosion( 1,  0	, BombLevel, ExplosionEffectId::HORIZONTAL);
 
+	//Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
+	//for (int i = 0; i < 4; i++){
+	//	Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 64,
+	//					 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 64
+	//	};
+	//	DrawBox(startPos.x, startPos.y, startPos.x + expPos.x, startPos.y + expPos.y, GetColor(255, 0, 0), false);
+	//}
+
 }
 
 CExplosion::~CExplosion()
 {
+
+}
+
+//当たり判定
+void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
+{
+	if (std::get<0>(ExplosionPointData[0]).x == 0)
+		return;
+
+	bool isBreak{ false };	
+	for (int i = 0; i < base.size(); i++)
+	{
+		//ブロックオブジェクトと判定
+		if (base[i]->ID == BLOCK)
+		{
+			if (((CBlock*)base[i].get())->tipNo == 1)
+			{
+				Point blockPos = base[i].get()->pos;
+				MapPoint systemBlockPos = ((CBlock*)base[i].get())->SystemPos;
+
+				for (int i = 0; i < 4; i++)
+				{
+					Point startPos = { pos.x + std::get<0>(ExplosionPointData[i]).x ,pos.y + std::get<0>(ExplosionPointData[i]).y };
+					Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 32,
+									 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 32
+					};
+
+					//当たり判定
+					if (blockPos.x < startPos.x + expPos.x && blockPos.x + 64 > startPos.x + expPos.x &&
+						blockPos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && blockPos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
+					{
+						if (gNowMap[systemBlockPos.y][systemBlockPos.x] == 1)
+						{
+							//マップのデータ削除
+							gNowMap[systemBlockPos.y][systemBlockPos.x] = Obj_Id::NONE;
+							((CBlock*)base[i].get())->IsCrash = true;
+							isBreak = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		if (isBreak) break;
+	}
+
+	if (IsEnd) return;
+
+	//プレイヤーを取得
+	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
+	if (p == nullptr) return;
+
+	Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
+
+	for (int i = 0; i < 4; i++)
+	{
+		Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 64,
+						 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 64
+		};
+
+		//当たり判定
+		if (p->m_pos.x < startPos.x + expPos.x && p->m_pos.x + 64 > startPos.x + expPos.x &&
+			p->m_pos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && p->m_pos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
+		{
+			p->SetPlayerDead(CPlayer::PlayerStateId::DEADplayer);
+			IsEnd = true;
+		}
+	}
 
 }
 
@@ -124,6 +169,8 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 
 	MapPoint systemPos{ BombPos.x, BombPos.y };
 
+	ExplosionDir expDir{ ExplosionDir::NONE_exp };
+
 	int cnt = 0;
 	std::tuple<Point, Point, int> data = std::make_tuple(Point{ 0,0 }, Point{ addPosX, addPosY }, 0);
 
@@ -133,20 +180,24 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 		if (addPosY == -1) {	//上
 			std::get<0>(data).x = CHIP_SIZE / 2;
 			std::get<0>(data).y = 0;
+			expDir = ExplosionDir::UP_exp;
 		}
 		else{					//下
 			std::get<0>(data).x = CHIP_SIZE / 2;
 			std::get<0>(data).y = CHIP_SIZE;
+			expDir = ExplosionDir::DOWN_exp;
 		}
 	}
 	else {
 		if (addPosX == -1) {	//左
 			std::get<0>(data).x = 0;
 			std::get<0>(data).y = CHIP_SIZE / 2;
+			expDir = ExplosionDir::LEFT_exp;
 		}
 		else {					//右
 			std::get<0>(data).x = CHIP_SIZE;
 			std::get<0>(data).y = CHIP_SIZE / 2;
+			expDir = ExplosionDir::RIGHT_exp;
 		}
 	}
 	
@@ -156,12 +207,20 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 						systemPos.y + static_cast<int>(addPosY)
 		};
 		//先の升目がブロックの場合は描画終了
-		if (gNowMap[systemPos.y][systemPos.x] == Obj_Id::BLOCK)
+		if (gNowMap[systemPos.y][systemPos.x] == 0)
 		{
 			std::get<2>(data) = cnt;
 			return data;
 		}
-		 
+		if (gNowMap[systemPos.y][systemPos.x] == 1 ||
+			(CrashBlockPos[expDir].x == systemPos.x && CrashBlockPos[expDir].y == systemPos.y))
+		{
+			std::get<2>(data) = cnt + 1;
+			CrashBlockPos[static_cast<int>(expDir)] = systemPos; //破壊可能ブロックの座標保存
+			return data;
+		}
+		
+
 		//爆発描画
 		DrawExtendGraph(drawPos.x, drawPos.y, drawPos.x + ImgWidth, drawPos.y + ImgHeight,
 			ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex] + static_cast<int>(dir)], true);
@@ -172,7 +231,6 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 		//システム上の座標更新
 		systemPos.x += static_cast<int>(addPosX);
 		systemPos.y += static_cast<int>(addPosY);
-
 		cnt++;
 	}
 

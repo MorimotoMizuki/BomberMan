@@ -21,6 +21,14 @@ public:
 	//爆発アニメーションの順番
 	static constexpr int EXPLOSION_ANIM_ORDER[EXPLOSION_ANIM_NUM] = { 2,3,2,1,0 };
 
+	enum ExplosionDir{
+		NONE_exp,
+		UP_exp,
+		DOWN_exp,
+		RIGHT_exp,
+		LEFT_exp,
+	};
+
 public:
 
 	//描画座標,システム上の座標 爆弾レベル
@@ -36,7 +44,13 @@ public:
 	//ずれ分の座標x、y、描画個数、縦or横
 	std::tuple<Point, Point, int> DrawExplosion(float, float, int, ExplosionEffectId);
 
+	//当たり判定
+	void HitAction(vector<unique_ptr<BaseVector>>&);
+
 private:
+
+	//処理終了フラグ
+	bool IsEnd{ false };
 
 	//爆弾レベル
 	int	BombLevel;
@@ -58,5 +72,13 @@ private:
 		{ {0, 0},{0, 0}, 0 },
 		{ {0, 0},{0, 0}, 0 },
 		{ {0, 0},{0, 0}, 0 }
+	};
+
+	//クラッシュブロックのシステム上の座標
+	MapPoint CrashBlockPos[4]{
+		{0,0},
+		{0,0},
+		{0,0},
+		{0,0},
 	};
 };

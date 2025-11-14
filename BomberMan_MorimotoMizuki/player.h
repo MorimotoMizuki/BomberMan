@@ -10,11 +10,10 @@ public:
 	static constexpr auto PLAYER_ANIM_FRAME = 8;
 
 	//プレイヤーの画像の数
-	static constexpr auto PLAYER_IMG_NUM = 12;
+	static constexpr auto PLAYER_IMG_NUM = 18;
 
 	//プレイヤーの一つのアニメーションに使用する数(配列の添え字にするように-1)
 	static constexpr auto PLAYER_ONE_ANIM_NUM = 2;
-
 
 	enum AnimMaxId
 	{
@@ -22,6 +21,14 @@ public:
 		RIGHT = 5,
 		UP = 8,
 		DOWN = 11,
+		DEAD = 17,
+	};
+
+	enum PlayerStateId
+	{
+		NONEplayer,
+		PLAYplayer,
+		DEADplayer,
 	};
 
 public:
@@ -35,15 +42,28 @@ public:
 	void PlayerMove();
 
 	//プレイヤーのアニメーション処理
-	void PlayerAnim(AnimMaxId, int*);
+	//(アニメーション最大数、アニメーションフレーム、インデックス*、繰り返しフラグ)
+	bool PlayerAnim(AnimMaxId, int, int*, bool = true);
 
 	//爆弾を置く処理
 	void PutExplosion(vector<unique_ptr<BaseVector>>&);
+
+	//プレイヤーの死亡時処理
+	void PlayerDead();
+
+	//プレイヤー死亡時の値設定
+	void SetPlayerDead(PlayerStateId state) { 
+		PlayerState = state; 
+		AnimIndex = 12;
+		AnimCnt = PLAYER_ANIM_FRAME;
+	}
 
 public:
 
 	//マップの位置
 	Point m_pos{ 0,0 };
+	//システム上の座標
+	MapPoint SystemPos{ 0,0 };
 
 private:
 
@@ -55,4 +75,7 @@ private:
 	int AnimCnt{ PLAYER_ANIM_FRAME };
 	//直前のアニメーションID保存用
 	AnimMaxId KeepAnimMaxId{ AnimMaxId::LEFT };
+
+	//プレイヤーの状態
+	PlayerStateId PlayerState{ PlayerStateId::PLAYplayer };
 };

@@ -117,7 +117,8 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 		for (int x = 0; x < DRAW_CHIP_W + 2; x++)
 		{
 			MapPoint s_p{ (chipPos.x + disPos.x) / 64, (chipPos.y + disPos.y) / 64 };
-			//if (map[y + ChipY][x + ChipX] != -1)
+			//空白　かつ　爆弾　ではない場合
+			if (gNowMap[y + ChipY][x + ChipX] != -1 && gNowMap[y + ChipY][x + ChipX] != 5)
 			{
 				//ブロック生成
 				base.emplace_back((unique_ptr<BaseVector>)new CBlock(chipPos, s_p, map[y + ChipY][x + ChipX], img));
@@ -126,6 +127,7 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 		}
 		chipPos.y += CHIP_SIZE;
 	}
+	
 
 	//プレイヤーの描画位置計算
 	{

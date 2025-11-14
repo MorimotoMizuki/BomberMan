@@ -4,7 +4,7 @@
 
 CPlayer::CPlayer()
 {
-	LoadDivGraph("image\\player.png", PLAYER_IMG_NUM, 3, 4, IMGSIZE16, IMGSIZE16, PlayerImgHandle);
+	LoadDivGraph("image\\player.png", PLAYER_IMG_NUM, 3, 6, IMGSIZE16, IMGSIZE16, PlayerImgHandle);
 
 	ImgWidth = IMGSIZE64;
 	ImgHeight = IMGSIZE64;
@@ -16,12 +16,20 @@ CPlayer::CPlayer()
 	//描画位置
 	pos = m_pos;
 
+	//システム上の座標
+	SystemPos = { static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
+				  static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
+	};
+
 	ID  = Obj_Id::PLAYER;
 	pri = Pri_Id::pPLAYER;
 }
 
 int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 {
+	//プレイヤーの死亡処理
+	PlayerDead();
+
 	//プレイヤーの移動処理
 	PlayerMove();
 
@@ -39,6 +47,10 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 
 	//座標更新
 	m_pos = Add_Point_Vector(m_pos, vec);
+	//システム上の座標更新
+	SystemPos = { static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
+			  static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
+	};
 
 	//爆弾配置処理
 	PutExplosion(base);
@@ -48,14 +60,18 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CPlayer::Draw()
 {
+	if (!draw_flag) return;
+
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + IMGSIZE64, pos.y + IMGSIZE64, PlayerImgHandle[AnimIndex], true);
 	
 	//デバッグ
-	DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+	//DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
+	//DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
 
-	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE), static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE));
+	//DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
+
+	//DrawBox(m_pos.x, m_pos.y, m_pos.x + ImgWidth, m_pos.y + ImgHeight, GetColor(255, 0, 0), false);
 }
 
 CPlayer::~CPlayer()
@@ -67,6 +83,9 @@ CPlayer::~CPlayer()
 //プレイヤーの移動処理
 void CPlayer::PlayerMove()
 {
+	if (PlayerState != PlayerStateId::PLAYplayer)
+		return;
+
 	//移動ベクトル初期化
 	vec.x = 0.0f;
 	vec.y = 0.0f;
@@ -74,44 +93,57 @@ void CPlayer::PlayerMove()
 	if (Key_Check(Move_Id::LEFT))
 	{
 		vec.x = -gPlayerStatus.speed;
-		PlayerAnim(AnimMaxId::LEFT, &AnimIndex);
+		PlayerAnim(AnimMaxId::LEFT, PLAYER_ANIM_FRAME, &AnimIndex);
 	}
 	else if (Key_Check(Move_Id::RIGHT))
 	{
 		vec.x = gPlayerStatus.speed;
-		PlayerAnim(AnimMaxId::RIGHT, &AnimIndex);
+		PlayerAnim(AnimMaxId::RIGHT, PLAYER_ANIM_FRAME, &AnimIndex);
 	}
 	else if (Key_Check(Move_Id::UP))
 	{
 		vec.y = -gPlayerStatus.speed;
-		PlayerAnim(AnimMaxId::UP, &AnimIndex);
+		PlayerAnim(AnimMaxId::UP, PLAYER_ANIM_FRAME, &AnimIndex);
 	}
 	else if (Key_Check(Move_Id::DOWN))
 	{
 		vec.y = gPlayerStatus.speed;
-		PlayerAnim(AnimMaxId::DOWN, &AnimIndex);
+		PlayerAnim(AnimMaxId::DOWN, PLAYER_ANIM_FRAME, &AnimIndex);
 	}
 }
 
 //プレイヤーのアニメーション処理
-void CPlayer::PlayerAnim(AnimMaxId animMaxId, int* index)
+bool CPlayer::PlayerAnim(AnimMaxId animMaxId,int animFrame, int* index, bool isLoop)
 {
 	//アニメーションカウントが定数未満の場合は終了
-	if (AnimCnt < PLAYER_ANIM_FRAME && KeepAnimMaxId == animMaxId)
+	if (AnimCnt < animFrame && KeepAnimMaxId == animMaxId)
 	{
 		AnimCnt++;//インクリメント
-		return;
+		return false;
 	}
+
 	//初期化
 	AnimCnt = 0;
 	//アニメーションID保存
 	KeepAnimMaxId = animMaxId;
 
-	//アニメーションの最大値以上の場合は対応する初期値に設定
-	if (*index >= animMaxId || *index < animMaxId - PLAYER_ONE_ANIM_NUM)
-		*index = animMaxId - PLAYER_ONE_ANIM_NUM;
+	if (!isLoop)
+	{
+		if (*index >= animMaxId)
+			return true;
+		else
+			*index += 1;
+	}
 	else
-		*index += 1;
+	{
+		//アニメーションの最大値以上の場合は対応する初期値に設定
+		if (*index >= animMaxId || *index < animMaxId - PLAYER_ONE_ANIM_NUM)
+			*index = animMaxId - PLAYER_ONE_ANIM_NUM;
+		else
+			*index += 1;
+	}
+
+	return false;
 }
 
 //爆弾を置く処理
@@ -130,6 +162,9 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	//マップ上のずれを計算
 	float displacement = (bMapX * CHIP_SIZE) - b->pos.x;
 
+	if (pos.x == 480.0f)
+		displacement -= vec.x;
+
 	//プレイヤーの中心座標を計算
 	Point centerPos = { pos.x + ImgWidth / 2, pos.y + ImgHeight / 2 };
 
@@ -137,4 +172,20 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	MapPoint putMapPos = { (m_pos.x + ImgWidth / 2) / CHIP_SIZE, ((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE };
 	//爆弾生成
 	base.emplace_back((unique_ptr<BaseVector>)new CBomb(centerPos, displacement, putMapPos));
+}
+
+//プレイヤーの死亡時処理
+void CPlayer::PlayerDead()
+{
+	if (PlayerState != PlayerStateId::DEADplayer)
+		return;
+
+	if (PlayerAnim(AnimMaxId::DEAD, PLAYER_ANIM_FRAME, &AnimIndex, false))
+	{
+		//ゲームオーバー状態
+		gGamePhase = GamePhaseId::GAMEOVER;
+		//描画しない
+		draw_flag = false;
+		PlayerState = PlayerStateId::NONEplayer;
+	}
 }

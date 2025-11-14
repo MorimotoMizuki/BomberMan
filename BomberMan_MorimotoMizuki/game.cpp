@@ -2,12 +2,13 @@
 #include "DxLib.h"
 #include "Scene_Manager.h"
 #include "game.h"
-#include "function.h"
-
+#include "title.h"
 #include"obj.h"
+#include "function.h"
 
 //プレイヤーのステータス
 PlayerStatus gPlayerStatus = {
+	2,		//life
 	6.0f,	//speed
 	1,		//bombPutNum
 	1,		//bombLevel
@@ -16,7 +17,13 @@ PlayerStatus gPlayerStatus = {
 int gNowBombNum = 0;
 
 //現在のマップ[y][x]
-int gNowMap[MAP_CHIP_H][MAP_CHIP_W] = { 0 };
+int gNowMap[MAP_CHIP_H + 1][MAP_CHIP_W + 1] = { 0 };
+
+//ゲームの状態
+GamePhaseId gGamePhase{ GamePhaseId::IDLE };
+
+//現在のステージ番号
+int gNowStageNum{ 1 };
 
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
@@ -27,12 +34,26 @@ CGame::CGame(CManager* p) :CScene(p)
 	map = std::make_unique<CMap>();
 	map->LoadMap();	//マップデータ読み込み
 	map->Map_Obj_Creation(base);//マップ生成
+
+	//プレイ状態
+	gGamePhase = GamePhaseId::PLAING;
 }
 
 //更新処理
 int CGame::Update()
 {
 	map->Action(base);
+
+	if (gGamePhase == GamePhaseId::GAMEOVER)
+	{
+		WaitTimer(1000);
+
+		//シーンの削除
+		manager->Scene_Delete();
+		//タイトルシーンに移行 : シーンを作成
+		manager->scene = new CTitle(manager);
+		return 0;
+	}
 
 	//更新処理
 	for (int i = 0; i < base.size(); i++)
@@ -56,12 +77,19 @@ int CGame::Update()
 void CGame::Draw()
 {
 	//オブジェクト個数
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "Object_Count = %d", base.size());
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), "Object_Count = %d", base.size());
 
 	//ヘッダーの背景
-	//DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
+	DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
 	//ゲーム背景
 	DrawBox(0, WINDOW_HEADER, WINDOW_WIDTH, WINDOW_HEIGHT, GetColor(56, 135, 0), 1);
+
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "%d", gGamePhase);
+
+	Point lifePos{ static_cast<float>(WINDOW_WIDTH / 2) + 150.0f , 45.0f };
+	float distance = 2.0f;
+	DrawExtendFormatString(lifePos.x + distance, lifePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "LIFE : %d", gPlayerStatus.life);
+	DrawExtendFormatString(lifePos.x, lifePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "LIFE : %d", gPlayerStatus.life);
 
 	for (int i = 0; i < base.size(); i++)
 		if(base[i]->FLAG) base[i]->Draw();

@@ -37,6 +37,11 @@ bool Key_Check(Move_Id move_id)
 			return true;
 
 		break;
+	case ENTER:
+		if (CheckHitKey(KEY_INPUT_RETURN))
+			return true;
+
+		break;
 	case ALL_KEY:
 		if (CheckHitKeyAll() || pad)
 			return true;

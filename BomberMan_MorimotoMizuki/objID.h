@@ -5,7 +5,7 @@ enum Obj_Id
 {
 	NONE = -1,
 	BLOCK,
-	ITEM,
+	ITEM = 2,
 	GOAL,
 	PLAYER,
 	ENEMY,
@@ -21,6 +21,14 @@ enum Pri_Id
 	pBOMB,
 	pEXPLOSION,
 	pPLAYER,
+};
+
+enum GamePhaseId
+{
+	IDLE,
+	PLAING,
+	GAMEOVER,
+	GAMECLEAR,
 };
 
 //爆発エフェクトID
@@ -45,5 +53,6 @@ enum Move_Id
 	LEFT,	//左
 	SPACE,	//スペースキー
 	LEFT_CLICK,	//マウス左クリック
+	ENTER,	//エンターキー
 	ALL_KEY,//全てのキー入力
 };
