@@ -47,6 +47,28 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 
 	//座標更新
 	m_pos = Add_Point_Vector(m_pos, vec);
+
+	//カメラをプレイヤー座標
+	Point camera_pos = m_pos;
+
+	//カメラの領域判定
+	//左端
+	if (camera_pos.x < DRAW_CHIP_W * CHIP_SIZE / 2)
+		camera_pos.x = DRAW_CHIP_W * CHIP_SIZE / 2;
+	//右端
+	if (camera_pos.x > MAP_CHIP_W * CHIP_SIZE - DRAW_CHIP_W * CHIP_SIZE / 2 - CHIP_SIZE)
+		camera_pos.x = MAP_CHIP_W * CHIP_SIZE - DRAW_CHIP_W * CHIP_SIZE / 2 - CHIP_SIZE;
+
+	//上端
+	if (camera_pos.y < DRAW_CHIP_H * CHIP_SIZE / 2)
+		camera_pos.y = DRAW_CHIP_H * CHIP_SIZE / 2;
+	//下端
+	if (camera_pos.y > MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2)
+		camera_pos.y = MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2;
+
+	pos.x = m_pos.x - camera_pos.x + DRAW_CHIP_W * CHIP_SIZE / 2;
+	pos.y = m_pos.y - camera_pos.y + DRAW_CHIP_H * CHIP_SIZE / 2;
+
 	//システム上の座標更新
 	SystemPos = { static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
 			  static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
@@ -67,7 +89,7 @@ void CPlayer::Draw()
 	
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	//DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
 
 	//DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 

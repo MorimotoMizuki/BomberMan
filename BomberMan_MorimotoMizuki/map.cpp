@@ -23,7 +23,7 @@ CMap::CMap() {
 	img = LoadGraph("image\\map_chip.png");
 }
 
-//マップデータ読み込み
+//マップデータS読み込み
 void CMap::LoadMap()
 {
 	ifstream fp("image\\map_data.csv");
@@ -55,7 +55,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 		{
 			Point p{ x * CHIP_SIZE, y * CHIP_SIZE + WINDOW_HEADER };
 			MapPoint s_p{ x, y };
-			//if(map[y][x] != -1)
+			if(map[y][x] != -1)
 				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, map[y][x], img));
 		}
 	}
@@ -127,7 +127,6 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 		}
 		chipPos.y += CHIP_SIZE;
 	}
-	
 
 	//プレイヤーの描画位置計算
 	{

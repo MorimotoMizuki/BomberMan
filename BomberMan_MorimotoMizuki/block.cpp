@@ -36,6 +36,11 @@ int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 		DisplacementPos.y = p->m_pos.y - p->pos.y;
 	}
 
+	if (p->pos.x == 480.0f)
+	{
+		pos.x -= p->vec.x;
+	}
+
 	//クラッシュアニメーション
 	CrashBlockAnim();
 
