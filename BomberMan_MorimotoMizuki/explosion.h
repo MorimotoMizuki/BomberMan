@@ -62,6 +62,9 @@ private:
 	//アニメーションカウント
 	int AnimCnt{ 0 };
 
+	//プレイヤーとの差分
+	float Distance{ 0.0f };
+
 	//爆弾の座標
 	MapPoint BombPos{ 0,0 };
 

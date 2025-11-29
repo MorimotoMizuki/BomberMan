@@ -42,6 +42,8 @@ bool HitCheck_box(vector<unique_ptr<BaseVector>>&, BaseVector*, int);
 //当たったオブジェクトを受け取る
 BaseVector* HitCheck_box_GetObj(vector<unique_ptr<BaseVector>>&, BaseVector*, int);
 
+//円と矩形判定用関数（矩形の一番近い位置を計算）
+float Circle_Center_With_Closest_Point(float a, float b, float c);
 
 //円と矩形判定処理(円オブジェクト,矩形オブジェクト,円の半径)
 void HitCheck_Box_Circle(Base*, Base*, float);

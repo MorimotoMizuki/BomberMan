@@ -7,7 +7,7 @@ class CBlock : public BaseVector
 public:
 
 	//クラッシュブロックのアニメーションフレーム数
-	static constexpr auto CRASH_ANIM_FRAME = 18;
+	static constexpr auto CRASH_ANIM_FRAME = 8;
 
 	//クラッシュアニメーションの画像の数
 	static constexpr auto CRASH_IMG_NUM = 2;
@@ -43,6 +43,9 @@ private:
 	//アニメーションの画像インデックス
 	int AnimIndex{ 0 };
 	//アニメーションカウント
-	int AnimCnt{ CRASH_ANIM_FRAME };
+	int AnimCnt{ 0 };
+
+	//プレイヤーとの差分
+	float Distance{ 0.0f };
 
 };

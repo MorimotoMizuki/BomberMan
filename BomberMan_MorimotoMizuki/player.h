@@ -65,6 +65,8 @@ public:
 	//システム上の座標
 	MapPoint SystemPos{ 0,0 };
 
+	float Distance{ 0.0f };
+
 private:
 
 	//プレイヤーの画像ハンドル配列

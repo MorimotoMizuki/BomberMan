@@ -2,23 +2,19 @@
 #include"function.h"
 #include"map.h"
 
-CBomb::CBomb(Point p,float displacement,MapPoint mapPos, int diedFrame)
+CBomb::CBomb(MapPoint mapPos, int diedFrame)
 {
 	LoadDivGraph("image\\bomb.png", BOMB_IMG_NUM, 3, 1, IMGSIZE16, IMGSIZE16, BombImgHandle);
 
 	ImgWidth  = CHIP_SIZE;
 	ImgHeight = CHIP_SIZE;
 
-	//画面上の升目を計算
-	DrawMap.x = p.x / CHIP_SIZE;
-	DrawMap.y = (p.y - IMGSIZE64 / 2) / CHIP_SIZE;
-
-	//座標を升目 * チップサイズ - 画面上のずれ　で計算
-	pos.x = DrawMap.x * CHIP_SIZE - displacement;
-	pos.y = DrawMap.y * CHIP_SIZE + (WINDOW_HEADER - CHIP_SIZE);
-
 	//システム上の座標を設定
 	SystemMap = mapPos;
+
+	//座標を升目 * チップサイズ - 画面上のずれ　で計算
+	pos.x = SystemMap.x * CHIP_SIZE;
+	pos.y = SystemMap.y * CHIP_SIZE + WINDOW_HEADER;
 
 	//爆弾の削除フレーム数設定
 	DiedFrame = diedFrame;
@@ -37,13 +33,7 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-
-	//プレイヤーの座標がスクロールする座標になった場合
-	if (p->pos.x == DRAW_CHIP_W * CHIP_SIZE / 2)
-	{
-		//プレイヤーの移動と逆方向に移動
-		pos.x -= p->vec.x;
-	}
+	Distance = p->Distance;
 
 	SurvivalFrame++;
 	if (SurvivalFrame >= DiedFrame)
@@ -61,7 +51,7 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 void CBomb::Draw()
 {
 	//画像描画
-	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
+	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
 
 	//DrawFormatString(pos.x + 30, pos.y, GetColor(255, 0, 0), "%.f\n%.f", pos.x, pos.y);
 	//DrawFormatString(pos.x + 30, pos.y, GetColor(255, 0, 0), "%d\n%d", SystemMap.x, SystemMap.y);

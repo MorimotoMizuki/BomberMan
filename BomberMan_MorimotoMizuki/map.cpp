@@ -23,7 +23,7 @@ CMap::CMap() {
 	img = LoadGraph("image\\map_chip.png");
 }
 
-//マップデータS読み込み
+//マップデータ読み込み
 void CMap::LoadMap()
 {
 	ifstream fp("image\\map_data.csv");
@@ -49,16 +49,44 @@ void CMap::LoadMap()
 //マップ生成
 void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 {
+	//クラッシュブロックをランダムで設定
+	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
+
 	for (int y = 0; y < MAP_CHIP_H; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_W; x++)
 		{
 			Point p{ x * CHIP_SIZE, y * CHIP_SIZE + WINDOW_HEADER };
 			MapPoint s_p{ x, y };
-			if(map[y][x] != -1)
-				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, map[y][x], img));
+			if(gNowMap[y][x] != -1)
+				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, gNowMap[y][x], img));
 		}
 	}
+}
+
+//マップにクラッシュブロックをランダムで設定
+void CMap::SetRandomCrashBlockInMap(int probability)
+{
+	int randomNum = 0;
+	for (int y = 0; y < MAP_CHIP_H; y++)
+	{
+		for (int x = 0; x < MAP_CHIP_W; x++)
+		{
+			randomNum = Range_Random_Number(1, 10);
+			//空白　かつ　一定の確率の場合
+			if (gNowMap[y][x] == -1 && randomNum <= probability)
+			{
+				//設定した除外座標だった場合はスキップ
+				if ((x == ExclusionPoint[0].x && y == ExclusionPoint[0].y) ||
+					(x == ExclusionPoint[1].x && y == ExclusionPoint[1].y) ||
+					(x == ExclusionPoint[2].x && y == ExclusionPoint[2].y))
+					continue;
+
+				gNowMap[y][x] = 1;
+			}
+		}
+	}
+
 }
 
 //マップ更新処理

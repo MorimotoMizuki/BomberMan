@@ -8,7 +8,20 @@
 #include<sstream>
 #include<vector>
 
-class CMap {
+class CMap 
+{
+public:
+
+	//クラッシュブロックが生成される確率 1 = 10%
+	static constexpr auto CREATE_CRASH_BLOCK_PROBABILITY = 3;
+
+	//クラッシュブロックの生成から除外する座標
+	static constexpr MapPoint ExclusionPoint[3] = {
+		{1,1},
+		{2,1},
+		{1,2}
+	};
+
 
 private:
 
@@ -31,5 +44,8 @@ public:
 	void Map_Obj_Creation(vector<unique_ptr<BaseVector>>&);
 	//マップ更新処理
 	void Action(vector<unique_ptr<BaseVector>>&);
+
+	//マップにクラッシュブロックをランダムで設定(クラッシュブロックが生成される確率)
+	void SetRandomCrashBlockInMap(int);
 
 };

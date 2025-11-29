@@ -9,10 +9,12 @@ CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 	ImgWidth  = CHIP_SIZE;
 	ImgHeight = CHIP_SIZE;
 
-	pos = p;
-
 	//爆弾の座標
 	BombPos = bombP;
+
+	//座標を升目 * チップサイズ - 画面上のずれ　で計算
+	pos.x = BombPos.x * CHIP_SIZE;
+	pos.y = BombPos.y * CHIP_SIZE + WINDOW_HEADER;
 
 	//爆弾レベル
 	BombLevel = bombLevel;
@@ -25,13 +27,7 @@ int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-
-	//プレイヤーの座標がスクロールする座標になった場合
-	if (p->pos.x == DRAW_CHIP_W * CHIP_SIZE / 2)
-	{
-		//プレイヤーの移動と逆方向に移動
-		pos.x -= p->vec.x;
-	}
+	Distance = p->Distance;
 
 	//当たり判定
 	HitAction(base);
@@ -47,7 +43,7 @@ void CExplosion::Draw()
 {
 	//画像描画
 	//中央
-	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex]], true);
+	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex]], true);
 
 	//上,下,左,右
 	ExplosionPointData[0] = DrawExplosion( 0, -1	, BombLevel, ExplosionEffectId::VERTICAL);
@@ -102,7 +98,6 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 						{
 							//マップのデータ削除
 							gNowMap[systemBlockPos.y][systemBlockPos.x] = Obj_Id::NONE;
-							((CBlock*)base[i].get())->IsCrash = true;
 							isBreak = true;
 							break;
 						}
@@ -216,13 +211,12 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 			(CrashBlockPos[expDir].x == systemPos.x && CrashBlockPos[expDir].y == systemPos.y))
 		{
 			std::get<2>(data) = cnt + 1;
-			CrashBlockPos[static_cast<int>(expDir)] = systemPos; //破壊可能ブロックの座標保存
+			CrashBlockPos[expDir] = systemPos; //破壊可能ブロックの座標保存
 			return data;
-		}
-		
+		}	
 
 		//爆発描画
-		DrawExtendGraph(drawPos.x, drawPos.y, drawPos.x + ImgWidth, drawPos.y + ImgHeight,
+		DrawExtendGraph(drawPos.x - Distance, drawPos.y, drawPos.x + ImgWidth - Distance, drawPos.y + ImgHeight,
 			ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex] + static_cast<int>(dir)], true);
 
 		//描画座標更新

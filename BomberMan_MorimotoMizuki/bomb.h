@@ -20,8 +20,8 @@ public:
 
 public:
 
-	//座標、画面上のずれ、システム上のマップ座標、削除フレーム数
-	CBomb(Point, float, MapPoint, int = 180);
+	//システム上のマップ座標、削除フレーム数
+	CBomb(MapPoint, int = 180);
 	~CBomb();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
@@ -46,8 +46,10 @@ private:
 	//死亡時間(フレーム数)
 	int DiedFrame{ 0 };
 
-	//描画座標
-	MapPoint DrawMap{ 0,0 };
 	//システム上の座標
 	MapPoint SystemMap{ 0,0 };
+
+	//プレイヤーとの差分
+	float Distance{ 0.0f };
+
 };

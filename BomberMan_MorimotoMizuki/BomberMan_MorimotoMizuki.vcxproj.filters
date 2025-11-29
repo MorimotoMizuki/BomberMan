@@ -27,6 +27,12 @@
     <Filter Include="ライブラリ用ソースファイル">
       <UniqueIdentifier>{e93d6900-d129-4c3f-acbd-1f8be7236993}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\オブジェクト\敵">
+      <UniqueIdentifier>{0e140149-4b90-4468-886b-f3300489eeb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\オブジェクト\敵">
+      <UniqueIdentifier>{be94185c-a9b5-405a-b6ef-ff505b9ec75c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -89,6 +95,9 @@
     <ClInclude Include="title.h">
       <Filter>ヘッダー ファイル\シーン</Filter>
     </ClInclude>
+    <ClInclude Include="ballom.h">
+      <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -129,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="title.cpp">
       <Filter>ソース ファイル\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="ballom.cpp">
+      <Filter>ソース ファイル\オブジェクト\敵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

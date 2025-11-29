@@ -50,3 +50,21 @@ bool Key_Check(Move_Id move_id)
 	}
 	return false;
 }
+
+//円と矩形判定処理(円オブジェクト,矩形オブジェクト,円の半径)　脇坂先生のやつに distance のずれを追加
+void HitCheck_Box_Circle(BaseVector* a, BaseVector* b, float radius, float distance) {
+	Point pc{ a->pos.x + a->vec.x + a->ImgWidth / 2,a->pos.y + a->vec.y + a->ImgHeight / 2 };//中心座標計算
+	Point n{ -1,-1 };//矩形の一番近い座標
+	n.x = Circle_Center_With_Closest_Point(pc.x, b->pos.x - distance, b->pos.x + b->ImgWidth - distance);
+	n.y = Circle_Center_With_Closest_Point(pc.y, b->pos.y, b->pos.y + b->ImgHeight);
+
+	float l = DistanceF(pc.x, pc.y, n.x, n.y);//一番近い座標から中心までの距離
+	if (l < radius)//半径radiusで判定
+	{
+		Vector v{ n.x - pc.x, n.y - pc.y };//方向ベクトル
+		v = Vector_Normalize(v);//方向ベクトル正規化
+		v = Vector_SetLength(v, radius - l);
+		a->vec.x -= (int)v.x;
+		a->vec.y -= (int)v.y;
+	}
+}

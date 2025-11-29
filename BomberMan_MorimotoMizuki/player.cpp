@@ -40,7 +40,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 		{
 			if (((CBlock*)base[i].get())->tipNo >= 0)
 			{
-				HitCheck_Box_Circle(this, base[i].get(), 32);
+				HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
 			}
 		}
 	}
@@ -69,6 +69,9 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	pos.x = m_pos.x - camera_pos.x + DRAW_CHIP_W * CHIP_SIZE / 2;
 	pos.y = m_pos.y - camera_pos.y + DRAW_CHIP_H * CHIP_SIZE / 2;
 
+	//差分を計算
+	Distance = m_pos.x - pos.x;
+
 	//システム上の座標更新
 	SystemPos = { static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
 			  static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
@@ -89,9 +92,9 @@ void CPlayer::Draw()
 	
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+	//DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
 
-	//DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
+	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 
 	//DrawBox(m_pos.x, m_pos.y, m_pos.x + ImgWidth, m_pos.y + ImgHeight, GetColor(255, 0, 0), false);
 }
@@ -181,19 +184,12 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	//一つのブロックの情報を取得
 	CBlock* b = (CBlock*)Get_obj(base, BLOCK);
 	int bMapX = b->pos.x / CHIP_SIZE;
-	//マップ上のずれを計算
-	float displacement = (bMapX * CHIP_SIZE) - b->pos.x;
-
-	if (pos.x == 480.0f)
-		displacement -= vec.x;
-
-	//プレイヤーの中心座標を計算
-	Point centerPos = { pos.x + ImgWidth / 2, pos.y + ImgHeight / 2 };
 
 	//爆弾を置くシステム上の座標を計算
 	MapPoint putMapPos = { (m_pos.x + ImgWidth / 2) / CHIP_SIZE, ((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE };
+
 	//爆弾生成
-	base.emplace_back((unique_ptr<BaseVector>)new CBomb(centerPos, displacement, putMapPos));
+	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos));
 }
 
 //プレイヤーの死亡時処理
