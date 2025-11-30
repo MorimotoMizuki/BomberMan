@@ -159,6 +159,7 @@
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="2D_function.h" />
     <ClInclude Include="bomb.h" />
+    <ClInclude Include="door.h" />
     <ClInclude Include="explosion.h" />
     <ClInclude Include="function.h" />
     <ClInclude Include="game.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="2D_function.cpp" />
     <ClCompile Include="bomb.cpp" />
+    <ClCompile Include="door.cpp" />
     <ClCompile Include="explosion.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="library_function.cpp" />

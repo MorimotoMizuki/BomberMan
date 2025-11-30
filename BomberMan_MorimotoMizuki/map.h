@@ -34,9 +34,12 @@ private:
 	//カメラ座標
 	Point camera_pos{ 0,0 };
 
+	//クラッシュブロックの数
+	int CrashBlockNum{ 0 };
+
 public:
 	CMap();
-	~CMap() {};
+	~CMap() { DeleteGraph(img); };
 
 	//マップデータ読み込み
 	void LoadMap();
@@ -48,4 +51,6 @@ public:
 	//マップにクラッシュブロックをランダムで設定(クラッシュブロックが生成される確率)
 	void SetRandomCrashBlockInMap(int);
 
+	//マップに扉(ゴール)をランダムで設定
+	int SetRandomDoorInMap();
 };

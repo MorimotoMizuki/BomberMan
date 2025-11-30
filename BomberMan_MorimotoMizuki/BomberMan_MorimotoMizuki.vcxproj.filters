@@ -98,6 +98,9 @@
     <ClInclude Include="ballom.h">
       <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
     </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="ballom.cpp">
       <Filter>ソース ファイル\オブジェクト\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>ソース ファイル\オブジェクト</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

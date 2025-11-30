@@ -27,7 +27,8 @@ int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//ƒvƒŒƒCƒ„[‚ðŽæ“¾
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	Distance = p->Distance;
+	if(p != nullptr)
+		Distance = p->Distance;
 
 	//“–‚½‚è”»’è
 	HitAction(base);
@@ -63,7 +64,8 @@ void CExplosion::Draw()
 
 CExplosion::~CExplosion()
 {
-
+	for (int i = 0; i < EXPLOSION_IMG_NUM; i++)
+		DeleteGraph(ExplosionImgHandle[i]);
 }
 
 //“–‚½‚è”»’è

@@ -44,7 +44,8 @@ int CGame::Update()
 {
 	//map->Action(base);
 
-	if (gGamePhase == GamePhaseId::GAMEOVER)
+	if (gGamePhase == GamePhaseId::GAMEOVER || 
+		gGamePhase == GamePhaseId::GAMECLEAR)
 	{
 		WaitTimer(1000);
 

@@ -30,6 +30,9 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//プレイヤーの死亡処理
 	PlayerDead();
 
+	if (gGamePhase != GamePhaseId::PLAING)
+		return 0;
+
 	//プレイヤーの移動処理
 	PlayerMove();
 
@@ -92,7 +95,7 @@ void CPlayer::Draw()
 	
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	//DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
 
 	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 

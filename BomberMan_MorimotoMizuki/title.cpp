@@ -24,6 +24,12 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		}
 		gGamePhase = GamePhaseId::IDLE;	//待機状態
 	}
+	//ゲームクリアの場合
+	else if (gGamePhase == GamePhaseId::GAMECLEAR)
+	{
+		gNowStageNum++;
+		ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+	}
 }
 
 //更新処理

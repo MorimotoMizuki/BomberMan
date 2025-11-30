@@ -29,7 +29,8 @@ int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//ƒvƒŒƒCƒ„[‚ðŽæ“¾
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	Distance = p->Distance;
+	if(p != nullptr)
+		Distance = p->Distance;
 
 	if (!IsCrash)
 	{
@@ -64,7 +65,10 @@ void CBlock::Draw()
 
 CBlock::~CBlock()
 {
-
+	if (tipNo == 1) {
+		for (int i = 0; i < CRASH_IMG_NUM; i++)
+			DeleteGraph(CrashAnimImgHandle[i]);
+	}
 }
 
 void CBlock::CrashBlockAnim()

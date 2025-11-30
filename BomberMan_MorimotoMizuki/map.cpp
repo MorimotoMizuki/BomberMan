@@ -1,6 +1,5 @@
 #include"map.h"
-#include"block.h"
-#include"player.h"
+#include"obj.h"
 
 #include"function.h"
 
@@ -52,14 +51,38 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	//クラッシュブロックをランダムで設定
 	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
 
+	//ドアを設置する数を設定
+	int setDoorNum = SetRandomDoorInMap();
+	int crashBlockNum = 0;
+	bool isDoorSet = false;
+
 	for (int y = 0; y < MAP_CHIP_H; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_W; x++)
 		{
 			Point p{ x * CHIP_SIZE, y * CHIP_SIZE + WINDOW_HEADER };
 			MapPoint s_p{ x, y };
-			if(gNowMap[y][x] != -1)
+
+			int point = gNowMap[y][x];
+			switch (point)
+			{
+			//ブロック
+			case 0:
 				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, gNowMap[y][x], img));
+				break;
+			case 1:
+				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, gNowMap[y][x], img));
+				crashBlockNum++;
+				break;
+			default:
+				break;
+			}
+
+			//ドアを生成
+			if (setDoorNum == crashBlockNum && !isDoorSet) {
+				base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
+				isDoorSet = true;
+			}
 		}
 	}
 }
@@ -67,6 +90,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 //マップにクラッシュブロックをランダムで設定
 void CMap::SetRandomCrashBlockInMap(int probability)
 {
+	CrashBlockNum = 0;
 	int randomNum = 0;
 	for (int y = 0; y < MAP_CHIP_H; y++)
 	{
@@ -83,10 +107,19 @@ void CMap::SetRandomCrashBlockInMap(int probability)
 					continue;
 
 				gNowMap[y][x] = 1;
+				CrashBlockNum++;
 			}
 		}
 	}
 
+}
+
+//マップに扉(ゴール)をランダムで設定
+int CMap::SetRandomDoorInMap()
+{
+	int setDoorNum = 0;
+	setDoorNum = Range_Random_Number(1, CrashBlockNum);
+	return setDoorNum;
 }
 
 //マップ更新処理

@@ -33,7 +33,8 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	Distance = p->Distance;
+	if (p != nullptr)
+		Distance = p->Distance;
 
 	SurvivalFrame++;
 	if (SurvivalFrame >= DiedFrame)
@@ -83,6 +84,9 @@ CBomb::~CBomb()
 {
 	//現在設置している爆弾の数 : 減少
 	gNowBombNum--;
+
+	for (int i = 0; i < BOMB_IMG_NUM; i++)
+		DeleteGraph(BombImgHandle[i]);
 }
 
 //爆発エフェクト

@@ -64,8 +64,9 @@ public:
 	Point m_pos{ 0,0 };
 	//システム上の座標
 	MapPoint SystemPos{ 0,0 };
-
+	//m_pos と pos の差分
 	float Distance{ 0.0f };
+
 
 private:
 
