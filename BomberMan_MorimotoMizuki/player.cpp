@@ -36,14 +36,36 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//プレイヤーの移動処理
 	PlayerMove();
 
-	//ブロックオブジェクトと判定
+	//オブジェクトと判定
 	for (int i = 0; i < base.size(); i++)
 	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
 		if (base[i]->ID == BLOCK)
 		{
 			if (((CBlock*)base[i].get())->tipNo >= 0)
 			{
 				HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+			}
+		}
+		else if (base[i]->ID == BOMB)
+		{
+			//システム上の座標 : 左上の座標から
+			MapPoint systemPosL = { static_cast<int>(m_pos.x / CHIP_SIZE) ,
+								   static_cast<int>((m_pos.y - WINDOW_HEADER) / CHIP_SIZE)
+			};
+			//システム上の座標 : 右下の座標から
+			MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth - 1) / CHIP_SIZE) ,
+								   static_cast<int>(((m_pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
+			};
+			if ((systemPosL.x <= MAP_CHIP_W && systemPosL.y <= MAP_CHIP_H))
+			{
+				//左上の座標と右下の座標のどちらも爆弾がない場合
+				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
+					(gNowMap[systemPosR.y][systemPosR.x] != BOMB))
+					HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
 			}
 		}
 	}
@@ -75,7 +97,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//差分を計算
 	Distance = m_pos.x - pos.x;
 
-	//システム上の座標更新
+	//システム上の座標更新 : 中心座標から
 	SystemPos = { static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
 			  static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
 	};
@@ -93,9 +115,11 @@ void CPlayer::Draw()
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + IMGSIZE64, pos.y + IMGSIZE64, PlayerImgHandle[AnimIndex], true);
 	
+	DrawFormatString(WINDOW_WIDTH / 2 + 300, 50, GetColor(255, 255, 255), "x:%f y:%f\nx:%f y:%f", m_pos.x, m_pos.y - WINDOW_HEADER, m_pos.x + ImgWidth - 1, m_pos.y + ImgHeight - WINDOW_HEADER -1 );
+
 	//デバッグ
-	//DrawFormatString(WINDOW_WIDTH/2 + 200, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+	//DrawFormatString(WINDOW_WIDTH/2 + 300, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
+	//DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
 
 	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 
@@ -200,6 +224,10 @@ void CPlayer::PlayerDead()
 {
 	if (PlayerState != PlayerStateId::DEADplayer)
 		return;
+
+	//ベクトルを初期化
+ 	vec.x = 0.0f;
+	vec.y = 0.0f;
 
 	if (PlayerAnim(AnimMaxId::DEAD, PLAYER_ANIM_FRAME, &AnimIndex, false))
 	{

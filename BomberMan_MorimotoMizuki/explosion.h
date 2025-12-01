@@ -22,7 +22,6 @@ public:
 	static constexpr int EXPLOSION_ANIM_ORDER[EXPLOSION_ANIM_NUM] = { 2,3,2,1,0 };
 
 	enum ExplosionDir{
-		NONE_exp,
 		UP_exp,
 		DOWN_exp,
 		RIGHT_exp,

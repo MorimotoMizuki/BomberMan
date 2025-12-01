@@ -51,6 +51,8 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CBomb::Draw()
 {
+	if (!draw_flag) return;
+
 	//‰æ‘œ•`‰æ
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
 

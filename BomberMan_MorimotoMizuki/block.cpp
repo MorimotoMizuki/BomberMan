@@ -48,6 +48,8 @@ int CBlock::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CBlock::Draw()
 {
+	if (!draw_flag) return;
+
 	//‰æ‘œ•`‰æ
 	if (IsCrash)
 	{
@@ -87,7 +89,7 @@ void CBlock::CrashBlockAnim()
 	//‰Šú‰»
 	AnimCnt = 0;
 
-	if (AnimIndex >= CRASH_IMG_NUM)
+	if (AnimIndex >= CRASH_IMG_NUM - 1)
 	{
 		FLAG = false;
 		return;

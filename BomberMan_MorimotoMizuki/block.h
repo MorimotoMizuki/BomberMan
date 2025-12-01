@@ -47,5 +47,4 @@ private:
 
 	//ƒvƒŒƒCƒ„[‚Æ‚Ì·•ª
 	float Distance{ 0.0f };
-
 };

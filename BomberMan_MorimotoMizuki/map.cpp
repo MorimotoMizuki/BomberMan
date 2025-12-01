@@ -56,6 +56,8 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	int crashBlockNum = 0;
 	bool isDoorSet = false;
 
+	MapPoint enemyPos{ 3,7 };
+
 	for (int y = 0; y < MAP_CHIP_H; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_W; x++)
@@ -83,6 +85,10 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 				base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
 				isDoorSet = true;
 			}
+
+			if(s_p.x == enemyPos.x && s_p.y == enemyPos.y)
+				base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, s_p));
+
 		}
 	}
 }

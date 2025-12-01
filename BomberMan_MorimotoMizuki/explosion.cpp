@@ -77,6 +77,10 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 	bool isBreak{ false };	
 	for (int i = 0; i < base.size(); i++)
 	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
 		//ブロックオブジェクトと判定
 		if (base[i]->ID == BLOCK)
 		{
@@ -166,7 +170,7 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 
 	MapPoint systemPos{ BombPos.x, BombPos.y };
 
-	ExplosionDir expDir{ ExplosionDir::NONE_exp };
+	ExplosionDir expDir{ ExplosionDir::UP_exp };
 
 	int cnt = 0;
 	std::tuple<Point, Point, int> data = std::make_tuple(Point{ 0,0 }, Point{ addPosX, addPosY }, 0);
@@ -213,7 +217,8 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 			(CrashBlockPos[expDir].x == systemPos.x && CrashBlockPos[expDir].y == systemPos.y))
 		{
 			std::get<2>(data) = cnt + 1;
-			CrashBlockPos[expDir] = systemPos; //破壊可能ブロックの座標保存
+			CrashBlockPos[expDir].x = systemPos.x; //破壊可能ブロックの座標保存
+			CrashBlockPos[expDir].y = systemPos.y; //破壊可能ブロックの座標保存
 			return data;
 		}	
 

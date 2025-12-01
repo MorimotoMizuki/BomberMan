@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="3D_function.h" />
+    <ClInclude Include="astar.h" />
     <ClInclude Include="ballom.h" />
     <ClInclude Include="block.h" />
     <ClInclude Include="CCamera.h" />
@@ -178,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3D_function.cpp" />
+    <ClCompile Include="astar.cpp" />
     <ClCompile Include="ballom.cpp" />
     <ClCompile Include="block.cpp" />
     <ClCompile Include="CCamera.cpp" />
