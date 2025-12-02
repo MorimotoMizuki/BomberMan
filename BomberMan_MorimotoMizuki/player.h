@@ -67,6 +67,8 @@ public:
 	//m_pos ‚Æ pos ‚Ì·•ª
 	float Distance{ 0.0f };
 
+	//”š’eİ’uˆ—
+	bool IsPutBomb{ false };
 
 private:
 

@@ -8,9 +8,9 @@ enum Obj_Id
 	ITEM = 2,
 	GOAL,
 	PLAYER,
-	ENEMY,
 	BOMB,
 	EXPLOSION,
+	ENEMY,
 };
 
 //オブジェクト表示順番

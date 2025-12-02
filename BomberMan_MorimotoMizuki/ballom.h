@@ -18,8 +18,24 @@ public:
 	//バロムアニメーションの順番
 	static constexpr int BALLOM_ANIM_ORDER[BALLOM_ANIM_NUM] = { 0,1,2,1 };
 
-	//バロムのアニメーションフレーム数
-	static constexpr auto BALLOM_SPEED = 4.0f;
+	//バロムの移動速度
+	static constexpr auto BALLOM_SPEED = 2.0f;
+
+	//左右上下
+	static constexpr MapPoint ADD_VEC[4] = {
+		{-1,0},
+		{1,0},
+		{0,-1},
+		{0,1}
+	};
+
+	enum BallomDir
+	{
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+	};
 
 public:
 
@@ -30,10 +46,16 @@ public:
 	void Draw();
 
 	//バロムの移動処理
-	void BallomMove();
+	void BallomMove(vector<unique_ptr<BaseVector>>&);
+
+	//バロムの移動方向設定処理
+	void SetBallomMoveDir(vector<unique_ptr<BaseVector>>&);
 
 	//バロムアニメーション処理
-	void BallomAnim(int animMax, int* index);
+	void BallomAnim(int animMax, int* index, bool loop);
+
+	//死亡処理
+	void EnemyDead();
 
 public:
 
@@ -52,4 +74,9 @@ private:
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
 
+	//死亡フラグ
+	bool IsDead{ false };
+
+	//死亡カウント
+	int DeadCnt{ 0 };
 };

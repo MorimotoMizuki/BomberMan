@@ -55,7 +55,7 @@ void CExplosion::Draw()
 	//Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
 	//for (int i = 0; i < 4; i++){
 	//	Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 64,
-	//					 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 64
+	//					 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 64 
 	//	};
 	//	DrawBox(startPos.x, startPos.y, startPos.x + expPos.x, startPos.y + expPos.y, GetColor(255, 0, 0), false);
 	//}
@@ -89,11 +89,11 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 				Point blockPos = base[i].get()->pos;
 				MapPoint systemBlockPos = ((CBlock*)base[i].get())->SystemPos;
 
-				for (int i = 0; i < 4; i++)
+				for (int j = 0; j < 4; j++)
 				{
-					Point startPos = { pos.x + std::get<0>(ExplosionPointData[i]).x ,pos.y + std::get<0>(ExplosionPointData[i]).y };
-					Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 32,
-									 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 32
+					Point startPos = { pos.x + std::get<0>(ExplosionPointData[j]).x ,pos.y + std::get<0>(ExplosionPointData[j]).y };
+					Point expPos = { std::get<1>(ExplosionPointData[j]).x * std::get<2>(ExplosionPointData[j]) * 32,
+									 std::get<1>(ExplosionPointData[j]).y * std::get<2>(ExplosionPointData[j]) * 32
 					};
 
 					//当たり判定
@@ -114,13 +114,39 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 		if (isBreak) break;
 	}
 
+	Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
+
+	for (int i = 0; i < base.size(); i++)
+	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
+		Point enemyPos = base[i].get()->pos;
+		//敵との判定
+		if (base[i]->ID == ENEMY)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				Point expPos = { std::get<1>(ExplosionPointData[j]).x * std::get<2>(ExplosionPointData[j]) * 64,
+								 std::get<1>(ExplosionPointData[j]).y * std::get<2>(ExplosionPointData[j]) * 64
+				};
+				//当たり判定
+				if (enemyPos.x < startPos.x + expPos.x && enemyPos.x + 64 > startPos.x + expPos.x &&
+					enemyPos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && enemyPos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
+				{
+					((CBallom*)base[i].get())->EnemyDead();
+				}
+			}
+		}
+	}
+
 	if (IsEnd) return;
 
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p == nullptr) return;
 
-	Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
 
 	for (int i = 0; i < 4; i++)
 	{

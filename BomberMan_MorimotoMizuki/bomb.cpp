@@ -41,6 +41,8 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 	{
 		ExplosionEffect(base);
 		FLAG = false;
+		if (p != nullptr)
+			p->IsPutBomb = false;
 	}
 
 	//爆弾アニメーション

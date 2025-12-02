@@ -43,6 +43,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 		if (!base[i]->FLAG || !base[i]->draw_flag)
 			continue;
 
+		//ブロックとの判定 : 行動制限のみ
 		if (base[i]->ID == BLOCK)
 		{
 			if (((CBlock*)base[i].get())->tipNo >= 0)
@@ -50,6 +51,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 				HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
 			}
 		}
+		//爆弾との判定 : 行動制限のみ
 		else if (base[i]->ID == BOMB)
 		{
 			//システム上の座標 : 左上の座標から
@@ -66,6 +68,16 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
 					(gNowMap[systemPosR.y][systemPosR.x] != BOMB))
 					HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+			}
+		}
+		//敵との判定
+		else if (base[i]->ID == ENEMY)
+		{	
+			if (PlayerState == PlayerStateId::PLAYplayer) {
+				if (HitCheck_box(pos.x, pos.y, base[i]->pos.x - Distance, base[i]->pos.y, CHIP_SIZE, CHIP_SIZE))
+				{
+					SetPlayerDead(PlayerStateId::DEADplayer);
+				}
 			}
 		}
 	}
@@ -115,7 +127,7 @@ void CPlayer::Draw()
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + IMGSIZE64, pos.y + IMGSIZE64, PlayerImgHandle[AnimIndex], true);
 	
-	DrawFormatString(WINDOW_WIDTH / 2 + 300, 50, GetColor(255, 255, 255), "x:%f y:%f\nx:%f y:%f", m_pos.x, m_pos.y - WINDOW_HEADER, m_pos.x + ImgWidth - 1, m_pos.y + ImgHeight - WINDOW_HEADER -1 );
+	//DrawFormatString(WINDOW_WIDTH / 2 + 300, 50, GetColor(255, 255, 255), "x:%f y:%f\nx:%f y:%f", m_pos.x, m_pos.y - WINDOW_HEADER, m_pos.x + ImgWidth - 1, m_pos.y + ImgHeight - WINDOW_HEADER -1 );
 
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 300, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
@@ -214,6 +226,8 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 
 	//爆弾を置くシステム上の座標を計算
 	MapPoint putMapPos = { (m_pos.x + ImgWidth / 2) / CHIP_SIZE, ((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE };
+
+	IsPutBomb = true;
 
 	//爆弾生成
 	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos));

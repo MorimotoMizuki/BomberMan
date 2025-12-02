@@ -56,7 +56,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	int crashBlockNum = 0;
 	bool isDoorSet = false;
 
-	MapPoint enemyPos{ 3,7 };
+	MapPoint enemyPos{ 2,7 };
 
 	for (int y = 0; y < MAP_CHIP_H; y++)
 	{
