@@ -39,6 +39,9 @@ constexpr auto DRAW_CHIP_H = 13;
 //マップチップのサイズ
 constexpr auto CHIP_SIZE = IMGSIZE64;
 
+//ステージの合計数
+constexpr auto STAGE_SUM = 3;
+
 //2D用
  struct Point {
 	float x, y;

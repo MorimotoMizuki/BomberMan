@@ -13,6 +13,11 @@ enum Obj_Id
 	ENEMY,
 };
 
+enum Enemy_Id
+{
+	BALLOM = 10,
+};
+
 //オブジェクト表示順番
 enum Pri_Id
 {

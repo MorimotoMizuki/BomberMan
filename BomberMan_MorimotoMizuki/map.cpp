@@ -51,12 +51,13 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	//クラッシュブロックをランダムで設定
 	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
 
+	//敵を生成
+	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1][0]);
+
 	//ドアを設置する数を設定
 	int setDoorNum = SetRandomDoorInMap();
 	int crashBlockNum = 0;
 	bool isDoorSet = false;
-
-	MapPoint enemyPos{ 2,7 };
 
 	for (int y = 0; y < MAP_CHIP_H; y++)
 	{
@@ -76,6 +77,10 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, gNowMap[y][x], img));
 				crashBlockNum++;
 				break;
+			case Enemy_Id::BALLOM:
+				base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
 			default:
 				break;
 			}
@@ -85,10 +90,6 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 				base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
 				isDoorSet = true;
 			}
-
-			if(s_p.x == enemyPos.x && s_p.y == enemyPos.y)
-				base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, s_p));
-
 		}
 	}
 }
@@ -200,4 +201,31 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 		p->pos.x = p->m_pos.x - camera_pos.x + DRAW_CHIP_W * CHIP_SIZE / 2;
 		p->pos.y = p->m_pos.y - camera_pos.y + DRAW_CHIP_H * CHIP_SIZE / 2;
 	}
+}
+
+//マップに敵をランダムで生成 : (バロム, )
+void CMap::SetRandomEnemy(int ballomNum)
+{
+	int ballomCnt{ 0 };
+
+	while (ballomCnt != ballomNum)
+	{
+		int ballomX = Range_Random_Number(1, MAP_CHIP_W - 1);
+		int ballomY = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+		//設定した除外座標だった場合はコンテニュー
+		if ((ballomX == ExclusionPoint[0].x && ballomY == ExclusionPoint[0].y) ||
+			(ballomX == ExclusionPoint[1].x && ballomY == ExclusionPoint[1].y) ||
+			(ballomX == ExclusionPoint[2].x && ballomY == ExclusionPoint[2].y))
+			continue;
+
+		if (gNowMap[ballomY][ballomX] == -1)
+		{
+			gNowMap[ballomY][ballomX] = Enemy_Id::BALLOM;
+			ballomCnt++;
+		}
+		else
+			continue;
+	}
+
 }

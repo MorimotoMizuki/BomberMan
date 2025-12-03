@@ -22,6 +22,13 @@ public:
 		{1,2}
 	};
 
+	//ステージの敵の数 : (バロム, )
+	static constexpr int StageEnemyNum[STAGE_SUM][1] = {
+		{3},
+		{3},
+		{3}
+	};
+
 
 private:
 
@@ -53,4 +60,7 @@ public:
 
 	//マップに扉(ゴール)をランダムで設定
 	int SetRandomDoorInMap();
+
+	//マップに敵をランダムで生成 : (バロム, )
+	void SetRandomEnemy(int);
 };

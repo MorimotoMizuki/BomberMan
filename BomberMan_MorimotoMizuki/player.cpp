@@ -72,11 +72,13 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 		}
 		//敵との判定
 		else if (base[i]->ID == ENEMY)
-		{	
+		{
 			if (PlayerState == PlayerStateId::PLAYplayer) {
-				if (HitCheck_box(pos.x, pos.y, base[i]->pos.x - Distance, base[i]->pos.y, CHIP_SIZE, CHIP_SIZE))
+
+				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
+					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
 				{
-					SetPlayerDead(PlayerStateId::DEADplayer);
+					SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}
@@ -116,6 +118,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 
 	//爆弾配置処理
 	PutExplosion(base);
+
 
 	return 0;
 }

@@ -27,7 +27,8 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	//ƒQ[ƒ€ƒNƒŠƒA‚Ìê‡
 	else if (gGamePhase == GamePhaseId::GAMECLEAR)
 	{
-		gNowStageNum++;
+		if(gNowStageNum < STAGE_SUM)
+			gNowStageNum++;
 		ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
 	}
 }

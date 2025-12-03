@@ -3,7 +3,7 @@
 
 CBallom::CBallom(Point p, MapPoint system_p)
 {
-	LoadDivGraph("image\\enemy.png", BALLOM_IMG_NUM, 4, 1, IMGSIZE32, IMGSIZE32, BallomImgHandle);
+	LoadDivGraph("image\\enemy.png", BALLOM_IMG_NUM, 4, 2, IMGSIZE32, IMGSIZE32, BallomImgHandle);
 
 	pos = p;
 
@@ -23,15 +23,14 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 	if (p != nullptr)
 		Distance = p->Distance;
 
+	//死亡処理
 	if (IsDead) {
-
-
-		return 0;//一旦
 		
 		if (DeadCnt < 60)
 			DeadCnt++;
 		else
-			BallomAnim(4, &AnimIndex, false);
+			BallomAnim(BALLOM_ANIM_NUM * 2, &AnimIndex, false);
+		return 0;
 	}
 
 	//システム上の座標更新 : 中心座標から
@@ -40,7 +39,7 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 	};
 
 	//バロムの移動処理
-	//BallomMove(base);
+	BallomMove(base);
 
 	//バロムのアニメーション処理
 	BallomAnim(BALLOM_ANIM_NUM, &AnimIndex, true);
@@ -72,7 +71,7 @@ void CBallom::Draw()
 
 	DrawFormatString(WINDOW_WIDTH / 2 -200, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 
-	//DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%f\n%f", vec.x, vec.y);
+	//DrawFormatString(pos.x, pos.y, GetColor(255, 255, 255), "%d", AnimIndex);
 }
 
 CBallom::~CBallom()
@@ -259,6 +258,7 @@ void CBallom::BallomAnim(int animMax, int* index, bool loop)
 		*index += 1;
 }
 
+//死亡時の設定
 void CBallom::EnemyDead()
 {
 	IsDead = true;

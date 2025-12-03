@@ -59,7 +59,6 @@ void CExplosion::Draw()
 	//	};
 	//	DrawBox(startPos.x, startPos.y, startPos.x + expPos.x, startPos.y + expPos.y, GetColor(255, 0, 0), false);
 	//}
-
 }
 
 CExplosion::~CExplosion()
@@ -73,6 +72,10 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 {
 	if (std::get<0>(ExplosionPointData[0]).x == 0)
 		return;
+
+	//アニメーションインデックスが一定以上の場合は終了
+	if (AnimIndex >= EXPLOSION_ANIM_NUM - 1 - 2)
+		return; 
 
 	bool isBreak{ false };	
 	for (int i = 0; i < base.size(); i++)

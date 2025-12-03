@@ -25,4 +25,7 @@ private:
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
 
+	//ドアの開放フラグ
+	bool IsOpen{ false };
+
 };

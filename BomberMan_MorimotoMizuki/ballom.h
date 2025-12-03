@@ -10,7 +10,7 @@ public:
 	static constexpr auto BALLOM_ANIM_FRAME = 8;
 
 	//バロムの画像の数
-	static constexpr auto BALLOM_IMG_NUM = 4;
+	static constexpr auto BALLOM_IMG_NUM = 8;
 
 	//バロムのアニメーション数
 	static constexpr auto BALLOM_ANIM_NUM = 4;
@@ -54,7 +54,7 @@ public:
 	//バロムアニメーション処理
 	void BallomAnim(int animMax, int* index, bool loop);
 
-	//死亡処理
+	//死亡時の設定
 	void EnemyDead();
 
 public:
@@ -64,7 +64,7 @@ public:
 private:
 
 	//画像ハンドル
-	int BallomImgHandle[BALLOM_IMG_NUM]{ 0,0,0,0 };
+	int BallomImgHandle[BALLOM_IMG_NUM]{ 0,0,0,0,0,0,0,0 };
 
 	//アニメーションの画像インデックス
 	int AnimIndex{ 0 };

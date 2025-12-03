@@ -27,15 +27,17 @@ int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
 	{
 		Distance = p->Distance;
 
-		//プレイヤーの座標がゴールの座標になった場合(許容範囲 : GOAL_IN_DISTANCE)
-		if ((pos.x >= p->m_pos.x && pos.x < p->m_pos.x + GOAL_IN_DISTANCE) &&
-			(pos.y >= p->m_pos.y && pos.y < p->m_pos.y + GOAL_IN_DISTANCE))
-		{
-			//プレイヤーの座標をゴールの座標にする
-			p->pos.x = pos.x;
-			p->pos.y = pos.y;
-			//ゲームクリアに設定
-			gGamePhase = GamePhaseId::GAMECLEAR;
+		if (IsOpen){
+			//プレイヤーの座標がゴールの座標になった場合(許容範囲 : GOAL_IN_DISTANCE)
+			if ((pos.x >= p->m_pos.x && pos.x < p->m_pos.x + GOAL_IN_DISTANCE) &&
+				(pos.y >= p->m_pos.y && pos.y < p->m_pos.y + GOAL_IN_DISTANCE))
+			{
+				//プレイヤーの座標をゴールの座標にする
+				p->pos.x = pos.x;
+				p->pos.y = pos.y;
+				//ゲームクリアに設定
+				gGamePhase = GamePhaseId::GAMECLEAR;
+			}
 		}
 	}
 
