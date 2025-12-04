@@ -27,5 +27,11 @@ public:
 	//マップManager
 	std::unique_ptr<CMap> map;
 
+	//ステージの敵の合計数
+	int EnemySum{ 0 };
+
+	//ゴール開閉フラグ
+	bool IsGoalOpen{ false };
+
 	//CCamera* camera;//カメラオブジェクト
 };

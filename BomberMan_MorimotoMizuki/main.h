@@ -91,6 +91,9 @@ extern GamePhaseId gGamePhase;
 //現在のステージ番号
 extern int gNowStageNum;
 
+//敵を倒した数
+extern int gKillEnemyNum;
+
 //カメラ情報クラス(main.h)
 //class CCameraInfo {
 //private:

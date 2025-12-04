@@ -26,7 +26,7 @@ public:
 	static constexpr int StageEnemyNum[STAGE_SUM][1] = {
 		{3},
 		{3},
-		{3}
+		{3},
 	};
 
 
@@ -63,4 +63,7 @@ public:
 
 	//マップに敵をランダムで生成 : (バロム, )
 	void SetRandomEnemy(int);
+
+	//ステージごとの敵の合計数を取得
+	int GetStageEnemyTotal(int stageNum);
 };

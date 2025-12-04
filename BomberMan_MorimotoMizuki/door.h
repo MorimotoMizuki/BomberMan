@@ -17,6 +17,11 @@ public:
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
 
+public:
+
+	//ドアの開放フラグ
+	bool IsOpen{ false };
+
 private:
 
 	//システム上の座標
@@ -24,8 +29,4 @@ private:
 
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
-
-	//ドアの開放フラグ
-	bool IsOpen{ false };
-
 };

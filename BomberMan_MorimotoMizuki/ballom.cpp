@@ -69,13 +69,15 @@ void CBallom::Draw()
 			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, BallomImgHandle[BALLOM_ANIM_ORDER[AnimIndex]], true);
 	}
 
-	DrawFormatString(WINDOW_WIDTH / 2 -200, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
+	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 
 	//DrawFormatString(pos.x, pos.y, GetColor(255, 255, 255), "%d", AnimIndex);
 }
 
 CBallom::~CBallom()
 {
+	gKillEnemyNum++; //ìGì¢î∞êî++
+
 	for (int i = 0; i < BALLOM_IMG_NUM; i++)
 		DeleteGraph(BallomImgHandle[i]);
 }
@@ -252,6 +254,7 @@ void CBallom::BallomAnim(int animMax, int* index, bool loop)
 		else
 		{
 			draw_flag = false;
+			FLAG = false;
 		}
 	}
 	else

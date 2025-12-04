@@ -1,6 +1,7 @@
 #include"map.h"
 #include"obj.h"
-
+#include <numeric>
+#include <iterator>
 #include"function.h"
 
 //文字列分割関数 : 指定した文字で文字列を分割する
@@ -228,4 +229,10 @@ void CMap::SetRandomEnemy(int ballomNum)
 			continue;
 	}
 
+}
+
+//ステージごとの敵の合計数を取得
+int CMap::GetStageEnemyTotal(int stageNum)
+{
+	return std::accumulate(std::begin(StageEnemyNum[stageNum]), std::end(StageEnemyNum[stageNum]), 0);
 }

@@ -36,53 +36,8 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//プレイヤーの移動処理
 	PlayerMove();
 
-	//オブジェクトと判定
-	for (int i = 0; i < base.size(); i++)
-	{
-		//削除対象のオブジェクトはスキップ
-		if (!base[i]->FLAG || !base[i]->draw_flag)
-			continue;
-
-		//ブロックとの判定 : 行動制限のみ
-		if (base[i]->ID == BLOCK)
-		{
-			if (((CBlock*)base[i].get())->tipNo >= 0)
-			{
-				HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
-			}
-		}
-		//爆弾との判定 : 行動制限のみ
-		else if (base[i]->ID == BOMB)
-		{
-			//システム上の座標 : 左上の座標から
-			MapPoint systemPosL = { static_cast<int>(m_pos.x / CHIP_SIZE) ,
-								   static_cast<int>((m_pos.y - WINDOW_HEADER) / CHIP_SIZE)
-			};
-			//システム上の座標 : 右下の座標から
-			MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth - 1) / CHIP_SIZE) ,
-								   static_cast<int>(((m_pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
-			};
-			if ((systemPosL.x <= MAP_CHIP_W && systemPosL.y <= MAP_CHIP_H))
-			{
-				//左上の座標と右下の座標のどちらも爆弾がない場合
-				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
-					(gNowMap[systemPosR.y][systemPosR.x] != BOMB))
-					HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
-			}
-		}
-		//敵との判定
-		else if (base[i]->ID == ENEMY)
-		{
-			if (PlayerState == PlayerStateId::PLAYplayer) {
-
-				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
-					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
-				{
-					SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
-				}
-			}
-		}
-	}
+	//プレイヤーの当たり判定
+	PlayerHit(base);
 
 	//座標更新
 	m_pos = Add_Point_Vector(m_pos, vec);
@@ -145,6 +100,58 @@ CPlayer::~CPlayer()
 {
 	for (int i = 0; i < PLAYER_IMG_NUM; i++)
 		DeleteGraph(PlayerImgHandle[i]);
+}
+
+//プレイヤーの当たり判定
+void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
+{
+	//オブジェクトと判定
+	for (int i = 0; i < base.size(); i++)
+	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
+		//ブロックとの判定 : 行動制限のみ
+		if (base[i]->ID == BLOCK)
+		{
+			if (((CBlock*)base[i].get())->tipNo >= 0)
+			{
+				HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+			}
+		}
+		//爆弾との判定 : 行動制限のみ
+		else if (base[i]->ID == BOMB)
+		{
+			//システム上の座標 : 左上の座標から
+			MapPoint systemPosL = { static_cast<int>(m_pos.x / CHIP_SIZE) ,
+								   static_cast<int>((m_pos.y - WINDOW_HEADER) / CHIP_SIZE)
+			};
+			//システム上の座標 : 右下の座標から
+			MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth - 1) / CHIP_SIZE) ,
+								   static_cast<int>(((m_pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
+			};
+			if ((systemPosL.x <= MAP_CHIP_W && systemPosL.y <= MAP_CHIP_H))
+			{
+				//左上の座標と右下の座標のどちらも爆弾がない場合
+				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
+					(gNowMap[systemPosR.y][systemPosR.x] != BOMB))
+					HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+			}
+		}
+		//敵との判定
+		else if (base[i]->ID == ENEMY)
+		{
+			if (PlayerState == PlayerStateId::PLAYplayer) {
+
+				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
+					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
+				{
+					SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+				}
+			}
+		}
+	}
 }
 
 //プレイヤーの移動処理

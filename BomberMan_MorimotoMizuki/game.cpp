@@ -25,18 +25,27 @@ GamePhaseId gGamePhase{ GamePhaseId::IDLE };
 //現在のステージ番号
 int gNowStageNum{ 1 };
 
+//敵を倒した数
+int gKillEnemyNum{ 0 };
+
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
 {
-	base.emplace_back((unique_ptr<BaseVector>)new CPlayer());
-
 	//マップマネージャー
 	map = std::make_unique<CMap>();
 	map->LoadMap();	//マップデータ読み込み
 	map->Map_Obj_Creation(base);//マップ生成
 
+	//敵の合計数を取得
+	EnemySum = map->GetStageEnemyTotal(gNowStageNum);
+
+	//プレイヤー生成
+	base.emplace_back((unique_ptr<BaseVector>)new CPlayer());
+
 	//プレイ状態
 	gGamePhase = GamePhaseId::PLAING;
+
+	gKillEnemyNum = 0;
 }
 
 //更新処理
@@ -54,6 +63,15 @@ int CGame::Update()
 		//タイトルシーンに移行 : シーンを作成
 		manager->scene = new CTitle(manager);
 		return 0;
+	}
+
+	if (EnemySum == gKillEnemyNum && !IsGoalOpen)
+	{
+		CDoor* door = (CDoor*)Get_obj(base, GOAL);
+		if(door != nullptr)
+			door->IsOpen = true;
+
+		IsGoalOpen = true;
 	}
 
 	//更新処理

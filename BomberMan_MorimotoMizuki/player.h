@@ -41,6 +41,9 @@ public:
 	//プレイヤーの移動処理
 	void PlayerMove();
 
+	//プレイヤーの当たり判定
+	void PlayerHit(vector<unique_ptr<BaseVector>>&);
+
 	//プレイヤーのアニメーション処理
 	//(アニメーション最大数、アニメーションフレーム、インデックス*、繰り返しフラグ)
 	bool PlayerAnim(AnimMaxId, int, int*, bool = true);
