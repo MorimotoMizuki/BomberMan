@@ -75,6 +75,8 @@ struct Vector3 {
 	 int bombPutNum;
 	 //爆弾の威力のレベル
 	 int bombLevel;
+	 //スコア
+	 int score;
  };
 
 //プレイヤーのステータス

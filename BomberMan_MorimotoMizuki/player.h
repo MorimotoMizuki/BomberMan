@@ -61,6 +61,9 @@ public:
 		AnimCnt = PLAYER_ANIM_FRAME;
 	}
 
+	//安全な座標かチェックする
+	bool IsValidMapPos(MapPoint p);
+
 public:
 
 	//マップの位置
@@ -86,4 +89,7 @@ private:
 
 	//プレイヤーの状態
 	PlayerStateId PlayerState{ PlayerStateId::PLAYplayer };
+
+	//キー保存用
+	bool KeyCheck[1]{ false };
 };

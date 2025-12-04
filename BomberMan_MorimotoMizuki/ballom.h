@@ -79,4 +79,7 @@ private:
 
 	//死亡カウント
 	int DeadCnt{ 0 };
+
+	//ストップカウント
+	int StopCnt{ 0 };
 };

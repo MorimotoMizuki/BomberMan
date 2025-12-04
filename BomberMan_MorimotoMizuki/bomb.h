@@ -32,6 +32,9 @@ public:
 	//爆発エフェクト
 	void ExplosionEffect(vector<unique_ptr<BaseVector>>&);
 
+	//システム上の座標
+	MapPoint SystemMap{ 0,0 };
+
 private:
 
 	//爆弾画像ハンドル配列
@@ -45,9 +48,6 @@ private:
 	int SurvivalFrame{ 0 };
 	//死亡時間(フレーム数)
 	int DiedFrame{ 0 };
-
-	//システム上の座標
-	MapPoint SystemMap{ 0,0 };
 
 	//プレイヤーとの差分
 	float Distance{ 0.0f };

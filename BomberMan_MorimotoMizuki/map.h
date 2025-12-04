@@ -24,7 +24,7 @@ public:
 
 	//ステージの敵の数 : (バロム, )
 	static constexpr int StageEnemyNum[STAGE_SUM][1] = {
-		{3},
+		{6},
 		{3},
 		{3},
 	};

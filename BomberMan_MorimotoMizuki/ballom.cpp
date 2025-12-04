@@ -33,19 +33,45 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 		return 0;
 	}
 
+	//バロムのアニメーション処理
+	BallomAnim(BALLOM_ANIM_NUM, &AnimIndex, true);
+
+	for (int i = 0; i < base.size(); i++)
+	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
+		//爆弾オブジェクトと判定
+		if (base[i]->ID == BOMB)
+		{
+			if (HitCheck_box(this, base[i].get()))
+			{
+				MapPoint bPos = ((CBomb*)base[i].get())->SystemMap;
+				if (bPos.x != SystemPos.x || bPos.y != SystemPos.y)
+				{
+					pos.x = (SystemPos.x * CHIP_SIZE);
+					pos.y = (SystemPos.y * CHIP_SIZE) + WINDOW_HEADER;
+				}
+			}
+		}
+	}
+
 	//システム上の座標更新 : 中心座標から
 	SystemPos = { static_cast<int>((pos.x + ImgWidth / 2) / CHIP_SIZE) ,
 				  static_cast<int>(((pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
 	};
 
-	//バロムの移動処理
-	BallomMove(base);
+	if (StopCnt >= 5) {
+		//バロムの移動処理
+		BallomMove(base);
 
-	//バロムのアニメーション処理
-	BallomAnim(BALLOM_ANIM_NUM, &AnimIndex, true);
+		//座標更新
+		pos = Add_Point_Vector(pos, vec);
+	}
+	else
+		StopCnt++;
 
-	//座標更新
-	pos = Add_Point_Vector(pos, vec);
 
 	return 0;
 }
@@ -103,16 +129,19 @@ void CBallom::BallomMove(vector<unique_ptr<BaseVector>>& base)
 		{
 			Vector normalizeVec = Vector_Normalize(vec);
 
-			//進行方向が空白ではない場合は移動方向変更
+			//ブロック, 爆弾の場合は移動方向変更
 			for (int i = 0; i < 4; i++)
 			{
 				if (normalizeVec.x == ADD_VEC[i].x && normalizeVec.y == ADD_VEC[i].y)
 				{
 					MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
-					//空白では無い場合
-					if (gNowMap[systemPos.y][systemPos.x] >= 0)
+					//ブロック, 爆弾だった場合 : ブロック　か　クラッシュブロック
+					if (gNowMap[systemPos.y][systemPos.x] == BLOCK ||
+						gNowMap[systemPos.y][systemPos.x] == BLOCK + 1 ||
+						gNowMap[systemPos.y][systemPos.x] == BOMB)
 					{
 						SetBallomMoveDir(base); //移動方向変更
+						StopCnt = 0;
 						break;
 					}
 				}
@@ -146,7 +175,10 @@ void CBallom::SetBallomMoveDir(vector<unique_ptr<BaseVector>>& base)
 		for (int i = 0; i < 4; i++)
 		{
 			MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
-			if (gNowMap[systemPos.y][systemPos.x] == -1)
+			//ブロック, 爆弾以外の場合
+			if (gNowMap[systemPos.y][systemPos.x] != BLOCK &&
+				gNowMap[systemPos.y][systemPos.x] != BLOCK + 1 &&
+				gNowMap[systemPos.y][systemPos.x] != BOMB)
 				moveDir.push_back(i);
 		}
 	}

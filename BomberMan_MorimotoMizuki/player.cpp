@@ -74,6 +74,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//爆弾配置処理
 	PutExplosion(base);
 
+	KeyCheck[0] = Key_Check(Move_Id::SPACE);
 
 	return 0;
 }
@@ -102,6 +103,16 @@ CPlayer::~CPlayer()
 		DeleteGraph(PlayerImgHandle[i]);
 }
 
+//安全な座標かチェックする
+bool CPlayer::IsValidMapPos(MapPoint p)
+{
+	if (p.x >= 0 && p.x < MAP_CHIP_W &&
+		p.y >= 0 && p.y < MAP_CHIP_H)
+		return true;
+	else
+		return false;
+}
+
 //プレイヤーの当たり判定
 void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 {
@@ -128,10 +139,10 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 								   static_cast<int>((m_pos.y - WINDOW_HEADER) / CHIP_SIZE)
 			};
 			//システム上の座標 : 右下の座標から
-			MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth - 1) / CHIP_SIZE) ,
+			MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth  - 1) / CHIP_SIZE) ,
 								   static_cast<int>(((m_pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
 			};
-			if ((systemPosL.x <= MAP_CHIP_W && systemPosL.y <= MAP_CHIP_H))
+			if (IsValidMapPos(systemPosL) && IsValidMapPos(systemPosR))
 			{
 				//左上の座標と右下の座標のどちらも爆弾がない場合
 				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
@@ -223,7 +234,12 @@ bool CPlayer::PlayerAnim(AnimMaxId animMaxId,int animFrame, int* index, bool isL
 //爆弾を置く処理
 void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 {
+	//スペースキー入力チェック
 	if (!Key_Check(Move_Id::SPACE))
+		return;
+
+	//連続入力回避
+	if (KeyCheck[0] == true)
 		return;
 
 	//爆弾の個数が設置可能個数以上の場合は終了

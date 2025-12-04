@@ -12,6 +12,7 @@ PlayerStatus gPlayerStatus = {
 	6.0f,	//speed
 	1,		//bombPutNum
 	1,		//bombLevel
+	0,		//スコア
 };
 //現在の設置している爆弾の数
 int gNowBombNum = 0;
@@ -45,7 +46,9 @@ CGame::CGame(CManager* p) :CScene(p)
 	//プレイ状態
 	gGamePhase = GamePhaseId::PLAING;
 
-	gKillEnemyNum = 0;
+	//初期化
+	gKillEnemyNum = 0; //倒した敵の数
+	gPlayerStatus.score = 0; //スコア
 }
 
 //更新処理
