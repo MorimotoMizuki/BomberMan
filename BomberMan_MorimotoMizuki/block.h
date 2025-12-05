@@ -27,9 +27,6 @@ public:
 	//マップチップNo
 	int tipNo{ -1 };
 
-	//システム上(マップ上)の座標
-	MapPoint SystemPos{ 0,0 };
-
 	//クラッシュフラグ
 	bool IsCrash{ false };
 

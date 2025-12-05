@@ -5,5 +5,6 @@
 #include"explosion.h"
 #include"block.h"
 #include"door.h"
+#include"Item.h"
 
 #include"ballom.h"

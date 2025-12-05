@@ -14,6 +14,8 @@ public:
 	Point pos{ 0,0 };//位置
 	Vector vec{ 0,0 };//移動ベクトル
 
+	MapPoint SystemPos{ 0,0 };//マップ上の座標
+
 	int CutX{ 0 };//画像切り取り位置x
 	int CutY{ 0 };//画像切り取り位置y
 

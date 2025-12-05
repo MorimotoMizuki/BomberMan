@@ -10,20 +10,17 @@ CBomb::CBomb(MapPoint mapPos, int diedFrame)
 	ImgHeight = CHIP_SIZE;
 
 	//システム上の座標を設定
-	SystemMap = mapPos;
+	SystemPos = mapPos;
 
 	//座標を升目 * チップサイズ - 画面上のずれ　で計算
-	pos.x = SystemMap.x * CHIP_SIZE;
-	pos.y = SystemMap.y * CHIP_SIZE + WINDOW_HEADER;
+	pos.x = SystemPos.x * CHIP_SIZE;
+	pos.y = SystemPos.y * CHIP_SIZE + WINDOW_HEADER;
 
 	//爆弾の削除フレーム数設定
 	DiedFrame = diedFrame;
 
-	ID = Obj_Id::BOMB;
+	ID  = Obj_Id::BOMB;
 	pri = Pri_Id::pBOMB;
-
-	//現在のマップに爆弾を配置
-	gNowMap[SystemMap.y][SystemMap.x] = ID;
 
 	//設置している爆弾の数 : 増加
 	gNowBombNum++;
@@ -97,8 +94,8 @@ CBomb::~CBomb()
 void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base)
 {
 	//システム上のマップから爆弾を削除
-	gNowMap[SystemMap.y][SystemMap.x] = Obj_Id::NONE;
+	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::NONE;
 
 	//爆発エフェクト生成 
-	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemMap, gPlayerStatus.bombLevel));
+	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemPos, gPlayerStatus.bombLevel));
 }

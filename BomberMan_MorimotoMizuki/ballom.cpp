@@ -9,10 +9,10 @@ CBallom::CBallom(Point p, MapPoint system_p)
 
 	SystemPos = system_p;
 
-	ImgWidth  = IMGSIZE64;
-	ImgHeight = IMGSIZE64;
+	ImgWidth  = CHIP_SIZE;
+	ImgHeight = CHIP_SIZE;
 
-	ID = Obj_Id::ENEMY;
+	ID  = Obj_Id::ENEMY;
 	pri = Pri_Id::pENEMY;
 }
 
@@ -47,7 +47,7 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 		{
 			if (HitCheck_box(this, base[i].get()))
 			{
-				MapPoint bPos = ((CBomb*)base[i].get())->SystemMap;
+				MapPoint bPos = (base[i].get())->SystemPos;
 				if (bPos.x != SystemPos.x || bPos.y != SystemPos.y)
 				{
 					pos.x = (SystemPos.x * CHIP_SIZE);
@@ -71,7 +71,6 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 	}
 	else
 		StopCnt++;
-
 
 	return 0;
 }

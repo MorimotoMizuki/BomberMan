@@ -6,8 +6,8 @@ CPlayer::CPlayer()
 {
 	LoadDivGraph("image\\player.png", PLAYER_IMG_NUM, 3, 6, IMGSIZE16, IMGSIZE16, PlayerImgHandle);
 
-	ImgWidth = IMGSIZE64;
-	ImgHeight = IMGSIZE64;
+	ImgWidth  = CHIP_SIZE;
+	ImgHeight = CHIP_SIZE;
 
 	//マップ上の初期位置
 	m_pos.x = 64;
@@ -84,7 +84,7 @@ void CPlayer::Draw()
 	if (!draw_flag) return;
 
 	//画像描画
-	DrawExtendGraph(pos.x, pos.y, pos.x + IMGSIZE64, pos.y + IMGSIZE64, PlayerImgHandle[AnimIndex], true);
+	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
 	
 	//DrawFormatString(WINDOW_WIDTH / 2 + 300, 50, GetColor(255, 255, 255), "x:%f y:%f\nx:%f y:%f", m_pos.x, m_pos.y - WINDOW_HEADER, m_pos.x + ImgWidth - 1, m_pos.y + ImgHeight - WINDOW_HEADER -1 );
 
@@ -144,10 +144,13 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 			};
 			if (IsValidMapPos(systemPosL) && IsValidMapPos(systemPosR))
 			{
-				//左上の座標と右下の座標のどちらも爆弾がない場合
+				//左上の座標と右下の座標と中心座標のどちらも爆弾がない場合
 				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
-					(gNowMap[systemPosR.y][systemPosR.x] != BOMB))
+					(gNowMap[systemPosR.y][systemPosR.x] != BOMB) && 
+					(gNowMap[SystemPos.y][SystemPos.x] != BOMB))
+				{
 					HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+				}
 			}
 		}
 		//敵との判定
@@ -158,7 +161,7 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
 				{
-					SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+					//	SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}
@@ -254,6 +257,9 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	MapPoint putMapPos = { (m_pos.x + ImgWidth / 2) / CHIP_SIZE, ((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE };
 
 	IsPutBomb = true;
+
+	//現在のマップに爆弾を配置
+	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::BOMB;
 
 	//爆弾生成
 	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos));

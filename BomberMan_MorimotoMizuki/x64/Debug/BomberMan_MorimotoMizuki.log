@@ -1,11 +1,11 @@
 ﻿  player.cpp
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(87,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(87,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(87,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(87,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(87,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(251,12): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(254,50): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(254,50): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(254,107): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(254,107): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(255,12): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(258,50): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(258,50): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(258,107): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(258,107): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
   BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe

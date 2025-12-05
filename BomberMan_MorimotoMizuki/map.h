@@ -15,6 +15,9 @@ public:
 	//クラッシュブロックが生成される確率 1 = 10%
 	static constexpr auto CREATE_CRASH_BLOCK_PROBABILITY = 3;
 
+	//アイテムの数
+	static constexpr auto ITEM_SUM = 1;
+
 	//クラッシュブロックの生成から除外する座標
 	static constexpr MapPoint ExclusionPoint[3] = {
 		{1,1},
@@ -29,6 +32,12 @@ public:
 		{3},
 	};
 
+	//ステージのアイテムの数 : (火力, 爆弾, リモコン, ブーツ, 爆弾通過, 壁通過, 火炎バリア, パーフェクトマン)
+	static constexpr int StageItemNum[STAGE_SUM][ITEM_SUM] = {
+		{1},
+		{1},
+		{1},
+	};
 
 private:
 
@@ -43,6 +52,12 @@ private:
 
 	//クラッシュブロックの数
 	int CrashBlockNum{ 0 };
+
+	//ドアを生成するクラッシュブロックの番号
+	int SetDoorNum{ 0 };
+
+	//敵の生成情報配列
+	vector<vector<int>> SetItemNum;
 
 public:
 	CMap();
@@ -61,9 +76,15 @@ public:
 	//マップに扉(ゴール)をランダムで設定
 	int SetRandomDoorInMap();
 
+	//マップにアイテムをランダムで設定
+	void SetRandomItemInMap();
+
 	//マップに敵をランダムで生成 : (バロム, )
 	void SetRandomEnemy(int);
 
 	//ステージごとの敵の合計数を取得
 	int GetStageEnemyTotal(int stageNum);
+
+	//ステージごとのアイテムの合計数を取得
+	int GetStageItemTotal(int stageNum);
 };

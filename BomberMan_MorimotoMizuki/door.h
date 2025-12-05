@@ -24,9 +24,6 @@ public:
 
 private:
 
-	//システム上の座標
-	MapPoint SystemPos{ 0,0 };
-
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
 };

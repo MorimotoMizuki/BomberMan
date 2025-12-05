@@ -5,8 +5,8 @@ CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
 {
 	img = _img;
 
-	ImgWidth  = IMGSIZE64;
-	ImgHeight = IMGSIZE64;
+	ImgWidth  = CHIP_SIZE;
+	ImgHeight = CHIP_SIZE;
 
 	pos = p;
 
@@ -21,7 +21,7 @@ CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
 
 	SystemPos = system_p;
 
-	ID = Obj_Id::BLOCK;
+	ID  = Obj_Id::BLOCK;
 	pri = Pri_Id::pBLOCK;
 }
 

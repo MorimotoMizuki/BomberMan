@@ -164,6 +164,7 @@
     <ClInclude Include="explosion.h" />
     <ClInclude Include="function.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="library_function.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="door.cpp" />
     <ClCompile Include="explosion.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="library_function.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />

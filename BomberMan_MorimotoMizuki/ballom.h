@@ -59,8 +59,6 @@ public:
 
 public:
 
-	MapPoint SystemPos{ 0,0 };
-
 private:
 
 	//‰æ‘œƒnƒ“ƒhƒ‹

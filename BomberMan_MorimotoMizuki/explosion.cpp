@@ -19,7 +19,7 @@ CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 	//爆弾レベル
 	BombLevel = bombLevel;
 
-	ID = Obj_Id::EXPLOSION;
+	ID  = Obj_Id::EXPLOSION;
 	pri = Pri_Id::pEXPLOSION;
 }
 
@@ -51,14 +51,6 @@ void CExplosion::Draw()
 	ExplosionPointData[1] = DrawExplosion( 0,  1	, BombLevel, ExplosionEffectId::VERTICAL);
 	ExplosionPointData[2] = DrawExplosion(-1,  0	, BombLevel, ExplosionEffectId::HORIZONTAL);
 	ExplosionPointData[3] = DrawExplosion( 1,  0	, BombLevel, ExplosionEffectId::HORIZONTAL);
-
-	//Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
-	//for (int i = 0; i < 4; i++){
-	//	Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 64,
-	//					 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 64 
-	//	};
-	//	DrawBox(startPos.x, startPos.y, startPos.x + expPos.x, startPos.y + expPos.y, GetColor(255, 0, 0), false);
-	//}
 }
 
 CExplosion::~CExplosion()
@@ -77,68 +69,53 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 	if (AnimIndex >= EXPLOSION_ANIM_NUM - 1 - 2)
 		return; 
 
-	bool isBreak{ false };	
-	for (int i = 0; i < base.size(); i++)
+	//クラッシュブロックとの判定
+	for (int i = 0; i < 4; i++)
 	{
-		//削除対象のオブジェクトはスキップ
-		if (!base[i]->FLAG || !base[i]->draw_flag)
-			continue;
+		//爆弾の座標 + 方向
+		MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[i]).x, BombPos.y + std::get<1>(ExplosionPointData[i]).y };
 
-		//ブロックオブジェクトと判定
-		if (base[i]->ID == BLOCK)
-		{
-			if (((CBlock*)base[i].get())->tipNo == 1)
-			{
-				Point blockPos = base[i].get()->pos;
-				MapPoint systemBlockPos = ((CBlock*)base[i].get())->SystemPos;
+		//爆弾の威力分ループ
+		for (int j = 0; j < std::get<2>(ExplosionPointData[i]); j++) {
 
-				for (int j = 0; j < 4; j++)
-				{
-					Point startPos = { pos.x + std::get<0>(ExplosionPointData[j]).x ,pos.y + std::get<0>(ExplosionPointData[j]).y };
-					Point expPos = { std::get<1>(ExplosionPointData[j]).x * std::get<2>(ExplosionPointData[j]) * 32,
-									 std::get<1>(ExplosionPointData[j]).y * std::get<2>(ExplosionPointData[j]) * 32
-					};
-
-					//当たり判定
-					if (blockPos.x < startPos.x + expPos.x && blockPos.x + 64 > startPos.x + expPos.x &&
-						blockPos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && blockPos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
-					{
-						if (gNowMap[systemBlockPos.y][systemBlockPos.x] == 1)
-						{
-							//マップのデータ削除
-							gNowMap[systemBlockPos.y][systemBlockPos.x] = Obj_Id::NONE;
-							isBreak = true;
-							break;
-						}
-					}
-				}
+			//クラッシュブロックの場合
+			if (gNowMap[ex_pos.y][ex_pos.x] == 1) {
+				//マップのデータ削除
+				gNowMap[ex_pos.y][ex_pos.x] = Obj_Id::NONE;
+				break;
 			}
+			//座標更新
+			ex_pos.x += std::get<1>(ExplosionPointData[i]).x;
+			ex_pos.y += std::get<1>(ExplosionPointData[i]).y;
 		}
-		if (isBreak) break;
 	}
 
-	Point startPos = { pos.x + ImgWidth / 2 ,pos.y + ImgHeight / 2 };
-
 	for (int i = 0; i < base.size(); i++)
 	{
 		//削除対象のオブジェクトはスキップ
 		if (!base[i]->FLAG || !base[i]->draw_flag)
 			continue;
 
-		Point enemyPos = base[i].get()->pos;
 		//敵との判定
 		if (base[i]->ID == ENEMY)
 		{
-			for (int j = 0; j < 4; j++)
+			MapPoint enemy_pos = base[i].get()->SystemPos;
+			for (int k = 0; k < 4; k++)
 			{
-				Point expPos = { std::get<1>(ExplosionPointData[j]).x * std::get<2>(ExplosionPointData[j]) * 64,
-								 std::get<1>(ExplosionPointData[j]).y * std::get<2>(ExplosionPointData[j]) * 64
-				};
-				//当たり判定
-				if (enemyPos.x < startPos.x + expPos.x && enemyPos.x + 64 > startPos.x + expPos.x &&
-					enemyPos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && enemyPos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
-				{
-					((CBallom*)base[i].get())->EnemyDead();
+				//爆弾の座標 + 方向
+				MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[k]).x, BombPos.y + std::get<1>(ExplosionPointData[k]).y };
+				//爆弾の威力分ループ
+				for (int j = 0; j < std::get<2>(ExplosionPointData[k]); j++) {
+
+					//爆発の座標と敵の座標が一致した場合
+					if (ex_pos.x == enemy_pos.x && ex_pos.y == enemy_pos.y) {
+
+						((CBallom*)base[i].get())->EnemyDead();
+						break;
+					}
+					//座標更新
+					ex_pos.x += std::get<1>(ExplosionPointData[k]).x;
+					ex_pos.y += std::get<1>(ExplosionPointData[k]).y;
 				}
 			}
 		}
@@ -146,26 +123,38 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 
 	if (IsEnd) return;
 
+	//プレイヤーとの判定
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p == nullptr) return;
 
+	//爆弾の座標がプレイヤーの座標と一致した場合
+	if (BombPos.x == p->SystemPos.x && BombPos.y == p->SystemPos.y) {
+		p->SetPlayerDead(CPlayer::PlayerStateId::DEADplayer);
+		IsEnd = true;
+		return;
+	}
 
 	for (int i = 0; i < 4; i++)
 	{
-		Point expPos = { std::get<1>(ExplosionPointData[i]).x * std::get<2>(ExplosionPointData[i]) * 64,
-						 std::get<1>(ExplosionPointData[i]).y * std::get<2>(ExplosionPointData[i]) * 64
-		};
+		//爆弾の座標 + 方向
+		MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[i]).x, BombPos.y + std::get<1>(ExplosionPointData[i]).y };
 
-		//当たり判定
-		if (p->m_pos.x < startPos.x + expPos.x && p->m_pos.x + 64 > startPos.x + expPos.x &&
-			p->m_pos.y - WINDOW_HEADER < startPos.y + expPos.y - WINDOW_HEADER && p->m_pos.y - WINDOW_HEADER + 64 > startPos.y + expPos.y - WINDOW_HEADER)
-		{
-			p->SetPlayerDead(CPlayer::PlayerStateId::DEADplayer);
-			IsEnd = true;
+		//爆弾の威力分ループ
+		for (int j = 0; j < std::get<2>(ExplosionPointData[i]); j++) {
+
+			//爆発の座標とプレイヤーの座標が一致した場合
+			if (ex_pos.x == p->SystemPos.x && ex_pos.y == p->SystemPos.y) {
+
+				p->SetPlayerDead(CPlayer::PlayerStateId::DEADplayer);
+				IsEnd = true;
+				break;
+			}
+			//座標更新
+			ex_pos.x += std::get<1>(ExplosionPointData[i]).x;
+			ex_pos.y += std::get<1>(ExplosionPointData[i]).y;
 		}
 	}
-
 }
 
 //爆発アニメーション処理
@@ -231,11 +220,12 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 		}
 	}
 	
+	systemPos = { systemPos.x + static_cast<int>(addPosX),
+				  systemPos.y + static_cast<int>(addPosY)
+	};
+
 	for (int i = 0; i < num; i++)
 	{
-		systemPos = {	systemPos.x + static_cast<int>(addPosX),
-						systemPos.y + static_cast<int>(addPosY)
-		};
 		//先の升目がブロックの場合は描画終了
 		if (gNowMap[systemPos.y][systemPos.x] == 0)
 		{

@@ -9,8 +9,8 @@ CDoor::CDoor(Point p, MapPoint system_p)
 
 	SystemPos = system_p;
 
-	ImgWidth  = IMGSIZE64;
-	ImgHeight = IMGSIZE64;
+	ImgWidth  = CHIP_SIZE;
+	ImgHeight = CHIP_SIZE;
 
 	ID  = Obj_Id::GOAL;
 	pri = Pri_Id::pGOAL;

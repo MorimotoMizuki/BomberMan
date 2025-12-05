@@ -32,9 +32,6 @@ public:
 	//爆発エフェクト
 	void ExplosionEffect(vector<unique_ptr<BaseVector>>&);
 
-	//システム上の座標
-	MapPoint SystemMap{ 0,0 };
-
 private:
 
 	//爆弾画像ハンドル配列

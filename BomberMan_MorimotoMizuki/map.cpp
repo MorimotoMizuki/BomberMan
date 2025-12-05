@@ -56,7 +56,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1][0]);
 
 	//ドアを設置する数を設定
-	int setDoorNum = SetRandomDoorInMap();
+	SetDoorNum = SetRandomDoorInMap();
 	int crashBlockNum = 0;
 	bool isDoorSet = false;
 
@@ -87,7 +87,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 			}
 
 			//ドアを生成
-			if (setDoorNum == crashBlockNum && !isDoorSet) {
+			if (SetDoorNum == crashBlockNum && !isDoorSet) {
 				base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
 				isDoorSet = true;
 			}
@@ -119,15 +119,19 @@ void CMap::SetRandomCrashBlockInMap(int probability)
 			}
 		}
 	}
-
 }
 
 //マップに扉(ゴール)をランダムで設定
 int CMap::SetRandomDoorInMap()
 {
-	int setDoorNum = 0;
-	setDoorNum = Range_Random_Number(1, CrashBlockNum);
+	int setDoorNum = Range_Random_Number(1, CrashBlockNum);
 	return setDoorNum;
+}
+
+//マップにアイテムをランダムで設定
+void CMap::SetRandomItemInMap()
+{
+
 }
 
 //マップ更新処理
