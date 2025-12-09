@@ -7,6 +7,7 @@
 #include<string>
 #include<sstream>
 #include<vector>
+#include<map>
 
 class CMap 
 {
@@ -56,8 +57,8 @@ private:
 	//ドアを生成するクラッシュブロックの番号
 	int SetDoorNum{ 0 };
 
-	//敵の生成情報配列
-	vector<vector<int>> SetItemNum;
+	//アイテムの生成情報配列
+	std::vector<std::vector<int>> SetItemNum;
 
 public:
 	CMap();

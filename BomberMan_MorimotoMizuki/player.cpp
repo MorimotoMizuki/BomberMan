@@ -161,7 +161,7 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
 				{
-					//	SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+					SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}
@@ -262,7 +262,7 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::BOMB;
 
 	//爆弾生成
-	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos));
+	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos, gPlayerStatus.bombLevel));
 }
 
 //プレイヤーの死亡時処理

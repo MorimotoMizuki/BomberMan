@@ -23,6 +23,12 @@ CTitle::CTitle(CManager* p) :CScene(p)
 			ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
 		}
 		gGamePhase = GamePhaseId::IDLE;	//待機状態
+
+		//プレイヤーのステータスを初期化
+		gPlayerStatus.bombLevel = 1;
+		gPlayerStatus.bombPutNum = 1;
+		gPlayerStatus.speed = 6.0f;
+
 	}
 	//ゲームクリアの場合
 	else if (gGamePhase == GamePhaseId::GAMECLEAR)

@@ -22,6 +22,7 @@ enum Enemy_Id
 //アイテムのID : 効果 : 爆破すると出現する敵
 enum Item_Id
 {
+	None = -1,
 	FirePower,			//火力アップ					: オニール
 	Bomb,				//爆弾の置ける数アップ			: バロム
 	RemoteController,	//爆弾がBボタンで自由に爆発可能	: コンドリア

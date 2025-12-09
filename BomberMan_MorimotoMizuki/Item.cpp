@@ -3,7 +3,7 @@
 
 CItem::CItem(Point p, MapPoint system_p, Item_Id item_id)
 {
-	LoadDivGraph("image\\Item.png", ITEM_IMG_NUM, 4, 2, IMGSIZE16, IMGSIZE16, ItemImgHandle);
+	LoadDivGraph("image\\Item.png", ITEM_IMG_NUM, 8, 1, IMGSIZE16, IMGSIZE16, ItemImgHandle);
 
 	pos = p;
 
@@ -14,6 +14,8 @@ CItem::CItem(Point p, MapPoint system_p, Item_Id item_id)
 
 	ItemID = item_id;
 
+	SetItemFunction(); //各アイテムの関数設定
+
 	ID  = Obj_Id::ITEM;
 	pri = Pri_Id::pITEM;
 }
@@ -22,8 +24,15 @@ int CItem::Action(vector<unique_ptr<BaseVector>>& base)
 {
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	if (p != nullptr)
-		Distance = p->Distance;
+	if (p == nullptr) return 0;
+
+	Distance = p->Distance; //プレイヤーの画面の差分を取得
+
+	if (p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y)
+	{
+		if (ItemFunctions.contains(ItemID))
+			ItemFunctions[ItemID]();   // 対応する関数を呼び出す
+	}
 
 	return 0;
 }
@@ -31,14 +40,79 @@ int CItem::Action(vector<unique_ptr<BaseVector>>& base)
 void CItem::Draw()
 {
 	//画像描画
-	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, img, true);
+	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ItemImgHandle[ItemID], true);
 
 	//DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
-	DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 }
 
 CItem::~CItem()
 {
 	for (int i = 0; i < ITEM_IMG_NUM; i++)
 		DeleteGraph(ItemImgHandle[i]);
+}
+
+//アイテム削除
+void CItem::DeleteItem()
+{
+	FLAG = false;
+}
+
+//各アイテムの関数設定
+void CItem::SetItemFunction()
+{
+	ItemFunctions[FirePower]		= [&]() {FirePowerAction(); };
+	ItemFunctions[Bomb]				= [&]() {BombAction(); };
+	ItemFunctions[RemoteController] = [&]() {RemoteControllerAction(); };
+	ItemFunctions[Boots]			= [&]() {BootsAction(); };
+	ItemFunctions[BombPassing]		= [&]() {BombPassingAction(); };
+	ItemFunctions[WallPassing]		= [&]() {WallPassingAction(); };
+	ItemFunctions[FlameBarrier]		= [&]() {FlameBarrierAction(); };
+	ItemFunctions[PerfectMan]		= [&]() {PerfectManAction(); };
+}
+
+//火力アップ					: オニール
+void CItem::FirePowerAction()
+{
+	if(gPlayerStatus.bombLevel < MAX_FIRE_POWER)
+		gPlayerStatus.bombLevel++;
+
+	DeleteItem();
+}
+//爆弾の置ける数アップ			: バロム
+void CItem::BombAction()
+{
+	if(gPlayerStatus.bombPutNum < MAX_PUT_BOMB_NUM)
+		gPlayerStatus.bombPutNum++;
+	DeleteItem();
+}
+//爆弾がBボタンで自由に爆発可能	: コンドリア
+void CItem::RemoteControllerAction()
+{
+	DeleteItem();
+}
+//移動速度アップ				: ダル
+void CItem::BootsAction()
+{
+	DeleteItem();
+}
+//爆弾の上を歩けるようになる	: オバピー
+void CItem::BombPassingAction()
+{
+	DeleteItem();	DeleteItem();
+
+}
+//壁の上を歩けるようになる		: ミンボー
+void CItem::WallPassingAction()
+{
+	DeleteItem();
+}
+//爆風で死ななくなる			: バース
+void CItem::FlameBarrierAction()
+{
+	DeleteItem();
+}
+//30秒間無敵になる				: ポンタン
+void CItem::PerfectManAction()
+{
+	DeleteItem();
 }

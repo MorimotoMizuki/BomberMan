@@ -1,7 +1,7 @@
 #include"obj.h"
 #include"function.h"
 
-CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
+CBlock::CBlock(Point p, MapPoint system_p, int No, int _img, Item_Id item_id)
 {
 	img = _img;
 
@@ -18,6 +18,8 @@ CBlock::CBlock(Point p, MapPoint system_p, int No, int _img)
 
 	if (tipNo == 1)
 		LoadDivGraph("image\\block_anim.png", CRASH_IMG_NUM, 2, 1, IMGSIZE64, IMGSIZE64, CrashAnimImgHandle);
+
+	ItemId = item_id; //アイテムID登録
 
 	SystemPos = system_p;
 
@@ -60,8 +62,10 @@ void CBlock::Draw()
 		DrawRectGraph(pos.x - Distance, pos.y, CutX, CutY, ImgWidth, ImgHeight, img, false);
 	}
 
-	//DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "%d\n%d", SystemPos.x * 64, SystemPos.y * 64);
 	//DrawFormatString(pos.x - Distance, pos.y, GetColor(0, 0, 0), "%d", IsCrash);
+
+	if (ItemId != Item_Id::None)
+		DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 
 }
 
@@ -78,6 +82,10 @@ void CBlock::CrashBlockAnim()
 	if (tipNo != 1) return;
 
 	if (!IsCrash) return;
+
+	//アイテムがあった場合はすぐに消す
+	if (ItemId != Item_Id::None)
+		FLAG = false;
 
 	//アニメーションカウントが定数未満の場合は終了
 	if (AnimCnt < CRASH_ANIM_FRAME)

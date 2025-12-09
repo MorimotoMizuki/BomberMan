@@ -20,8 +20,8 @@ public:
 
 public:
 
-	//システム上のマップ座標、削除フレーム数
-	CBomb(MapPoint, int = 180);
+	//システム上のマップ座標、爆弾のレベル、削除フレーム数
+	CBomb(MapPoint,int, int = 180);
 	~CBomb();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
@@ -48,4 +48,7 @@ private:
 
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
+
+	//爆弾のレベル
+	int BombLevel{ 0 };
 };

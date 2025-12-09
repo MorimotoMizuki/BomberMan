@@ -42,6 +42,12 @@ constexpr auto CHIP_SIZE = IMGSIZE64;
 //ステージの合計数
 constexpr auto STAGE_SUM = 3;
 
+//爆弾の火力の最大値
+constexpr auto MAX_FIRE_POWER = 5;
+
+//爆弾を設置できる最大値
+constexpr auto MAX_PUT_BOMB_NUM = 10;
+
 //2D用
  struct Point {
 	float x, y;

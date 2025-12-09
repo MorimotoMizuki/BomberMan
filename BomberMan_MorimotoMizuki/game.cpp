@@ -54,8 +54,6 @@ CGame::CGame(CManager* p) :CScene(p)
 //XVˆ—
 int CGame::Update()
 {
-	//map->Action(base);
-
 	if (gGamePhase == GamePhaseId::GAMEOVER || 
 		gGamePhase == GamePhaseId::GAMECLEAR)
 	{

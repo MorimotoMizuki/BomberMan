@@ -14,8 +14,8 @@ public:
 
 public:
 
-	//座標、システム上の座標、ID、画像ハンドル
-	CBlock(Point, MapPoint, int, int);
+	//座標、システム上の座標、ID、画像ハンドル、アイテムID
+	CBlock(Point, MapPoint, int, int, Item_Id);
 	~CBlock();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
@@ -36,7 +36,7 @@ private:
 	Point DisplacementPos{ 0,0 };
 
 	//プレイヤーの画像ハンドル配列
-	int CrashAnimImgHandle[CRASH_IMG_NUM];
+	int CrashAnimImgHandle[CRASH_IMG_NUM]{ 0,0 };
 	//アニメーションの画像インデックス
 	int AnimIndex{ 0 };
 	//アニメーションカウント
@@ -44,4 +44,7 @@ private:
 
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
+
+	//アイテムのID
+	Item_Id ItemId{ Item_Id::None };
 };

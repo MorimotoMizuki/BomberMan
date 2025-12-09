@@ -2,7 +2,7 @@
 #include"function.h"
 #include"map.h"
 
-CBomb::CBomb(MapPoint mapPos, int diedFrame)
+CBomb::CBomb(MapPoint mapPos,int bomb_level, int diedFrame)
 {
 	LoadDivGraph("image\\bomb.png", BOMB_IMG_NUM, 3, 1, IMGSIZE16, IMGSIZE16, BombImgHandle);
 
@@ -18,6 +18,9 @@ CBomb::CBomb(MapPoint mapPos, int diedFrame)
 
 	//爆弾の削除フレーム数設定
 	DiedFrame = diedFrame;
+
+	//爆弾のレベル
+	BombLevel = bomb_level;
 
 	ID  = Obj_Id::BOMB;
 	pri = Pri_Id::pBOMB;
@@ -56,7 +59,6 @@ void CBomb::Draw()
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
 
 	//DrawFormatString(pos.x + 30, pos.y, GetColor(255, 0, 0), "%.f\n%.f", pos.x, pos.y);
-	//DrawFormatString(pos.x + 30, pos.y, GetColor(255, 0, 0), "%d\n%d", SystemMap.x, SystemMap.y);
 
 	//DrawBox(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, GetColor(255, 0, 0), false);
 }
@@ -97,5 +99,5 @@ void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base)
 	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::NONE;
 
 	//爆発エフェクト生成 
-	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemPos, gPlayerStatus.bombLevel));
+	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemPos, BombLevel));
 }
