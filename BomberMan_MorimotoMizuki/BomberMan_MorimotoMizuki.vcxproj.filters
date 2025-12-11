@@ -107,6 +107,9 @@
     <ClInclude Include="Item.h">
       <Filter>ヘッダー ファイル\オブジェクト</Filter>
     </ClInclude>
+    <ClInclude Include="oneal.h">
+      <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -159,6 +162,9 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>ソース ファイル\オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="oneal.cpp">
+      <Filter>ソース ファイル\オブジェクト\敵</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

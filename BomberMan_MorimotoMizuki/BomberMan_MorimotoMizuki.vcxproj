@@ -173,6 +173,7 @@
     <ClInclude Include="objBase.h" />
     <ClInclude Include="objChar.h" />
     <ClInclude Include="objID.h" />
+    <ClInclude Include="oneal.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Scene_Base.h" />
     <ClInclude Include="Scene_Manager.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="My_function.cpp" />
+    <ClCompile Include="oneal.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>

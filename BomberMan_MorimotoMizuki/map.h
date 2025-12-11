@@ -26,11 +26,11 @@ public:
 		{1,2}
 	};
 
-	//ステージの敵の数 : (バロム, )
-	static constexpr int StageEnemyNum[STAGE_SUM][1] = {
-		{6},
-		{3},
-		{3},
+	//ステージの敵の数 : (バロム, オニール)
+	static constexpr int StageEnemyNum[STAGE_SUM][2] = {
+		{6, 1},
+		{3, 0},
+		{3, 0},
 	};
 
 	//ステージのアイテムの数 : (火力, 爆弾, リモコン, ブーツ, 爆弾通過, 壁通過, 火炎バリア, パーフェクトマン)
@@ -80,8 +80,8 @@ public:
 	//マップにアイテムをランダムで設定
 	void SetRandomItemInMap();
 
-	//マップに敵をランダムで生成 : (バロム, )
-	void SetRandomEnemy(int);
+	//マップに敵をランダムで生成 : (バロム, オニール)
+	void SetRandomEnemy(int, int);
 
 	//ステージごとの敵の合計数を取得
 	int GetStageEnemyTotal(int stageNum);

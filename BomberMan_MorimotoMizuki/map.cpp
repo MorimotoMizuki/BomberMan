@@ -58,7 +58,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
 
 	//敵を生成
-	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1][0]);
+	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1][0], StageEnemyNum[gNowStageNum - 1][1]);
 
 	//ドアを設置する数を設定
 	SetDoorNum = SetRandomDoorInMap();
@@ -116,13 +116,17 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 					base.emplace_back((unique_ptr<BaseVector>) new CItem(p, s_p, static_cast<Item_Id>(item_id)));
 					item_id = -1;
 					used.insert(crashBlockNum); //使用済みに登録
-
 				}
 				crashBlockNum++;
 				break;
 			//バロム
 			case Enemy_Id::BALLOM:
 				base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
+			//オニール
+			case Enemy_Id::ONEAL:
+				base.emplace_back((unique_ptr<BaseVector>) new COneal(p, s_p));
 				gNowMap[y][x] = -1;
 				break;
 			default:
@@ -280,9 +284,10 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 }
 
 //マップに敵をランダムで生成 : (バロム, )
-void CMap::SetRandomEnemy(int ballomNum)
+void CMap::SetRandomEnemy(int ballomNum, int onealNum)
 {
 	int ballomCnt{ 0 };
+	int onealCnt{ 0 };
 
 	while (ballomCnt != ballomNum)
 	{
@@ -299,6 +304,26 @@ void CMap::SetRandomEnemy(int ballomNum)
 		{
 			gNowMap[ballomY][ballomX] = Enemy_Id::BALLOM;
 			ballomCnt++;
+		}
+		else
+			continue;
+	}
+
+	while (onealCnt != onealNum)
+	{
+		int onealX = Range_Random_Number(1, MAP_CHIP_W - 1);
+		int onealY = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+		//設定した除外座標だった場合はコンテニュー
+		if ((onealX == ExclusionPoint[0].x && onealY == ExclusionPoint[0].y) ||
+			(onealX == ExclusionPoint[1].x && onealY == ExclusionPoint[1].y) ||
+			(onealX == ExclusionPoint[2].x && onealY == ExclusionPoint[2].y))
+			continue;
+
+		if (gNowMap[onealY][onealX] == -1)
+		{
+			gNowMap[onealY][onealX] = Enemy_Id::ONEAL;
+			onealCnt++;
 		}
 		else
 			continue;

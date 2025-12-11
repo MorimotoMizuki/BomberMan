@@ -17,6 +17,7 @@ enum Obj_Id
 enum Enemy_Id
 {
 	BALLOM = 10,
+	ONEAL,
 };
 
 //アイテムのID : 効果 : 爆破すると出現する敵
