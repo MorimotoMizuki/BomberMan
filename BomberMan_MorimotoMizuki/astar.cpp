@@ -126,8 +126,8 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 			//隣接ノードの作成
 			for (const Cell& c : adjacent_)
 			{
-				//マップ外の場合は、作成しない。
-				if (IsCellWithinTheRange(c.X, c.Y, MX, MY) && mp[c.Y][c.X] != 1) {
+				//マップ外の場合は、作成しない。 NONEだけが通れるようにした----------------------------------------------------
+				if (IsCellWithinTheRange(c.X, c.Y, MX, MY) && mp[c.Y][c.X] == NONE) {
 					Graph[y][x].AdjucentNodes.push_back(&Graph[c.Y][c.X]);
 				}
 			}

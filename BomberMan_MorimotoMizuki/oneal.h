@@ -61,7 +61,7 @@ private:
 	//ストップカウント
 	int StopCnt{ 0 };
 
-	list<Cell> vec_last_route;
+	vector<Cell> vec_last_route;
 
 	int move_cnt{ 0 };
 };

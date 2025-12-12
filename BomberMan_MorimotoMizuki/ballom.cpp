@@ -13,7 +13,8 @@ CBallom::CBallom(Point p, MapPoint system_p)
 	ImgHeight = CHIP_SIZE;
 
 	ID  = Obj_Id::ENEMY;
-	pri = Pri_Id::pENEMY;
+	pri = gEnemyPri;
+	gEnemyPri++;
 }
 
 int CBallom::Action(vector<unique_ptr<BaseVector>>& base)

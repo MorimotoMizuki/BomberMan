@@ -40,10 +40,10 @@ enum Pri_Id
 	pGOAL,
 	pBLOCK,
 	pITEM,
-	pENEMY,
 	pBOMB,
 	pEXPLOSION,
 	pPLAYER,
+	pENEMY,
 };
 
 //ÉQÅ[ÉÄèÛë‘

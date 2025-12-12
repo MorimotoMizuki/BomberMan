@@ -17,7 +17,8 @@ COneal::COneal(Point p, MapPoint system_p)
 	ImgHeight = CHIP_SIZE;
 
 	ID = Obj_Id::ENEMY;
-	pri = Pri_Id::pENEMY;
+	pri = gEnemyPri;
+	gEnemyPri++;
 }
 
 int COneal::Action(vector<unique_ptr<BaseVector>>& base)
@@ -47,9 +48,17 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 							static_cast<int>(((pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
 	};
 
-	if (systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y)
+	if ((systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y) ||
+		move_cnt > 60)
 	{
+		if ((p->SystemPos.x == systemPosL.x && p->SystemPos.y == systemPosL.y) ||
+			(p->SystemPos.x == systemPosR.x && p->SystemPos.y == systemPosR.y) ||
+			(p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y))
+			return 0;
+
 		vec_last_route.clear();
+		vec.x = 0.0f;
+		vec.y = 0.0f;
 
 		Cell goal{ p->SystemPos.x, p->SystemPos.y };
 		Cell start{ SystemPos.x, SystemPos.y };
@@ -62,7 +71,20 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 		for (auto& x : last_route) {
 			vec_last_route.push_back(x);
 		}
+
+		if (!vec_last_route.empty()) {
+
+			Cell first = vec_last_route[1];
+
+			MapPoint e_v = { first.X - SystemPos.x, first.Y - SystemPos.y };
+
+			vec.x = e_v.x * ONEAL_SPEED;
+			vec.y = e_v.y * ONEAL_SPEED;
+			move_cnt = 0;
+		}
 	}
+	else
+		move_cnt++;
 
 	//アニメーション処理
 	Anim(ONEAL_ANIM_NUM, &AnimIndex, true);
@@ -93,6 +115,9 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 				  static_cast<int>(((pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
 	};
 
+	//座標更新
+	pos = Add_Point_Vector(pos, vec);
+
 	return 0;
 }
 
@@ -114,6 +139,13 @@ void COneal::Draw()
 		else
 			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
 	}
+
+	//for (int i = 0; i < vec_last_route.size(); i++)
+	//{
+	//	int x = vec_last_route[i].X;
+	//	int y = vec_last_route[i].Y;
+	//	DrawBox(x * CHIP_SIZE - Distance, y * CHIP_SIZE + WINDOW_HEADER, x * CHIP_SIZE + CHIP_SIZE - Distance, y * CHIP_SIZE + CHIP_SIZE + WINDOW_HEADER, 0xff0000, false);
+	//}
 
 	//DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 	//DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d", AnimIndex);

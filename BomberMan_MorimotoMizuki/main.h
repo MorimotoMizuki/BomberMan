@@ -102,6 +102,9 @@ extern int gNowStageNum;
 //“G‚ğ“|‚µ‚½”
 extern int gKillEnemyNum;
 
+//“G‚Ì•`‰æ‡”Ô
+extern int gEnemyPri;
+
 //ƒJƒƒ‰î•ñƒNƒ‰ƒX(main.h)
 //class CCameraInfo {
 //private:

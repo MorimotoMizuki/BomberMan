@@ -161,7 +161,7 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
 				{
-					SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+					//SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}

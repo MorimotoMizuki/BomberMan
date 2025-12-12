@@ -29,9 +29,15 @@ int gNowStageNum{ 1 };
 //敵を倒した数
 int gKillEnemyNum{ 0 };
 
+//敵の描画順番
+int gEnemyPri{ Pri_Id::pENEMY };
+
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
 {
+	//敵の描画順番初期化
+	gEnemyPri = Pri_Id::pENEMY;
+
 	//マップマネージャー
 	map = std::make_unique<CMap>();
 	map->LoadMap();	//マップデータ読み込み
