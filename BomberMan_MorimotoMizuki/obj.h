@@ -7,5 +7,6 @@
 #include"door.h"
 #include"Item.h"
 
+#include"base_enemy.h"
 #include"ballom.h"
 #include"oneal.h"

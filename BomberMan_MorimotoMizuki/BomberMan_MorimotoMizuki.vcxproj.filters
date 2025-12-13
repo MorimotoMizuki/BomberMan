@@ -110,6 +110,9 @@
     <ClInclude Include="oneal.h">
       <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
     </ClInclude>
+    <ClInclude Include="base_enemy.h">
+      <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,6 +167,9 @@
       <Filter>ソース ファイル\オブジェクト</Filter>
     </ClCompile>
     <ClCompile Include="oneal.cpp">
+      <Filter>ソース ファイル\オブジェクト\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="base_enemy.cpp">
       <Filter>ソース ファイル\オブジェクト\敵</Filter>
     </ClCompile>
   </ItemGroup>

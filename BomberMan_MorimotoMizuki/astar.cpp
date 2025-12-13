@@ -127,7 +127,7 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 			for (const Cell& c : adjacent_)
 			{
 				//マップ外の場合は、作成しない。 NONEだけが通れるようにした----------------------------------------------------
-				if (IsCellWithinTheRange(c.X, c.Y, MX, MY) && mp[c.Y][c.X] == NONE) {
+				if (IsCellWithinTheRange(c.X, c.Y, MX, MY) && mp[c.Y][c.X] == Obj_Id::NONE) {
 					Graph[y][x].AdjucentNodes.push_back(&Graph[c.Y][c.X]);
 				}
 			}
@@ -202,7 +202,7 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 				}
 			}
 			//コストの表示
-			DrawFormatString(adjacent_node->pos.X * 32 + 512, adjacent_node->pos.Y * 32, GetColor(255, 255, 255), "%.0lf", adjacent_node->TotalCost);
+			//DrawFormatString(adjacent_node->pos.X * 32 + 512, adjacent_node->pos.Y * 32, GetColor(255, 255, 255), "%.0lf", adjacent_node->TotalCost);
 
 		}
 

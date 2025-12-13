@@ -34,7 +34,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 		return 0;
 
 	//プレイヤーの移動処理
-	PlayerMove();
+	Move_Id dir = PlayerMove();
 
 	//プレイヤーの当たり判定
 	PlayerHit(base);
@@ -90,7 +90,7 @@ void CPlayer::Draw()
 
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 300, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	//DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
+	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f", Distance);
 
 	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 
@@ -169,10 +169,10 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 }
 
 //プレイヤーの移動処理
-void CPlayer::PlayerMove()
+Move_Id CPlayer::PlayerMove()
 {
 	if (PlayerState != PlayerStateId::PLAYplayer)
-		return;
+		return Move_Id::NONE_KEY;
 
 	//移動ベクトル初期化
 	vec.x = 0.0f;
@@ -182,22 +182,27 @@ void CPlayer::PlayerMove()
 	{
 		vec.x = -gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::LEFT, PLAYER_ANIM_FRAME, &AnimIndex);
+		return Move_Id::LEFT;
 	}
 	else if (Key_Check(Move_Id::RIGHT))
 	{
 		vec.x = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::RIGHT, PLAYER_ANIM_FRAME, &AnimIndex);
+		return Move_Id::RIGHT;
 	}
 	else if (Key_Check(Move_Id::UP))
 	{
 		vec.y = -gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::UP, PLAYER_ANIM_FRAME, &AnimIndex);
+		return Move_Id::UP;
 	}
 	else if (Key_Check(Move_Id::DOWN))
 	{
 		vec.y = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::DOWN, PLAYER_ANIM_FRAME, &AnimIndex);
+		return Move_Id::DOWN;
 	}
+	return Move_Id::NONE_KEY;
 }
 
 //プレイヤーのアニメーション処理

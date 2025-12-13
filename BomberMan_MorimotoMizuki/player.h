@@ -39,7 +39,7 @@ public:
 	void Draw();
 
 	//プレイヤーの移動処理
-	void PlayerMove();
+	Move_Id PlayerMove();
 
 	//プレイヤーの当たり判定
 	void PlayerHit(vector<unique_ptr<BaseVector>>&);

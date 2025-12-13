@@ -62,8 +62,6 @@ void CBlock::Draw()
 		DrawRectGraph(pos.x - Distance, pos.y, CutX, CutY, ImgWidth, ImgHeight, img, false);
 	}
 
-	//DrawFormatString(pos.x - Distance, pos.y, GetColor(0, 0, 0), "%d", IsCrash);
-
 	if (ItemId != Item_Id::None)
 		DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 

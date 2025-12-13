@@ -79,4 +79,5 @@ enum Move_Id
 	LEFT_CLICK,	//マウス左クリック
 	ENTER,	//エンターキー
 	ALL_KEY,//全てのキー入力
+	NONE_KEY,
 };

@@ -110,7 +110,7 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 					//爆発の座標と敵の座標が一致した場合
 					if (ex_pos.x == enemy_pos.x && ex_pos.y == enemy_pos.y) {
 
-						((CBallom*)base[i].get())->EnemyDead();
+						((CBaseEnemy*)base[i].get())->SetEnemyDeadParameter();
 						break;
 					}
 					//座標更新

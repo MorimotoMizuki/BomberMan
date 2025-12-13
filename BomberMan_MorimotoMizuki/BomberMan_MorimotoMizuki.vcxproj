@@ -156,6 +156,7 @@
     <ClInclude Include="3D_function.h" />
     <ClInclude Include="astar.h" />
     <ClInclude Include="ballom.h" />
+    <ClInclude Include="base_enemy.h" />
     <ClInclude Include="block.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="2D_function.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="3D_function.cpp" />
     <ClCompile Include="astar.cpp" />
     <ClCompile Include="ballom.cpp" />
+    <ClCompile Include="base_enemy.cpp" />
     <ClCompile Include="block.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="2D_function.cpp" />
