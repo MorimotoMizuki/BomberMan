@@ -28,6 +28,8 @@ void CBaseEnemy::Destructor()
 {
 	gKillEnemyNum++;	//敵討伐数++
 	gEnemyPri--;		//敵の描画順番
+
+	gPlayerStatus.score += SCORE; //スコア加算
 }
 
 //敵の死亡時処理
@@ -38,7 +40,19 @@ void CBaseEnemy::EnemyDead(int ANIM_FRAME, int deadAnimFrame)
 	if (DeadCnt < deadAnimFrame)
 		DeadCnt++;
 	else
-		Anim(ANIM_FRAME, 5, &AnimIndex, false);
+	{
+		if (!IsDrawScore) {
+			if (Anim(ANIM_FRAME, 5, &AnimIndex, false))
+				IsDrawScore = true;
+		}
+		else
+		{
+			if (AnimCnt > 60)
+				FLAG = false;
+			else
+				AnimCnt++;
+		}
+	}
 }
 
 //爆弾と接触時の座標調整処理
@@ -67,13 +81,13 @@ void CBaseEnemy::HitBomb_PosAdjustment(vector<unique_ptr<BaseVector>>& base)
 }
 
 //アニメーション処理
-void CBaseEnemy::Anim(int ANIM_FRAME, int animMax, int* index, bool loop)
+bool CBaseEnemy::Anim(int ANIM_FRAME, int animMax, int* index, bool loop)
 {
 	//アニメーションカウントが定数未満の場合は終了
 	if (AnimCnt < ANIM_FRAME)
 	{
 		AnimCnt++;//インクリメント
-		return;
+		return false;
 	}
 	//初期化
 	AnimCnt = 0;
@@ -86,11 +100,13 @@ void CBaseEnemy::Anim(int ANIM_FRAME, int animMax, int* index, bool loop)
 		else
 		{
 			draw_flag = false;
-			FLAG = false;
+			return true;
 		}
 	}
 	else
 		*index += 1;
+
+	return false;
 }
 
 //ランダム移動処理
@@ -325,4 +341,10 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, int moveFrame, bool* isTrackingP
 	}
 	else
 		move_cnt++;
+}
+
+//スコア表示処理
+void CBaseEnemy::DrawScore()
+{
+	DrawFormatString(pos.x - Distance + 40.0f, pos.y + 40.0f, GetColor(255, 255, 255), "%d", SCORE);
 }

@@ -55,6 +55,8 @@ CGame::CGame(CManager* p) :CScene(p)
 	//初期化
 	gKillEnemyNum = 0; //倒した敵の数
 	gPlayerStatus.score = 0; //スコア
+
+	Time = 200 * 60;
 }
 
 //更新処理
@@ -92,9 +94,17 @@ int CGame::Update()
 	//オブジェクトのソート処理(クイックソート)
 	ObjSort_Quick(base, 0, base.size() - 1);
 
-	//listオブジェクトの更新処理	
-	//for (auto i = base.begin(); i != base.end(); i++)
-	//	(*i)->Action(base);
+	if (Time == 0 && !IsTimeOver)
+	{
+		IsTimeOver = true;
+
+		//プレイヤーの死亡処理を呼び出す
+		CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
+		if (p != nullptr)
+			p->SetPlayerDead(CPlayer::PlayerStateId::DEADplayer);
+	}
+	else
+		Time--; //タイマー
 
 	return 0;
 }
@@ -106,40 +116,31 @@ void CGame::Draw()
 	//DrawFormatString(0, 0, GetColor(255, 255, 255), "Object_Count = %d", base.size());
 
 	//ヘッダーの背景
-	//DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
+	DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
 	//ゲーム背景
 	DrawBox(0, WINDOW_HEADER, WINDOW_WIDTH, WINDOW_HEIGHT, GetColor(56, 135, 0), 1);
 
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "%d", gGamePhase);
-
-	Point lifePos{ static_cast<float>(WINDOW_WIDTH / 2) + 150.0f , 45.0f };
+	//ライフ
+	Point lifePos{ static_cast<float>(WINDOW_WIDTH / 2) + 300.0f , 45.0f };
 	float distance = 2.0f;
-	DrawExtendFormatString(lifePos.x + distance, lifePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "LIFE : %d", gPlayerStatus.life);
-	DrawExtendFormatString(lifePos.x, lifePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "LIFE : %d", gPlayerStatus.life);
+	DrawExtendFormatString(lifePos.x + distance, lifePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "LIFE  %d", gPlayerStatus.life);
+	DrawExtendFormatString(lifePos.x, lifePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "LIFE  %d", gPlayerStatus.life);
 
+	//スコア
+	Point scorePos{ lifePos.x - 300.0f, lifePos.y };
+	DrawExtendFormatString(scorePos.x + distance, scorePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "%d", gPlayerStatus.score);
+	DrawExtendFormatString(scorePos.x, scorePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "%d", gPlayerStatus.score);
+
+	//タイマー
+	if (Time >= 0) {
+		Point timePos{ 0.0f + 50.0f, scorePos.y };
+		DrawExtendFormatString(timePos.x + distance, timePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "TIME %d", Time / 60);
+		DrawExtendFormatString(timePos.x, timePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "TIME %d", Time / 60);
+	}
+
+	//vectorオブジェクトの描画
 	for (int i = 0; i < base.size(); i++)
 		if(base[i]->FLAG) base[i]->Draw();
-
-	//listオブジェクトの描画
-	//for (auto i = base.begin(); i != base.end(); i++)
-	//	if ((*i)->FLAG) (*i)->Draw();
-
-	//3D軸の描画
-	//DrawLine3D(
-	//	VGet(0, 0, 0),
-	//	VGet(0, 0, 100),
-	//	0x0000ff
-	//);
-	//DrawLine3D(
-	//	VGet(0, 0, 0),
-	//	VGet(100, 0, 0),
-	//	0xff0000
-	//);
-	//DrawLine3D(
-	//	VGet(0, 0, 0),
-	//	VGet(0, 100, 0),
-	//	0x00ff00
-	//);
 }
 
 CGame::~CGame()

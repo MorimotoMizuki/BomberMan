@@ -14,21 +14,22 @@ CBallom::CBallom(Point p, MapPoint system_p)
 	EnemyDeadImgHandle[0] = DerivationGraph(IMGSIZE32 * 3, 0, IMGSIZE32, IMGSIZE32, img);
 
 	SPEED = 2.0f; //移動速度
+	SCORE = 100;  //スコア
 }
 
 int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 {
-	//死亡時処理
-	if (IsDead) {
-		CBaseEnemy::EnemyDead(BALLOM_ANIM_FRAME, 60);
-		return 0;
-	}
-
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p == nullptr) return 0;
 
 	Distance = p->Distance; //プレイヤーとの差分を取得
+
+	//死亡時処理
+	if (IsDead) {
+		CBaseEnemy::EnemyDead(BALLOM_ANIM_FRAME, 60);
+		return 0;
+	}
 
 	//爆弾と接触時の座標調整
 	CBaseEnemy::HitBomb_PosAdjustment(base);
@@ -52,22 +53,27 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CBallom::Draw()
 {
-	if (!draw_flag) return;
-
-	//画像描画
-	if (IsDead)
+	if (draw_flag)
 	{
-		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
-	}
-	else 
-	{
-		//左向き
-		if (vec.x < 0.0f)
-			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BallomImgHandle[BALLOM_ANIM_ORDER[AnimIndex]], true);
-		//右向き
+		//画像描画
+		if (IsDead)
+		{
+			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
+		}
 		else
-			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, BallomImgHandle[BALLOM_ANIM_ORDER[AnimIndex]], true);
+		{
+			//左向き
+			if (vec.x < 0.0f)
+				DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BallomImgHandle[BALLOM_ANIM_ORDER[AnimIndex]], true);
+			//右向き
+			else
+				DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, BallomImgHandle[BALLOM_ANIM_ORDER[AnimIndex]], true);
+		}
 	}
+
+	//スコアの表示
+	if (IsDrawScore)
+		DrawScore();
 }
 
 CBallom::~CBallom()

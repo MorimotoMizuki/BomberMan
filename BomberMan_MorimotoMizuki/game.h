@@ -33,5 +33,9 @@ public:
 	//ゴール開閉フラグ
 	bool IsGoalOpen{ false };
 
+	//タイマー
+	int Time{ 0 };
+	bool IsTimeOver{ false };
+
 	//CCamera* camera;//カメラオブジェクト
 };

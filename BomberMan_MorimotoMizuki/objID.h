@@ -16,8 +16,14 @@ enum Obj_Id
 //敵のID
 enum Enemy_Id
 {
-	BALLOM = 10,
-	ONEAL,
+	BALLOM = 10,	//バロム
+	ONEAL,			//オニール
+	DAHL,			//ダル
+	MINVO,			//ミンボー
+	KONDORIA,		//コンドリア
+	OVAPEE,			//オバピー
+	PASS,			//パース
+	PONtAN,			//ポンタン
 };
 
 //アイテムのID : 効果 : 爆破すると出現する敵

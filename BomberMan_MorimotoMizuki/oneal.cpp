@@ -14,21 +14,22 @@ COneal::COneal(Point p, MapPoint system_p)
 	EnemyDeadImgHandle[0] = DerivationGraph(IMGSIZE32 * 4, IMGSIZE32 * 2, IMGSIZE32, IMGSIZE32, img);
 
 	SPEED = 2.0f; //移動速度
+	SCORE = 200;  //スコア
 }
 
 int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 {
-	//死亡時処理
-	if (IsDead) {
-		CBaseEnemy::EnemyDead(ONEAL_ANIM_FRAME, 60);
-		return 0;
-	}
-
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p == nullptr) return 0;
 
 	Distance = p->Distance; //プレイヤーとの差分を取得
+
+	//死亡時処理
+	if (IsDead) {
+		CBaseEnemy::EnemyDead(ONEAL_ANIM_FRAME, 60);
+		return 0;
+	}
 
 	//アニメーション処理
 	CBaseEnemy::Anim(ONEAL_ANIM_FRAME, ONEAL_ANIM_NUM, &AnimIndex, true);
@@ -42,7 +43,7 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 	CBaseEnemy::HitBomb_PosAdjustment(base);
 
 	//プレイヤー追跡処理
-	TrackingPlayerMove(p, 32, &isTrackingPlayer);
+	TrackingPlayerMove(p, CHIP_SIZE / SPEED, &isTrackingPlayer);
 
 	if (!isTrackingPlayer) {
 		//ランダム移動処理
@@ -62,7 +63,7 @@ void COneal::Draw()
 	//画像描画
 	if (IsDead)
 	{
-		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
 	}
 	else
 	{
@@ -74,16 +75,9 @@ void COneal::Draw()
 			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
 	}
 
-	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d", isTrackingPlayer);
-
-	//for (int i = 0; i < vec_last_route.size(); i++)
-	//{
-	//	int x = vec_last_route[i].X;
-	//	int y = vec_last_route[i].Y;
-	//	DrawBox(x * CHIP_SIZE - Distance, y * CHIP_SIZE + WINDOW_HEADER, x * CHIP_SIZE + CHIP_SIZE - Distance, y * CHIP_SIZE + CHIP_SIZE + WINDOW_HEADER, 0xff0000, false);
-	//}
-
-	//DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
+	//スコアの表示
+	if (IsDrawScore)
+		DrawScore();
 }
 
 COneal::~COneal()

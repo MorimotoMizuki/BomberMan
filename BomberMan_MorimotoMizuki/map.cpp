@@ -58,7 +58,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
 
 	//敵を生成
-	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1][0], StageEnemyNum[gNowStageNum - 1][1]);
+	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1]);
 
 	//ドアを設置する数を設定
 	SetDoorNum = SetRandomDoorInMap();
@@ -283,50 +283,32 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 	//}
 }
 
-//マップに敵をランダムで生成 : (バロム, )
-void CMap::SetRandomEnemy(int ballomNum, int onealNum)
+//マップに敵をランダムで生成
+void CMap::SetRandomEnemy(const int enemy[ENEMY_VARIATION + 1])
 {
-	int ballomCnt{ 0 };
-	int onealCnt{ 0 };
+	int enemy_cnt[ENEMY_VARIATION]{ 0,0,0,0,0,0,0,0 };
 
-	while (ballomCnt != ballomNum)
+	for (int i = 0; i < ENEMY_VARIATION; i++)
 	{
-		int ballomX = Range_Random_Number(1, MAP_CHIP_W - 1);
-		int ballomY = Range_Random_Number(1, MAP_CHIP_H - 1);
-
-		//設定した除外座標だった場合はコンテニュー
-		if ((ballomX == ExclusionPoint[0].x && ballomY == ExclusionPoint[0].y) ||
-			(ballomX == ExclusionPoint[1].x && ballomY == ExclusionPoint[1].y) ||
-			(ballomX == ExclusionPoint[2].x && ballomY == ExclusionPoint[2].y))
-			continue;
-
-		if (gNowMap[ballomY][ballomX] == -1)
+		while (enemy_cnt[i] != enemy[i + 1])
 		{
-			gNowMap[ballomY][ballomX] = Enemy_Id::BALLOM;
-			ballomCnt++;
+			int enemyX = Range_Random_Number(1, MAP_CHIP_W - 1);
+			int enemyY = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+			//設定した除外座標だった場合はコンテニュー
+			if ((enemyX == ExclusionPoint[0].x && enemyY == ExclusionPoint[0].y) ||
+				(enemyX == ExclusionPoint[1].x && enemyY == ExclusionPoint[1].y) ||
+				(enemyX == ExclusionPoint[2].x && enemyY == ExclusionPoint[2].y))
+				continue;
+
+			if (gNowMap[enemyY][enemyX] == -1)
+			{
+				gNowMap[enemyY][enemyX] = i + 10;// +10 で敵のIDにする
+				enemy_cnt[i]++;
+			}
+			else
+				continue;
 		}
-		else
-			continue;
-	}
-
-	while (onealCnt != onealNum)
-	{
-		int onealX = Range_Random_Number(1, MAP_CHIP_W - 1);
-		int onealY = Range_Random_Number(1, MAP_CHIP_H - 1);
-
-		//設定した除外座標だった場合はコンテニュー
-		if ((onealX == ExclusionPoint[0].x && onealY == ExclusionPoint[0].y) ||
-			(onealX == ExclusionPoint[1].x && onealY == ExclusionPoint[1].y) ||
-			(onealX == ExclusionPoint[2].x && onealY == ExclusionPoint[2].y))
-			continue;
-
-		if (gNowMap[onealY][onealX] == -1)
-		{
-			gNowMap[onealY][onealX] = Enemy_Id::ONEAL;
-			onealCnt++;
-		}
-		else
-			continue;
 	}
 }
 

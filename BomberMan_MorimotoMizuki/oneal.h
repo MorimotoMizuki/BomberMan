@@ -2,9 +2,8 @@
 
 #include"objBase.h"
 #include"base_enemy.h"
-#include"astar.h"
-#include<list>
 
+//ƒIƒj[ƒ‹
 class COneal : public CBaseEnemy
 {
 public:

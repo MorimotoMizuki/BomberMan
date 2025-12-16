@@ -90,11 +90,8 @@ void CPlayer::Draw()
 
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 300, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-	DrawFormatString(WINDOW_WIDTH/2 - 100, 50, GetColor(255, 255, 255), "%f", Distance);
 
-	DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
-
-	//DrawBox(m_pos.x, m_pos.y, m_pos.x + ImgWidth, m_pos.y + ImgHeight, GetColor(255, 0, 0), false);
+	//DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 }
 
 CPlayer::~CPlayer()
@@ -158,8 +155,8 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 		{
 			if (PlayerState == PlayerStateId::PLAYplayer) {
 
-				if (SystemPos.x == ((CBallom*)base[i].get())->SystemPos.x &&
-					SystemPos.y == ((CBallom*)base[i].get())->SystemPos.y)
+				if (SystemPos.x == ((CBaseEnemy*)base[i].get())->SystemPos.x &&
+					SystemPos.y == ((CBaseEnemy*)base[i].get())->SystemPos.y)
 				{
 					//SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}

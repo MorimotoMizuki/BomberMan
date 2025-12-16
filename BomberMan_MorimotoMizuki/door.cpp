@@ -48,9 +48,6 @@ void CDoor::Draw()
 {
 	//‰æ‘œ•`‰æ
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, img, true);
-
-	//DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
-	//DrawFormatString(WINDOW_WIDTH / 2 - 200,50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
 }
 
 CDoor::~CDoor()

@@ -41,8 +41,6 @@ void CItem::Draw()
 {
 	//‰æ‘œ•`‰æ
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ItemImgHandle[ItemID], true);
-
-	//DrawFormatString(WINDOW_WIDTH / 2 - 200, 50, GetColor(255, 255, 255), "%f\n%f", pos.x, pos.y - WINDOW_HEADER);
 }
 
 CItem::~CItem()

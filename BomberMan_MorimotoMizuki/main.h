@@ -48,6 +48,9 @@ constexpr auto MAX_FIRE_POWER = 5;
 //”š’e‚ğİ’u‚Å‚«‚éÅ‘å’l
 constexpr auto MAX_PUT_BOMB_NUM = 10;
 
+//“G‚Ìí—Ş
+constexpr auto ENEMY_VARIATION = 8;
+
 //2D—p
  struct Point {
 	float x, y;

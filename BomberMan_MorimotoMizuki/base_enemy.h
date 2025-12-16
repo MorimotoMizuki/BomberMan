@@ -42,7 +42,7 @@ public:
 	void HitBomb_PosAdjustment(vector<unique_ptr<BaseVector>>&);
 
 	//アニメーション処理
-	void Anim(int ANIM_FRAME, int animMax, int* index, bool loop);
+	bool Anim(int ANIM_FRAME, int animMax, int* index, bool loop);
 
 	//ランダム移動処理
 	void RandomMove(vector<unique_ptr<BaseVector>>&);
@@ -54,9 +54,14 @@ public:
 	//敵の死亡時のパラメータ設定
 	virtual void SetEnemyDeadParameter() = 0;
 
+	//スコア表示処理
+	void DrawScore();
+
 public:
 	
 	float SPEED = 2.0f;	//移動速度
+
+	int SCORE = 0; //スコア
 
 protected:
 
@@ -80,4 +85,7 @@ protected:
 	//プレイヤー追跡用
 	vector<Cell> vec_last_route;
 	int move_cnt{ 0 };
+
+	//スコア表示フラグ
+	bool IsDrawScore{ false };
 };

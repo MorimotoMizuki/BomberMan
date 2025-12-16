@@ -3,6 +3,7 @@
 #include"objBase.h"
 #include"base_enemy.h"
 
+//ƒoƒƒ€
 class CBallom : public CBaseEnemy
 {
 private:
