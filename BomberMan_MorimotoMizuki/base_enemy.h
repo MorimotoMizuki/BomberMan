@@ -3,6 +3,7 @@
 #include"objBase.h"
 #include"astar.h"
 #include<list>
+#include<array>
 
 class CBaseEnemy : public BaseVector
 {
@@ -45,11 +46,11 @@ public:
 	bool Anim(int ANIM_FRAME, int animMax, int* index, bool loop);
 
 	//ランダム移動処理
-	void RandomMove(vector<unique_ptr<BaseVector>>&);
-	void SetMoveDir(vector<unique_ptr<BaseVector>>&);
+	void RandomMove(vector<unique_ptr<BaseVector>>&, const std::array<bool, 4>&);
+	void SetMoveDir(vector<unique_ptr<BaseVector>>&, const std::array<bool, 4>&);
 
 	//プレイヤー追跡処理
-	void TrackingPlayerMove(CPlayer* p, int moveFrame, bool* isTrackingPlayer);
+	void TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer);
 
 	//敵の死亡時のパラメータ設定
 	virtual void SetEnemyDeadParameter() = 0;
@@ -57,11 +58,16 @@ public:
 	//スコア表示処理
 	void DrawScore();
 
+	//死亡フラグ取得
+	bool GetIsDead() { return IsDead; };
+
 public:
 	
 	float SPEED = 2.0f;	//移動速度
 
 	int SCORE = 0; //スコア
+
+	int STOP_FRAME = 0; //停止フレーム
 
 protected:
 
@@ -84,8 +90,11 @@ protected:
 
 	//プレイヤー追跡用
 	vector<Cell> vec_last_route;
-	int move_cnt{ 0 };
+	float move_cnt{ 0.0f };
 
 	//スコア表示フラグ
 	bool IsDrawScore{ false };
+
+	//移動方向許可フラグ配列
+	std::array<bool, 4> IsPermitDir{ true,true,true,true };
 };

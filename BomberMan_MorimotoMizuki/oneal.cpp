@@ -13,8 +13,9 @@ COneal::COneal(Point p, MapPoint system_p)
 	//死亡時画像の最初の一枚の設定
 	EnemyDeadImgHandle[0] = DerivationGraph(IMGSIZE32 * 4, IMGSIZE32 * 2, IMGSIZE32, IMGSIZE32, img);
 
-	SPEED = 2.0f; //移動速度
+	SPEED = 3.0f; //移動速度
 	SCORE = 200;  //スコア
+	STOP_FRAME = 1; //停止フレーム
 }
 
 int COneal::Action(vector<unique_ptr<BaseVector>>& base)
@@ -45,9 +46,12 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 	//プレイヤー追跡処理
 	TrackingPlayerMove(p, CHIP_SIZE / SPEED, &isTrackingPlayer);
 
+	if (vec.x == 0.0f && vec.y == 0.0f)
+		isTrackingPlayer = false;
+
 	if (!isTrackingPlayer) {
 		//ランダム移動処理
-		RandomMove(base);
+		RandomMove(base, IsPermitDir);
 	}
 
 	//座標更新
@@ -74,6 +78,11 @@ void COneal::Draw()
 		else
 			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
 	}
+
+	if (isTrackingPlayer)
+		DrawBox(pos.x - Distance, pos.y, pos.x - Distance + CHIP_SIZE, pos.y + CHIP_SIZE, GetColor(255, 0, 0), false);
+
+	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%f",move_cnt);
 
 	//スコアの表示
 	if (IsDrawScore)

@@ -9,13 +9,13 @@ class CDahl : public CBaseEnemy
 public:
 
 	//アニメーションフレーム数
-	static constexpr auto DAHL_ANIM_FRAME = 0;
+	static constexpr auto DAHL_ANIM_FRAME = 8;
 
 	//画像の数
 	static constexpr auto DAHL_IMG_NUM = 4;
 
 	//アニメーション数
-	static constexpr auto DAHL_ANIM_NUM = 0;
+	static constexpr auto DAHL_ANIM_NUM = 4;
 
 public:
 
@@ -32,4 +32,7 @@ private:
 
 	//画像ハンドル
 	int ImgHandle[DAHL_IMG_NUM]{ 0,0,0,0 };
+
+	//方向変更カウント
+	int DirChangeCnt{ 0 };
 };

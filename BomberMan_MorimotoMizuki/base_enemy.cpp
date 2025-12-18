@@ -110,20 +110,17 @@ bool CBaseEnemy::Anim(int ANIM_FRAME, int animMax, int* index, bool loop)
 }
 
 //ランダム移動処理
-void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base)
+void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base, const std::array<bool, 4>& dir)
 {
-	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	if (p == nullptr) return;
-
-	if (StopCnt >= 5) {
+	if (StopCnt >= STOP_FRAME) {
 
 		//システム上の座標更新 : 左上座標から
 		MapPoint systemPosL = { static_cast<int>((pos.x) / CHIP_SIZE) ,
 								static_cast<int>(((pos.y) - WINDOW_HEADER) / CHIP_SIZE)
 		};
 		//システム上の座標更新 : 右下座標から
-		MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1) / CHIP_SIZE) ,
-								static_cast<int>(((pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
+		MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1   - (SPEED / 2)) / CHIP_SIZE) ,
+								static_cast<int>(((pos.y + ImgHeight - 1 - (SPEED / 2)) - WINDOW_HEADER) / CHIP_SIZE)
 		};
 
 		if (systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y)
@@ -136,6 +133,8 @@ void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base)
 				//ブロック, 爆弾の場合は移動方向変更
 				for (int i = 0; i < 4; i++)
 				{
+					if (!dir[i]) continue;
+
 					if (normalizeVec.x == ADD_VEC[i].x && normalizeVec.y == ADD_VEC[i].y)
 					{
 						MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
@@ -144,7 +143,7 @@ void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base)
 							gNowMap[systemPos.y][systemPos.x] == BLOCK + 1 ||
 							gNowMap[systemPos.y][systemPos.x] == BOMB)
 						{
-							SetMoveDir(base); //移動方向変更
+							SetMoveDir(base, dir); //移動方向変更
 							StopCnt = 0;
 							break;
 						}
@@ -154,7 +153,7 @@ void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base)
 				int randomNum = Range_Random_Number(1, 10);
 				if (randomNum <= 2)
 				{
-					SetMoveDir(base); //移動方向変更
+					SetMoveDir(base, dir); //移動方向変更
 				}
 			}
 		}
@@ -164,7 +163,7 @@ void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base)
 }
 
 //方向設定
-void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base)
+void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base, const std::array<bool, 4>& dir)
 {
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p == nullptr) return;
@@ -179,6 +178,8 @@ void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base)
 	{
 		for (int i = 0; i < 4; i++)
 		{
+			if (!dir[i]) continue; //その方向に行く許可がない場合はスキップ
+
 			MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
 			//ブロック, 爆弾以外の場合
 			if (gNowMap[systemPos.y][systemPos.x] != BLOCK &&
@@ -199,7 +200,7 @@ void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base)
 
 		//保存している爆弾を置いたフラグとプレイヤーの爆弾を置いたフラグが違っていた場合
 		if (isKeepPutBomb != p->IsPutBomb) {
-			SetMoveDir(base);
+			SetMoveDir(base, dir);
 			return;
 		}
 		vec.x = ADD_VEC[moveDir[0]].x * SPEED;
@@ -264,7 +265,7 @@ void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base)
 
 		//保存している爆弾を置いたフラグとプレイヤーの爆弾を置いたフラグが違っていた場合
 		if (isKeepPutBomb != p->IsPutBomb) {
-			SetMoveDir(base);
+			SetMoveDir(base, dir);
 			return;
 		}
 		vec = moveVec;
@@ -272,7 +273,7 @@ void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base)
 }
 
 //プレイヤー追跡処理
-void CBaseEnemy::TrackingPlayerMove(CPlayer* p, int moveFrame, bool* isTrackingPlayer)
+void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer)
 {
 	if (p == nullptr) return;
 
@@ -281,19 +282,19 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, int moveFrame, bool* isTrackingP
 							static_cast<int>(((pos.y) - WINDOW_HEADER) / CHIP_SIZE)
 	};
 	//システム上の座標更新 : 右下座標から
-	MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1) / CHIP_SIZE) ,
-							static_cast<int>(((pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
+	MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1 - (SPEED / 2)) / CHIP_SIZE) ,
+							static_cast<int>(((pos.y + ImgHeight - 1 - (SPEED / 2)) - WINDOW_HEADER) / CHIP_SIZE)
 	};
 
 	if ((systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y) ||
-		systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y && move_cnt > moveFrame)
+		(systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y && move_cnt >= moveFrame))
 	{
 		if ((p->SystemPos.x == systemPosL.x && p->SystemPos.y == systemPosL.y) ||
 			(p->SystemPos.x == systemPosR.x && p->SystemPos.y == systemPosR.y) ||
 			(p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y)) {
 			vec.x = 0.0f;
 			vec.y = 0.0f;
-			*isTrackingPlayer = false;
+			//*isTrackingPlayer = false;
 			return;
 		}
 
@@ -308,39 +309,43 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, int moveFrame, bool* isTrackingP
 		//経路の計算
 		list<Cell> last_route = ROUTE_CALCULATION2(MAP_CHIP_W, MAP_CHIP_H, start, goal, v_map);
 
-		//vec_last_route.resize(last_route.size());
 		for (auto& x : last_route) {
 			vec_last_route.push_back(x);
+			if (vec_last_route.size() >= 2) //二つ以上保存したら break する
+				break;
 		}
 
-		if (!vec_last_route.empty()) {
+		if (vec_last_route.size() >= 2) {
 
 			Cell first = vec_last_route[1];
+			if (0 <= first.X  && first.X < MAP_CHIP_W &&
+				0 <= first.Y  && first.Y < MAP_CHIP_H)
+			{
+				if (gNowMap[first.Y][first.X] != Obj_Id::NONE) {
+					vec.x = 0.0f;
+					vec.y = 0.0f;
+					//*isTrackingPlayer = false;
+					return;
+				}
 
-			if (gNowMap[first.Y][first.X] != Obj_Id::NONE) {
-				vec.x = 0.0f;
-				vec.y = 0.0f;
-				*isTrackingPlayer = false;
+				Vector e_v = { first.X - SystemPos.x, first.Y - SystemPos.y };
+				e_v = Vector_Normalize(e_v);
+
+				vec.x = e_v.x * SPEED;
+				vec.y = e_v.y * SPEED;
+
+				*isTrackingPlayer = true;
+				move_cnt = 0;
 				return;
 			}
-
-			Vector e_v = { first.X - SystemPos.x, first.Y - SystemPos.y };
-			e_v = Vector_Normalize(e_v);
-
-			vec.x = e_v.x * SPEED;
-			vec.y = e_v.y * SPEED;
-
-			*isTrackingPlayer = true;
-			move_cnt = 0;
-			return;
 		}
 		else
 		{
-			*isTrackingPlayer = false;
+			//*isTrackingPlayer = false;
 		}
 	}
-	else
-		move_cnt++;
+	if (move_cnt < moveFrame)
+		move_cnt += 1.0f;
 }
 
 //スコア表示処理

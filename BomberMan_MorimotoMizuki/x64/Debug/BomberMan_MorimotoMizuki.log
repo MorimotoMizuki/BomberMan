@@ -110,17 +110,22 @@ C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード �
 C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
   (ソース ファイル 'oneal.cpp' をコンパイルしています)
   
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(46,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(66,79): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(66,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(66,40): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(66,25): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(72,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(72,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(72,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(72,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(75,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(75,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(75,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(75,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(70,79): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(70,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(70,40): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(70,25): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(76,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(76,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(76,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(76,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(79,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(79,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(79,52): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(79,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,72): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(85,40): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(85,25): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   BomberMan_MorimotoMizuki.vcxproj -> C:\Users\GA3\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe

@@ -51,6 +51,9 @@ constexpr auto MAX_PUT_BOMB_NUM = 10;
 //敵の種類
 constexpr auto ENEMY_VARIATION = 8;
 
+//プレイヤーの初期スピード
+constexpr auto PLAYER_SPEED = 4.0f;
+
 //2D用
  struct Point {
 	float x, y;

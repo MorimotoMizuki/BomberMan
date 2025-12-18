@@ -9,7 +9,7 @@
 //プレイヤーのステータス
 PlayerStatus gPlayerStatus = {
 	2,		//life
-	6.0f,	//speed
+	PLAYER_SPEED,	//speed
 	1,		//bombPutNum
 	1,		//bombLevel
 	0,		//スコア

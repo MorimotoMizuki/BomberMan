@@ -27,7 +27,7 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		//プレイヤーのステータスを初期化
 		gPlayerStatus.bombLevel = 1;
 		gPlayerStatus.bombPutNum = 1;
-		gPlayerStatus.speed = 6.0f;
+		gPlayerStatus.speed = PLAYER_SPEED;
 
 	}
 	//ゲームクリアの場合

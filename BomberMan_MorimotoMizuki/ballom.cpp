@@ -15,6 +15,7 @@ CBallom::CBallom(Point p, MapPoint system_p)
 
 	SPEED = 2.0f; //移動速度
 	SCORE = 100;  //スコア
+	STOP_FRAME = 5; //停止フレーム
 }
 
 int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
@@ -43,7 +44,7 @@ int CBallom::Action(vector<unique_ptr<BaseVector>>& base)
 	};
 
 	//ランダム移動処理
-	RandomMove(base);
+	RandomMove(base, IsPermitDir);
 
 	//座標更新
 	pos = Add_Point_Vector(pos, vec);

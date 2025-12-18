@@ -151,7 +151,7 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 			}
 		}
 		//“G‚Æ‚Ì”»’è
-		else if (base[i]->ID == ENEMY)
+		else if (base[i]->ID == ENEMY && !((CBaseEnemy*)base[i].get())->GetIsDead())
 		{
 			if (PlayerState == PlayerStateId::PLAYplayer) {
 

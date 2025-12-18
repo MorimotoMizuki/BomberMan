@@ -129,10 +129,39 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 				base.emplace_back((unique_ptr<BaseVector>) new COneal(p, s_p));
 				gNowMap[y][x] = -1;
 				break;
+			//ダル
+			case Enemy_Id::DAHL:
+				base.emplace_back((unique_ptr<BaseVector>) new CDahl(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
+			//ミンボー
+			case Enemy_Id::MINVO:
+				base.emplace_back((unique_ptr<BaseVector>) new CMinvo(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
+			//コンドリア
+			case Enemy_Id::KONDORIA:
+				base.emplace_back((unique_ptr<BaseVector>) new CKondoria(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
+			//オバピー
+			case Enemy_Id::OVAPEE:
+				base.emplace_back((unique_ptr<BaseVector>) new COvapee(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
+			//パース
+			case Enemy_Id::PASS:
+				base.emplace_back((unique_ptr<BaseVector>) new CPass(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
+			//ポンタン
+			case Enemy_Id::PONtAN:
+				base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
+				gNowMap[y][x] = -1;
+				break;
 			default:
 				break;
 			}
-
 			//ドアを生成
 			if (SetDoorNum == crashBlockNum && !isDoorSet) {
 				base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
