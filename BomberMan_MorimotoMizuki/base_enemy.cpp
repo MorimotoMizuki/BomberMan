@@ -68,9 +68,14 @@ void CBaseEnemy::HitBomb_PosAdjustment(vector<unique_ptr<BaseVector>>& base)
 		//爆弾オブジェクトと判定
 		if (base[i]->ID == BOMB){
 			if (HitCheck_box(this, base[i].get())){
-				MapPoint bPos = (base[i].get())->SystemPos;
+				MapPoint bPos = (base[i].get())->SystemPos; //爆弾の座標
 				if (bPos.x != SystemPos.x || bPos.y != SystemPos.y)
 				{
+					//その座標がブロックだった場合は終了
+					if(CheckArea_of_SelectObj_Id(static_cast<Obj_Id>(gNowMap[SystemPos.y][SystemPos.x]), {Obj_Id::BLOCK, Obj_Id::CRASH_BLOCK, Obj_Id::BOMB}))
+						return;
+
+					//座標調整
 					pos.x = (SystemPos.x * CHIP_SIZE);
 					pos.y = (SystemPos.y * CHIP_SIZE) + WINDOW_HEADER;
 					return;
@@ -110,7 +115,7 @@ bool CBaseEnemy::Anim(int ANIM_FRAME, int animMax, int* index, bool loop)
 }
 
 //ランダム移動処理
-void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base, const std::array<bool, 4>& dir)
+void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base, const std::array<bool, 4>& dir, int change_dir_percentage)
 {
 	if (StopCnt >= STOP_FRAME) {
 
@@ -125,11 +130,10 @@ void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base, const std::arr
 
 		if (systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y)
 		{
-			if (SystemPos.x < MAP_CHIP_W - 1 && SystemPos.x > 0 &&
-				SystemPos.y < MAP_CHIP_H - 1 && SystemPos.y > 0)
+			if(CheckMoveArea(SystemPos, HitMoveObj_Id))
 			{
 				Vector normalizeVec = Vector_Normalize(vec);
-
+				bool isBreak = false;
 				//ブロック, 爆弾の場合は移動方向変更
 				for (int i = 0; i < 4; i++)
 				{
@@ -139,21 +143,22 @@ void CBaseEnemy::RandomMove(vector<unique_ptr<BaseVector>>& base, const std::arr
 					{
 						MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
 						//ブロック, 爆弾だった場合 : ブロック　か　クラッシュブロック
-						if (gNowMap[systemPos.y][systemPos.x] == BLOCK ||
-							gNowMap[systemPos.y][systemPos.x] == BLOCK + 1 ||
-							gNowMap[systemPos.y][systemPos.x] == BOMB)
+						if(CheckArea_of_SelectObj_Id(static_cast<Obj_Id>(gNowMap[systemPos.y][systemPos.x]), {Obj_Id::BLOCK, Obj_Id::CRASH_BLOCK, Obj_Id::BOMB}))
 						{
 							SetMoveDir(base, dir); //移動方向変更
 							StopCnt = 0;
+							isBreak = true;
 							break;
 						}
 					}
 				}
 
-				int randomNum = Range_Random_Number(1, 10);
-				if (randomNum <= 2)
-				{
-					SetMoveDir(base, dir); //移動方向変更
+				if (!isBreak) {
+					int randomNum = Range_Random_Number(1, 10);
+					if (randomNum <= change_dir_percentage)
+					{
+						SetMoveDir(base, dir); //移動方向変更
+					}
 				}
 			}
 		}
@@ -172,21 +177,15 @@ void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base, const std::arr
 	//爆弾を置いているかの情報を保存
 	bool isKeepPutBomb = p->IsPutBomb;
 
-	//空白のマスを moveDir に追加
-	if (SystemPos.x < MAP_CHIP_W - 1 && SystemPos.x > 0 &&
-		SystemPos.y < MAP_CHIP_H - 1 && SystemPos.y > 0)
+	//移動できるマスを moveDir に追加
+	for (int i = 0; i < 4; i++)
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (!dir[i]) continue; //その方向に行く許可がない場合はスキップ
+		if (!dir[i]) continue; //その方向に行く許可がない場合はスキップ
 
-			MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
-			//ブロック, 爆弾以外の場合
-			if (gNowMap[systemPos.y][systemPos.x] != BLOCK &&
-				gNowMap[systemPos.y][systemPos.x] != BLOCK + 1 &&
-				gNowMap[systemPos.y][systemPos.x] != BOMB)
-				moveDir.push_back(i);
-		}
+		MapPoint systemPos = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
+		//移動できるか判定
+		if (CheckMoveArea(systemPos, HitMoveObj_Id))
+			moveDir.push_back(i);
 	}
 
 	//全て行き止まりの場合は終了
@@ -272,8 +271,57 @@ void CBaseEnemy::SetMoveDir(vector<unique_ptr<BaseVector>>& base, const std::arr
 	}
 }
 
+//直線方向移動のフラグ変更処理
+int CBaseEnemy::SetLineMoveIsDir(int dir_change_cnt, int STOP_FRAME)
+{
+	//システム上の座標更新 : 左上座標から
+	MapPoint systemPosL = { static_cast<int>((pos.x) / CHIP_SIZE) ,
+							static_cast<int>(((pos.y) - WINDOW_HEADER) / CHIP_SIZE)
+	};
+	//システム上の座標更新 : 右下座標から
+	MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1) / CHIP_SIZE) ,
+							static_cast<int>(((pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
+	};
+	if (systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y)
+	{
+		if (dir_change_cnt > STOP_FRAME) {
+
+			if (IsPermitDir[MoveDir::LEFT]) {
+				IsPermitDir[MoveDir::LEFT]	= false;
+				IsPermitDir[MoveDir::RIGHT] = false;
+				IsPermitDir[MoveDir::UP]	= true;
+				IsPermitDir[MoveDir::DOWN]	= true;
+			}
+			else {
+				IsPermitDir[MoveDir::LEFT]	= true;
+				IsPermitDir[MoveDir::RIGHT] = true;
+				IsPermitDir[MoveDir::UP]	= false;
+				IsPermitDir[MoveDir::DOWN]	= false;
+			}
+			for (int i = 0; i < 4; i++) {
+				if (!IsPermitDir[i]) continue;
+
+				MapPoint mp = { SystemPos.x + ADD_VEC[i].x, SystemPos.y + ADD_VEC[i].y };
+				if (mp.x < MAP_CHIP_W - 1 && mp.x > 0 &&
+					mp.y < MAP_CHIP_H - 1 && mp.y > 0) {
+
+					if (CheckMoveArea(mp, HitMoveObj_Id)){
+						vec.x = ADD_VEC[i].x * SPEED;
+						vec.y = ADD_VEC[i].y * SPEED;
+						dir_change_cnt = 0;
+						return dir_change_cnt;
+					}
+				}
+			}
+		}
+		else
+			dir_change_cnt++;
+	}
+	return dir_change_cnt;
+}
+
 //プレイヤー追跡処理
-void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer)
+void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer,std::pair<bool, int> tracking_parameter, int randomParameter)
 {
 	if (p == nullptr) return;
 
@@ -289,67 +337,107 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackin
 	if ((systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y) ||
 		(systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y && move_cnt >= moveFrame))
 	{
+		//プレイヤーと同じマスの場合
 		if ((p->SystemPos.x == systemPosL.x && p->SystemPos.y == systemPosL.y) ||
 			(p->SystemPos.x == systemPosR.x && p->SystemPos.y == systemPosR.y) ||
 			(p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y)) {
 			vec.x = 0.0f;
 			vec.y = 0.0f;
-			//*isTrackingPlayer = false;
+			*isTrackingPlayer = false;
 			return;
 		}
 
 		vec_last_route.clear();
-		vec.x = 0.0f;
-		vec.y = 0.0f;
 
 		Cell goal{ p->SystemPos.x, p->SystemPos.y };
 		Cell start{ SystemPos.x, SystemPos.y };
 
 		auto v_map = ArrToVec(gNowMap);
 		//経路の計算
-		list<Cell> last_route = ROUTE_CALCULATION2(MAP_CHIP_W, MAP_CHIP_H, start, goal, v_map);
+		list<Cell> last_route = ROUTE_CALCULATION2(MAP_CHIP_W, MAP_CHIP_H, start, goal, v_map, HitMoveObj_Id);
 
 		for (auto& x : last_route) {
 			vec_last_route.push_back(x);
-			if (vec_last_route.size() >= 2) //二つ以上保存したら break する
+			if (vec_last_route.size() > tracking_parameter.second) //tracking_distanceを超えたら break する
 				break;
 		}
 
-		if (vec_last_route.size() >= 2) {
-
-			Cell first = vec_last_route[1];
-			if (0 <= first.X  && first.X < MAP_CHIP_W &&
-				0 <= first.Y  && first.Y < MAP_CHIP_H)
+		//ルートが2つ以上 かつ　追跡距離範囲内　の場合
+		if (vec_last_route.size() >= 2)
+		{
+			if ((tracking_parameter.first == true && vec_last_route.size() <= tracking_parameter.second) ||
+				(tracking_parameter.first == false))
 			{
-				if (gNowMap[first.Y][first.X] != Obj_Id::NONE) {
+				int randomNum = Range_Random_Number(1, 10);
+				if (randomNum <= randomParameter)
+				{
+					MapPoint first = { vec_last_route[1].X,vec_last_route[1].Y };
+					if (CheckMoveArea(first, HitMoveObj_Id))
+					{
+						Vector e_v = { first.x - SystemPos.x, first.y - SystemPos.y };
+						e_v = Vector_Normalize(e_v);
+
+						vec.x = e_v.x * SPEED;
+						vec.y = e_v.y * SPEED;
+
+						*isTrackingPlayer = true;
+						move_cnt = 0.0f;
+						return;
+					}
+				}
+				else
+				{
+					*isTrackingPlayer = false;
 					vec.x = 0.0f;
 					vec.y = 0.0f;
-					//*isTrackingPlayer = false;
-					return;
 				}
-
-				Vector e_v = { first.X - SystemPos.x, first.Y - SystemPos.y };
-				e_v = Vector_Normalize(e_v);
-
-				vec.x = e_v.x * SPEED;
-				vec.y = e_v.y * SPEED;
-
-				*isTrackingPlayer = true;
-				move_cnt = 0;
-				return;
 			}
+			else
+				*isTrackingPlayer = false;
 		}
 		else
-		{
-			//*isTrackingPlayer = false;
-		}
+			*isTrackingPlayer = false;
 	}
-	if (move_cnt < moveFrame)
-		move_cnt += 1.0f;
+	if (*isTrackingPlayer == false) {
+		if (move_cnt < moveFrame)
+			move_cnt += 1.0f;
+	}
 }
 
 //スコア表示処理
 void CBaseEnemy::DrawScore()
 {
-	DrawFormatString(pos.x - Distance + 40.0f, pos.y + 40.0f, GetColor(255, 255, 255), "%d", SCORE);
+	DrawFormatString(pos.x - Distance + 30.0f, pos.y + 30.0f, GetColor(255, 255, 255), "%d", SCORE);
+}
+
+//移動できるマスか判定する
+bool CBaseEnemy::CheckMoveArea(MapPoint system_pos, std::vector<Obj_Id> hit_objId)
+{
+	if (hit_objId.empty()) return false;
+
+	//マップ範囲内
+	if (system_pos.x < MAP_CHIP_W - 1 && system_pos.x > 0 &&
+		system_pos.y < MAP_CHIP_H - 1 && system_pos.y > 0)
+	{
+		for (int i = 0; i < hit_objId.size(); i++) {
+
+			if (gNowMap[system_pos.y][system_pos.x] == static_cast<int>(hit_objId[i]))
+				return false;
+		}
+		return true;
+	}
+	//マップ範囲外
+	else
+		return false;
+}
+
+//設定したObj_Idか判定する
+bool CBaseEnemy::CheckArea_of_SelectObj_Id(Obj_Id obj_id, std::initializer_list<Obj_Id> obj_id_array)
+{
+	for (auto id : obj_id_array)
+	{
+		if (obj_id == id)
+			return true;
+	}
+	return false;
 }

@@ -72,4 +72,4 @@ list<Cell> ROUTE_CALCULATION(Cell, Cell);
 //ルート計算(マップサイズx,マップサイズy,スタート位置,ゴール位置,マップデータ配列2次元を1次元化したもの)
 //list<Cell> ROUTE_CALCULATION(int, int, Cell, Cell, int*);
 //ルート計算(マップサイズx,マップサイズy,スタート位置,ゴール位置,マップデータvector型)
-list<Cell> ROUTE_CALCULATION2(int, int, Cell, Cell, vector<vector<int>>);
+list<Cell> ROUTE_CALCULATION2(int, int, Cell, Cell, vector<vector<int>>,vector<Obj_Id> cost_obj_id); // <- vector<Obj_Id> cost_obj_id 変更

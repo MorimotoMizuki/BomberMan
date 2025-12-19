@@ -33,5 +33,10 @@ private:
 	//画像ハンドル
 	int ImgHandle[ONEAL_IMG_NUM]{ 0,0,0,0 };
 
+	//プレイヤー追跡フラグ
 	bool isTrackingPlayer{ false };
+
+	//プレイヤー追跡パラメータ
+	std::pair<bool, int> TrackingParameter = std::make_pair<bool, int>(false, 2);
+
 };

@@ -5,6 +5,7 @@ enum Obj_Id
 {
 	NONE = -1,
 	BLOCK,
+	CRASH_BLOCK,
 	ITEM = 2,
 	GOAL,
 	PLAYER,

@@ -9,13 +9,13 @@ class CKondoria : public CBaseEnemy
 public:
 
 	//アニメーションフレーム数
-	static constexpr auto KONDORIA_ANIM_FRAME = 0;
+	static constexpr auto KONDORIA_ANIM_FRAME = 8;
 
 	//画像の数
 	static constexpr auto KONDORIA_IMG_NUM = 4;
 
 	//アニメーション数
-	static constexpr auto KONDORIA_ANIM_NUM = 0;
+	static constexpr auto KONDORIA_ANIM_NUM = 4;
 
 public:
 
@@ -32,4 +32,10 @@ private:
 
 	//画像ハンドル
 	int ImgHandle[KONDORIA_IMG_NUM]{ 0,0,0,0 };
+
+	//プレイヤー追跡フラグ
+	bool isTrackingPlayer{ false };
+
+	//プレイヤー追跡パラメータ
+	std::pair<bool, int> TrackingParameter = std::make_pair<bool, int>(false, 2);
 };

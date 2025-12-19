@@ -4,6 +4,7 @@
 #include"astar.h"
 #include<list>
 #include<array>
+#include <utility>
 
 class CBaseEnemy : public BaseVector
 {
@@ -46,11 +47,14 @@ public:
 	bool Anim(int ANIM_FRAME, int animMax, int* index, bool loop);
 
 	//ランダム移動処理
-	void RandomMove(vector<unique_ptr<BaseVector>>&, const std::array<bool, 4>&);
+	void RandomMove(vector<unique_ptr<BaseVector>>&, const std::array<bool, 4>&, int change_dir_percentage);
 	void SetMoveDir(vector<unique_ptr<BaseVector>>&, const std::array<bool, 4>&);
 
-	//プレイヤー追跡処理
-	void TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer);
+	//直線方向移動のフラグ変更処理
+	int SetLineMoveIsDir(int dir_change_cnt, int STOP_FRAME);
+
+	//プレイヤー追跡処理 : (プレイヤー情報、移動フレーム、プレイヤー追跡中フラグ、追跡パラメータ設定(距離制限をつけるかフラグ、追跡距離))
+	void TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer, std::pair<bool, int> tracking_parameter, int randomParameter);
 
 	//敵の死亡時のパラメータ設定
 	virtual void SetEnemyDeadParameter() = 0;
@@ -60,6 +64,12 @@ public:
 
 	//死亡フラグ取得
 	bool GetIsDead() { return IsDead; };
+
+	//移動できるマスか判定する
+	bool CheckMoveArea(MapPoint system_pos, std::vector<Obj_Id> hit_objId);
+
+	//設定したObj_Idか判定する
+	bool CheckArea_of_SelectObj_Id(Obj_Id obj_id, std::initializer_list<Obj_Id> obj_id_array);
 
 public:
 	
@@ -73,6 +83,9 @@ protected:
 
 	//敵の死亡時画像
 	int EnemyDeadImgHandle[5]{ 0,0,0,0,0 };
+
+	//移動制限判定Obj_Id
+	std::vector<Obj_Id> HitMoveObj_Id;
 
 	//プレイヤーとの差分
 	float Distance{ 0.0f };

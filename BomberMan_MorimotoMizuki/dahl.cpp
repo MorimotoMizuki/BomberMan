@@ -17,6 +17,11 @@ CDahl::CDahl(Point p, MapPoint system_p)
 	SCORE = 400;  //スコア
 	STOP_FRAME = 5; //停止フレーム
 
+	//移動制限判定Obj_Id
+	HitMoveObj_Id.push_back(Obj_Id::BLOCK);
+	HitMoveObj_Id.push_back(Obj_Id::CRASH_BLOCK);
+	HitMoveObj_Id.push_back(Obj_Id::BOMB);
+
 	//移動方向設定
 	int vecNum = Range_Random_Number(0, 3);
 
@@ -55,36 +60,11 @@ int CDahl::Action(vector<unique_ptr<BaseVector>>& base)
 	};
 
 	//ランダム移動処理
-	RandomMove(base, IsPermitDir);
+	CBaseEnemy::RandomMove(base, IsPermitDir, 1);
 
 	//方向転換
-	if (vec.x == 0.0f && vec.y == 0.0f)
-	{
-		//システム上の座標更新 : 左上座標から
-		MapPoint systemPosL = { static_cast<int>((pos.x) / CHIP_SIZE) ,
-								static_cast<int>(((pos.y) - WINDOW_HEADER) / CHIP_SIZE)
-		};
-		//システム上の座標更新 : 右下座標から
-		MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1) / CHIP_SIZE) ,
-								static_cast<int>(((pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
-		};
-		if (systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y)
-		{
-			if (DirChangeCnt > STOP_FRAME) {
-
-				if (IsPermitDir[MoveDir::LEFT]) {
-					IsPermitDir[MoveDir::LEFT] = false; IsPermitDir[MoveDir::RIGHT] = false;
-					IsPermitDir[MoveDir::UP] = true;	IsPermitDir[MoveDir::DOWN] = true;
-				}
-				else {
-					IsPermitDir[MoveDir::LEFT] = true;	IsPermitDir[MoveDir::RIGHT] = true;
-					IsPermitDir[MoveDir::UP] = false;	IsPermitDir[MoveDir::DOWN] = false;
-				}
-				DirChangeCnt = 0;
-			}
-			else
-				DirChangeCnt++;
-		}
+	if (vec.x == 0.0f && vec.y == 0.0f){
+		DirChangeCnt = CBaseEnemy::SetLineMoveIsDir(DirChangeCnt, 1);
 	}
 	else
 		DirChangeCnt = 0;
@@ -97,24 +77,23 @@ int CDahl::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CDahl::Draw()
 {
-	if (!draw_flag) return;
-
-	//画像描画
-	if (IsDead)
+	if (draw_flag)
 	{
-		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
-	}
-	else
-	{
-		//左向き
-		if (vec.x < 0.0f)
-			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
-		//右向き
+		//画像描画
+		if (IsDead)
+		{
+			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
+		}
 		else
-			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		{
+			//左向き
+			if (vec.x < 0.0f)
+				DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+			//右向き
+			else
+				DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		}
 	}
-
-	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d", IsPermitDir[MoveDir::LEFT]);
 
 	//スコアの表示
 	if (IsDrawScore)

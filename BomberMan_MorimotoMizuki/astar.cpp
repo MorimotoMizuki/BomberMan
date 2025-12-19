@@ -103,7 +103,7 @@ bool IsCellWithinTheRange(int x, int y, int mapX, int mapY)
 
 
 //ルート計算(マップサイズx,マップサイズy,スタート位置,ゴール位置,vector型二次元マップ)
-list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>> mp) {
+list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>> mp, vector<Obj_Id> cost_obj_id) {
 	//ノード計算用
 	vector<vector<Node>> Graph;
 	Graph.resize(MY);
@@ -126,9 +126,23 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 			//隣接ノードの作成
 			for (const Cell& c : adjacent_)
 			{
-				//マップ外の場合は、作成しない。 NONEだけが通れるようにした----------------------------------------------------
-				if (IsCellWithinTheRange(c.X, c.Y, MX, MY) && mp[c.Y][c.X] == Obj_Id::NONE) {
-					Graph[y][x].AdjucentNodes.push_back(&Graph[c.Y][c.X]);
+				//マップ外の場合は、作成しない。 cost_obj_idの場合通れなくした----------------------------------------------------
+				if (IsCellWithinTheRange(c.X, c.Y, MX, MY)) {
+
+					//if(mp[c.Y][c.X] == Obj_Id::NONE)
+					//	Graph[y][x].AdjucentNodes.push_back(&Graph[c.Y][c.X]);
+
+					bool is_move = true;
+					for (auto cost : cost_obj_id)
+					{
+						if (mp[c.Y][c.X] == cost)
+						{
+							is_move = false;
+							break;
+						}
+					}
+					if(is_move)
+						Graph[y][x].AdjucentNodes.push_back(&Graph[c.Y][c.X]);
 				}
 			}
 		}

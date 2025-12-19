@@ -15,7 +15,14 @@ COneal::COneal(Point p, MapPoint system_p)
 
 	SPEED = 3.0f; //移動速度
 	SCORE = 200;  //スコア
-	STOP_FRAME = 1; //停止フレーム
+	STOP_FRAME = 5; //停止フレーム
+
+	//移動制限判定Obj_Id
+	HitMoveObj_Id.push_back(Obj_Id::BLOCK);
+	HitMoveObj_Id.push_back(Obj_Id::CRASH_BLOCK);
+	HitMoveObj_Id.push_back(Obj_Id::BOMB);
+
+	TrackingParameter.first = false;//追跡距離使用フラグ
 }
 
 int COneal::Action(vector<unique_ptr<BaseVector>>& base)
@@ -44,14 +51,11 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 	CBaseEnemy::HitBomb_PosAdjustment(base);
 
 	//プレイヤー追跡処理
-	TrackingPlayerMove(p, CHIP_SIZE / SPEED, &isTrackingPlayer);
-
-	if (vec.x == 0.0f && vec.y == 0.0f)
-		isTrackingPlayer = false;
+	TrackingPlayerMove(p, CHIP_SIZE / SPEED, &isTrackingPlayer, TrackingParameter, 3);
 
 	if (!isTrackingPlayer) {
 		//ランダム移動処理
-		RandomMove(base, IsPermitDir);
+		CBaseEnemy::RandomMove(base, IsPermitDir, 2);
 	}
 
 	//座標更新
@@ -62,31 +66,30 @@ int COneal::Action(vector<unique_ptr<BaseVector>>& base)
 
 void COneal::Draw()
 {
-	if (!draw_flag) return;
-
-	//画像描画
-	if (IsDead)
+	if (draw_flag)
 	{
-		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
-	}
-	else
-	{
-		//左向き
-		if (vec.x < 0.0f)
-			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
-		//右向き
+		//画像描画
+		if (IsDead)
+		{
+			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
+		}
 		else
-			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		{
+			//左向き
+			if (vec.x < 0.0f)
+				DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+			//右向き
+			else
+				DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		}
 	}
-
-	if (isTrackingPlayer)
-		DrawBox(pos.x - Distance, pos.y, pos.x - Distance + CHIP_SIZE, pos.y + CHIP_SIZE, GetColor(255, 0, 0), false);
-
-	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%f",move_cnt);
 
 	//スコアの表示
 	if (IsDrawScore)
 		DrawScore();
+
+	if (isTrackingPlayer)
+		DrawBox(pos.x - Distance, pos.y, pos.x - Distance + CHIP_SIZE, pos.y + CHIP_SIZE, GetColor(255, 0, 0), false);
 }
 
 COneal::~COneal()

@@ -26,21 +26,22 @@ int CPontan::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CPontan::Draw()
 {
-	if (!draw_flag) return;
-
-	//画像描画
-	if (IsDead)
+	if (draw_flag)
 	{
-		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
-	}
-	else
-	{
-		//左向き
-		if (vec.x < 0.0f)
-			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
-		//右向き
+		//画像描画
+		if (IsDead)
+		{
+			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
+		}
 		else
-			DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		{
+			//左向き
+			if (vec.x < 0.0f)
+				DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+			//右向き
+			else
+				DrawExtendGraph(pos.x + ImgWidth - Distance, pos.y, pos.x - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
+		}
 	}
 
 	//スコアの表示
