@@ -5,6 +5,7 @@
 #include<list>
 #include<array>
 #include <utility>
+#include<vector>
 
 class CBaseEnemy : public BaseVector
 {
@@ -67,6 +68,9 @@ public:
 
 	//移動できるマスか判定する
 	bool CheckMoveArea(MapPoint system_pos, std::vector<Obj_Id> hit_objId);
+
+	//マップ範囲内か判定する
+	bool CheckOutsideRangeArea(MapPoint system_pos);
 
 	//設定したObj_Idか判定する
 	bool CheckArea_of_SelectObj_Id(Obj_Id obj_id, std::initializer_list<Obj_Id> obj_id_array);

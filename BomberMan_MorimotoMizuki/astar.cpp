@@ -267,6 +267,130 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 	return last_route;
 }
 
+list<Cell> AStar_Search_Fast(int MX, int MY,Cell startPos,Cell goalPos,vector<vector<Node>>& Graph)
+{
+	// ---- ノード初期化（Graph再構築なし） ----
+	for (int y = 0; y < MY; y++)
+	{
+		for (int x = 0; x < MX; x++)
+		{
+			Node& n = Graph[y][x];
+			n.TotalCost = FLT_MAX;
+			n.HeuristicCost = 0;
+			n.closed = false;
+			n.parent = nullptr;
+		}
+	}
+
+	auto Heuristic = [&](int x, int y)
+		{
+			// sqrt 不要（マンハッタン距離）
+			return float(abs(goalPos.X - x) + abs(goalPos.Y - y));
+		};
+
+	priority_queue<Node*, vector<Node*>, NodeCompare> open;
+
+	Node* start = &Graph[startPos.Y][startPos.X];
+	start->HeuristicCost = Heuristic(startPos.X, startPos.Y);
+	start->TotalCost = start->HeuristicCost;
+
+	open.push(start);
+
+	// ---- 探索 ----
+	while (!open.empty())
+	{
+		Node* current = open.top();
+		open.pop();
+
+		if (current->closed)
+			continue;
+
+		current->closed = true;
+
+		// ゴール
+		if (current->pos.X == goalPos.X &&
+			current->pos.Y == goalPos.Y)
+			break;
+
+		float gCost = current->TotalCost - current->HeuristicCost;
+
+		for (Node* next : current->AdjucentNodes)
+		{
+			if (next->closed)
+				continue;
+
+			float newG = gCost + 1.0f; // マス移動コスト固定
+			float newH = Heuristic(next->pos.X, next->pos.Y);
+			float newF = newG + newH;
+
+			if (newF < next->TotalCost)
+			{
+				next->TotalCost = newF;
+				next->HeuristicCost = newH;
+				next->parent = current;
+				open.push(next);
+			}
+		}
+	}
+
+	// ---- 経路復元 ----
+	list<Cell> route;
+	Node* node = &Graph[goalPos.Y][goalPos.X];
+
+	if (node->parent == nullptr)
+		return route; // 経路なし
+
+	while (node)
+	{
+		route.push_front(node->pos);
+		node = node->parent;
+	}
+
+	return route;
+}
+
+void BuildGraph(int MX, int MY,const vector<vector<int>>& map,const vector<int>& blockIDs,vector<vector<Node>>& Graph)
+{
+	Graph.resize(MY);
+	for (int y = 0; y < MY; y++)
+		Graph[y].resize(MX);
+
+	const int dx[4] = { 0, -1, 1, 0 };
+	const int dy[4] = { -1, 0, 0, 1 };
+
+	for (int y = 0; y < MY; y++)
+	{
+		for (int x = 0; x < MX; x++)
+		{
+			Node& n = Graph[y][x];
+			n.pos = { x, y };
+			n.AdjucentNodes.clear();
+
+			for (int i = 0; i < 4; i++)
+			{
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+
+				if (nx < 0 || nx >= MX || ny < 0 || ny >= MY)
+					continue;
+
+				bool passable = true;
+				for (int id : blockIDs)
+				{
+					if (map[ny][nx] == id)
+					{
+						passable = false;
+						break;
+					}
+				}
+
+				if (passable)
+					n.AdjucentNodes.push_back(&Graph[ny][nx]);
+			}
+		}
+	}
+}
+
 /*
 //ルート計算(マップサイズx,マップサイズy,スタート位置,ゴール位置,マップデータ配列2次元を1次元化したもの)
 list<Cell> ROUTE_CALCULATION(int MX, int MY, Cell s, Cell g, int* _mp) {

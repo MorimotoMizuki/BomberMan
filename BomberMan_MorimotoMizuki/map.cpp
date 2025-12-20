@@ -28,11 +28,41 @@ CMap::CMap()
 	SetItemNum.resize(ITEM_SUM);
 }
 
+//敵のデータ読み込み
+std::vector<int> CMap::LoadEnemyData(int stage_num)
+{
+	std::vector<int> enemy_data;
+
+	ifstream fp("image\\enemy_data.csv");
+	string str; //読み込んだ文字列
+
+	if (!fp.fail())
+	{
+		for (int y = 0; y < 50 + 1; y++)
+		{
+			getline(fp, str);//1行読み込み
+			if (atoi(str.c_str()) == stage_num) //ステージ番号と同じ
+			{
+				vector<string> strv = split(str, ',');//カンマで分割
+				for (int x = 0; x < ENEMY_VARIATION + 1; x++)
+				{
+					enemy_data.push_back(stoi(strv.at(x)));//文字列を数値に変換して保存
+				}
+				break;
+			}
+		}
+
+		fp.close();//ファイルを閉じる
+	}
+
+	return enemy_data;
+}
+
 //マップデータ読み込み
 void CMap::LoadMap()
 {
 	ifstream fp("image\\map_data.csv");
-	string str; //読み込んだ
+	string str; //読み込んだ文字列
 
 	if (!fp.fail())
 	{
@@ -57,8 +87,11 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	//クラッシュブロックをランダムで設定
 	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
 
+	//敵のデータ読み込み
+	stage_enemy_data = LoadEnemyData(gNowStageNum);
+
 	//敵を生成
-	SetRandomEnemy(StageEnemyNum[gNowStageNum - 1]);
+	SetRandomEnemy(stage_enemy_data);
 
 	//ドアを設置する数を設定
 	SetDoorNum = SetRandomDoorInMap();
@@ -169,6 +202,8 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 			}
 		}
 	}
+
+
 }
 
 //マップにクラッシュブロックをランダムで設定
@@ -313,13 +348,16 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 }
 
 //マップに敵をランダムで生成
-void CMap::SetRandomEnemy(const int enemy[ENEMY_VARIATION + 1])
+void CMap::SetRandomEnemy(std::vector<int> enemy_data)
 {
+	if (enemy_data.size() != ENEMY_VARIATION + 1)
+		return;
+
 	int enemy_cnt[ENEMY_VARIATION]{ 0,0,0,0,0,0,0,0 };
 
 	for (int i = 0; i < ENEMY_VARIATION; i++)
 	{
-		while (enemy_cnt[i] != enemy[i + 1])
+		while (enemy_cnt[i] != enemy_data[i + 1])
 		{
 			int enemyX = Range_Random_Number(1, MAP_CHIP_W - 1);
 			int enemyY = Range_Random_Number(1, MAP_CHIP_H - 1);
@@ -342,9 +380,13 @@ void CMap::SetRandomEnemy(const int enemy[ENEMY_VARIATION + 1])
 }
 
 //ステージごとの敵の合計数を取得
-int CMap::GetStageEnemyTotal(int stageNum)
+int CMap::GetStageEnemyTotal()
 {
-	return std::accumulate(std::begin(StageEnemyNum[stageNum]), std::end(StageEnemyNum[stageNum]), 0);
+	int enemy_sum = 0;
+	for (int i = 1; i < stage_enemy_data.size(); i++) {
+		enemy_sum += stage_enemy_data[i];
+	}
+	return enemy_sum;
 }
 
 //ステージごとのアイテムの合計数を取得

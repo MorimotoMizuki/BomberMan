@@ -46,17 +46,52 @@ int CPass::Action(vector<unique_ptr<BaseVector>>& base)
 	SystemPos = { static_cast<int>((pos.x + ImgWidth / 2) / CHIP_SIZE) ,
 				  static_cast<int>(((pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
 	};
+	//システム上の座標更新 : 左上座標から
+	MapPoint systemPosL = { static_cast<int>((pos.x) / CHIP_SIZE) ,
+							static_cast<int>(((pos.y) - WINDOW_HEADER) / CHIP_SIZE)
+	};
+	//システム上の座標更新 : 右下座標から
+	MapPoint systemPosR = { static_cast<int>((pos.x + ImgWidth - 1 - (SPEED / 2)) / CHIP_SIZE) ,
+							static_cast<int>(((pos.y + ImgHeight - 1 - (SPEED / 2)) - WINDOW_HEADER) / CHIP_SIZE)
+	};
 
-	//爆弾と接触時の座標調整
-	CBaseEnemy::HitBomb_PosAdjustment(base);
+	//マスぴったりにいる場合
+	if (systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y)
+	{
+		if (IsPlayerSamePosXY) {
+			if (ResetSamePosXYCnt > 5)
+			{
+				IsPlayerSamePosXY = false;
+				ResetSamePosXYCnt = 0;
+			}
+			else
+				ResetSamePosXYCnt++;
+		}
+		else {
+			//プレイヤーのx座標かy座標がこの敵のxy座標と同じになった場合
+			if ((p->SystemPos.x == SystemPos.x || p->SystemPos.y == SystemPos.y) && isTrackingPlayer) {
+				IsPlayerSamePosXY = true;
+			}
+		}
+	}
+
+	if (IsPlayerSamePosXY) {
+		TrackingPlayerPercentage = 10;
+	}
+	else {
+		TrackingPlayerPercentage = 2;
+	}
 
 	//プレイヤー追跡処理
-	TrackingPlayerMove(p, CHIP_SIZE / SPEED, &isTrackingPlayer, TrackingParameter, 3);
+	TrackingPlayerMove(p, CHIP_SIZE / SPEED, &isTrackingPlayer, TrackingParameter, TrackingPlayerPercentage);
 
 	if (!isTrackingPlayer) {
 		//ランダム移動処理
 		RandomMove(base, IsPermitDir, 2);
 	}
+
+	//爆弾と接触時の座標調整
+	CBaseEnemy::HitBomb_PosAdjustment(base);
 
 	//座標更新
 	pos = Add_Point_Vector(pos, vec);

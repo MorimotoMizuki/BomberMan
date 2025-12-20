@@ -352,14 +352,20 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackin
 		Cell goal{ p->SystemPos.x, p->SystemPos.y };
 		Cell start{ SystemPos.x, SystemPos.y };
 
-		auto v_map = ArrToVec(gNowMap);
-		//経路の計算
-		list<Cell> last_route = ROUTE_CALCULATION2(MAP_CHIP_W, MAP_CHIP_H, start, goal, v_map, HitMoveObj_Id);
+		MapPoint check_goal{ goal.X, goal.Y };
+		MapPoint check_start{ start.X, start.Y };
 
-		for (auto& x : last_route) {
-			vec_last_route.push_back(x);
-			if (vec_last_route.size() > tracking_parameter.second) //tracking_distanceを超えたら break する
-				break;
+		if (CheckOutsideRangeArea(check_goal) && CheckOutsideRangeArea(check_start))
+		{
+			auto v_map = ArrToVec(gNowMap);
+			//経路の計算
+			list<Cell> last_route = ROUTE_CALCULATION2(MAP_CHIP_W, MAP_CHIP_H, start, goal, v_map, HitMoveObj_Id);
+
+			for (auto& x : last_route) {
+				vec_last_route.push_back(x);
+				if (vec_last_route.size() > tracking_parameter.second) //tracking_distanceを超えたら break する
+					break;
+			}
 		}
 
 		//ルートが2つ以上 かつ　追跡距離範囲内　の場合
@@ -410,14 +416,26 @@ void CBaseEnemy::DrawScore()
 	DrawFormatString(pos.x - Distance + 30.0f, pos.y + 30.0f, GetColor(255, 255, 255), "%d", SCORE);
 }
 
+//マップ範囲内か判定する
+bool CBaseEnemy::CheckOutsideRangeArea(MapPoint system_pos)
+{
+	//マップ範囲内
+	if (system_pos.x < MAP_CHIP_W && system_pos.x >= 0 &&
+		system_pos.y < MAP_CHIP_H && system_pos.y >= 0)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
 //移動できるマスか判定する
 bool CBaseEnemy::CheckMoveArea(MapPoint system_pos, std::vector<Obj_Id> hit_objId)
 {
 	if (hit_objId.empty()) return false;
 
 	//マップ範囲内
-	if (system_pos.x < MAP_CHIP_W - 1 && system_pos.x > 0 &&
-		system_pos.y < MAP_CHIP_H - 1 && system_pos.y > 0)
+	if (CheckOutsideRangeArea(system_pos))
 	{
 		for (int i = 0; i < hit_objId.size(); i++) {
 

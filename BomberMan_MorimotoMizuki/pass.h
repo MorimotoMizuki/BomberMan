@@ -38,4 +38,11 @@ private:
 
 	//プレイヤー追跡パラメータ
 	std::pair<bool, int> TrackingParameter = std::make_pair<bool, int>(false, 2);
+
+	//プレイヤーの座標のXYのどちらかがオブジェクトと同じ座標フラグ
+	bool IsPlayerSamePosXY{ false };
+	// ↑ のフラグリセット用
+	int ResetSamePosXYCnt{ 0 };
+
+	int TrackingPlayerPercentage{ 0 };
 };

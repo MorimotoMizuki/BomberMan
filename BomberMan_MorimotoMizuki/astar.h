@@ -7,6 +7,13 @@
 #pragma once
 #include "objBase.h"
 #include <vector>
+
+#include <list>
+#include <queue>
+#include <cmath>
+#include <cfloat>
+#include <cstdlib>
+
 using namespace std;
 
 template<size_t H,size_t W>
@@ -54,6 +61,10 @@ struct Node
 	vector<Node*> AdjucentNodes;//隣接するノード
 	float HeuristicCost;//ヒューリスティックコスト
 	float TotalCost;//コスト(ヒューリスティックコスト込み)
+
+	// 軽量化用
+	bool closed;                      // close_list代替
+	Node* parent;                     // 経路復元用
 };
 
 // 昇順ソート用関数
@@ -73,3 +84,36 @@ list<Cell> ROUTE_CALCULATION(Cell, Cell);
 //list<Cell> ROUTE_CALCULATION(int, int, Cell, Cell, int*);
 //ルート計算(マップサイズx,マップサイズy,スタート位置,ゴール位置,マップデータvector型)
 list<Cell> ROUTE_CALCULATION2(int, int, Cell, Cell, vector<vector<int>>,vector<Obj_Id> cost_obj_id); // <- vector<Obj_Id> cost_obj_id 変更
+
+//--------------------------------------
+// priority_queue 比較用
+//--------------------------------------
+struct NodeCompare
+{
+	bool operator()(const Node* a, const Node* b) const
+	{
+		return a->TotalCost > b->TotalCost;
+	}
+};
+
+//--------------------------------------
+// グラフ構築（1回だけ呼ぶ）
+//--------------------------------------
+void BuildGraph(
+	int MX,
+	int MY,
+	const vector<vector<int>>& map,
+	const vector<int>& blockIDs,
+	vector<vector<Node>>& Graph
+);
+
+//--------------------------------------
+// 軽量A*探索
+//--------------------------------------
+list<Cell> AStar_Search_Fast(
+	int MX,
+	int MY,
+	Cell startPos,
+	Cell goalPos,
+	vector<vector<Node>>& Graph
+);

@@ -3,6 +3,8 @@
 ボンバーマンキャラクター詳細のURL
 https://famicom1252.blogspot.com/2016/01/blog-post.html
 
+https://pidlio.com/bomberman/?utm_source=chatgpt.com
+
 ・プレイヤー
 	上下左右移動
 	爆弾の設置(上限あり)

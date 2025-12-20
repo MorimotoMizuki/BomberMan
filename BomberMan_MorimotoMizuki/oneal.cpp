@@ -88,8 +88,8 @@ void COneal::Draw()
 	if (IsDrawScore)
 		DrawScore();
 
-	if (isTrackingPlayer)
-		DrawBox(pos.x - Distance, pos.y, pos.x - Distance + CHIP_SIZE, pos.y + CHIP_SIZE, GetColor(255, 0, 0), false);
+	//if (isTrackingPlayer)
+	//	DrawBox(pos.x - Distance, pos.y, pos.x - Distance + CHIP_SIZE, pos.y + CHIP_SIZE, GetColor(255, 0, 0), false);
 }
 
 COneal::~COneal()

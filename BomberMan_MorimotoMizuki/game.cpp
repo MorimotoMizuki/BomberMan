@@ -24,7 +24,7 @@ int gNowMap[MAP_CHIP_H + 1][MAP_CHIP_W + 1] = { 0 };
 GamePhaseId gGamePhase{ GamePhaseId::IDLE };
 
 //現在のステージ番号
-int gNowStageNum{ 1 };
+int gNowStageNum{ 3 };
 
 //敵を倒した数
 int gKillEnemyNum{ 0 };
@@ -44,7 +44,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	map->Map_Obj_Creation(base);//マップ生成
 
 	//敵の合計数を取得
-	EnemySum = map->GetStageEnemyTotal(gNowStageNum);
+	EnemySum = map->GetStageEnemyTotal();
 
 	//プレイヤー生成
 	base.emplace_back((unique_ptr<BaseVector>)new CPlayer());
