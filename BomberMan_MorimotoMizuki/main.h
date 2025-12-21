@@ -51,6 +51,9 @@ constexpr auto MAX_PUT_BOMB_NUM = 10;
 //敵の種類
 constexpr auto ENEMY_VARIATION = 8;
 
+//アイテムの種類
+constexpr auto ITEM_VARIATION = 8;
+
 //プレイヤーの初期スピード
 constexpr auto PLAYER_SPEED = 4.0f;
 
@@ -89,6 +92,16 @@ struct Vector3 {
 	 int bombLevel;
 	 //スコア
 	 int score;
+	 //リモコンフラグ
+	 bool isRemoteController;
+	 //爆弾通過フラグ
+	 bool isBombPass;
+	 //壁通過フラグ
+	 bool isWallPass;
+	 //火炎バリアフラグ
+	 bool isFlameBarrier;
+	 //パーフェクトマンフラグ
+	 bool isPerfectMan;
  };
 
 //プレイヤーのステータス
@@ -110,6 +123,9 @@ extern int gKillEnemyNum;
 
 //敵の描画順番
 extern int gEnemyPri;
+
+//爆弾を爆発させるフラグ
+extern bool gIsBombExplosion;
 
 //カメラ情報クラス(main.h)
 //class CCameraInfo {

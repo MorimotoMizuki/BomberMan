@@ -14,16 +14,19 @@ CBlock::CBlock(Point p, MapPoint system_p, int No, int _img, Item_Id item_id)
 	CutX = (No % 16) * ImgWidth;
 	CutY = (No / 16) * ImgHeight;
 
-	tipNo = No;
-
-	if (tipNo == 1)
-		LoadDivGraph("image\\block_anim.png", CRASH_IMG_NUM, 2, 1, IMGSIZE64, IMGSIZE64, CrashAnimImgHandle);
+	SystemPos = system_p;
 
 	ItemId = item_id; //ƒAƒCƒeƒ€ID“o˜^
 
-	SystemPos = system_p;
+	tipNo = No;
 
-	ID  = Obj_Id::BLOCK;
+	if (tipNo == static_cast<int>(Obj_Id::CRASH_BLOCK)) {
+		LoadDivGraph("image\\block_anim.png", CRASH_IMG_NUM, 2, 1, IMGSIZE64, IMGSIZE64, CrashAnimImgHandle);
+		ID = Obj_Id::CRASH_BLOCK;
+	}
+	else {
+		ID = Obj_Id::BLOCK;
+	}
 	pri = Pri_Id::pBLOCK;
 }
 

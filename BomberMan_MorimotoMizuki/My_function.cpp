@@ -42,6 +42,11 @@ bool Key_Check(Move_Id move_id)
 			return true;
 
 		break;
+	case B_KEY:
+		if (CheckHitKey(KEY_INPUT_B))
+			return true;
+
+		break;
 	case ALL_KEY:
 		if (CheckHitKeyAll() || pad)
 			return true;
@@ -67,4 +72,10 @@ void HitCheck_Box_Circle(BaseVector* a, BaseVector* b, float radius, float dista
 		a->vec.x -= (int)v.x;
 		a->vec.y -= (int)v.y;
 	}
+}
+
+//プレイヤーのステータスをリセット
+void ResetPlayerStatus()
+{
+
 }

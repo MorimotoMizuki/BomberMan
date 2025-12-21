@@ -90,5 +90,5 @@ private:
 	PlayerStateId PlayerState{ PlayerStateId::PLAYplayer };
 
 	//ÉLÅ[ï€ë∂óp
-	bool KeyCheck[1]{ false };
+	bool KeyCheck[2]{ false, false };
 };

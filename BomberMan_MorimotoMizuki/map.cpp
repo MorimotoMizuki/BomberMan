@@ -24,8 +24,6 @@ CMap::CMap()
 {
 	//マップチップ画像読み込み
 	img = LoadGraph("image\\map_chip.png");
-
-	SetItemNum.resize(ITEM_SUM);
 }
 
 //敵のデータ読み込み
@@ -56,6 +54,36 @@ std::vector<int> CMap::LoadEnemyData(int stage_num)
 	}
 
 	return enemy_data;
+}
+
+//アイテムのデータ読み込み
+std::vector<int> CMap::LoadItemData(int stage_num)
+{
+	std::vector<int> item_data;
+
+	ifstream fp("image\\item_data.csv");
+	string str; //読み込んだ文字列
+
+	if (!fp.fail())
+	{
+		for (int y = 0; y < 50 + 1; y++)
+		{
+			getline(fp, str);//1行読み込み
+			if (atoi(str.c_str()) == stage_num) //ステージ番号と同じ
+			{
+				vector<string> strv = split(str, ',');//カンマで分割
+				for (int x = 1; x < ITEM_VARIATION + 1; x++)
+				{
+					item_data.push_back(stoi(strv.at(x)));//文字列を数値に変換して保存
+				}
+				break;
+			}
+		}
+
+		fp.close();//ファイルを閉じる
+	}
+
+	return item_data;
 }
 
 //マップデータ読み込み
@@ -90,13 +118,17 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 	//敵のデータ読み込み
 	stage_enemy_data = LoadEnemyData(gNowStageNum);
 
+	//アイテムのデータ読み込み
+	stage_item_data = LoadItemData(gNowStageNum);
+
 	//敵を生成
 	SetRandomEnemy(stage_enemy_data);
 
 	//ドアを設置する数を設定
 	SetDoorNum = SetRandomDoorInMap();
 
-	SetRandomItemInMap();
+	//アイテムを設置する数を設定
+	SetItemNum = SetRandomItemInMap(stage_item_data);
 
 	int crashBlockNum = 0;
 	bool isDoorSet = false;
@@ -114,22 +146,23 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 			MapPoint s_p{ x, y };
 
 			int point = gNowMap[y][x];
-			bool isBreak{ false };
-			//アイテムID登録
-			for (int i = 0; i < ITEM_SUM; i++){
-				for (int cblockNum : SetItemNum[i]){
 
+			for (int i = 0; i < SetItemNum.size(); i++) {
+
+				if (SetItemNum[i].empty())
+					continue;
+				bool isBreak{ false };
+				for (int item_num : SetItemNum[i]) {
 					//すでに選ばれた場合は無視
-					if (used.count(cblockNum))continue;
+					if (used.count(item_num))continue;
 
-					if (cblockNum == crashBlockNum){
+					if (item_num == crashBlockNum) {
 						item_id = i;
 						isBreak = true;
 						break;
 					}
-					else{
+					else
 						item_id = -1;
-					}
 				}
 				if (isBreak) break;
 			}
@@ -202,8 +235,6 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 			}
 		}
 	}
-
-
 }
 
 //マップにクラッシュブロックをランダムで設定
@@ -240,37 +271,95 @@ int CMap::SetRandomDoorInMap()
 }
 
 //マップにアイテムをランダムで設定
-void CMap::SetRandomItemInMap()
+std::vector<std::vector<int>> CMap::SetRandomItemInMap(std::vector<int> stage_item_data)
 {
+	std::vector<std::vector<int>> set_item_num;
+
+	set_item_num.resize(ITEM_VARIATION);
+
 	int itemTotal = GetStageItemTotal(gNowStageNum - 1);
 	int itemIndex = 0;
 
 	//すでに使われた itemNum を記録する
 	std::unordered_set<int> used;
 
-	//火力
-	for (int i = 0; i < ITEM_SUM; i++)
+	used.insert(SetDoorNum); //ドアの位置を使用済みに登録
+
+	for (int i = 0; i < stage_item_data.size(); i++)
 	{
 		itemIndex = 0;
-		while (itemIndex < StageItemNum[gNowStageNum - 1][i])
+		while (itemIndex < stage_item_data[i])
 		{
 			int itemNum = Range_Random_Number(1, CrashBlockNum);
 
 			//すでに選ばれた場合は無視
 			if (used.count(itemNum))continue;
 
-			if (itemNum != SetDoorNum) {
-				SetItemNum[i].push_back(itemNum);
-				used.insert(itemNum); //使用済みに登録
-				itemIndex++;
-			}
+			set_item_num[i].push_back(itemNum);
+			used.insert(itemNum); //使用済みに登録
+			itemIndex++;
 		}
 	}
 
 	//昇順にソート
-	for (auto& itemList : SetItemNum) {
+	for (auto& itemList : set_item_num) {
 		std::sort(itemList.begin(), itemList.end());
 	}
+
+	return set_item_num;
+}
+
+//マップに敵をランダムで生成
+void CMap::SetRandomEnemy(std::vector<int> enemy_data)
+{
+	if (enemy_data.size() != ENEMY_VARIATION + 1)
+		return;
+
+	int enemy_cnt[ENEMY_VARIATION]{ 0,0,0,0,0,0,0,0 };
+
+	for (int i = 0; i < ENEMY_VARIATION; i++)
+	{
+		while (enemy_cnt[i] != enemy_data[i + 1])
+		{
+			int enemyX = Range_Random_Number(1, MAP_CHIP_W - 1);
+			int enemyY = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+			//設定した除外座標だった場合はコンテニュー
+			if ((enemyX == ExclusionPoint[0].x && enemyY == ExclusionPoint[0].y) ||
+				(enemyX == ExclusionPoint[1].x && enemyY == ExclusionPoint[1].y) ||
+				(enemyX == ExclusionPoint[2].x && enemyY == ExclusionPoint[2].y))
+				continue;
+
+			if (gNowMap[enemyY][enemyX] == -1)
+			{
+				gNowMap[enemyY][enemyX] = i + 10;// +10 で敵のIDにする
+				enemy_cnt[i]++;
+			}
+			else
+				continue;
+		}
+	}
+}
+
+//ステージごとの敵の合計数を取得
+int CMap::GetStageEnemyTotal()
+{
+	int enemy_sum = 0;
+	for (int i = 1; i < stage_enemy_data.size(); i++) {
+		enemy_sum += stage_enemy_data[i];
+	}
+	return enemy_sum;
+}
+
+//ステージごとのアイテムの合計数を取得
+int CMap::GetStageItemTotal(int stageNum)
+{
+	int item_sum = 0;
+	for (int i = 0; i < stage_item_data.size(); i++) {
+		item_sum += stage_item_data[i];
+	}
+	return item_sum;
+	//return std::accumulate(std::begin(StageItemNum[stageNum]), std::end(StageItemNum[stageNum]), 0);
 }
 
 //マップ更新処理
@@ -345,52 +434,4 @@ void CMap::Action(vector<unique_ptr<BaseVector>>& base)
 	//	p->pos.x = p->m_pos.x - camera_pos.x + DRAW_CHIP_W * CHIP_SIZE / 2;
 	//	p->pos.y = p->m_pos.y - camera_pos.y + DRAW_CHIP_H * CHIP_SIZE / 2;
 	//}
-}
-
-//マップに敵をランダムで生成
-void CMap::SetRandomEnemy(std::vector<int> enemy_data)
-{
-	if (enemy_data.size() != ENEMY_VARIATION + 1)
-		return;
-
-	int enemy_cnt[ENEMY_VARIATION]{ 0,0,0,0,0,0,0,0 };
-
-	for (int i = 0; i < ENEMY_VARIATION; i++)
-	{
-		while (enemy_cnt[i] != enemy_data[i + 1])
-		{
-			int enemyX = Range_Random_Number(1, MAP_CHIP_W - 1);
-			int enemyY = Range_Random_Number(1, MAP_CHIP_H - 1);
-
-			//設定した除外座標だった場合はコンテニュー
-			if ((enemyX == ExclusionPoint[0].x && enemyY == ExclusionPoint[0].y) ||
-				(enemyX == ExclusionPoint[1].x && enemyY == ExclusionPoint[1].y) ||
-				(enemyX == ExclusionPoint[2].x && enemyY == ExclusionPoint[2].y))
-				continue;
-
-			if (gNowMap[enemyY][enemyX] == -1)
-			{
-				gNowMap[enemyY][enemyX] = i + 10;// +10 で敵のIDにする
-				enemy_cnt[i]++;
-			}
-			else
-				continue;
-		}
-	}
-}
-
-//ステージごとの敵の合計数を取得
-int CMap::GetStageEnemyTotal()
-{
-	int enemy_sum = 0;
-	for (int i = 1; i < stage_enemy_data.size(); i++) {
-		enemy_sum += stage_enemy_data[i];
-	}
-	return enemy_sum;
-}
-
-//ステージごとのアイテムの合計数を取得
-int CMap::GetStageItemTotal(int stageNum)
-{
-	return std::accumulate(std::begin(StageItemNum[stageNum]), std::end(StageItemNum[stageNum]), 0);
 }

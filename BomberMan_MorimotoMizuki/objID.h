@@ -85,6 +85,7 @@ enum Move_Id
 	SPACE,	//スペースキー
 	LEFT_CLICK,	//マウス左クリック
 	ENTER,	//エンターキー
+	B_KEY,	//Bボタン
 	ALL_KEY,//全てのキー入力
 	NONE_KEY,
 };

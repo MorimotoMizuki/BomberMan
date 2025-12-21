@@ -28,6 +28,11 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		gPlayerStatus.bombLevel = 1;
 		gPlayerStatus.bombPutNum = 1;
 		gPlayerStatus.speed = PLAYER_SPEED;
+		gPlayerStatus.isBombPass = false;
+		gPlayerStatus.isFlameBarrier = false;
+		gPlayerStatus.isPerfectMan = false;
+		gPlayerStatus.isRemoteController = false;
+		gPlayerStatus.isWallPass = false;
 
 	}
 	//ƒQ[ƒ€ƒNƒŠƒA‚Ìê‡

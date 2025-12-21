@@ -10,9 +10,14 @@
 PlayerStatus gPlayerStatus = {
 	2,		//life
 	PLAYER_SPEED,	//speed
-	1,		//bombPutNum
+	2,		//bombPutNum
 	1,		//bombLevel
 	0,		//スコア
+	true,	//リモコンフラグ
+	false,	//爆弾通過フラグ
+	false,	//壁通過フラグ
+	false,	//火炎バリアフラグ
+	false,	//パーフェクトマンフラグ
 };
 //現在の設置している爆弾の数
 int gNowBombNum = 0;
@@ -24,13 +29,16 @@ int gNowMap[MAP_CHIP_H + 1][MAP_CHIP_W + 1] = { 0 };
 GamePhaseId gGamePhase{ GamePhaseId::IDLE };
 
 //現在のステージ番号
-int gNowStageNum{ 3 };
+int gNowStageNum{ 1 };
 
 //敵を倒した数
 int gKillEnemyNum{ 0 };
 
 //敵の描画順番
 int gEnemyPri{ Pri_Id::pENEMY };
+
+//爆弾を爆発させるフラグ
+bool gIsBombExplosion{ false };
 
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
@@ -55,6 +63,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	//初期化
 	gKillEnemyNum = 0; //倒した敵の数
 	gPlayerStatus.score = 0; //スコア
+	gNowBombNum = 0;
 
 	Time = 200 * 60;
 }
@@ -137,6 +146,8 @@ void CGame::Draw()
 		DrawExtendFormatString(timePos.x + distance, timePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "TIME %d", Time / 60);
 		DrawExtendFormatString(timePos.x, timePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "TIME %d", Time / 60);
 	}
+
+	DrawFormatString(0, 0, GetColor(0, 0, 0), "%d", gNowBombNum);
 
 	//vectorオブジェクトの描画
 	for (int i = 0; i < base.size(); i++)

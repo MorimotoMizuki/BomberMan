@@ -36,6 +36,13 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//プレイヤーの移動処理
 	Move_Id dir = PlayerMove();
 
+	//リモコンフラグがtrue の場合　かつ 爆弾が設置されている場合
+	if (gPlayerStatus.isRemoteController && gNowBombNum > 0) {
+		if (Key_Check(Move_Id::B_KEY) && !KeyCheck[1]) {
+			gIsBombExplosion = true;
+		}
+	}
+
 	//プレイヤーの当たり判定
 	PlayerHit(base);
 
@@ -75,6 +82,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	PutExplosion(base);
 
 	KeyCheck[0] = Key_Check(Move_Id::SPACE);
+	KeyCheck[1] = Key_Check(Move_Id::B_KEY);
 
 	return 0;
 }
@@ -121,32 +129,36 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 			continue;
 
 		//ブロックとの判定 : 行動制限のみ
-		if (base[i]->ID == BLOCK)
+		if (base[i]->ID == Obj_Id::BLOCK)
 		{
-			if (((CBlock*)base[i].get())->tipNo >= 0)
-			{
+			HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+		}
+		else if (base[i]->ID == Obj_Id::CRASH_BLOCK)
+		{
+			if(gPlayerStatus.isWallPass == false)
 				HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
-			}
 		}
 		//爆弾との判定 : 行動制限のみ
 		else if (base[i]->ID == BOMB)
 		{
-			//システム上の座標 : 左上の座標から
-			MapPoint systemPosL = { static_cast<int>(m_pos.x / CHIP_SIZE) ,
-								   static_cast<int>((m_pos.y - WINDOW_HEADER) / CHIP_SIZE)
-			};
-			//システム上の座標 : 右下の座標から
-			MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth  - 1) / CHIP_SIZE) ,
-								   static_cast<int>(((m_pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
-			};
-			if (IsValidMapPos(systemPosL) && IsValidMapPos(systemPosR))
-			{
-				//左上の座標と右下の座標と中心座標のどちらも爆弾がない場合
-				if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
-					(gNowMap[systemPosR.y][systemPosR.x] != BOMB) && 
-					(gNowMap[SystemPos.y][SystemPos.x] != BOMB))
+			if (gPlayerStatus.isBombPass == false) {
+				//システム上の座標 : 左上の座標から
+				MapPoint systemPosL = { static_cast<int>(m_pos.x / CHIP_SIZE) ,
+									   static_cast<int>((m_pos.y - WINDOW_HEADER) / CHIP_SIZE)
+				};
+				//システム上の座標 : 右下の座標から
+				MapPoint systemPosR = { static_cast<int>((m_pos.x + ImgWidth - 1) / CHIP_SIZE) ,
+									   static_cast<int>(((m_pos.y + ImgHeight - 1) - WINDOW_HEADER) / CHIP_SIZE)
+				};
+				if (IsValidMapPos(systemPosL) && IsValidMapPos(systemPosR))
 				{
-					HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+					//左上の座標と右下の座標と中心座標のどちらも爆弾がない場合
+					if ((gNowMap[systemPosL.y][systemPosL.x] != BOMB) &&
+						(gNowMap[systemPosR.y][systemPosR.x] != BOMB) &&
+						(gNowMap[SystemPos.y][SystemPos.x] != BOMB))
+					{
+						HitCheck_Box_Circle(this, base[i].get(), 32, Distance);
+					}
 				}
 			}
 		}
@@ -250,13 +262,6 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	//爆弾の個数が設置可能個数以上の場合は終了
 	if (gNowBombNum >= gPlayerStatus.bombPutNum)
 		return;
-
-	//一つのブロックの情報を取得
-	CBlock* b = (CBlock*)Get_obj(base, BLOCK);
-	int bMapX = b->pos.x / CHIP_SIZE;
-
-	//爆弾を置くシステム上の座標を計算
-	MapPoint putMapPos = { (m_pos.x + ImgWidth / 2) / CHIP_SIZE, ((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE };
 
 	IsPutBomb = true;
 

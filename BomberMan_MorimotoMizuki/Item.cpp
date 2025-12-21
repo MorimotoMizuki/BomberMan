@@ -52,6 +52,7 @@ CItem::~CItem()
 //アイテム削除
 void CItem::DeleteItem()
 {
+	gPlayerStatus.score += 1000; //スコア加算
 	FLAG = false;
 }
 
@@ -86,31 +87,36 @@ void CItem::BombAction()
 //爆弾がBボタンで自由に爆発可能	: コンドリア
 void CItem::RemoteControllerAction()
 {
+	gPlayerStatus.isRemoteController = true;
 	DeleteItem();
 }
 //移動速度アップ				: ダル
 void CItem::BootsAction()
 {
+	gPlayerStatus.speed += PLAYER_SPEED / 2;
 	DeleteItem();
 }
 //爆弾の上を歩けるようになる	: オバピー
 void CItem::BombPassingAction()
 {
-	DeleteItem();	DeleteItem();
-
+	gPlayerStatus.isBombPass = true;
+	DeleteItem();
 }
 //壁の上を歩けるようになる		: ミンボー
 void CItem::WallPassingAction()
 {
+	gPlayerStatus.isWallPass = true;
 	DeleteItem();
 }
 //爆風で死ななくなる			: バース
 void CItem::FlameBarrierAction()
 {
+	gPlayerStatus.isFlameBarrier = true;
 	DeleteItem();
 }
 //30秒間無敵になる				: ポンタン
 void CItem::PerfectManAction()
 {
+	gPlayerStatus.isPerfectMan = true;
 	DeleteItem();
 }

@@ -16,9 +16,6 @@ public:
 	//クラッシュブロックが生成される確率 1 = 10%
 	static constexpr auto CREATE_CRASH_BLOCK_PROBABILITY = 3;
 
-	//アイテムの数
-	static constexpr auto ITEM_SUM = 1;
-
 	//クラッシュブロックの生成から除外する座標
 	static constexpr MapPoint ExclusionPoint[3] = {
 		{1,1},
@@ -26,17 +23,20 @@ public:
 		{1,2}
 	};
 
-	//ステージのアイテムの数 : (火力, 爆弾, リモコン, ブーツ, 爆弾通過, 壁通過, 火炎バリア, パーフェクトマン)
-	static constexpr int StageItemNum[STAGE_SUM][ITEM_SUM] = {
-		{1},
-		{1},
-		{1},
-	};
+	////ステージのアイテムの数 : (火力, 爆弾, リモコン, ブーツ, 爆弾通過, 壁通過, 火炎バリア, パーフェクトマン)
+	//static constexpr int StageItemNum[STAGE_SUM][ITEM_SUM] = {
+	//	{1},
+	//	{1},
+	//	{1},
+	//};
 
 private:
 
 	//ステージの敵のデータ
 	std::vector<int> stage_enemy_data;
+
+	//ステージのアイテムのデータ
+	std::vector<int> stage_item_data;
 
 	//マップチップ画像
 	int img;
@@ -62,6 +62,8 @@ public:
 
 	//敵のデータ読み込み
 	std::vector<int> LoadEnemyData(int stage_num);
+	//アイテムのデータ読み込み
+	std::vector<int> LoadItemData(int stage_num);
 
 	//マップデータ読み込み
 	void LoadMap();
@@ -77,7 +79,7 @@ public:
 	int SetRandomDoorInMap();
 
 	//マップにアイテムをランダムで設定
-	void SetRandomItemInMap();
+	std::vector<std::vector<int>> SetRandomItemInMap(std::vector<int> stage_item_data);
 
 	//マップに敵をランダムで生成 : 敵の出現数の配列
 	void SetRandomEnemy(std::vector<int> enemy_data);

@@ -55,6 +55,9 @@ void CExplosion::Draw()
 
 CExplosion::~CExplosion()
 {
+	//現在設置している爆弾の数 : 減少
+	gNowBombNum--;
+
 	for (int i = 0; i < EXPLOSION_IMG_NUM; i++)
 		DeleteGraph(ExplosionImgHandle[i]);
 }
@@ -122,6 +125,9 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 	}
 
 	if (IsEnd) return;
+
+	if (gPlayerStatus.isFlameBarrier)
+		return;
 
 	//プレイヤーとの判定
 	//プレイヤーを取得
