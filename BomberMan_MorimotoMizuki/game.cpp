@@ -13,7 +13,7 @@ PlayerStatus gPlayerStatus = {
 	2,		//bombPutNum
 	1,		//bombLevel
 	0,		//スコア
-	true,	//リモコンフラグ
+	false,	//リモコンフラグ
 	false,	//爆弾通過フラグ
 	false,	//壁通過フラグ
 	false,	//火炎バリアフラグ
@@ -146,8 +146,6 @@ void CGame::Draw()
 		DrawExtendFormatString(timePos.x + distance, timePos.y + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "TIME %d", Time / 60);
 		DrawExtendFormatString(timePos.x, timePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "TIME %d", Time / 60);
 	}
-
-	DrawFormatString(0, 0, GetColor(0, 0, 0), "%d", gNowBombNum);
 
 	//vectorオブジェクトの描画
 	for (int i = 0; i < base.size(); i++)

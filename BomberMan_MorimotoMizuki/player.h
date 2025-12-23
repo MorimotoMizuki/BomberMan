@@ -91,4 +91,7 @@ private:
 
 	//キー保存用
 	bool KeyCheck[2]{ false, false };
+
+	//パーフェクトマン用のカウント
+	int PerfectManCnt{ 0 };
 };

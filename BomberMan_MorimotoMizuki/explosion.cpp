@@ -126,7 +126,11 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 
 	if (IsEnd) return;
 
+	//火炎バリアフラグが true の場合は終了
 	if (gPlayerStatus.isFlameBarrier)
+		return;
+	//パーフェクトマンフラグが true の場合は終了
+	if (gPlayerStatus.isPerfectMan)
 		return;
 
 	//プレイヤーとの判定

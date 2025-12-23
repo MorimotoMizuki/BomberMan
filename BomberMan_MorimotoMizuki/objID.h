@@ -45,8 +45,8 @@ enum Item_Id
 enum Pri_Id
 {
 	pGOAL,
-	pBLOCK,
 	pITEM,
+	pBLOCK,
 	pBOMB,
 	pEXPLOSION,
 	pPLAYER,

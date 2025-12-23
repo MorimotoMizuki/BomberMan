@@ -33,6 +33,16 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	if (gGamePhase != GamePhaseId::PLAING)
 		return 0;
 
+	//パーフェクトマン処理
+	if (gPlayerStatus.isPerfectMan) {
+		PerfectManCnt++;
+
+		if (PerfectManCnt > 30 * 60) {
+			gPlayerStatus.isPerfectMan = false;
+			PerfectManCnt = 0;
+		}
+	}
+
 	//プレイヤーの移動処理
 	Move_Id dir = PlayerMove();
 
@@ -94,12 +104,10 @@ void CPlayer::Draw()
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
 	
-	//DrawFormatString(WINDOW_WIDTH / 2 + 300, 50, GetColor(255, 255, 255), "x:%f y:%f\nx:%f y:%f", m_pos.x, m_pos.y - WINDOW_HEADER, m_pos.x + ImgWidth - 1, m_pos.y + ImgHeight - WINDOW_HEADER -1 );
-
 	//デバッグ
 	//DrawFormatString(WINDOW_WIDTH/2 + 300, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
 
-	//DrawFormatString(WINDOW_WIDTH / 2, 50, GetColor(255, 255, 255), "%d\n%d", SystemPos.x, SystemPos.y);
+	DrawFormatString(WINDOW_WIDTH / 2, 0, GetColor(255, 255, 255), "%d", gPlayerStatus.isPerfectMan);
 }
 
 CPlayer::~CPlayer()
@@ -170,7 +178,8 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBaseEnemy*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBaseEnemy*)base[i].get())->SystemPos.y)
 				{
-					//SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+					if(gPlayerStatus.isPerfectMan == false) //パーフェクトマンフラグが false の場合
+						SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}

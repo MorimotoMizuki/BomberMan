@@ -71,10 +71,8 @@ int CTitle::Update()
 			switch (TitleComId)
 			{
 			case TitleCommandId::START_COM:
-				//シーンの削除
-				manager->Scene_Delete();
-				//ゲームシーンに移行 : シーンを作成
-				manager->scene = new CGame(manager);
+				//ステージ移動状態にする
+				ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
 				return 0;
 				break;
 			case TitleCommandId::CONTINUE_COM:
