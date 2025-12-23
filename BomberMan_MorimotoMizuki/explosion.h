@@ -83,4 +83,7 @@ private:
 		{0,0},
 		{0,0},
 	};
+
+	//サウンド用
+	int SE_BombExplosion{ -1 };
 };

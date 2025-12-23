@@ -6,6 +6,11 @@ CPlayer::CPlayer()
 {
 	LoadDivGraph("image\\player.png", PLAYER_IMG_NUM, 3, 6, IMGSIZE16, IMGSIZE16, PlayerImgHandle);
 
+	//サウンド読み込み
+	SE_PutBomb = LoadSoundMem("sound\\BombPut.wav");
+	SE_PlayerDeadStart = LoadSoundMem("sound\\PlayerDeadStart_SE.wav");
+	SE_PlayerDead = LoadSoundMem("sound\\PlayerDead.wav");
+
 	ImgWidth  = CHIP_SIZE;
 	ImgHeight = CHIP_SIZE;
 
@@ -105,15 +110,17 @@ void CPlayer::Draw()
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
 	
 	//デバッグ
-	//DrawFormatString(WINDOW_WIDTH/2 + 300, 50, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
-
-	DrawFormatString(WINDOW_WIDTH / 2, 0, GetColor(255, 255, 255), "%d", gPlayerStatus.isPerfectMan);
+	//DrawFormatString(WINDOW_WIDTH/2 + 300, 0, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
 }
 
 CPlayer::~CPlayer()
 {
 	for (int i = 0; i < PLAYER_IMG_NUM; i++)
 		DeleteGraph(PlayerImgHandle[i]);
+
+	DeleteSoundMem(SE_PutBomb);
+	DeleteSoundMem(SE_PlayerDeadStart);
+	DeleteSoundMem(SE_PlayerDead);
 }
 
 //安全な座標かチェックする
@@ -272,6 +279,9 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	if (gNowBombNum >= gPlayerStatus.bombPutNum)
 		return;
 
+	//SE再生
+	PlaySoundMem(SE_PutBomb, DX_PLAYTYPE_BACK);
+
 	IsPutBomb = true;
 
 	//現在のマップに爆弾を配置
@@ -287,6 +297,11 @@ void CPlayer::PlayerDead()
 	if (PlayerState != PlayerStateId::DEADplayer)
 		return;
 
+	if (!IsPlayerDeadStartSE) {
+		PlaySoundMem(SE_PlayerDeadStart, DX_PLAYTYPE_BACK);
+		IsPlayerDeadStartSE = true;
+	}
+
 	//ベクトルを初期化
  	vec.x = 0.0f;
 	vec.y = 0.0f;
@@ -298,5 +313,8 @@ void CPlayer::PlayerDead()
 		//描画しない
 		draw_flag = false;
 		PlayerState = PlayerStateId::NONEplayer;
+
+		//SE再生
+		PlaySoundMem(SE_PlayerDead, DX_PLAYTYPE_BACK);
 	}
 }

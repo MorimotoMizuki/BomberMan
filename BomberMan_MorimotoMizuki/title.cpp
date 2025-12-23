@@ -9,6 +9,11 @@
 //コンストラクタ
 CTitle::CTitle(CManager* p) :CScene(p)
 {
+	//サウンド読み込み
+	BGM_Normal = LoadSoundMem("sound\\Title.wav");
+	BGM_GameOver = LoadSoundMem("sound\\GameOver.wav");
+	SE_StageStart = LoadSoundMem("sound\\StageStart.wav");
+
 	//ゲームオーバーの場合
 	if (gGamePhase == GamePhaseId::GAMEOVER)
 	{
@@ -16,6 +21,9 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		{
 			ScreenPhase = ScreenPhaseId::GAMEOVER_screen; //ゲームオーバースクリーンにする
 			gPlayerStatus.life = 2; //(仮) ライフ 2 設定
+
+			//ゲームオーバーの BGM 再生
+			PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK);
 		}
 		else
 		{
@@ -33,7 +41,6 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		gPlayerStatus.isPerfectMan = false;
 		gPlayerStatus.isRemoteController = false;
 		gPlayerStatus.isWallPass = false;
-
 	}
 	//ゲームクリアの場合
 	else if (gGamePhase == GamePhaseId::GAMECLEAR)
@@ -41,6 +48,11 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		if(gNowStageNum < STAGE_SUM)
 			gNowStageNum++;
 		ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+	}
+	else
+	{
+		//通常BGMをループで再生
+		PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP);
 	}
 }
 
@@ -73,6 +85,10 @@ int CTitle::Update()
 			case TitleCommandId::START_COM:
 				//ステージ移動状態にする
 				ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+				//BGM が再生中なら停止
+				if (CheckSoundMem(BGM_Normal)) {
+					StopSoundMem(BGM_Normal);
+				}
 				return 0;
 				break;
 			case TitleCommandId::CONTINUE_COM:
@@ -82,6 +98,10 @@ int CTitle::Update()
 		}
 		case ScreenPhaseId::GAMEOVER_screen: {
 			ScreenPhase = ScreenPhaseId::TITLE_screen;
+			if (CheckSoundMem(BGM_GameOver)) {
+				StopSoundMem(BGM_GameOver); //ゲームオーバーBGMを停止
+			}
+			PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP); //通常BGMをループ再生
 			break;
 		}
 		}
@@ -90,7 +110,7 @@ int CTitle::Update()
 	//ステージ移動状態の場合
 	if (ScreenPhase == ScreenPhaseId::STAGE_TO_screen) {
 
-		if (TimerCnt >= 120)
+		if (TimerCnt >= 3 * 60)
 		{
 			//シーンの削除
 			manager->Scene_Delete();
@@ -98,8 +118,13 @@ int CTitle::Update()
 			manager->scene = new CGame(manager);
 			return 0;
 		}
-		else
+		else {
 			TimerCnt++;
+			if (!IsStageStartSE) {
+				PlaySoundMem(SE_StageStart, DX_PLAYTYPE_BACK);//SE 再生
+				IsStageStartSE = true;
+			}
+		}
 	}
 
 	//更新処理
@@ -165,5 +190,7 @@ void CTitle::Draw()
 
 CTitle::~CTitle()
 {
-
+	DeleteSoundMem(BGM_Normal);
+	DeleteSoundMem(BGM_GameOver);
+	DeleteSoundMem(SE_StageStart);
 }

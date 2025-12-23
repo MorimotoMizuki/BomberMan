@@ -98,6 +98,9 @@ protected:
 	//死亡カウント
 	int DeadCnt{ 0 };
 
+	//キル数のカウントの可否フラグ
+	bool IsAddKillNum{ false };
+
 	//アニメーションの画像インデックス
 	int AnimIndex{ 0 };
 	//アニメーションカウント

@@ -4,7 +4,7 @@
 CItem::CItem(Point p, MapPoint system_p, Item_Id item_id)
 {
 	LoadDivGraph("image\\Item.png", ITEM_IMG_NUM, 8, 1, IMGSIZE16, IMGSIZE16, ItemImgHandle);
-
+	SE_ItemGet = LoadSoundMem("sound\\ItemGet_SE.wav");
 	pos = p;
 
 	SystemPos = system_p;
@@ -28,6 +28,14 @@ int CItem::Action(vector<unique_ptr<BaseVector>>& base)
 
 	Distance = p->Distance; //プレイヤーの画面の差分を取得
 
+	if (!draw_flag) {
+		if (!CheckSoundMem(SE_ItemGet)) {
+			FLAG = false;
+		}
+
+		return 0;
+	}
+
 	if (p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y)
 	{
 		if (ItemFunctions.contains(ItemID))
@@ -39,6 +47,8 @@ int CItem::Action(vector<unique_ptr<BaseVector>>& base)
 
 void CItem::Draw()
 {
+	if (!draw_flag) return;
+
 	//画像描画
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ItemImgHandle[ItemID], true);
 }
@@ -47,13 +57,18 @@ CItem::~CItem()
 {
 	for (int i = 0; i < ITEM_IMG_NUM; i++)
 		DeleteGraph(ItemImgHandle[i]);
+
+	DeleteSoundMem(SE_ItemGet);
 }
 
 //アイテム削除
 void CItem::DeleteItem()
 {
+	//SE再生
+	PlaySoundMem(SE_ItemGet, DX_PLAYTYPE_BACK);
+
+	draw_flag = false;
 	gPlayerStatus.score += 1000; //スコア加算
-	FLAG = false;
 }
 
 //各アイテムの関数設定

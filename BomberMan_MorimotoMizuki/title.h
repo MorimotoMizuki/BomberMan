@@ -80,4 +80,14 @@ private:
 
 	//カウント
 	int TimerCnt{ 0 };
+
+	//BGM サウンド用
+	int BGM_Normal{ -1 };
+	int BGM_GameOver{ -1 };
+
+	//SE ステージスタート用
+	int SE_StageStart{ -1 };
+
+	//ステージスタートSEフラグ
+	bool IsStageStartSE{ false };
 };

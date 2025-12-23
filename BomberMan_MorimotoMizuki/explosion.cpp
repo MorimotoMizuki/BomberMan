@@ -6,6 +6,8 @@ CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 {
 	LoadDivGraph("image\\explosion.png", EXPLOSION_IMG_NUM, 4, 3, IMGSIZE32, IMGSIZE32, ExplosionImgHandle);
 
+	SE_BombExplosion = LoadSoundMem("sound\\BombExplosion.wav");
+
 	ImgWidth  = CHIP_SIZE;
 	ImgHeight = CHIP_SIZE;
 
@@ -21,6 +23,9 @@ CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 
 	ID  = Obj_Id::EXPLOSION;
 	pri = Pri_Id::pEXPLOSION;
+
+	//SEçƒê∂
+	PlaySoundMem(SE_BombExplosion, DX_PLAYTYPE_BACK);
 }
 
 int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)
@@ -60,6 +65,8 @@ CExplosion::~CExplosion()
 
 	for (int i = 0; i < EXPLOSION_IMG_NUM; i++)
 		DeleteGraph(ExplosionImgHandle[i]);
+
+	DeleteSoundMem(SE_BombExplosion);
 }
 
 //ìñÇΩÇËîªíË

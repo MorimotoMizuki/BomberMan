@@ -38,4 +38,9 @@ public:
 	bool IsTimeOver{ false };
 
 	//CCamera* camera;//カメラオブジェクト
+
+	//BGMサウンド用
+	int BGM{ -1 };
+	//SE 全ての敵を倒した用
+	int SE_AllEnemyKill{ -1 };
 };

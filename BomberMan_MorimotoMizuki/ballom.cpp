@@ -88,6 +88,9 @@ CBallom::~CBallom()
 
 	for (int i = 0; i < BALLOM_IMG_NUM; i++)
 		DeleteGraph(BallomImgHandle[i]);
+
+	for (int i = 0; i < 5; i++)
+		DeleteGraph(EnemyDeadImgHandle[i]);
 }
 
 //“G‚ÌŽ€–SŽž‚Ìƒpƒ‰ƒ[ƒ^Ý’è

@@ -49,4 +49,7 @@ private:
 
 	//アイテムごとの獲得時処理用関数マップ
 	std::map<Item_Id, std::function<void()>> ItemFunctions;
+
+	//SE　アイテム獲得サウンド用
+	int SE_ItemGet{ -1 };
 };

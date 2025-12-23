@@ -94,4 +94,11 @@ private:
 
 	//パーフェクトマン用のカウント
 	int PerfectManCnt{ 0 };
+
+	//サウンド
+	int SE_PutBomb{ -1 };	//爆弾配置時
+	int SE_PlayerDeadStart{ -1 }; //プレイヤーが死んだ直後に再生するSE
+	int SE_PlayerDead{ -1 };	//プレイヤーが死んだ時に再生するSE
+
+	bool IsPlayerDeadStartSE{ false }; //死んだ直後のSEの再生フラグ
 };

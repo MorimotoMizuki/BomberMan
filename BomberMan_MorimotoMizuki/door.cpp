@@ -4,6 +4,7 @@
 CDoor::CDoor(Point p, MapPoint system_p)
 {
 	img = LoadGraph("image\\door.png");
+	SE_StageClear = LoadSoundMem("sound\\StageClear.wav");
 
 	pos = p;
 
@@ -21,6 +22,8 @@ int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
 	if (gGamePhase != GamePhaseId::PLAING)
 		return 0;
 
+	if (gGamePhase == GamePhaseId::GAMECLEAR) return 0;
+
 	//プレイヤーを取得
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p != nullptr)
@@ -32,9 +35,9 @@ int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
 			if ((pos.x >= p->m_pos.x && pos.x < p->m_pos.x + GOAL_IN_DISTANCE) &&
 				(pos.y >= p->m_pos.y && pos.y < p->m_pos.y + GOAL_IN_DISTANCE))
 			{
-				//プレイヤーの座標をゴールの座標にする
-				p->pos.x = pos.x;
-				p->pos.y = pos.y;
+				//SE再生
+				PlaySoundMem(SE_StageClear, DX_PLAYTYPE_BACK);
+
 				//ゲームクリアに設定
 				gGamePhase = GamePhaseId::GAMECLEAR;
 			}

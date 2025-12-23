@@ -8,7 +8,7 @@
 
 //プレイヤーのステータス
 PlayerStatus gPlayerStatus = {
-	2,		//life
+	1,		//life
 	PLAYER_SPEED,	//speed
 	2,		//bombPutNum
 	1,		//bombLevel
@@ -43,6 +43,10 @@ bool gIsBombExplosion{ false };
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
 {
+	//サウンド読み込み
+	BGM = LoadSoundMem("sound\\NormalBGM.wav");
+	SE_AllEnemyKill = LoadSoundMem("sound\\AllEnemyKnockDown.wav");
+
 	//敵の描画順番初期化
 	gEnemyPri = Pri_Id::pENEMY;
 
@@ -66,6 +70,9 @@ CGame::CGame(CManager* p) :CScene(p)
 	gNowBombNum = 0;
 
 	Time = 200 * 60;
+
+	//BGMをループで再生
+	PlaySoundMem(BGM, DX_PLAYTYPE_LOOP);
 }
 
 //更新処理
@@ -74,7 +81,14 @@ int CGame::Update()
 	if (gGamePhase == GamePhaseId::GAMEOVER || 
 		gGamePhase == GamePhaseId::GAMECLEAR)
 	{
-		WaitTimer(1000);
+		//BGMが再生していた場合は BGM を停止させる
+		if (CheckSoundMem(BGM))
+			StopSoundMem(BGM);
+
+		if(gGamePhase == GamePhaseId::GAMEOVER)
+			WaitTimer(2300); //2.3秒
+		else
+			WaitTimer(4300); //4.3秒
 
 		//シーンの削除
 		manager->Scene_Delete();
@@ -83,6 +97,7 @@ int CGame::Update()
 		return 0;
 	}
 
+	//敵の総数と敵を倒した数が等しくなった場合
 	if (EnemySum == gKillEnemyNum && !IsGoalOpen)
 	{
 		CDoor* door = (CDoor*)Get_obj(base, GOAL);
@@ -90,6 +105,9 @@ int CGame::Update()
 			door->IsOpen = true;
 
 		IsGoalOpen = true;
+
+		//SE再生
+		PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK);
 	}
 
 	//更新処理
@@ -154,5 +172,6 @@ void CGame::Draw()
 
 CGame::~CGame()
 {
-
+	DeleteSoundMem(BGM);
+	DeleteSoundMem(SE_AllEnemyKill);
 }

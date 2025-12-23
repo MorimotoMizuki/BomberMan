@@ -26,4 +26,7 @@ private:
 
 	//プレイヤーとの差分
 	float Distance{ 0.0f };
+
+	//SE ステージクリア用
+	int SE_StageClear{ -1 };
 };

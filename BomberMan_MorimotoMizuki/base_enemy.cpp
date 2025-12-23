@@ -26,9 +26,7 @@ void CBaseEnemy::Constructor(Point p, MapPoint system_p)
 //デストラクタ
 void CBaseEnemy::Destructor()
 {
-	gKillEnemyNum++;	//敵討伐数++
 	gEnemyPri--;		//敵の描画順番
-
 	gPlayerStatus.score += SCORE; //スコア加算
 }
 
@@ -36,6 +34,11 @@ void CBaseEnemy::Destructor()
 void CBaseEnemy::EnemyDead(int ANIM_FRAME, int deadAnimFrame)
 {
 	if (!IsDead) return;
+
+	if (!IsAddKillNum) {
+		gKillEnemyNum++;	//敵討伐数++
+		IsAddKillNum = true;
+	}
 
 	if (DeadCnt < deadAnimFrame)
 		DeadCnt++;
