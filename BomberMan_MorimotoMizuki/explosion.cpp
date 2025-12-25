@@ -148,6 +148,11 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 					if (ex_pos.x == bomb_pos.x && ex_pos.y == bomb_pos.y) {
 
 						((CBomb*)base[i].get())->ExplosionEffect(base, p);
+						//爆弾のIDの要素をリストから削除
+						auto it = std::find(p->BombStack.begin(), p->BombStack.end(), ((CBomb*)base[i].get())->GetBombID());
+						if (it != p->BombStack.end())
+							p->BombStack.erase(it);
+
 						break;
 					}
 					//座標更新

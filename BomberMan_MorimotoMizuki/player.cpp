@@ -51,28 +51,9 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//プレイヤーの移動処理
 	Move_Id dir = PlayerMove();
 
-	//リモコンフラグがtrue の場合　かつ 爆弾が設置されている場合
-	if (gPlayerStatus.isRemoteController && gNowBombNum > 0) {
-		if (Key_Check(Move_Id::B_KEY) && !KeyCheck[1]) {
-
-			gIsBombExplosion = true;
-			////爆弾のスタックにデータが入っていた場合
-			//if (!BombStack.empty()) {
-			//	for (int i = 0; i < base.size(); i++)
-			//	{
-			//		//削除対象のオブジェクトはスキップ
-			//		if (!base[i]->FLAG || !base[i]->draw_flag)
-			//			continue;
-			//		//爆弾との判定 : 爆弾のIDと爆弾のスタックが等しい場合
-			//		if (base[i]->ID == Obj_Id::BOMB && ((CBomb*)base[i].get())->GetBombID() == BombStack.top())
-			//		{
-			//			((CBomb*)base[i].get())->ExplosionEffect(base, this);
-			//			BombStack.pop();
-			//		}
-			//	}
-			//}
-		}
-	}
+	//リモコンフラグがtrue の場合　かつ 爆弾が設置されている場合 : リモコンの処理を実行
+	if(gPlayerStatus.isRemoteController && gNowBombNum > 0)
+		RemoteControllerAction(base);
 
 	//プレイヤーの当たり判定
 	PlayerHit(base);
@@ -98,6 +79,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	if (camera_pos.y > MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2)
 		camera_pos.y = MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2;
 
+	//座標更新
 	pos.x = m_pos.x - camera_pos.x + DRAW_CHIP_W * CHIP_SIZE / 2;
 	pos.y = m_pos.y - camera_pos.y + DRAW_CHIP_H * CHIP_SIZE / 2;
 
@@ -112,6 +94,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//爆弾配置処理
 	PutExplosion(base);
 
+	//キー入力情報を更新
 	KeyCheck[0] = Key_Check(Move_Id::SPACE);
 	KeyCheck[1] = Key_Check(Move_Id::B_KEY);
 
@@ -306,13 +289,17 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 
 	IsPutBomb = true;
 
-	//BombStack.push(gNowBombNum); //爆弾の設置個数をIDとして登録
+	if (gNowBombNum == 0)
+		gBombId = 0;
+
+	BombStack.push_back(gBombId); //爆弾の設置個数をIDとして登録
 
 	//現在のマップに爆弾を配置
 	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::BOMB;
 
 	//爆弾生成
-	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos, gPlayerStatus.bombLevel, gNowBombNum));
+	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos, gPlayerStatus.bombLevel, gBombId));
+	gBombId++;
 }
 
 //プレイヤーの死亡時処理
@@ -340,5 +327,34 @@ void CPlayer::PlayerDead()
 
 		//SE再生
 		PlaySoundMem(SE_PlayerDead, DX_PLAYTYPE_BACK);
+	}
+}
+
+//リモコンの処理
+void CPlayer::RemoteControllerAction(vector<unique_ptr<BaseVector>>& base)
+{
+	//リモコンフラグがfalseの場合は終了
+	if (!gPlayerStatus.isRemoteController) return;
+
+	//爆弾の設置数が 0 以下の場合は終了
+	if (gNowBombNum <= 0) return;
+
+	//爆弾のリストが空の場合は終了
+	if (BombStack.empty()) return;
+
+	if (Key_Check(Move_Id::B_KEY) && !KeyCheck[1]) {
+		for (int i = 0; i < base.size(); i++) 
+		{
+			//削除対象のオブジェクトはスキップ
+			if (!base[i]->FLAG || !base[i]->draw_flag)
+				continue;
+			//爆弾との判定 : 爆弾のIDと爆弾のスタックが等しい場合
+			if (base[i]->ID == Obj_Id::BOMB && ((CBomb*)base[i].get())->GetBombID() == BombStack[0]) 
+			{
+				((CBomb*)base[i].get())->ExplosionEffect(base, this); //爆弾を爆発させる
+				BombStack.erase(BombStack.begin()); //爆発したIDを削除
+				return;
+			}
+		}
 	}
 }

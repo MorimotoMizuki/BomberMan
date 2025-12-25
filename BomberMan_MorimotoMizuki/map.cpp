@@ -31,7 +31,7 @@ std::vector<int> CMap::LoadEnemyData(int stage_num)
 {
 	std::vector<int> enemy_data;
 
-	ifstream fp("image\\enemy_data.csv");
+	ifstream fp("text_data\\enemy_data.csv");
 	string str; //読み込んだ文字列
 
 	if (!fp.fail())
@@ -61,7 +61,7 @@ std::vector<int> CMap::LoadItemData(int stage_num)
 {
 	std::vector<int> item_data;
 
-	ifstream fp("image\\item_data.csv");
+	ifstream fp("text_data\\item_data.csv");
 	string str; //読み込んだ文字列
 
 	if (!fp.fail())
@@ -89,7 +89,7 @@ std::vector<int> CMap::LoadItemData(int stage_num)
 //マップデータ読み込み
 void CMap::LoadMap()
 {
-	ifstream fp("image\\map_data.csv");
+	ifstream fp("text_data\\map_data.csv");
 	string str; //読み込んだ文字列
 
 	if (!fp.fail())

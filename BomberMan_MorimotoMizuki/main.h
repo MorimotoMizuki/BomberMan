@@ -124,8 +124,8 @@ extern int gKillEnemyNum;
 //敵の描画順番
 extern int gEnemyPri;
 
-//爆弾を爆発させるフラグ
-extern bool gIsBombExplosion;
+//爆弾のID設定用
+extern int gBombId;
 
 //カメラ情報クラス(main.h)
 //class CCameraInfo {

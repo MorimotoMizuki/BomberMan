@@ -37,8 +37,8 @@ int gKillEnemyNum{ 0 };
 //敵の描画順番
 int gEnemyPri{ Pri_Id::pENEMY };
 
-//爆弾を爆発させるフラグ
-bool gIsBombExplosion{ false };
+//爆弾のID設定用
+int gBombId{0};
 
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
@@ -68,6 +68,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	gKillEnemyNum = 0; //倒した敵の数
 	gPlayerStatus.score = 0; //スコア
 	gNowBombNum = 0;
+	gBombId = 0;
 
 	Time = 200 * 60;
 

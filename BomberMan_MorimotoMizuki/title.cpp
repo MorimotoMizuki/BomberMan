@@ -14,6 +14,9 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	BGM_GameOver = LoadSoundMem("sound\\GameOver.wav");
 	SE_StageStart = LoadSoundMem("sound\\StageStart.wav");
 
+	//画像読み込み
+	TitleRogo_img = LoadGraph("image\\title_rogo.png");
+
 	//ゲームオーバーの場合
 	if (gGamePhase == GamePhaseId::GAMEOVER)
 	{
@@ -150,39 +153,54 @@ void CTitle::Draw()
 {
 	switch (ScreenPhase)
 	{
-	case ScreenPhaseId::TITLE_screen:
-	{
-		//仮タイトル
-		DrawExtendFormatString(0.0f, 0.0f, 3.0f, 3.0f, GetColor(255, 255, 0), "BOMBERMAN");
-		Point startPos{ START_TRIANGLE_POS.x + 50.0f, START_TRIANGLE_POS.y };
-		//スタート描画
-		DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "START");
-		DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "START");
-		//コンテニュー描画
-		startPos = { startPos.x, startPos.y + MOVE_WIDTH };
-		DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "CONTINUE");
-		DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "CONTINUE");
-		//三角形描画
-		DrawTriangle(TrianglePos.x + DISTANCE, TrianglePos.y + DISTANCE, TrianglePos.x + DISTANCE, TrianglePos.y + TRIANGLE_SIZE + DISTANCE, TrianglePos.x + TRIANGLE_SIZE + DISTANCE, TrianglePos.y + TRIANGLE_SIZE / 2.0f + DISTANCE, GetColor(128, 128, 128), true);
-		DrawTriangle(TrianglePos.x, TrianglePos.y, TrianglePos.x, TrianglePos.y + TRIANGLE_SIZE, TrianglePos.x + TRIANGLE_SIZE, TrianglePos.y + TRIANGLE_SIZE / 2.0f, GetColor(255, 255, 255), true);
-		break;
+		case ScreenPhaseId::TITLE_screen:
+		{
+			//タイトル画像描画
+			DrawExtendGraph(64 * 1, 64 * 1,64 * 1 + 64 * 14, 64 * 1 + 64 * 8, TitleRogo_img, false);
+			Point startPos{ START_TRIANGLE_POS.x + 95.0f, START_TRIANGLE_POS.y };
+			//スタート描画
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "START");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "START");
+			//コンテニュー描画
+			startPos = { startPos.x, startPos.y + MOVE_WIDTH };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "CONTINUE");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "CONTINUE");
+			//三角形描画
+			DrawTriangle(TrianglePos.x + DISTANCE, TrianglePos.y + DISTANCE, TrianglePos.x + DISTANCE, TrianglePos.y + TRIANGLE_SIZE + DISTANCE, TrianglePos.x + TRIANGLE_SIZE + DISTANCE, TrianglePos.y + TRIANGLE_SIZE / 2.0f + DISTANCE, GetColor(128, 128, 128), true);
+			DrawTriangle(TrianglePos.x, TrianglePos.y, TrianglePos.x, TrianglePos.y + TRIANGLE_SIZE, TrianglePos.x + TRIANGLE_SIZE, TrianglePos.y + TRIANGLE_SIZE / 2.0f, GetColor(255, 255, 255), true);
+			//TOPを描画
+			startPos = { startPos.x - 145, startPos.y + 100 };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "TOP");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "TOP");
+			//スコアを右詰めで描画
+			startPos.x += 365;
+			//スコアが 0 の場合のみ 00 と描画、それ以外はスコアを描画
+			std::string str = (HighScore == 0) ? "00" : std::to_string(HighScore);
+			//表示幅を取得
+			float w = static_cast<float>(GetDrawStringWidth(str.c_str(), str.size())) * STRING_EXTEND_X;
+			DrawExtendFormatString(startPos.x + DISTANCE - w, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "%s", str.c_str());
+			DrawExtendFormatString(startPos.x - w, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "%s", str.c_str());
+			//下に書いてある文字
+			startPos = { startPos.x - 500.0f, startPos.y + 60.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "COPYRIGHT 1985 HUDSON SOFT");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "COPYRIGHT 1985 HUDSON SOFT");
+			break;
+		}
+		case ScreenPhaseId::GAMEOVER_screen:
+		{
+			Point startPos{ WINDOW_WIDTH / 2 - 120.0f, WINDOW_HEIGHT / 2 - 50.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "GAMEOVER");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "GAMEOVER");
+			break;
+		}
+		case ScreenPhaseId::STAGE_TO_screen:
+		{
+			Point startPos{ WINDOW_WIDTH / 2 - 120.0f, WINDOW_HEIGHT / 2 - 50.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "STAGE%d", gNowStageNum);
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "STAGE%d", gNowStageNum);
+			break;
+		}
 	}
-	case ScreenPhaseId::GAMEOVER_screen:
-	{
-		Point startPos{ WINDOW_WIDTH / 2 - 120.0f, WINDOW_HEIGHT / 2 - 50.0f };
-		DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "GAMEOVER");
-		DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "GAMEOVER");
-		break;
-	}
-	case ScreenPhaseId::STAGE_TO_screen:
-	{
-		Point startPos{ WINDOW_WIDTH / 2 - 120.0f, WINDOW_HEIGHT / 2 - 50.0f };
-		DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "STAGE%d", gNowStageNum);
-		DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "STAGE%d", gNowStageNum);
-		break;
-	}
-	}
-
 
 	for (int i = 0; i < base.size(); i++)
 		if (base[i]->FLAG) base[i]->Draw();
@@ -193,4 +211,6 @@ CTitle::~CTitle()
 	DeleteSoundMem(BGM_Normal);
 	DeleteSoundMem(BGM_GameOver);
 	DeleteSoundMem(SE_StageStart);
+
+	DeleteGraph(TitleRogo_img);
 }

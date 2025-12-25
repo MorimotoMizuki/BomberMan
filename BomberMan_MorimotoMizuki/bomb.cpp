@@ -39,21 +39,13 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 	if (p != nullptr)
 		Distance = p->Distance;
 
-	//リモコンフラグがtrueの場合
-	if (gPlayerStatus.isRemoteController){
-		//爆弾爆発フラグがtrue の場合
-		if (gIsBombExplosion) {
-			ExplosionEffect(base, p);
-		}
-	}
-	else {
+	//リモコンフラグがfalseの場合 : 一定時間で爆発させる
+	if (!gPlayerStatus.isRemoteController){
 		SurvivalFrame++;
-		if (SurvivalFrame >= DiedFrame)
-		{
+		if (SurvivalFrame >= DiedFrame){
 			ExplosionEffect(base, p);
 		}
 	}
-
 
 	//爆弾アニメーション
 	BombAnim(BOMB_ANIM_NUM, &AnimIndex);
@@ -67,8 +59,6 @@ void CBomb::Draw()
 
 	//画像描画
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
-
-	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d", BombID);
 }
 
 //爆弾アニメーション処理
@@ -93,8 +83,6 @@ void CBomb::BombAnim(int animMax, int* index)
 
 CBomb::~CBomb()
 {
-	gIsBombExplosion = false; //爆弾爆発フラグfalse
-
 	for (int i = 0; i < BOMB_IMG_NUM; i++)
 		DeleteGraph(BombImgHandle[i]);
 }

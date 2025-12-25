@@ -65,6 +65,9 @@ public:
 	//安全な座標かチェックする
 	bool IsValidMapPos(MapPoint p);
 
+	//リモコンの処理
+	void RemoteControllerAction(vector<unique_ptr<BaseVector>>&);
+
 public:
 
 	//マップの位置
@@ -77,7 +80,7 @@ public:
 	bool IsPutBomb{ false };
 
 	//リモコン使用時の爆弾のスタック
-	//std::stack<int> BombStack;
+	std::vector<int> BombStack;
 
 private:
 

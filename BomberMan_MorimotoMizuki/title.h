@@ -12,7 +12,7 @@ private:
 	static constexpr auto MOVE_WIDTH = 60.0f;
 
 	//三角形の初期描画座標
-	static constexpr Point START_TRIANGLE_POS = { WINDOW_WIDTH / 2 - 150.0f, WINDOW_HEIGHT / 2 + 150.0f };
+	static constexpr Point START_TRIANGLE_POS = { WINDOW_WIDTH / 2 - 190.0f, WINDOW_HEIGHT / 2 + 150.0f };
 
 	//三角形のサイズ
 	static constexpr auto TRIANGLE_SIZE = 30.0f;
@@ -66,6 +66,9 @@ public:
 
 private:
 
+	//タイトルロゴ画像ハンドル
+	int TitleRogo_img{ -1 };
+
 	//タイトルコマンド
 	TitleCommandId TitleComId{ TitleCommandId::START_COM };
 
@@ -90,4 +93,7 @@ private:
 
 	//ステージスタートSEフラグ
 	bool IsStageStartSE{ false };
+
+	//ハイスコア保存用
+	int HighScore{ 0 };
 };
