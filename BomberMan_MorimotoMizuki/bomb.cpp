@@ -2,7 +2,7 @@
 #include"function.h"
 #include"map.h"
 
-CBomb::CBomb(MapPoint mapPos,int bomb_level, int diedFrame)
+CBomb::CBomb(MapPoint mapPos,int bomb_level, int bomb_id, int diedFrame)
 {
 	LoadDivGraph("image\\bomb.png", BOMB_IMG_NUM, 3, 1, IMGSIZE16, IMGSIZE16, BombImgHandle);
 
@@ -22,6 +22,9 @@ CBomb::CBomb(MapPoint mapPos,int bomb_level, int diedFrame)
 	//爆弾のレベル
 	BombLevel = bomb_level;
 
+	//爆弾のID
+	BombID = bomb_id;
+
 	ID  = Obj_Id::BOMB;
 	pri = Pri_Id::pBOMB;
 
@@ -40,20 +43,14 @@ int CBomb::Action(vector<unique_ptr<BaseVector>>& base)
 	if (gPlayerStatus.isRemoteController){
 		//爆弾爆発フラグがtrue の場合
 		if (gIsBombExplosion) {
-			ExplosionEffect(base);
-			FLAG = false;
-			if (p != nullptr)
-				p->IsPutBomb = false;
+			ExplosionEffect(base, p);
 		}
 	}
 	else {
 		SurvivalFrame++;
 		if (SurvivalFrame >= DiedFrame)
 		{
-			ExplosionEffect(base);
-			FLAG = false;
-			if (p != nullptr)
-				p->IsPutBomb = false;
+			ExplosionEffect(base, p);
 		}
 	}
 
@@ -70,6 +67,8 @@ void CBomb::Draw()
 
 	//画像描画
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, BombImgHandle[BOMB_ANIM_ORDER[AnimIndex]], true);
+
+	DrawFormatString(pos.x - Distance, pos.y, GetColor(255, 255, 255), "%d", BombID);
 }
 
 //爆弾アニメーション処理
@@ -101,11 +100,15 @@ CBomb::~CBomb()
 }
 
 //爆発エフェクト
-void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base)
+void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base, CPlayer* player)
 {
 	//システム上のマップから爆弾を削除
 	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::NONE;
 
 	//爆発エフェクト生成 
 	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemPos, BombLevel));
+
+	FLAG = false;
+	if (player != nullptr)
+		player->IsPutBomb = false;
 }

@@ -8,9 +8,9 @@
 
 //プレイヤーのステータス
 PlayerStatus gPlayerStatus = {
-	1,		//life
+	2,		//life
 	PLAYER_SPEED,	//speed
-	2,		//bombPutNum
+	1,		//bombPutNum
 	1,		//bombLevel
 	0,		//スコア
 	false,	//リモコンフラグ

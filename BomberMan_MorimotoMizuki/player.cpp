@@ -54,7 +54,23 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	//リモコンフラグがtrue の場合　かつ 爆弾が設置されている場合
 	if (gPlayerStatus.isRemoteController && gNowBombNum > 0) {
 		if (Key_Check(Move_Id::B_KEY) && !KeyCheck[1]) {
+
 			gIsBombExplosion = true;
+			////爆弾のスタックにデータが入っていた場合
+			//if (!BombStack.empty()) {
+			//	for (int i = 0; i < base.size(); i++)
+			//	{
+			//		//削除対象のオブジェクトはスキップ
+			//		if (!base[i]->FLAG || !base[i]->draw_flag)
+			//			continue;
+			//		//爆弾との判定 : 爆弾のIDと爆弾のスタックが等しい場合
+			//		if (base[i]->ID == Obj_Id::BOMB && ((CBomb*)base[i].get())->GetBombID() == BombStack.top())
+			//		{
+			//			((CBomb*)base[i].get())->ExplosionEffect(base, this);
+			//			BombStack.pop();
+			//		}
+			//	}
+			//}
 		}
 	}
 
@@ -279,16 +295,24 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 	if (gNowBombNum >= gPlayerStatus.bombPutNum)
 		return;
 
+	//すでに爆弾、ブロック、クラッシュブロックのどれかが配置されている場合は終了
+	if (gNowMap[SystemPos.y][SystemPos.x] == Obj_Id::BOMB || 
+		gNowMap[SystemPos.y][SystemPos.x] == Obj_Id::BLOCK ||
+		gNowMap[SystemPos.y][SystemPos.x] == Obj_Id::CRASH_BLOCK)
+		return;
+
 	//SE再生
 	PlaySoundMem(SE_PutBomb, DX_PLAYTYPE_BACK);
 
 	IsPutBomb = true;
 
+	//BombStack.push(gNowBombNum); //爆弾の設置個数をIDとして登録
+
 	//現在のマップに爆弾を配置
 	gNowMap[SystemPos.y][SystemPos.x] = Obj_Id::BOMB;
 
 	//爆弾生成
-	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos, gPlayerStatus.bombLevel));
+	base.emplace_back((unique_ptr<BaseVector>)new CBomb(SystemPos, gPlayerStatus.bombLevel, gNowBombNum));
 }
 
 //プレイヤーの死亡時処理

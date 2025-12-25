@@ -152,8 +152,22 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 	list<Node*> open_list;//オープンノード
 	list<Node*> close_list;//クローズノード
 
+	Cell goal_cell{ g.X, g.Y };
+	Cell start_cell{ s.X, s.Y };
+
+	//スタートからゴールまでの距離の絶対値を計算
+	Cell dis = { std::abs(goal_cell.X - start_cell.X), std::abs(goal_cell.Y - start_cell.Y) };
+
+	//距離がマップの半分よりも大きい場合は距離の半分を目的地にする
+	if (dis.X > MX / 2) {
+		goal_cell.X = dis.X / 2;
+	}
+	if (dis.Y > MY / 2) {
+		goal_cell.Y = dis.Y / 2;
+	}
+
 	//ＧＯＡＬノードの定義
-	const Node* goal_node = &Graph[g.Y][g.X];
+	const Node* goal_node = &Graph[goal_cell.Y][goal_cell.X];
 
 	//更新ノード位置保存用
 	Cell last_update[MAP_CHIP_H][MAP_CHIP_W];
@@ -173,7 +187,7 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 	}
 
 	//スタートノードの指定(オープンリスト)
-	open_list.push_back(&Graph[s.Y][s.X]);
+	open_list.push_back(&Graph[start_cell.Y][start_cell.X]);
 
 	//オープンリストがなくなるまで検索
 	while (!open_list.empty()) {
@@ -181,7 +195,7 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 		open_list.erase(open_list.begin());//探索リストから除外
 
 		//ゴールに到達したら終わり
-		if (search_node->pos.X == g.X && search_node->pos.Y == g.Y) {
+		if (search_node->pos.X == goal_cell.X && search_node->pos.Y == goal_cell.Y) {
 			close_list.push_back(search_node);//クローズリストに最後のノードを追加
 			break;
 		}
@@ -191,8 +205,8 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 			//ヒューリスティックコストの計算
 			if (adjacent_node->HeuristicCost == 9999) {//初期値の場合だけ計算
 				//ノードからゴールまでの距離を求める(ユークリッド距離)
-				float x = fabsf(g.X - adjacent_node->pos.X);
-				float y = fabsf(g.Y - adjacent_node->pos.Y);
+				float x = fabsf(goal_cell.X - adjacent_node->pos.X);
+				float y = fabsf(goal_cell.Y - adjacent_node->pos.Y);
 				adjacent_node->HeuristicCost =
 					sqrtf(x * x + y * y);
 			}
@@ -244,11 +258,11 @@ list<Cell> ROUTE_CALCULATION2(int MX, int MY, Cell s, Cell g, vector<vector<int>
 	list<Cell> route_list;
 
 	//ゴールから復元
-	route_list.push_back(g);
+	route_list.push_back(goal_cell);
 	while (!route_list.empty()) {
 		Cell route = route_list.front();
 		//スタートセルなら処理終了
-		if (IsEqualCell(route, s) == true) {
+		if (IsEqualCell(route, start_cell) == true) {
 			last_route.swap(route_list);
 			break;
 		}

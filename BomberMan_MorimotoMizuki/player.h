@@ -1,6 +1,7 @@
 #pragma once
 
 #include"objBase.h"
+#include<stack>
 
 class CPlayer : public BaseVector
 {
@@ -74,6 +75,9 @@ public:
 
 	//爆弾設置処理
 	bool IsPutBomb{ false };
+
+	//リモコン使用時の爆弾のスタック
+	//std::stack<int> BombStack;
 
 private:
 

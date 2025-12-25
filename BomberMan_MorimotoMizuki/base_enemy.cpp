@@ -340,6 +340,16 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackin
 	if ((systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y) ||
 		(systemPosL.x == systemPosR.x && systemPosL.y == systemPosR.y && move_cnt >= moveFrame))
 	{
+		//設定した確率ではない場合は終了
+		int randomNum = Range_Random_Number(1, 10);
+		if (randomNum > randomParameter)
+		{
+			*isTrackingPlayer = false;
+			vec.x = 0.0f;
+			vec.y = 0.0f;
+			return;
+		}
+
 		//プレイヤーと同じマスの場合
 		if ((p->SystemPos.x == systemPosL.x && p->SystemPos.y == systemPosL.y) ||
 			(p->SystemPos.x == systemPosR.x && p->SystemPos.y == systemPosR.y) ||
@@ -377,28 +387,18 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackin
 			if ((tracking_parameter.first == true && vec_last_route.size() <= tracking_parameter.second) ||
 				(tracking_parameter.first == false))
 			{
-				int randomNum = Range_Random_Number(1, 10);
-				if (randomNum <= randomParameter)
+				MapPoint first = { vec_last_route[1].X,vec_last_route[1].Y };
+				if (CheckMoveArea(first, HitMoveObj_Id))
 				{
-					MapPoint first = { vec_last_route[1].X,vec_last_route[1].Y };
-					if (CheckMoveArea(first, HitMoveObj_Id))
-					{
-						Vector e_v = { first.x - SystemPos.x, first.y - SystemPos.y };
-						e_v = Vector_Normalize(e_v);
+					Vector e_v = { first.x - SystemPos.x, first.y - SystemPos.y };
+					e_v = Vector_Normalize(e_v);
 
-						vec.x = e_v.x * SPEED;
-						vec.y = e_v.y * SPEED;
+					vec.x = e_v.x * SPEED;
+					vec.y = e_v.y * SPEED;
 
-						*isTrackingPlayer = true;
-						move_cnt = 0.0f;
-						return;
-					}
-				}
-				else
-				{
-					*isTrackingPlayer = false;
-					vec.x = 0.0f;
-					vec.y = 0.0f;
+					*isTrackingPlayer = true;
+					move_cnt = 0.0f;
+					return;
 				}
 			}
 			else

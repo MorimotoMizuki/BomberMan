@@ -20,8 +20,8 @@ public:
 
 public:
 
-	//システム上のマップ座標、爆弾のレベル、削除フレーム数
-	CBomb(MapPoint,int, int = 180);
+	//システム上のマップ座標、爆弾のレベル、爆弾のID、削除フレーム数
+	CBomb(MapPoint,int, int, int = 180);
 	~CBomb();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
@@ -30,7 +30,10 @@ public:
 	void BombAnim(int, int*);
 
 	//爆発エフェクト
-	void ExplosionEffect(vector<unique_ptr<BaseVector>>&);
+	void ExplosionEffect(vector<unique_ptr<BaseVector>>& base, CPlayer* player);
+
+	//爆弾のIDを取得
+	int GetBombID() { return BombID; }
 
 private:
 
@@ -51,4 +54,7 @@ private:
 
 	//爆弾のレベル
 	int BombLevel{ 0 };
+
+	//爆弾ID
+	int BombID{ 0 };
 };

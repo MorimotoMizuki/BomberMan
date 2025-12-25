@@ -79,6 +79,10 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 	if (AnimIndex >= EXPLOSION_ANIM_NUM - 1 - 2)
 		return; 
 
+	//プレイヤーを取得
+	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
+	if (p == nullptr) return;
+
 	//クラッシュブロックとの判定
 	for (int i = 0; i < 4; i++)
 	{
@@ -129,6 +133,29 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 				}
 			}
 		}
+
+		//爆弾との判定 : 誘爆処理
+		if (base[i]->ID == Obj_Id::BOMB) {
+			MapPoint bomb_pos = base[i].get()->SystemPos;
+			for (int k = 0; k < 4; k++)
+			{
+				//爆弾の座標 + 方向
+				MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[k]).x, BombPos.y + std::get<1>(ExplosionPointData[k]).y };
+				//爆弾の威力分ループ
+				for (int j = 0; j < std::get<2>(ExplosionPointData[k]); j++) {
+
+					//爆発の座標と敵の座標が一致した場合
+					if (ex_pos.x == bomb_pos.x && ex_pos.y == bomb_pos.y) {
+
+						((CBomb*)base[i].get())->ExplosionEffect(base, p);
+						break;
+					}
+					//座標更新
+					ex_pos.x += std::get<1>(ExplosionPointData[k]).x;
+					ex_pos.y += std::get<1>(ExplosionPointData[k]).y;
+				}
+			}
+		}
 	}
 
 	if (IsEnd) return;
@@ -141,9 +168,6 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 		return;
 
 	//プレイヤーとの判定
-	//プレイヤーを取得
-	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	if (p == nullptr) return;
 
 	//爆弾の座標がプレイヤーの座標と一致した場合
 	if (BombPos.x == p->SystemPos.x && BombPos.y == p->SystemPos.y) {
