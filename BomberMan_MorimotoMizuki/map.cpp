@@ -6,20 +6,6 @@
 #include <algorithm>
 #include <unordered_set>
 
-//文字列分割関数 : 指定した文字で文字列を分割する
-//(文字列, 分割文字)
-vector<string> split(string& input, char delimiter)
-{
-	istringstream stream(input);
-	string field;
-	vector<string> result;
-
-	while (getline(stream, field, delimiter)) {
-		result.push_back(field);
-	}
-	return result;
-}
-
 CMap::CMap() 
 {
 	//マップチップ画像読み込み

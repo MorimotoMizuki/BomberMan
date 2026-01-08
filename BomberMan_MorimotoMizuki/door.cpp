@@ -36,7 +36,7 @@ int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
 				(pos.y >= p->m_pos.y && pos.y < p->m_pos.y + GOAL_IN_DISTANCE))
 			{
 				//SEçƒê∂
-				PlaySoundMem(SE_StageClear, DX_PLAYTYPE_BACK);
+				My_PlaySoundMem(SE_StageClear, DX_PLAYTYPE_BACK, TRUE, 128);
 
 				//ÉQÅ[ÉÄÉNÉäÉAÇ…ê›íË
 				gGamePhase = GamePhaseId::GAMECLEAR;

@@ -65,7 +65,7 @@ CItem::~CItem()
 void CItem::DeleteItem()
 {
 	//SEçƒê∂
-	PlaySoundMem(SE_ItemGet, DX_PLAYTYPE_BACK);
+	My_PlaySoundMem(SE_ItemGet, DX_PLAYTYPE_BACK, TRUE, 128);
 
 	draw_flag = false;
 	gPlayerStatus.score += 1000; //ÉXÉRÉAâ¡éZ

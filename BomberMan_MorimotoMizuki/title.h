@@ -59,6 +59,8 @@ public:
 	int Update();//更新処理
 	void Draw();//描画処理
 
+	void LoadStatus();	//ステータスデータ読み込み
+
 	//マップManager
 	std::unique_ptr<CMap> map;
 

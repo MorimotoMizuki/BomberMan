@@ -1,5 +1,19 @@
 #include"My_function.h"
 
+//文字列分割関数 : 指定した文字で文字列を分割する
+//(文字列, 分割文字)
+vector<string> split(string& input, char delimiter)
+{
+	istringstream stream(input);
+	string field;
+	vector<string> result;
+
+	while (getline(stream, field, delimiter)) {
+		result.push_back(field);
+	}
+	return result;
+}
+
 //キー入力チェック関数
 bool Key_Check(Move_Id move_id)
 {
@@ -77,5 +91,32 @@ void HitCheck_Box_Circle(BaseVector* a, BaseVector* b, float radius, float dista
 //プレイヤーのステータスをリセット
 void ResetPlayerStatus()
 {
+	switch (gGamePhase)
+	{
+	case GAMEOVER:
+		gPlayerStatus.bombLevel = 1;				//爆弾の火力
+		gPlayerStatus.bombPutNum = 1;				//爆弾の設置可能数
+		gPlayerStatus.speed = PLAYER_SPEED;			//プレイヤーのスピード
+		gPlayerStatus.isBombPass = false;			//↓アイテム能力 --------
+		gPlayerStatus.isFlameBarrier = false;
+		gPlayerStatus.isPerfectMan = false;
+		gPlayerStatus.isRemoteController = false;
+		gPlayerStatus.isWallPass = false;			//-----------------------
 
+		gPlayerStatus.score = 0;					//スコア
+		break;
+	case GAMECLEAR:
+		break;
+	}
+
+	gKillEnemyNum = 0;	//倒した敵の数
+	gNowBombNum = 0;	//設置した爆弾の数
+	gBombId = 0;		//爆弾のID
+}
+
+//サウンド再生関数(MusicVolume : 音量0～255)
+void My_PlaySoundMem(int SoundHandle, int PlayType, int TopPositionFlag, int MusicVolume)
+{
+	PlaySoundMem(SoundHandle, PlayType, TopPositionFlag);	//サウンド再生
+	ChangeVolumeSoundMem(MusicVolume, SoundHandle);			//音量調整  音量0～255
 }

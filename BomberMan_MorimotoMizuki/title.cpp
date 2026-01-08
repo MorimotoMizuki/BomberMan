@@ -6,6 +6,63 @@
 #include"obj.h"
 #include "function.h"
 
+//ステータスデータ読み込み
+void CTitle::LoadStatus()
+{
+	ifstream fp("text_data\\player_status.csv");
+	string str; //読み込んだ文字列
+
+	if (!fp.fail())
+	{
+		for (int y = 0; y < 11; y++)
+		{
+			getline(fp, str);//1行読み込み
+			vector<string> strv = split(str, ',');//カンマで分割
+
+			switch (y)
+			{
+			case LIFE:
+				gPlayerStatus.life = stoi(strv.at(0));//文字列を数値に変換して保存
+				break;
+			case SPEED:
+				gPlayerStatus.speed = stof(strv.at(0));//文字列を数値に変換して保存
+				break;
+			case BOMB_PUT_NUM:
+				gPlayerStatus.bombPutNum = stoi(strv.at(0));//文字列を数値に変換して保存
+				break;
+			case BOMB_LEVEL:
+				gPlayerStatus.bombLevel = stoi(strv.at(0));//文字列を数値に変換して保存
+				break;
+			case SCORE:
+				gPlayerStatus.score = stoi(strv.at(0));//文字列を数値に変換して保存
+				break;
+			case REMOTECONTROLLER:
+				gPlayerStatus.isRemoteController = stoi(strv.at(0)) == 0 ? false : true;
+				break;
+			case BOMB_PASS:
+				gPlayerStatus.isBombPass = stoi(strv.at(0)) == 0 ? false : true;
+				break;
+			case WALL_PASS:
+				gPlayerStatus.isWallPass = stoi(strv.at(0)) == 0 ? false : true;
+				break;
+			case FLAMEBARRIER:
+				gPlayerStatus.isFlameBarrier = stoi(strv.at(0)) == 0 ? false : true;
+				break;
+			case PERFECTMAN:
+				gPlayerStatus.isPerfectMan = stoi(strv.at(0)) == 0 ? false : true;
+				break;
+			case STAGE_NUM:
+				gNowStageNum = stoi(strv.at(0));//文字列を数値に変換して保存
+				break;
+			}
+		}
+
+		fp.close();//ファイルを閉じる
+
+		gIsLoadSaveData = true;
+	}
+}
+
 //コンストラクタ
 CTitle::CTitle(CManager* p) :CScene(p)
 {
@@ -17,6 +74,16 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	//画像読み込み
 	TitleRogo_img = LoadGraph("image\\title_rogo.png");
 
+	////セーブデータ読み込み
+	//if (gIsLoadSaveData == false)
+	//	LoadStatus();
+
+	//ハイスコア設定
+	if (gPlayerStatus.score > HighScore)
+		HighScore = gPlayerStatus.score;
+
+	ResetPlayerStatus(); //ステータスをリセット
+
 	//ゲームオーバーの場合
 	if (gGamePhase == GamePhaseId::GAMEOVER)
 	{
@@ -26,7 +93,7 @@ CTitle::CTitle(CManager* p) :CScene(p)
 			gPlayerStatus.life = 2; //(仮) ライフ 2 設定
 
 			//ゲームオーバーの BGM 再生
-			PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK);
+			My_PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK, TRUE, 128);
 		}
 		else
 		{
@@ -34,16 +101,6 @@ CTitle::CTitle(CManager* p) :CScene(p)
 			ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
 		}
 		gGamePhase = GamePhaseId::IDLE;	//待機状態
-
-		//プレイヤーのステータスを初期化
-		gPlayerStatus.bombLevel = 1;
-		gPlayerStatus.bombPutNum = 1;
-		gPlayerStatus.speed = PLAYER_SPEED;
-		gPlayerStatus.isBombPass = false;
-		gPlayerStatus.isFlameBarrier = false;
-		gPlayerStatus.isPerfectMan = false;
-		gPlayerStatus.isRemoteController = false;
-		gPlayerStatus.isWallPass = false;
 	}
 	//ゲームクリアの場合
 	else if (gGamePhase == GamePhaseId::GAMECLEAR)
@@ -55,7 +112,7 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	else
 	{
 		//通常BGMをループで再生
-		PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP);
+		My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, 128);
 	}
 }
 
@@ -124,7 +181,7 @@ int CTitle::Update()
 		else {
 			TimerCnt++;
 			if (!IsStageStartSE) {
-				PlaySoundMem(SE_StageStart, DX_PLAYTYPE_BACK);//SE 再生
+				My_PlaySoundMem(SE_StageStart, DX_PLAYTYPE_BACK, TRUE, 128);//SE 再生
 				IsStageStartSE = true;
 			}
 		}

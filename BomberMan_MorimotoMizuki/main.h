@@ -127,6 +127,9 @@ extern int gEnemyPri;
 //爆弾のID設定用
 extern int gBombId;
 
+//セーブデータを読み込むフラグ
+extern bool gIsLoadSaveData;
+
 //カメラ情報クラス(main.h)
 //class CCameraInfo {
 //private:

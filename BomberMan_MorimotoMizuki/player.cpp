@@ -285,7 +285,7 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 		return;
 
 	//SEçƒê∂
-	PlaySoundMem(SE_PutBomb, DX_PLAYTYPE_BACK);
+	My_PlaySoundMem(SE_PutBomb, DX_PLAYTYPE_BACK, TRUE, 128);
 
 	IsPutBomb = true;
 
@@ -309,7 +309,7 @@ void CPlayer::PlayerDead()
 		return;
 
 	if (!IsPlayerDeadStartSE) {
-		PlaySoundMem(SE_PlayerDeadStart, DX_PLAYTYPE_BACK);
+		My_PlaySoundMem(SE_PlayerDeadStart, DX_PLAYTYPE_BACK, TRUE, 128);
 		IsPlayerDeadStartSE = true;
 	}
 
@@ -326,7 +326,7 @@ void CPlayer::PlayerDead()
 		PlayerState = PlayerStateId::NONEplayer;
 
 		//SEçƒê∂
-		PlaySoundMem(SE_PlayerDead, DX_PLAYTYPE_BACK);
+		My_PlaySoundMem(SE_PlayerDead, DX_PLAYTYPE_BACK, TRUE, 128);
 	}
 }
 

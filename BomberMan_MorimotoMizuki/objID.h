@@ -89,3 +89,19 @@ enum Move_Id
 	ALL_KEY,//全てのキー入力
 	NONE_KEY,
 };
+
+//プレイヤーステータス読み込み用
+enum LoadStatus_Id
+{
+	LIFE,
+	SPEED,
+	BOMB_PUT_NUM,
+	BOMB_LEVEL,
+	SCORE,
+	REMOTECONTROLLER,
+	BOMB_PASS,
+	WALL_PASS,
+	FLAMEBARRIER,
+	PERFECTMAN,
+	STAGE_NUM,
+};

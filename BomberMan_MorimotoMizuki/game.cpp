@@ -40,6 +40,9 @@ int gEnemyPri{ Pri_Id::pENEMY };
 //爆弾のID設定用
 int gBombId{0};
 
+//セーブデータを読み込むフラグ
+bool gIsLoadSaveData = false;
+
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
 {
@@ -64,16 +67,11 @@ CGame::CGame(CManager* p) :CScene(p)
 	//プレイ状態
 	gGamePhase = GamePhaseId::PLAING;
 
-	//初期化
-	gKillEnemyNum = 0; //倒した敵の数
-	gPlayerStatus.score = 0; //スコア
-	gNowBombNum = 0;
-	gBombId = 0;
-
+	//タイマー設定
 	Time = 200 * 60;
 
 	//BGMをループで再生
-	PlaySoundMem(BGM, DX_PLAYTYPE_LOOP);
+	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, 128);
 }
 
 //更新処理
@@ -108,7 +106,7 @@ int CGame::Update()
 		IsGoalOpen = true;
 
 		//SE再生
-		PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK);
+		My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, 128);
 	}
 
 	//更新処理
