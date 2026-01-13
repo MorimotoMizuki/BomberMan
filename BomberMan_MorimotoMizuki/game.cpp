@@ -71,7 +71,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	Time = 200 * 60;
 
 	//BGMをループで再生
-	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, 128);
+	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
 }
 
 //更新処理
@@ -106,7 +106,7 @@ int CGame::Update()
 		IsGoalOpen = true;
 
 		//SE再生
-		My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, 128);
+		My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_AllEnemyKill);
 	}
 
 	//更新処理

@@ -25,7 +25,7 @@ CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 	pri = Pri_Id::pEXPLOSION;
 
 	//SEçƒê∂
-	My_PlaySoundMem(SE_BombExplosion, DX_PLAYTYPE_BACK, TRUE, 128);
+	My_PlaySoundMem(SE_BombExplosion, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_BombExplosion);
 }
 
 int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)

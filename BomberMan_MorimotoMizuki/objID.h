@@ -105,3 +105,19 @@ enum LoadStatus_Id
 	PERFECTMAN,
 	STAGE_NUM,
 };
+
+//音楽データの音量用
+enum MusicVolume
+{
+	BGM_Stage			= 128,	//ステージプレイ中のBGM
+	BGM_Title			= 128,	//タイトルの通常時のBGM
+	BGM_GameOver		= 128,	//ゲームオーバー時のBGM
+	SE_StageClear		= 128,	//ステージクリア時のSE
+	SE_StageStart		= 128,	//タイトルからステージへの遷移中に鳴るSE
+	SE_BombExplosion	= 128,	//爆弾の爆発時SE
+	SE_AllEnemyKill		= 128,	//全ての敵を倒した時のSE
+	SE_ItemGet			= 128,	//アイテム獲得時のSE
+	SE_PutBomb			= 128,	//爆弾設置時のSE
+	SE_PlayerDeadStart	= 128,	//プレイヤーの死亡時の一番最初に鳴るSE
+	SE_PlayerDead		= 128,	//プレイヤーの死亡時の二番目に鳴るSE
+};

@@ -93,7 +93,7 @@ CTitle::CTitle(CManager* p) :CScene(p)
 			gPlayerStatus.life = 2; //(仮) ライフ 2 設定
 
 			//ゲームオーバーの BGM 再生
-			My_PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK, TRUE, 128);
+			My_PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK, TRUE, MusicVolume::BGM_GameOver);
 		}
 		else
 		{
@@ -112,7 +112,7 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	else
 	{
 		//通常BGMをループで再生
-		My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, 128);
+		My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Title);
 	}
 }
 
@@ -181,7 +181,7 @@ int CTitle::Update()
 		else {
 			TimerCnt++;
 			if (!IsStageStartSE) {
-				My_PlaySoundMem(SE_StageStart, DX_PLAYTYPE_BACK, TRUE, 128);//SE 再生
+				My_PlaySoundMem(SE_StageStart, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_StageStart);//SE 再生
 				IsStageStartSE = true;
 			}
 		}
