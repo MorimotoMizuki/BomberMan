@@ -79,8 +79,8 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	//	LoadStatus();
 
 	//ハイスコア設定
-	if (gPlayerStatus.score > HighScore)
-		HighScore = gPlayerStatus.score;
+	if (gPlayerStatus.score > gHighScore)
+		gHighScore = gPlayerStatus.score;
 
 	ResetPlayerStatus(); //ステータスをリセット
 
@@ -91,6 +91,7 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		{
 			ScreenPhase = ScreenPhaseId::GAMEOVER_screen; //ゲームオーバースクリーンにする
 			gPlayerStatus.life = 2; //(仮) ライフ 2 設定
+			gPlayerStatus.score = 0;//スコア
 
 			//ゲームオーバーの BGM 再生
 			My_PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK, TRUE, MusicVolume::BGM_GameOver);
@@ -161,7 +162,7 @@ int CTitle::Update()
 			if (CheckSoundMem(BGM_GameOver)) {
 				StopSoundMem(BGM_GameOver); //ゲームオーバーBGMを停止
 			}
-			PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP); //通常BGMをループ再生
+			My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Title); //通常BGMをループ再生
 			break;
 		}
 		}
@@ -232,7 +233,7 @@ void CTitle::Draw()
 			//スコアを右詰めで描画
 			startPos.x += 365;
 			//スコアが 0 の場合のみ 00 と描画、それ以外はスコアを描画
-			std::string str = (HighScore == 0) ? "00" : std::to_string(HighScore);
+			std::string str = (gHighScore == 0) ? "00" : std::to_string(gHighScore);
 			//表示幅を取得
 			float w = static_cast<float>(GetDrawStringWidth(str.c_str(), str.size())) * STRING_EXTEND_X;
 			DrawExtendFormatString(startPos.x + DISTANCE - w, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "%s", str.c_str());

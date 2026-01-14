@@ -94,24 +94,22 @@ void ResetPlayerStatus()
 	switch (gGamePhase)
 	{
 	case GAMEOVER:
-		gPlayerStatus.bombLevel = 1;				//爆弾の火力
-		gPlayerStatus.bombPutNum = 1;				//爆弾の設置可能数
-		gPlayerStatus.speed = PLAYER_SPEED;			//プレイヤーのスピード
-		gPlayerStatus.isBombPass = false;			//↓アイテム能力 --------
-		gPlayerStatus.isFlameBarrier = false;
-		gPlayerStatus.isPerfectMan = false;
-		gPlayerStatus.isRemoteController = false;
-		gPlayerStatus.isWallPass = false;			//-----------------------
-
-		gPlayerStatus.score = 0;					//スコア
+		gPlayerStatus.bombLevel				= 1;				//爆弾の火力
+		gPlayerStatus.bombPutNum			= 1;				//爆弾の設置可能数
+		gPlayerStatus.speed					= PLAYER_SPEED;		//プレイヤーのスピード
+		gPlayerStatus.isBombPass			= false;			//↓アイテム能力 --------
+		gPlayerStatus.isFlameBarrier		= false;
+		gPlayerStatus.isPerfectMan			= false;
+		gPlayerStatus.isRemoteController	= false;
+		gPlayerStatus.isWallPass			= false;			//-----------------------
 		break;
 	case GAMECLEAR:
 		break;
 	}
 
-	gKillEnemyNum = 0;	//倒した敵の数
-	gNowBombNum = 0;	//設置した爆弾の数
-	gBombId = 0;		//爆弾のID
+	gKillEnemyNum	= 0;	//倒した敵の数
+	gNowBombNum		= 0;	//設置した爆弾の数
+	gBombId			= 0;	//爆弾のID
 }
 
 //サウンド再生関数(MusicVolume : 音量0～255)

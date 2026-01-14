@@ -21,13 +21,17 @@ void CBaseEnemy::Constructor(Point p, MapPoint system_p)
 	ID  = Obj_Id::ENEMY;
 	pri = gEnemyPri;
 	gEnemyPri++;
+
+	gEnemySum++;
 }
 
 //デストラクタ
 void CBaseEnemy::Destructor()
 {
 	gEnemyPri--;		//敵の描画順番
-	gPlayerStatus.score += SCORE; //スコア加算
+
+	if(IsDrawScore)
+		gPlayerStatus.score += SCORE; //スコア加算
 }
 
 //敵の死亡時処理

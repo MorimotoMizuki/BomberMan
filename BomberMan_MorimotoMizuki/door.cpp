@@ -44,6 +44,13 @@ int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
 		}
 	}
 
+	if (IsDoorExplosion) {
+		ExplosionCnt++;
+		if (ExplosionCnt > 60) {
+			DoorExplosion(base);
+		}
+	}
+
 	return 0;
 }
 
@@ -56,4 +63,18 @@ void CDoor::Draw()
 CDoor::~CDoor()
 {
 
+}
+
+//î‡îöîjèàóù
+void CDoor::DoorExplosion(vector<unique_ptr<BaseVector>>& base)
+{
+	Point p{ SystemPos.x * CHIP_SIZE, SystemPos.y * CHIP_SIZE + WINDOW_HEADER };
+
+	for (int i = 0; i < 3; i++) {
+		//ÉoÉçÉÄê∂ê¨
+		base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, SystemPos));
+	}
+
+	IsDoorExplosion = false;
+	ExplosionCnt = 0;
 }

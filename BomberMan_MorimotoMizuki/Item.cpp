@@ -42,6 +42,13 @@ int CItem::Action(vector<unique_ptr<BaseVector>>& base)
 			ItemFunctions[ItemID]();   // 対応する関数を呼び出す
 	}
 
+	if (IsItemExplosion) {
+		ExplosionCnt++;
+		if (ExplosionCnt > 60) {
+			ItemExplosion(base);
+		}
+	}
+
 	return 0;
 }
 
@@ -69,6 +76,55 @@ void CItem::DeleteItem()
 
 	draw_flag = false;
 	gPlayerStatus.score += 1000; //スコア加算
+}
+
+//アイテム爆破関数
+void CItem::ItemExplosion(vector<unique_ptr<BaseVector>>& base)
+{
+	Point p{ SystemPos.x * CHIP_SIZE, SystemPos.y * CHIP_SIZE + WINDOW_HEADER };
+
+	for (int i = 0; i < 4; i++) {
+
+		switch (ItemID)
+		{
+		case FirePower:
+			//オニール生成
+			base.emplace_back((unique_ptr<BaseVector>) new COneal(p, SystemPos));
+			break;
+		case Bomb:
+			//バロム生成
+			base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, SystemPos));
+			break;
+		case RemoteController:
+			//コンドリア生成
+			base.emplace_back((unique_ptr<BaseVector>) new CKondoria(p, SystemPos));
+			break;
+		case Boots:
+			//ダル生成
+			base.emplace_back((unique_ptr<BaseVector>) new CDahl(p, SystemPos));
+			break;
+		case BombPassing:
+			//オバピー生成
+			base.emplace_back((unique_ptr<BaseVector>) new COvapee(p, SystemPos));
+			break;
+		case WallPassing:
+			//ミンボー生成
+			base.emplace_back((unique_ptr<BaseVector>) new CMinvo(p, SystemPos));
+			break;
+		case FlameBarrier:
+			//バース生成
+			base.emplace_back((unique_ptr<BaseVector>) new CPass(p, SystemPos));
+			break;
+		case PerfectMan:
+			//ポンタン生成
+			base.emplace_back((unique_ptr<BaseVector>) new CKondoria(p, SystemPos));
+			break;
+		}
+	}
+
+	IsItemExplosion = false;
+	ExplosionCnt = 0;
+	FLAG = false;
 }
 
 //各アイテムの関数設定

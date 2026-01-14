@@ -17,10 +17,16 @@ public:
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
 
+	//扉爆破処理
+	void DoorExplosion(vector<unique_ptr<BaseVector>>&);
+
 public:
 
 	//ドアの開放フラグ
 	bool IsOpen{ false };
+
+	//ドア爆破フラグ
+	bool IsDoorExplosion{ false };
 
 private:
 
@@ -29,4 +35,7 @@ private:
 
 	//SE ステージクリア用
 	int SE_StageClear{ -1 };
+
+	//ドア爆破カウント
+	int ExplosionCnt{ 0 };
 };

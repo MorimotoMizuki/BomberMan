@@ -1,4 +1,230 @@
-﻿  player.cpp
+﻿  Item.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(60,78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(60,60): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(60,39): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(60,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(84,23): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(84,23): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(84,60): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\Item.cpp(84,60): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+  ballom.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'ballom.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(67,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(67,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(67,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(67,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(73,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(73,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(73,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(73,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(76,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(76,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(76,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ballom.cpp(76,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  base_enemy.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'base_enemy.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(86,27): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(87,40): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(219,57): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(397,29): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(397,29): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(397,52): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(397,52): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(423,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\base_enemy.cpp(423,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  block.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'block.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(61,79): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(61,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(61,40): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(61,25): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(65,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\block.cpp(65,23): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  bomb.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'bomb.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(16,22): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(17,34): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(61,78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(61,60): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(61,39): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\bomb.cpp(61,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  dahl.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'dahl.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(85,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(85,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(85,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(85,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(91,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(91,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(91,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(91,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(94,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(94,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(94,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\dahl.cpp(94,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  door.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'door.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(60,78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(60,60): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(60,39): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(60,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(71,23): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(71,23): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(71,60): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\door.cpp(71,60): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+  explosion.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'explosion.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(18,20): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(19,32): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(52,78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(52,60): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(52,39): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(52,24): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(99,32): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(99,32): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(99,82): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(99,82): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(141,52): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(142,52): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(152,30): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(152,30): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(152,80): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(152,80): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(164,50): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(165,50): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(192,30): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(192,30): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(192,80): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(192,80): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(205,50): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(206,50): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(296,95): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(296,73): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(296,48): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\explosion.cpp(296,29): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  game.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'game.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(130,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(161,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(161,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(162,43): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(162,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(166,59): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(166,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(167,45): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(167,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(172,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(172,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(173,44): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(173,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  kondoria.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'kondoria.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(73,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(73,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(73,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(73,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(79,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(79,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(79,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(79,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(82,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(82,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(82,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\kondoria.cpp(82,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  map.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'map.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(131,15): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(131,15): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(131,42): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\map.cpp(131,42): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+  minvo.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'minvo.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(92,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(92,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(92,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(92,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(98,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(98,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(98,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(98,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(101,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(101,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(101,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\minvo.cpp(101,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  oneal.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'oneal.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(74,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(74,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(74,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(74,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(80,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(80,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(80,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(80,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\oneal.cpp(83,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  ovapee.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'ovapee.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(74,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(74,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(74,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(74,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(80,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(80,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(80,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(80,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(83,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(83,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(83,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\ovapee.cpp(83,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  pass.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'pass.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(109,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(109,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(109,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(109,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(115,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(115,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(115,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(115,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(118,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(118,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(118,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pass.cpp(118,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  player.cpp
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
   (ソース ファイル 'player.cpp' をコンパイルしています)
   
@@ -6,51 +232,67 @@ C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(109,56): wa
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(109,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(109,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\player.cpp(109,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  pontan.cpp
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'pontan.cpp' をコンパイルしています)
+  
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(108,80): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(108,62): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(108,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(108,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(114,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(114,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(114,42): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(114,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(117,81): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(117,63): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(117,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\pontan.cpp(117,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   title.cpp
 C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
   (ソース ファイル 'title.cpp' をコンパイルしています)
   
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(199,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(219,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(219,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(220,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(220,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(223,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(223,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(224,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(224,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(226,216): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(226,167): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(226,125): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(226,83): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(226,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(226,31): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,138): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,107): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,76): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,43): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(230,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(230,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(231,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(231,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(237,73): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(238,65): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(238,49): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(239,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(239,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(242,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(242,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(243,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(243,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(249,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(249,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(250,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(250,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(256,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(256,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(257,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(257,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(200,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(220,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(220,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(221,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(221,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(224,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(224,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(225,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(225,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,216): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,167): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,125): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,83): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(227,31): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(228,138): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(228,107): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(228,76): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(228,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(228,43): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(228,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(231,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(231,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(232,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(232,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(238,73): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(239,65): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(239,49): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(240,51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(240,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(243,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(243,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(244,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(244,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(250,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(250,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(251,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(251,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(257,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(257,38): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(258,47): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tumtu\Desktop\BomberMan\BomberMan_MorimotoMizuki\title.cpp(258,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   コードを生成中...
   BomberMan_MorimotoMizuki.vcxproj -> C:\Users\tumtu\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe

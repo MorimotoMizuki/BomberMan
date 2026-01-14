@@ -1,6 +1,7 @@
 #pragma once
 
 #include"objBase.h"
+#include"base_enemy.h"
 #include<map>
 #include<functional>
 
@@ -25,6 +26,7 @@ public:
 	//各アイテムの関数設定
 	void SetItemFunction();
 
+	//各アイテムの処理関数
 	void FirePowerAction();			//火力アップ					: オニール
 	void BombAction();				//爆弾の置ける数アップ			: バロム
 	void RemoteControllerAction();	//爆弾がBボタンで自由に爆発可能	: コンドリア
@@ -34,10 +36,16 @@ public:
 	void FlameBarrierAction();		//爆風で死ななくなる			: バース
 	void PerfectManAction();		//30秒間無敵になる				: ポンタン
 
+	//アイテム爆破関数
+	void ItemExplosion(vector<unique_ptr<BaseVector>>&);
+
 public:
 
 	//アイテムのID
 	Item_Id ItemID;
+
+	//アイテム爆破フラグ
+	bool IsItemExplosion{ false };	
 
 private:
 
@@ -52,4 +60,7 @@ private:
 
 	//SE　アイテム獲得サウンド用
 	int SE_ItemGet{ -1 };
+
+	//爆破カウント
+	int ExplosionCnt{ 0 };
 };

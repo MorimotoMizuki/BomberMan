@@ -95,7 +95,4 @@ private:
 
 	//ステージスタートSEフラグ
 	bool IsStageStartSE{ false };
-
-	//ハイスコア保存用
-	int HighScore{ 0 };
 };

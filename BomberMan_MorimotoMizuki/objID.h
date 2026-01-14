@@ -44,9 +44,9 @@ enum Item_Id
 //オブジェクト表示順番
 enum Pri_Id
 {
+	pBLOCK,
 	pGOAL,
 	pITEM,
-	pBLOCK,
 	pBOMB,
 	pEXPLOSION,
 	pPLAYER,

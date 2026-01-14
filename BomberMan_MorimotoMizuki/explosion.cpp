@@ -83,6 +83,64 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if (p == nullptr) return;
 
+	for (int i = 0; i < base.size(); i++)
+	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
+		//敵との判定
+		if (base[i]->ID == ENEMY || base[i]->ID == GOAL || base[i]->ID == BOMB || base[i]->ID == ITEM)
+		{
+			MapPoint obj_pos = base[i].get()->SystemPos;
+			for (int k = 0; k < 4; k++)
+			{
+				//爆弾の座標 + 方向
+				MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[k]).x, BombPos.y + std::get<1>(ExplosionPointData[k]).y };
+				//爆弾の威力分ループ
+				for (int j = 0; j < std::get<2>(ExplosionPointData[k]); j++) 
+				{
+					//爆発の座標と敵の座標が一致した場合
+					if (ex_pos.x == obj_pos.x && ex_pos.y == obj_pos.y) {
+
+						switch (base[i]->ID)
+						{
+						//敵
+						case Obj_Id::ENEMY:
+							((CBaseEnemy*)base[i].get())->SetEnemyDeadParameter(); //敵死亡処理
+							break;
+						//扉
+						case Obj_Id::GOAL:
+							if (IsHitOnce) break;
+							if (gNowMap[obj_pos.y][obj_pos.x] == Obj_Id::CRASH_BLOCK) break;
+
+							((CDoor*)base[i].get())->IsDoorExplosion = true; //ドア爆破フラグtrue
+							break;
+						//アイテム
+						case Obj_Id::ITEM:
+							if (IsHitOnce) break;
+							if (gNowMap[obj_pos.y][obj_pos.x] == Obj_Id::CRASH_BLOCK) break;
+
+							((CItem*)base[i].get())->IsItemExplosion = true; //アイテム爆破フラグtrue
+							break;
+						//爆弾 : 誘爆処理
+						case Obj_Id::BOMB:
+							((CBomb*)base[i].get())->ExplosionEffect(base, p);
+							//爆弾のIDの要素をリストから削除
+							auto it = std::find(p->BombStack.begin(), p->BombStack.end(), ((CBomb*)base[i].get())->GetBombID());
+							if (it != p->BombStack.end())
+								p->BombStack.erase(it);
+							break;
+						}
+					}
+					//座標更新
+					ex_pos.x += std::get<1>(ExplosionPointData[k]).x;
+					ex_pos.y += std::get<1>(ExplosionPointData[k]).y;
+				}
+			}
+		}
+	}
+
 	//クラッシュブロックとの判定
 	for (int i = 0; i < 4; i++)
 	{
@@ -93,7 +151,7 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 		for (int j = 0; j < std::get<2>(ExplosionPointData[i]); j++) {
 
 			//クラッシュブロックの場合
-			if (gNowMap[ex_pos.y][ex_pos.x] == 1) {
+			if (gNowMap[ex_pos.y][ex_pos.x] == Obj_Id::CRASH_BLOCK) {
 				//マップのデータ削除
 				gNowMap[ex_pos.y][ex_pos.x] = Obj_Id::NONE;
 				break;
@@ -104,64 +162,7 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 		}
 	}
 
-	for (int i = 0; i < base.size(); i++)
-	{
-		//削除対象のオブジェクトはスキップ
-		if (!base[i]->FLAG || !base[i]->draw_flag)
-			continue;
-
-		//敵との判定
-		if (base[i]->ID == ENEMY)
-		{
-			MapPoint enemy_pos = base[i].get()->SystemPos;
-			for (int k = 0; k < 4; k++)
-			{
-				//爆弾の座標 + 方向
-				MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[k]).x, BombPos.y + std::get<1>(ExplosionPointData[k]).y };
-				//爆弾の威力分ループ
-				for (int j = 0; j < std::get<2>(ExplosionPointData[k]); j++) {
-
-					//爆発の座標と敵の座標が一致した場合
-					if (ex_pos.x == enemy_pos.x && ex_pos.y == enemy_pos.y) {
-
-						((CBaseEnemy*)base[i].get())->SetEnemyDeadParameter();
-						break;
-					}
-					//座標更新
-					ex_pos.x += std::get<1>(ExplosionPointData[k]).x;
-					ex_pos.y += std::get<1>(ExplosionPointData[k]).y;
-				}
-			}
-		}
-
-		//爆弾との判定 : 誘爆処理
-		if (base[i]->ID == Obj_Id::BOMB) {
-			MapPoint bomb_pos = base[i].get()->SystemPos;
-			for (int k = 0; k < 4; k++)
-			{
-				//爆弾の座標 + 方向
-				MapPoint ex_pos{ BombPos.x + std::get<1>(ExplosionPointData[k]).x, BombPos.y + std::get<1>(ExplosionPointData[k]).y };
-				//爆弾の威力分ループ
-				for (int j = 0; j < std::get<2>(ExplosionPointData[k]); j++) {
-
-					//爆発の座標と敵の座標が一致した場合
-					if (ex_pos.x == bomb_pos.x && ex_pos.y == bomb_pos.y) {
-
-						((CBomb*)base[i].get())->ExplosionEffect(base, p);
-						//爆弾のIDの要素をリストから削除
-						auto it = std::find(p->BombStack.begin(), p->BombStack.end(), ((CBomb*)base[i].get())->GetBombID());
-						if (it != p->BombStack.end())
-							p->BombStack.erase(it);
-
-						break;
-					}
-					//座標更新
-					ex_pos.x += std::get<1>(ExplosionPointData[k]).x;
-					ex_pos.y += std::get<1>(ExplosionPointData[k]).y;
-				}
-			}
-		}
-	}
+	IsHitOnce = true; //一回目の判定終了
 
 	if (IsEnd) return;
 

@@ -121,6 +121,9 @@ extern int gNowStageNum;
 //敵を倒した数
 extern int gKillEnemyNum;
 
+//敵の総数
+extern int gEnemySum;
+
 //敵の描画順番
 extern int gEnemyPri;
 
@@ -129,6 +132,9 @@ extern int gBombId;
 
 //セーブデータを読み込むフラグ
 extern bool gIsLoadSaveData;
+
+//ハイスコア保存用
+extern int gHighScore;
 
 //カメラ情報クラス(main.h)
 //class CCameraInfo {

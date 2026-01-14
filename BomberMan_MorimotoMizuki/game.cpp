@@ -34,6 +34,9 @@ int gNowStageNum{ 1 };
 //敵を倒した数
 int gKillEnemyNum{ 0 };
 
+//敵の総数
+int gEnemySum{ 0 };
+
 //敵の描画順番
 int gEnemyPri{ Pri_Id::pENEMY };
 
@@ -42,6 +45,9 @@ int gBombId{0};
 
 //セーブデータを読み込むフラグ
 bool gIsLoadSaveData = false;
+
+//ハイスコア保存用
+int gHighScore{ 0 };
 
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
@@ -53,13 +59,16 @@ CGame::CGame(CManager* p) :CScene(p)
 	//敵の描画順番初期化
 	gEnemyPri = Pri_Id::pENEMY;
 
+	//敵の合計数初期化
+	gEnemySum = 0;
+
 	//マップマネージャー
 	map = std::make_unique<CMap>();
 	map->LoadMap();	//マップデータ読み込み
 	map->Map_Obj_Creation(base);//マップ生成
 
 	//敵の合計数を取得
-	EnemySum = map->GetStageEnemyTotal();
+	//gEnemySum = map->GetStageEnemyTotal();
 
 	//プレイヤー生成
 	base.emplace_back((unique_ptr<BaseVector>)new CPlayer());
@@ -97,7 +106,7 @@ int CGame::Update()
 	}
 
 	//敵の総数と敵を倒した数が等しくなった場合
-	if (EnemySum == gKillEnemyNum && !IsGoalOpen)
+	if (gEnemySum == gKillEnemyNum && !IsGoalOpen)
 	{
 		CDoor* door = (CDoor*)Get_obj(base, GOAL);
 		if(door != nullptr)

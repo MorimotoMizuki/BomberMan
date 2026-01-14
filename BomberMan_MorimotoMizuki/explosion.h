@@ -86,4 +86,7 @@ private:
 
 	//サウンド用
 	int SE_BombExplosion{ -1 };
+
+	//初回のみ当たり判定フラグ
+	bool IsHitOnce{ false };
 };
