@@ -74,9 +74,9 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	//画像読み込み
 	TitleRogo_img = LoadGraph("image\\title_rogo.png");
 
-	////セーブデータ読み込み
-	//if (gIsLoadSaveData == false)
-	//	LoadStatus();
+	//セーブデータ読み込み
+	if (gIsLoadSaveData == false)
+		LoadStatus();
 
 	//ハイスコア設定
 	if (gPlayerStatus.score > gHighScore)

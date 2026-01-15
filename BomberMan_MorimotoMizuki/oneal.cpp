@@ -69,12 +69,10 @@ void COneal::Draw()
 	if (draw_flag)
 	{
 		//画像描画
-		if (IsDead)
-		{
+		if (IsDead){
 			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
 		}
-		else
-		{
+		else{
 			//左向き
 			if (vec.x < 0.0f)
 				DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);
@@ -87,9 +85,6 @@ void COneal::Draw()
 	//スコアの表示
 	if (IsDrawScore)
 		DrawScore();
-
-	//if (isTrackingPlayer)
-	//	DrawBox(pos.x - Distance, pos.y, pos.x - Distance + CHIP_SIZE, pos.y + CHIP_SIZE, GetColor(255, 0, 0), false);
 }
 
 COneal::~COneal()

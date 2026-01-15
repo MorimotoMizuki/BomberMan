@@ -66,15 +66,12 @@ int COvapee::Action(vector<unique_ptr<BaseVector>>& base)
 
 void COvapee::Draw()
 {
-	if (draw_flag)
-	{
+	if (draw_flag){
 		//‰æ‘œ•`‰æ
-		if (IsDead)
-		{
+		if (IsDead){
 			DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, EnemyDeadImgHandle[AnimIndex], true);
 		}
-		else
-		{
+		else{
 			//¶Œü‚«
 			if (vec.x < 0.0f)
 				DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ImgHandle[AnimIndex], true);

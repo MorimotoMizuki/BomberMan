@@ -62,6 +62,13 @@ void CBaseEnemy::EnemyDead(int ANIM_FRAME, int deadAnimFrame)
 	}
 }
 
+//“G‚Ì‘¦€ˆ—
+void CBaseEnemy::EnemyInstantDead()
+{
+	FLAG = false;
+	gKillEnemyNum++;	//“G“¢”°”++
+}
+
 //”š’e‚ÆÚG‚ÌÀ•W’²®ˆ—
 void CBaseEnemy::HitBomb_PosAdjustment(vector<unique_ptr<BaseVector>>& base)
 {

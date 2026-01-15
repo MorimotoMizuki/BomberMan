@@ -56,12 +56,10 @@ void CBlock::Draw()
 	if (!draw_flag) return;
 
 	//‰æ‘œ•`‰æ
-	if (IsCrash)
-	{
+	if (IsCrash){
 		DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, CrashAnimImgHandle[AnimIndex], true);
 	}
-	else
-	{
+	else{
 		DrawRectGraph(pos.x - Distance, pos.y, CutX, CutY, ImgWidth, ImgHeight, img, false);
 	}
 }

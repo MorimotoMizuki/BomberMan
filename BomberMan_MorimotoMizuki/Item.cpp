@@ -124,7 +124,6 @@ void CItem::ItemExplosion(vector<unique_ptr<BaseVector>>& base)
 
 	IsItemExplosion = false;
 	ExplosionCnt = 0;
-	FLAG = false;
 }
 
 //各アイテムの関数設定

@@ -41,6 +41,9 @@ public:
 	//“G‚Ì€–Sˆ—
 	void EnemyDead(int ANIM_FRAME, int deadAnimFrame);
 
+	//“G‚Ì‘¦€ˆ—
+	void EnemyInstantDead();
+
 	//”š’e‚ÆÚG‚ÌÀ•W’²®ˆ—
 	void HitBomb_PosAdjustment(vector<unique_ptr<BaseVector>>&);
 

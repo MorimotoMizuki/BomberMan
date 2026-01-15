@@ -78,6 +78,7 @@ CGame::CGame(CManager* p) :CScene(p)
 
 	//タイマー設定
 	Time = 200 * 60;
+	Time = 3 * 60;
 
 	//BGMをループで再生
 	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
@@ -133,10 +134,31 @@ int CGame::Update()
 	{
 		IsTimeOver = true;
 
-		//プレイヤーの死亡処理を呼び出す
-		CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-		if (p != nullptr)
-			p->SetPlayerDead(CPlayer::PlayerStateId::DEADplayer);
+		//敵を全て削除
+		for (int i = 0; i < base.size(); i++)
+		{
+			if (base[i].get()->ID == Obj_Id::ENEMY) {
+				((CBaseEnemy*)base[i].get())->EnemyInstantDead();
+			}
+		}
+
+		//ポンタン生成
+		for (int i = 0; i < 5; i++) {
+
+			//ランダムで生成する座標設定
+			MapPoint s_p{ 0,0 };
+			s_p.x = Range_Random_Number(1, MAP_CHIP_W - 1);
+			s_p.y = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+			//空白ではない場合はコンテニュー
+			if (gNowMap[s_p.y][s_p.x] != -1) continue;
+
+			//システム座標から座標を計算
+			Point p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
+
+			//ポンタン生成
+			base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
+		}
 	}
 	else
 		Time--; //タイマー
@@ -147,9 +169,6 @@ int CGame::Update()
 //描画処理
 void CGame::Draw()
 {
-	//オブジェクト個数
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), "Object_Count = %d", base.size());
-
 	//ヘッダーの背景
 	DrawBox(0, 0, WINDOW_WIDTH, WINDOW_HEADER, GetColor(173, 173, 173), 1);
 	//ゲーム背景

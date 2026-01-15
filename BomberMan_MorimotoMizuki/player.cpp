@@ -107,9 +107,6 @@ void CPlayer::Draw()
 
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
-	
-	//デバッグ
-	//DrawFormatString(WINDOW_WIDTH/2 + 300, 0, GetColor(255, 255, 255), "%f\n%f", m_pos.x, m_pos.y - WINDOW_HEADER);
 }
 
 CPlayer::~CPlayer()
@@ -184,8 +181,8 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBaseEnemy*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBaseEnemy*)base[i].get())->SystemPos.y)
 				{
-					if(gPlayerStatus.isPerfectMan == false) //パーフェクトマンフラグが false の場合
-						SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+					//if(gPlayerStatus.isPerfectMan == false) //パーフェクトマンフラグが false の場合
+					//	SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}
