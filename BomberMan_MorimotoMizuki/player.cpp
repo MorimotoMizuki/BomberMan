@@ -7,16 +7,19 @@ CPlayer::CPlayer()
 	LoadDivGraph("image\\player.png", PLAYER_IMG_NUM, 3, 6, IMGSIZE16, IMGSIZE16, PlayerImgHandle);
 
 	//サウンド読み込み
-	SE_PutBomb = LoadSoundMem("sound\\BombPut.wav");
-	SE_PlayerDeadStart = LoadSoundMem("sound\\PlayerDeadStart_SE.wav");
-	SE_PlayerDead = LoadSoundMem("sound\\PlayerDead.wav");
+	SE_PutBomb			= LoadSoundMem("sound\\BombPut.wav");
+	SE_PlayerDeadStart	= LoadSoundMem("sound\\PlayerDeadStart_SE.wav");
+	SE_PlayerDead		= LoadSoundMem("sound\\PlayerDead.wav");
+
+	SE_PlayerWalk_W = LoadSoundMem("sound\\Walk_Width.wav");
+	SE_PlayerWalk_H = LoadSoundMem("sound\\Walk_Height.wav");
 
 	ImgWidth  = CHIP_SIZE;
 	ImgHeight = CHIP_SIZE;
 
 	//マップ上の初期位置
-	m_pos.x = 64;
-	m_pos.y = 160;
+	m_pos.x = 1 * CHIP_SIZE;
+	m_pos.y = 1 * CHIP_SIZE + WINDOW_HEADER;
 
 	//描画位置
 	pos = m_pos;
@@ -36,7 +39,11 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	PlayerDead();
 
 	if (gGamePhase != GamePhaseId::PLAING)
+	{
+		if (CheckSoundMem(SE_PlayerWalk_W)) StopSoundMem(SE_PlayerWalk_W);
+		if (CheckSoundMem(SE_PlayerWalk_H)) StopSoundMem(SE_PlayerWalk_H);
 		return 0;
+	}
 
 	//パーフェクトマン処理
 	if (gPlayerStatus.isPerfectMan) {
@@ -49,7 +56,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	}
 
 	//プレイヤーの移動処理
-	Move_Id dir = PlayerMove();
+	PlayerMove();
 
 	//リモコンフラグがtrue の場合　かつ 爆弾が設置されている場合 : リモコンの処理を実行
 	if(gPlayerStatus.isRemoteController && gNowBombNum > 0)
@@ -66,18 +73,13 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 
 	//カメラの領域判定
 	//左端
-	if (camera_pos.x < DRAW_CHIP_W * CHIP_SIZE / 2)
-		camera_pos.x = DRAW_CHIP_W * CHIP_SIZE / 2;
+	if (camera_pos.x < DRAW_CHIP_W * CHIP_SIZE / 2)											camera_pos.x = DRAW_CHIP_W * CHIP_SIZE / 2;
 	//右端
-	if (camera_pos.x > MAP_CHIP_W * CHIP_SIZE - DRAW_CHIP_W * CHIP_SIZE / 2 - CHIP_SIZE)
-		camera_pos.x = MAP_CHIP_W * CHIP_SIZE - DRAW_CHIP_W * CHIP_SIZE / 2 - CHIP_SIZE;
-
+	if (camera_pos.x > MAP_CHIP_W * CHIP_SIZE - DRAW_CHIP_W * CHIP_SIZE / 2 - CHIP_SIZE)	camera_pos.x = MAP_CHIP_W * CHIP_SIZE - DRAW_CHIP_W * CHIP_SIZE / 2 - CHIP_SIZE;
 	//上端
-	if (camera_pos.y < DRAW_CHIP_H * CHIP_SIZE / 2)
-		camera_pos.y = DRAW_CHIP_H * CHIP_SIZE / 2;
+	if (camera_pos.y < DRAW_CHIP_H * CHIP_SIZE / 2)											camera_pos.y = DRAW_CHIP_H * CHIP_SIZE / 2;
 	//下端
-	if (camera_pos.y > MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2)
-		camera_pos.y = MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2;
+	if (camera_pos.y > MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2)				camera_pos.y = MAP_CHIP_H * CHIP_SIZE - DRAW_CHIP_H * CHIP_SIZE / 2;
 
 	//座標更新
 	pos.x = m_pos.x - camera_pos.x + DRAW_CHIP_W * CHIP_SIZE / 2;
@@ -87,8 +89,8 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	Distance = m_pos.x - pos.x;
 
 	//システム上の座標更新 : 中心座標から
-	SystemPos = { static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
-			  static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
+	SystemPos = {	static_cast<int>((m_pos.x + ImgWidth / 2) / CHIP_SIZE) ,
+					static_cast<int>(((m_pos.y + ImgHeight / 2) - WINDOW_HEADER) / CHIP_SIZE)
 	};
 
 	//爆弾配置処理
@@ -117,6 +119,8 @@ CPlayer::~CPlayer()
 	DeleteSoundMem(SE_PutBomb);
 	DeleteSoundMem(SE_PlayerDeadStart);
 	DeleteSoundMem(SE_PlayerDead);
+	DeleteSoundMem(SE_PlayerWalk_W);
+	DeleteSoundMem(SE_PlayerWalk_H);
 }
 
 //安全な座標かチェックする
@@ -181,8 +185,8 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBaseEnemy*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBaseEnemy*)base[i].get())->SystemPos.y)
 				{
-					//if(gPlayerStatus.isPerfectMan == false) //パーフェクトマンフラグが false の場合
-					//	SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
+					if(gPlayerStatus.isPerfectMan == false) //パーフェクトマンフラグが false の場合
+						SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}
 		}
@@ -190,40 +194,69 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 }
 
 //プレイヤーの移動処理
-Move_Id CPlayer::PlayerMove()
+void CPlayer::PlayerMove()
 {
 	if (PlayerState != PlayerStateId::PLAYplayer)
-		return Move_Id::NONE_KEY;
+		return;
 
 	//移動ベクトル初期化
 	vec.x = 0.0f;
 	vec.y = 0.0f;
 
+	//左
 	if (Key_Check(Move_Id::LEFT))
 	{
 		vec.x = -gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::LEFT, PLAYER_ANIM_FRAME, &AnimIndex);
-		return Move_Id::LEFT;
+		PlayerMoveSound(SE_PlayerWalk_W, SE_PlayerWalk_H, MusicVolume::SE_PlayerWalk_W); //SE再生
+		return;
 	}
+	//右
 	else if (Key_Check(Move_Id::RIGHT))
 	{
 		vec.x = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::RIGHT, PLAYER_ANIM_FRAME, &AnimIndex);
-		return Move_Id::RIGHT;
+		PlayerMoveSound(SE_PlayerWalk_W, SE_PlayerWalk_H, MusicVolume::SE_PlayerWalk_W); //SE再生
+		return;
 	}
+	//上
 	else if (Key_Check(Move_Id::UP))
 	{
 		vec.y = -gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::UP, PLAYER_ANIM_FRAME, &AnimIndex);
-		return Move_Id::UP;
+		PlayerMoveSound(SE_PlayerWalk_H, SE_PlayerWalk_W, MusicVolume::SE_PlayerWalk_H); //SE再生
+		return;
 	}
+	//下
 	else if (Key_Check(Move_Id::DOWN))
 	{
 		vec.y = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::DOWN, PLAYER_ANIM_FRAME, &AnimIndex);
-		return Move_Id::DOWN;
+		PlayerMoveSound(SE_PlayerWalk_H, SE_PlayerWalk_W, MusicVolume::SE_PlayerWalk_H); //SE再生
+		return;
 	}
-	return Move_Id::NONE_KEY;
+
+	//キー入力が無い場合は再生中の歩行SEを停止させる
+	if (CheckSoundMem(SE_PlayerWalk_W)) StopSoundMem(SE_PlayerWalk_W);
+	if (CheckSoundMem(SE_PlayerWalk_H)) StopSoundMem(SE_PlayerWalk_H);
+
+	return;
+}
+
+//プレイヤーの移動時のSE再生関数
+void CPlayer::PlayerMoveSound(int play_sound_handle, int stop_sound_handle, int sound_volume)
+{
+	//再生用SEが再生されていない場合は再生用のSEを再生
+	if (!CheckSoundMem(play_sound_handle)) {
+		My_PlaySoundMem(play_sound_handle, DX_PLAYTYPE_BACK, TRUE, sound_volume);
+		return;
+	}
+	//停止用のSEが再生されている場合は停止用のSEを停止させて、再生用のSEを再生
+	if (CheckSoundMem(stop_sound_handle)) {
+		StopSoundMem(stop_sound_handle);
+		My_PlaySoundMem(play_sound_handle, DX_PLAYTYPE_BACK, TRUE, sound_volume);
+		return;
+	}
 }
 
 //プレイヤーのアニメーション処理

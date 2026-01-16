@@ -78,7 +78,6 @@ CGame::CGame(CManager* p) :CScene(p)
 
 	//タイマー設定
 	Time = 200 * 60;
-	Time = 3 * 60;
 
 	//BGMをループで再生
 	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);

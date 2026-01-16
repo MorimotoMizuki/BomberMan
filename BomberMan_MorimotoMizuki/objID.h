@@ -111,6 +111,7 @@ enum MusicVolume
 {
 	BGM_Stage			= 128,	//ステージプレイ中のBGM
 	BGM_Title			= 128,	//タイトルの通常時のBGM
+	BGM_Ending			= 192,	//エンディング時のBGM
 	BGM_GameOver		= 128,	//ゲームオーバー時のBGM
 	SE_StageClear		= 128,	//ステージクリア時のSE
 	SE_StageStart		= 128,	//タイトルからステージへの遷移中に鳴るSE
@@ -120,4 +121,6 @@ enum MusicVolume
 	SE_PutBomb			= 128,	//爆弾設置時のSE
 	SE_PlayerDeadStart	= 128,	//プレイヤーの死亡時の一番最初に鳴るSE
 	SE_PlayerDead		= 128,	//プレイヤーの死亡時の二番目に鳴るSE
+	SE_PlayerWalk_W		= 128,	//プレイヤーが横に歩く時のSE
+	SE_PlayerWalk_H		= 128,	//プレイヤーが縦に歩く時のSE
 };

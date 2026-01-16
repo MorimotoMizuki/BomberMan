@@ -40,7 +40,7 @@ public:
 	void Draw();
 
 	//プレイヤーの移動処理
-	Move_Id PlayerMove();
+	void PlayerMove();
 
 	//プレイヤーの当たり判定
 	void PlayerHit(vector<unique_ptr<BaseVector>>&);
@@ -67,6 +67,9 @@ public:
 
 	//リモコンの処理
 	void RemoteControllerAction(vector<unique_ptr<BaseVector>>&);
+
+	//プレイヤーの移動時のSE再生関数
+	void PlayerMoveSound(int play_sound_handle, int stop_sound_handle, int sound_volume);
 
 public:
 
@@ -106,6 +109,9 @@ private:
 	int SE_PutBomb{ -1 };	//爆弾配置時
 	int SE_PlayerDeadStart{ -1 }; //プレイヤーが死んだ直後に再生するSE
 	int SE_PlayerDead{ -1 };	//プレイヤーが死んだ時に再生するSE
+
+	int SE_PlayerWalk_W{ -1 };	//プレイヤーが横方向に移動する時のSE
+	int SE_PlayerWalk_H{ -1 }; //プレイヤーが縦方向に移動する時のSE
 
 	bool IsPlayerDeadStartSE{ false }; //死んだ直後のSEの再生フラグ
 };

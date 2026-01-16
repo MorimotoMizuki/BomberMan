@@ -40,7 +40,7 @@ constexpr auto DRAW_CHIP_H = 13;
 constexpr auto CHIP_SIZE = IMGSIZE64;
 
 //ステージの合計数
-constexpr auto STAGE_SUM = 3;
+constexpr auto STAGE_SUM = 50;
 
 //爆弾の火力の最大値
 constexpr auto MAX_FIRE_POWER = 5;

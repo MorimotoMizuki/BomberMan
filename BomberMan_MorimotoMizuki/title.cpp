@@ -69,10 +69,15 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	//サウンド読み込み
 	BGM_Normal = LoadSoundMem("sound\\Title.wav");
 	BGM_GameOver = LoadSoundMem("sound\\GameOver.wav");
+	BGM_Ending = LoadSoundMem("sound\\FiftyStageClear.wav");
 	SE_StageStart = LoadSoundMem("sound\\StageStart.wav");
+	SE_PlayerWalk = LoadSoundMem("sound\\Walk_Width.wav");
 
 	//画像読み込み
 	TitleRogo_img = LoadGraph("image\\title_rogo.png");
+	Renga_img = LoadGraph("image\\renga.png");
+
+	LoadDivGraph("image\\ending_player.png", 8, 4, 2, IMGSIZE16, IMGSIZE16, EndingPlayer_img);
 
 	//セーブデータ読み込み
 	if (gIsLoadSaveData == false)
@@ -106,9 +111,22 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	//ゲームクリアの場合
 	else if (gGamePhase == GamePhaseId::GAMECLEAR)
 	{
-		if(gNowStageNum < STAGE_SUM)
+		if (gNowStageNum < STAGE_SUM) {
 			gNowStageNum++;
-		ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+			ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+		}
+		//最終ステージをクリアした場合はエンディング
+		else if (gNowStageNum == STAGE_SUM) {
+			gNowStageNum = 1; //ステージは1から
+			ScreenPhase = ScreenPhaseId::ENDING_screen; //エンディングのスクリーンへ
+
+			//エンディング用のプレイヤーの座標
+			EndingPlayerPos = { 0 * CHIP_SIZE, WINDOW_HEIGHT - 150 - CHIP_SIZE };
+			AnimMaxIndex = 3;
+
+			//エンディングBGMを単発で再生
+			My_PlaySoundMem(BGM_Ending, DX_PLAYTYPE_BACK, TRUE, MusicVolume::BGM_Ending);
+		}
 	}
 	else
 	{
@@ -140,37 +158,53 @@ int CTitle::Update()
 	{
 		switch (ScreenPhase)
 		{
-		case ScreenPhaseId::TITLE_screen: {
-			switch (TitleComId)
-			{
-			case TitleCommandId::START_COM:
-				//ステージ移動状態にする
-				ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
-				//BGM が再生中なら停止
-				if (CheckSoundMem(BGM_Normal)) {
-					StopSoundMem(BGM_Normal);
+			case ScreenPhaseId::TITLE_screen: {
+				switch (TitleComId)
+				{
+				case TitleCommandId::START_COM:
+					//ステージ移動状態にする
+					ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+					//BGM が再生中なら停止
+					if (CheckSoundMem(BGM_Normal)) {
+						StopSoundMem(BGM_Normal);
+					}
+					break;
+				case TitleCommandId::CONTINUE_COM:
+					//コンテニュー画面にする
+					ScreenPhase = ScreenPhaseId::CONTINUE_screen;
+					SetUseIMEFlag(FALSE); //IMEを無効化
+					break;
 				}
-				return 0;
-				break;
-			case TitleCommandId::CONTINUE_COM:
 				break;
 			}
-			break;
-		}
-		case ScreenPhaseId::GAMEOVER_screen: {
-			ScreenPhase = ScreenPhaseId::TITLE_screen;
-			if (CheckSoundMem(BGM_GameOver)) {
-				StopSoundMem(BGM_GameOver); //ゲームオーバーBGMを停止
+			case ScreenPhaseId::GAMEOVER_screen: {
+				ScreenPhase = ScreenPhaseId::TITLE_screen;
+				if (CheckSoundMem(BGM_GameOver)) {
+					StopSoundMem(BGM_GameOver); //ゲームオーバーBGMを停止
+				}
+				My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Title); //通常BGMをループ再生
+				break;
 			}
-			My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Title); //通常BGMをループ再生
-			break;
-		}
+			case ScreenPhaseId::CONTINUE_screen: {
+
+				if (IsPassword) {
+					//ステージ移動状態にする
+					ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+					//BGM が再生中なら停止
+					if (CheckSoundMem(BGM_Normal)) {
+						StopSoundMem(BGM_Normal);
+					}
+				}
+				break;
+			}
 		}
 	}
 
-	//ステージ移動状態の場合
-	if (ScreenPhase == ScreenPhaseId::STAGE_TO_screen) {
-
+	//各スクリーンの更新処理
+	switch (ScreenPhase)
+	{
+	//ステージ移動用スクリーン
+	case ScreenPhaseId::STAGE_TO_screen:
 		if (TimerCnt >= 3 * 60)
 		{
 			//シーンの削除
@@ -186,6 +220,63 @@ int CTitle::Update()
 				IsStageStartSE = true;
 			}
 		}
+		break;
+	//コンテニュー用スクリーン
+	case ScreenPhaseId::CONTINUE_screen:
+		UpdateKeyState();		//キーボード入力の更新
+		UpdatePasswordInput();	//キーボード入力
+		break;
+	//エンディング用スクリーン
+	case ScreenPhaseId::ENDING_screen:
+
+		//トータルの移動量が一周半未満の場合はプレイヤー移動処理
+		if (TotalMovePosX < WINDOW_WIDTH + WINDOW_WIDTH / 2 + CHIP_SIZE) {
+			EndingPlayerPos.x += 2.0f;	//プレイヤー座標更新
+			TotalMovePosX += 2.0f;		//トータルの移動量更新
+
+			if (!CheckSoundMem(SE_PlayerWalk))
+				My_PlaySoundMem(SE_PlayerWalk, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_PlayerWalk_W - 32); //SE再生
+		}
+		//トータルの移動量が一周半を超えた場合は停止
+		else {
+			AnimIndex = AnimMaxIndex - 3;
+			if (CheckSoundMem(SE_PlayerWalk)) //SE停止
+				StopSoundMem(SE_PlayerWalk);
+
+			//一定時間後にステージ移動画面に遷移
+			if (EndingEndCnt > ENDING_TO_STAGE_FRAME)
+				ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+			else
+				EndingEndCnt++;
+			break;
+		}
+
+		//プレイヤーが範囲外の場合は左端からにする
+		if (EndingPlayerPos.x > WINDOW_WIDTH)
+			EndingPlayerPos.x = 0 - CHIP_SIZE;
+
+		//ロードランナーに変身
+		if (EndingPlayerPos.x > WINDOW_WIDTH / 2 - CHIP_SIZE && !IsRoadRunner) {
+
+			IsRoadRunner = true;
+			AnimCnt = 0;
+			AnimIndex = 4;
+			AnimMaxIndex = 7;
+			break;
+		}
+
+		//アニメーションループ処理
+		if (AnimCnt > 4) {
+			AnimCnt = 0;
+
+			if (AnimIndex < AnimMaxIndex)
+				AnimIndex++;
+			else
+				AnimIndex = AnimMaxIndex - 3;
+		}
+		else
+			AnimCnt++;
+		break;
 	}
 
 	//更新処理
@@ -246,6 +337,7 @@ void CTitle::Draw()
 		}
 		case ScreenPhaseId::GAMEOVER_screen:
 		{
+			//文字列描画
 			Point startPos{ WINDOW_WIDTH / 2 - 120.0f, WINDOW_HEIGHT / 2 - 50.0f };
 			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "GAMEOVER");
 			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "GAMEOVER");
@@ -253,9 +345,42 @@ void CTitle::Draw()
 		}
 		case ScreenPhaseId::STAGE_TO_screen:
 		{
+			//文字列描画
 			Point startPos{ WINDOW_WIDTH / 2 - 120.0f, WINDOW_HEIGHT / 2 - 50.0f };
 			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "STAGE%d", gNowStageNum);
 			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "STAGE%d", gNowStageNum);
+			break;
+		}
+		case ScreenPhaseId::CONTINUE_screen:
+		{
+			//文字列描画
+			Point startPos{ WINDOW_WIDTH / 2 - 230.0f, WINDOW_HEIGHT / 2 - 300.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "ENTER SECRET CODE");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "ENTER SECRET CODE");
+			startPos = { startPos.x, startPos.y + 200.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), Password.c_str());
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), Password.c_str());
+			break;
+		}
+		case ScreenPhaseId::ENDING_screen:
+		{
+			//文字列描画
+			Point startPos{ WINDOW_WIDTH / 2 - 230.0f, WINDOW_HEIGHT / 2 - 300.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "CONGRATULATIONS");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "CONGRATULATIONS");
+			startPos = { startPos.x - 135.0f, startPos.y + 50.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "BOMBER MAN BECOMES RUNNER");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "BOMBER MAN BECOMES RUNNER");
+			startPos = { startPos.x - 28.0f, startPos.y + 50.0f };
+			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "SEE YOU AGAIN IN LODE RUNNER");
+			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "SEE YOU AGAIN IN LODE RUNNER");
+
+			//レンガ描画
+			for (int i = 0; i < 16; i++)
+				DrawExtendGraph(i * CHIP_SIZE, EndingPlayerPos.y + CHIP_SIZE, i * CHIP_SIZE + CHIP_SIZE, EndingPlayerPos.y + CHIP_SIZE + CHIP_SIZE, Renga_img, false);
+
+			//プレイヤー描画
+			DrawExtendGraph(EndingPlayerPos.x, EndingPlayerPos.y, EndingPlayerPos.x + CHIP_SIZE, EndingPlayerPos.y + CHIP_SIZE, EndingPlayer_img[AnimIndex], true);
 			break;
 		}
 	}
@@ -268,7 +393,71 @@ CTitle::~CTitle()
 {
 	DeleteSoundMem(BGM_Normal);
 	DeleteSoundMem(BGM_GameOver);
+	DeleteSoundMem(BGM_Ending);
 	DeleteSoundMem(SE_StageStart);
 
 	DeleteGraph(TitleRogo_img);
+}
+
+//パスワード入力
+void CTitle::UpdatePasswordInput()
+{
+	int ch;
+
+	//入力された文字を全て取得
+	while ((ch = GetInputChar(TRUE)) != 0)
+	{
+		//小文字 a～p → A～P
+		if (ch >= 'a' && ch <= 'p') {
+			ch = ch - 'a' + 'A';
+		}
+
+		//BackSpase
+		if (IsKeyTrigger(KEY_INPUT_BACK))
+		{
+			if (!Password.empty())
+				Password.pop_back();
+		}
+		//Enter : 確定
+		if (IsKeyTrigger(KEY_INPUT_RETURN))
+		{
+			if (Password.size() == PASSWORD_MAX) {
+				IsPassword = IsValidPassword(Password); //パスワード検証
+			}
+		}
+		//A～P のみ受け付ける
+		if (ch >= 'A' && ch <= 'P')
+		{
+			if (Password.size() < PASSWORD_MAX)
+				Password.push_back((char)ch);
+		}
+	}
+}
+
+//パスワード検証
+bool CTitle::IsValidPassword(std::string& password)
+{
+	//文字数が違う場合はfalseで終了
+	if (password.size() != PASSWORD_MAX) return false;
+
+	//文字が範囲内じゃない場合はfalseで終了
+	for (char c : password) {
+		if (c < 'A' || c > 'P')
+			return false;
+	}
+
+	return true;
+}
+
+//毎フレーム更新 : キー
+void CTitle::UpdateKeyState()
+{
+	memcpy(PrevKeyState, KeyState, 256);
+	GetHitKeyStateAll(KeyState);
+}
+
+//押した瞬間判定 : キー
+bool CTitle::IsKeyTrigger(int key)
+{
+	return KeyState[key] && !PrevKeyState[key];
 }
