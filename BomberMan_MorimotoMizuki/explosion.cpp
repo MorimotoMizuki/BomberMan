@@ -4,7 +4,7 @@
 
 CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 {
-	LoadDivGraph("image\\explosion.png", EXPLOSION_IMG_NUM, 4, 3, IMGSIZE32, IMGSIZE32, ExplosionImgHandle);
+	LoadDivGraph("image\\explosion.png", EXPLOSION_IMG_NUM, 4, 3, IMGSIZE16, IMGSIZE16, ExplosionImgHandle);
 
 	SE_BombExplosion = LoadSoundMem("sound\\BombExplosion.wav");
 
@@ -121,7 +121,7 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 							if (IsHitOnce) break;
 							if (gNowMap[obj_pos.y][obj_pos.x] == Obj_Id::CRASH_BLOCK) break;
 
-							((CItem*)base[i].get())->IsItemExplosion = true; //アイテム爆破フラグtrue
+							((CBaseItem*)base[i].get())->IsItemExplosion = true; //アイテム爆破フラグtrue
 							break;
 						//爆弾 : 誘爆処理
 						case Obj_Id::BOMB:

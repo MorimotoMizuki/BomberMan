@@ -32,7 +32,7 @@ public:
 	CBaseEnemy() = default;
 	virtual ~CBaseEnemy() = default;
 
-	//コンストラクタ : 画像ハンドル、システム上の座標
+	//コンストラクタ : 座標、システム上の座標
 	void Constructor(Point, MapPoint);
 
 	//デストラクタ

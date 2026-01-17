@@ -7,10 +7,10 @@ class CExplosion : public BaseVector
 public:
 
 	//爆発の削除フレーム数
-	static constexpr auto EXPLOSION_DELETE_FRAME = 15;
+	static constexpr auto EXPLOSION_DELETE_FRAME = 21;
 
 	//爆発のアニメーション数
-	static constexpr auto EXPLOSION_ANIM_NUM = 5;
+	static constexpr auto EXPLOSION_ANIM_NUM = 7;
 
 	//爆発のアニメーションフレーム数
 	static constexpr auto EXPLOSION_ANIM_FRAME = EXPLOSION_DELETE_FRAME / EXPLOSION_ANIM_NUM;
@@ -19,7 +19,7 @@ public:
 	static constexpr auto EXPLOSION_IMG_NUM = 12;
 
 	//爆発アニメーションの順番
-	static constexpr int EXPLOSION_ANIM_ORDER[EXPLOSION_ANIM_NUM] = { 2,3,2,1,0 };
+	static constexpr int EXPLOSION_ANIM_ORDER[EXPLOSION_ANIM_NUM] = { 0,1,2,3,2,1,0 };
 
 	enum ExplosionDir{
 		UP_exp,

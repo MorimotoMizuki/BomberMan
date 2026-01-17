@@ -33,6 +33,18 @@
     <Filter Include="ヘッダー ファイル\オブジェクト\敵">
       <UniqueIdentifier>{be94185c-a9b5-405a-b6ef-ff505b9ec75c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\オブジェクト\アイテム">
+      <UniqueIdentifier>{5d41fd5f-64ec-465a-946e-5890e99869a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\オブジェクト\ベースクラス">
+      <UniqueIdentifier>{6d4f4b08-73ed-40c8-be63-2864a0270cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\オブジェクト\ベースクラス">
+      <UniqueIdentifier>{6b6a046b-4423-47d7-ae5c-fd68a856801f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\オブジェクト\アイテム">
+      <UniqueIdentifier>{4d072bd5-1e73-4423-858e-49189dee3fe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -104,13 +116,7 @@
     <ClInclude Include="astar.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>ヘッダー ファイル\オブジェクト</Filter>
-    </ClInclude>
     <ClInclude Include="oneal.h">
-      <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
-    </ClInclude>
-    <ClInclude Include="base_enemy.h">
       <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
     </ClInclude>
     <ClInclude Include="dahl.h">
@@ -130,6 +136,18 @@
     </ClInclude>
     <ClInclude Include="pontan.h">
       <Filter>ヘッダー ファイル\オブジェクト\敵</Filter>
+    </ClInclude>
+    <ClInclude Include="base_item.h">
+      <Filter>ヘッダー ファイル\オブジェクト\ベースクラス</Filter>
+    </ClInclude>
+    <ClInclude Include="base_enemy.h">
+      <Filter>ヘッダー ファイル\オブジェクト\ベースクラス</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>ヘッダー ファイル\オブジェクト\アイテム</Filter>
+    </ClInclude>
+    <ClInclude Include="special_item.h">
+      <Filter>ヘッダー ファイル\オブジェクト\アイテム</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,13 +196,7 @@
     <ClCompile Include="astar.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>ソース ファイル\オブジェクト</Filter>
-    </ClCompile>
     <ClCompile Include="oneal.cpp">
-      <Filter>ソース ファイル\オブジェクト\敵</Filter>
-    </ClCompile>
-    <ClCompile Include="base_enemy.cpp">
       <Filter>ソース ファイル\オブジェクト\敵</Filter>
     </ClCompile>
     <ClCompile Include="player.cpp">
@@ -207,6 +219,18 @@
     </ClCompile>
     <ClCompile Include="pontan.cpp">
       <Filter>ソース ファイル\オブジェクト\敵</Filter>
+    </ClCompile>
+    <ClCompile Include="base_item.cpp">
+      <Filter>ソース ファイル\オブジェクト\ベースクラス</Filter>
+    </ClCompile>
+    <ClCompile Include="base_enemy.cpp">
+      <Filter>ソース ファイル\オブジェクト\ベースクラス</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>ソース ファイル\オブジェクト\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="special_item.cpp">
+      <Filter>ソース ファイル\オブジェクト\アイテム</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

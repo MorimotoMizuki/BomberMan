@@ -41,12 +41,24 @@ enum Item_Id
 	PerfectMan,			//30秒間無敵になる				: ポンタン
 };
 
+//スペシャルアイテムID
+enum Special_Item_Id
+{
+	None = -1,
+	B_Panel,			//Bパネル
+	Goddess,			//ゴーデス
+	Cola,				//コーラ
+	Famicom,			//ファミコン
+	Mr_Nakamoto,		//中本さん
+	Dezeniman,			//デゼニマン
+};
+
 //オブジェクト表示順番
 enum Pri_Id
 {
 	pGOAL,
-	pITEM,
 	pBLOCK,
+	pITEM,
 	pBOMB,
 	pEXPLOSION,
 	pPLAYER,

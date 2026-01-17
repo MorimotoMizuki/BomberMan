@@ -1,13 +1,13 @@
 #pragma once
 
 #include"objBase.h"
-#include"base_enemy.h"
+#include"base_item.h"
 #include<map>
 #include<functional>
 
-class CItem : public BaseVector
+class CNormalItem : public CBaseItem
 {
-public:
+private:
 
 	//アイテムの画像の数
 	static constexpr auto ITEM_IMG_NUM = 8;
@@ -15,16 +15,19 @@ public:
 public:
 
 	//座標、システム上の座標、アイテムのID
-	CItem(Point, MapPoint, Item_Id);
-	~CItem();
+	CNormalItem(Point, MapPoint, Item_Id);
+	~CNormalItem();
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
 
-	//アイテム削除
-	void DeleteItem();
+	//アイテム獲得時処理
+	void ItemGetAction() override;
+
+	//アイテム爆破時処理
+	void ItemExplosionAction(vector<unique_ptr<BaseVector>>& base) override;
 
 	//各アイテムの関数設定
-	void SetItemFunction();
+	void SetItemFunction() override;
 
 	//各アイテムの処理関数
 	void FirePowerAction();			//火力アップ					: オニール
@@ -36,21 +39,12 @@ public:
 	void FlameBarrierAction();		//爆風で死ななくなる			: バース
 	void PerfectManAction();		//30秒間無敵になる				: ポンタン
 
-	//アイテム爆破関数
-	void ItemExplosion(vector<unique_ptr<BaseVector>>&);
-
 public:
 
 	//アイテムのID
 	Item_Id ItemID;
 
-	//アイテム爆破フラグ
-	bool IsItemExplosion{ false };	
-
 private:
-
-	//プレイヤーとの差分
-	float Distance{ 0.0f };
 
 	//アイテムの画像ハンドル
 	int ItemImgHandle[ITEM_IMG_NUM];
@@ -58,9 +52,4 @@ private:
 	//アイテムごとの獲得時処理用関数マップ
 	std::map<Item_Id, std::function<void()>> ItemFunctions;
 
-	//SE　アイテム獲得サウンド用
-	int SE_ItemGet{ -1 };
-
-	//爆破カウント
-	int ExplosionCnt{ 0 };
 };

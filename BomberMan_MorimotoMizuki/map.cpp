@@ -165,7 +165,7 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 				base.emplace_back((unique_ptr<BaseVector>) new CBlock(p, s_p, gNowMap[y][x], img, static_cast<Item_Id>(item_id)));
 				//アイテム生成
 				if (item_id != -1) {
-					base.emplace_back((unique_ptr<BaseVector>) new CItem(p, s_p, static_cast<Item_Id>(item_id)));
+					base.emplace_back((unique_ptr<BaseVector>) new CNormalItem(p, s_p, static_cast<Item_Id>(item_id)));
 					item_id = -1;
 					used.insert(crashBlockNum); //使用済みに登録
 				}

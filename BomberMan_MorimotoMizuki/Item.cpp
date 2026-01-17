@@ -1,58 +1,27 @@
 #include"obj.h"
 #include"function.h"
 
-CItem::CItem(Point p, MapPoint system_p, Item_Id item_id)
+CNormalItem::CNormalItem(Point p, MapPoint system_p, Item_Id item_id)
 {
+	CBaseItem::Constructor(p, system_p); //ベースのコンストラクタ
+
 	LoadDivGraph("image\\Item.png", ITEM_IMG_NUM, 8, 1, IMGSIZE16, IMGSIZE16, ItemImgHandle);
-	SE_ItemGet = LoadSoundMem("sound\\ItemGet_SE.wav");
-	pos = p;
-
-	SystemPos = system_p;
-
-	ImgWidth  = CHIP_SIZE;
-	ImgHeight = CHIP_SIZE;
-
-	ItemID = item_id;
 
 	SetItemFunction(); //各アイテムの関数設定
 
-	ID  = Obj_Id::ITEM;
-	pri = Pri_Id::pITEM;
+	ItemID = item_id;
+
+	Score = 1000;
 }
 
-int CItem::Action(vector<unique_ptr<BaseVector>>& base)
+int CNormalItem::Action(vector<unique_ptr<BaseVector>>& base)
 {
-	//プレイヤーを取得
-	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
-	if (p == nullptr) return 0;
-
-	Distance = p->Distance; //プレイヤーの画面の差分を取得
-
-	if (!draw_flag) {
-		if (!CheckSoundMem(SE_ItemGet)) {
-			FLAG = false;
-		}
-
-		return 0;
-	}
-
-	if (p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y)
-	{
-		if (ItemFunctions.contains(ItemID))
-			ItemFunctions[ItemID]();   // 対応する関数を呼び出す
-	}
-
-	if (IsItemExplosion) {
-		ExplosionCnt++;
-		if (ExplosionCnt > 60) {
-			ItemExplosion(base);
-		}
-	}
+	CBaseItem::ItemAction(base); //ベースの更新処理
 
 	return 0;
 }
 
-void CItem::Draw()
+void CNormalItem::Draw()
 {
 	if (!draw_flag) return;
 
@@ -60,26 +29,23 @@ void CItem::Draw()
 	DrawExtendGraph(pos.x - Distance, pos.y, pos.x + ImgWidth - Distance, pos.y + ImgHeight, ItemImgHandle[ItemID], true);
 }
 
-CItem::~CItem()
+CNormalItem::~CNormalItem()
 {
+	CBaseItem::Destructor(); //ベースのデストラクタ
+
 	for (int i = 0; i < ITEM_IMG_NUM; i++)
 		DeleteGraph(ItemImgHandle[i]);
-
-	DeleteSoundMem(SE_ItemGet);
 }
 
-//アイテム削除
-void CItem::DeleteItem()
+//アイテム獲得時処理
+void CNormalItem::ItemGetAction()
 {
-	//SE再生
-	My_PlaySoundMem(SE_ItemGet, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_ItemGet);
-
-	draw_flag = false;
-	gPlayerStatus.score += 1000; //スコア加算
+	if (ItemFunctions.contains(ItemID))
+		ItemFunctions[ItemID]();   // 対応する関数を呼び出す
 }
 
-//アイテム爆破関数
-void CItem::ItemExplosion(vector<unique_ptr<BaseVector>>& base)
+//アイテム爆破時処理
+void CNormalItem::ItemExplosionAction(vector<unique_ptr<BaseVector>>& base)
 {
 	Point p{ SystemPos.x * CHIP_SIZE, SystemPos.y * CHIP_SIZE + WINDOW_HEADER };
 
@@ -121,13 +87,10 @@ void CItem::ItemExplosion(vector<unique_ptr<BaseVector>>& base)
 			break;
 		}
 	}
-
-	IsItemExplosion = false;
-	ExplosionCnt = 0;
 }
 
 //各アイテムの関数設定
-void CItem::SetItemFunction()
+void CNormalItem::SetItemFunction()
 {
 	ItemFunctions[FirePower]		= [&]() {FirePowerAction(); };
 	ItemFunctions[Bomb]				= [&]() {BombAction(); };
@@ -140,53 +103,53 @@ void CItem::SetItemFunction()
 }
 
 //火力アップ					: オニール
-void CItem::FirePowerAction()
+void CNormalItem::FirePowerAction()
 {
 	if(gPlayerStatus.bombLevel < MAX_FIRE_POWER)
 		gPlayerStatus.bombLevel++;
 
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //爆弾の置ける数アップ			: バロム
-void CItem::BombAction()
+void CNormalItem::BombAction()
 {
 	if(gPlayerStatus.bombPutNum < MAX_PUT_BOMB_NUM)
 		gPlayerStatus.bombPutNum++;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //爆弾がBボタンで自由に爆発可能	: コンドリア
-void CItem::RemoteControllerAction()
+void CNormalItem::RemoteControllerAction()
 {
 	gPlayerStatus.isRemoteController = true;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //移動速度アップ				: ダル
-void CItem::BootsAction()
+void CNormalItem::BootsAction()
 {
 	gPlayerStatus.speed += PLAYER_SPEED / 2;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //爆弾の上を歩けるようになる	: オバピー
-void CItem::BombPassingAction()
+void CNormalItem::BombPassingAction()
 {
 	gPlayerStatus.isBombPass = true;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //壁の上を歩けるようになる		: ミンボー
-void CItem::WallPassingAction()
+void CNormalItem::WallPassingAction()
 {
 	gPlayerStatus.isWallPass = true;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //爆風で死ななくなる			: バース
-void CItem::FlameBarrierAction()
+void CNormalItem::FlameBarrierAction()
 {
 	gPlayerStatus.isFlameBarrier = true;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }
 //30秒間無敵になる				: ポンタン
-void CItem::PerfectManAction()
+void CNormalItem::PerfectManAction()
 {
 	gPlayerStatus.isPerfectMan = true;
-	DeleteItem();
+	CBaseItem::DeleteItem();
 }

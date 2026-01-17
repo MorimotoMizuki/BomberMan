@@ -157,6 +157,7 @@
     <ClInclude Include="astar.h" />
     <ClInclude Include="ballom.h" />
     <ClInclude Include="base_enemy.h" />
+    <ClInclude Include="base_item.h" />
     <ClInclude Include="block.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="2D_function.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="pontan.h" />
     <ClInclude Include="Scene_Base.h" />
     <ClInclude Include="Scene_Manager.h" />
+    <ClInclude Include="special_item.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +193,7 @@
     <ClCompile Include="astar.cpp" />
     <ClCompile Include="ballom.cpp" />
     <ClCompile Include="base_enemy.cpp" />
+    <ClCompile Include="base_item.cpp" />
     <ClCompile Include="block.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="2D_function.cpp" />
@@ -211,6 +214,7 @@
     <ClCompile Include="pass.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pontan.cpp" />
+    <ClCompile Include="special_item.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
