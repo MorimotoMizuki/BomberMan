@@ -44,7 +44,7 @@ enum Item_Id
 //スペシャルアイテムID
 enum Special_Item_Id
 {
-	None = -1,
+	None_S = -1,
 	B_Panel,			//Bパネル
 	Goddess,			//ゴーデス
 	Cola,				//コーラ

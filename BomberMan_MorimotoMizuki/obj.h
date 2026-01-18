@@ -1,7 +1,5 @@
 #pragma once
 
-#include"base_enemy.h"
-#include"base_item.h"
 
 #include"player.h"
 #include"bomb.h"
@@ -10,6 +8,10 @@
 #include"door.h"
 #include"Item.h"
 #include"special_item.h"
+#include"special_item_manager.h"
+
+#include"base_enemy.h"
+#include"base_item.h"
 
 #include"ballom.h"
 #include"oneal.h"

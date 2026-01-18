@@ -72,6 +72,40 @@ std::vector<int> CMap::LoadItemData(int stage_num)
 	return item_data;
 }
 
+//スペシャルアイテムデータ読み込み
+Special_Item_Id CMap::LoadSpecialItemData(int stage_num)
+{
+	ifstream fp("text_data\\special_item_data.csv");
+	string str; //読み込んだ文字列
+
+	Special_Item_Id s_item_id{ Special_Item_Id::None_S };
+	bool isBreak{ false };
+
+	if (!fp.fail())
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			getline(fp, str);//1行読み込み
+			vector<string> strv = split(str, ',');//カンマで分割
+			for (int j = 1; j < strv.size(); j++)
+			{
+				if (stoi(strv.at(j)) == stage_num)
+				{
+					s_item_id = static_cast<Special_Item_Id>(stoi(strv.at(i)));
+
+					isBreak = true;
+					break;
+				}
+			}
+			if (isBreak) break;
+		}
+
+		fp.close();//ファイルを閉じる
+	}
+
+	return s_item_id;
+}
+
 //マップデータ読み込み
 void CMap::LoadMap()
 {
@@ -106,6 +140,12 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 
 	//アイテムのデータ読み込み
 	stage_item_data = LoadItemData(gNowStageNum);
+
+	//スペシャルアイテムデータ読み込み
+	Special_Item_Id s_item_id = LoadSpecialItemData(gNowStageNum);
+	//スペシャルアイテムが出現するステージかを判定 : ある場合はスペシャルアイテムマネージャーを生成
+	if(s_item_id != Special_Item_Id::None_S)
+		base.emplace_back((unique_ptr<BaseVector>) new CSpecial_Item_Manager(s_item_id));
 
 	//敵を生成
 	SetRandomEnemy(stage_enemy_data);

@@ -186,6 +186,7 @@
     <ClInclude Include="Scene_Base.h" />
     <ClInclude Include="Scene_Manager.h" />
     <ClInclude Include="special_item.h" />
+    <ClInclude Include="special_item_manager.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +216,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="pontan.cpp" />
     <ClCompile Include="special_item.cpp" />
+    <ClCompile Include="special_item_manager.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

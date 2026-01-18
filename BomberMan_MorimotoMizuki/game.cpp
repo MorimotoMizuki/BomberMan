@@ -81,6 +81,11 @@ CGame::CGame(CManager* p) :CScene(p)
 
 	//BGMをループで再生
 	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
+
+	MapPoint s_p{ 1, 2 };
+	Point _p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
+	base.emplace_back((unique_ptr<BaseVector>) new CSpecial_Item(_p, s_p, Special_Item_Id::B_Panel));
+
 }
 
 //更新処理

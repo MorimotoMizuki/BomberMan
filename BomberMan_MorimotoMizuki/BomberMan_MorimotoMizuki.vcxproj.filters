@@ -149,6 +149,9 @@
     <ClInclude Include="special_item.h">
       <Filter>ヘッダー ファイル\オブジェクト\アイテム</Filter>
     </ClInclude>
+    <ClInclude Include="special_item_manager.h">
+      <Filter>ヘッダー ファイル\オブジェクト\アイテム</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +233,9 @@
       <Filter>ソース ファイル\オブジェクト\アイテム</Filter>
     </ClCompile>
     <ClCompile Include="special_item.cpp">
+      <Filter>ソース ファイル\オブジェクト\アイテム</Filter>
+    </ClCompile>
+    <ClCompile Include="special_item_manager.cpp">
       <Filter>ソース ファイル\オブジェクト\アイテム</Filter>
     </ClCompile>
   </ItemGroup>

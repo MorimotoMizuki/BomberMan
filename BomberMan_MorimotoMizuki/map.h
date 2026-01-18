@@ -65,6 +65,9 @@ public:
 	//アイテムのデータ読み込み
 	std::vector<int> LoadItemData(int stage_num);
 
+	//スペシャルアイテムデータ読み込み
+	Special_Item_Id LoadSpecialItemData(int stage_num);
+
 	//マップデータ読み込み
 	void LoadMap();
 	//マップ生成

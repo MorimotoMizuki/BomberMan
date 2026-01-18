@@ -10,7 +10,7 @@ class CSpecial_Item : public CBaseItem
 private:
 
 	//ƒAƒCƒeƒ€‚Ì‰æ‘œ‚Ì”
-	static constexpr auto ITEM_IMG_NUM = 6;
+	static constexpr auto ITEM_IMG_NUM = 5;
 
 public:
 
