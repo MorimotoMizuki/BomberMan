@@ -40,7 +40,7 @@ public:
 	void Draw();
 
 	//プレイヤーの移動処理
-	void PlayerMove();
+	Move_Id PlayerMove();
 
 	//プレイヤーの当たり判定
 	void PlayerHit(vector<unique_ptr<BaseVector>>&);
@@ -84,6 +84,9 @@ public:
 
 	//リモコン使用時の爆弾のスタック
 	std::vector<int> BombStack;
+
+	//移動方向
+	Move_Id Move_Dir{ Move_Id::NONE_KEY };
 
 private:
 

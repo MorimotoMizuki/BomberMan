@@ -28,6 +28,9 @@ public:
 	//ドア爆破フラグ
 	bool IsDoorExplosion{ false };
 
+	//ドア爆破回数
+	int DoorExplosionNum{ 0 };
+
 private:
 
 	//プレイヤーとの差分

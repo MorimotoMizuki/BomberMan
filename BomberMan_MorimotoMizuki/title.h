@@ -146,4 +146,8 @@ private:
 
 	//パスワード検証後のフラグ
 	bool IsPassword{ false };
+
+	//コンテニュー画面の四角の点滅用
+	int FlashCnt{ 0 };
+	bool IsFlashVisible{ false };
 };

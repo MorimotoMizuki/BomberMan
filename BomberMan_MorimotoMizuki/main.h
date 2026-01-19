@@ -54,6 +54,9 @@ constexpr auto ENEMY_VARIATION = 8;
 //アイテムの種類
 constexpr auto ITEM_VARIATION = 8;
 
+//スペシャルアイテムの種類
+constexpr auto SPECIAL_ITEM_VARIATION = 6;
+
 //プレイヤーの初期スピード
 constexpr auto PLAYER_SPEED = 4.0f;
 
@@ -129,6 +132,12 @@ extern int gEnemyPri;
 
 //爆弾のID設定用
 extern int gBombId;
+
+//爆弾を爆発させた個数
+extern int gBombExplosionNum;
+
+//破壊可能ブロックの爆破フラグ
+extern bool gIsExplosionBlock;
 
 //セーブデータを読み込むフラグ
 extern bool gIsLoadSaveData;

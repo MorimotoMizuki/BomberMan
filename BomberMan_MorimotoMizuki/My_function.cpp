@@ -110,6 +110,8 @@ void ResetPlayerStatus()
 	gKillEnemyNum	= 0;	//倒した敵の数
 	gNowBombNum		= 0;	//設置した爆弾の数
 	gBombId			= 0;	//爆弾のID
+	gBombExplosionNum = 0;	//爆弾を爆発させた個数
+	gIsExplosionBlock = false;	//破壊可能ブロックの爆破フラグ
 }
 
 //サウンド再生関数(MusicVolume : 音量0～255)

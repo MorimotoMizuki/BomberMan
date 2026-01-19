@@ -56,7 +56,7 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 	}
 
 	//プレイヤーの移動処理
-	PlayerMove();
+	Move_Dir = PlayerMove();
 
 	//リモコンフラグがtrue の場合　かつ 爆弾が設置されている場合 : リモコンの処理を実行
 	if(gPlayerStatus.isRemoteController && gNowBombNum > 0)
@@ -109,6 +109,8 @@ void CPlayer::Draw()
 
 	//画像描画
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
+
+	DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "x:%d\ny:%d", SystemPos.x, SystemPos.y);
 }
 
 CPlayer::~CPlayer()
@@ -194,10 +196,10 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 }
 
 //プレイヤーの移動処理
-void CPlayer::PlayerMove()
+Move_Id CPlayer::PlayerMove()
 {
 	if (PlayerState != PlayerStateId::PLAYplayer)
-		return;
+		return Move_Id::NONE_KEY;
 
 	//移動ベクトル初期化
 	vec.x = 0.0f;
@@ -209,7 +211,7 @@ void CPlayer::PlayerMove()
 		vec.x = -gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::LEFT, PLAYER_ANIM_FRAME, &AnimIndex);
 		PlayerMoveSound(SE_PlayerWalk_W, SE_PlayerWalk_H, MusicVolume::SE_PlayerWalk_W); //SE再生
-		return;
+		return Move_Id::LEFT;
 	}
 	//右
 	else if (Key_Check(Move_Id::RIGHT))
@@ -217,7 +219,7 @@ void CPlayer::PlayerMove()
 		vec.x = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::RIGHT, PLAYER_ANIM_FRAME, &AnimIndex);
 		PlayerMoveSound(SE_PlayerWalk_W, SE_PlayerWalk_H, MusicVolume::SE_PlayerWalk_W); //SE再生
-		return;
+		return Move_Id::RIGHT;
 	}
 	//上
 	else if (Key_Check(Move_Id::UP))
@@ -225,7 +227,7 @@ void CPlayer::PlayerMove()
 		vec.y = -gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::UP, PLAYER_ANIM_FRAME, &AnimIndex);
 		PlayerMoveSound(SE_PlayerWalk_H, SE_PlayerWalk_W, MusicVolume::SE_PlayerWalk_H); //SE再生
-		return;
+		return Move_Id::UP;
 	}
 	//下
 	else if (Key_Check(Move_Id::DOWN))
@@ -233,14 +235,14 @@ void CPlayer::PlayerMove()
 		vec.y = gPlayerStatus.speed;
 		PlayerAnim(AnimMaxId::DOWN, PLAYER_ANIM_FRAME, &AnimIndex);
 		PlayerMoveSound(SE_PlayerWalk_H, SE_PlayerWalk_W, MusicVolume::SE_PlayerWalk_H); //SE再生
-		return;
+		return Move_Id::DOWN;
 	}
 
 	//キー入力が無い場合は再生中の歩行SEを停止させる
 	if (CheckSoundMem(SE_PlayerWalk_W)) StopSoundMem(SE_PlayerWalk_W);
 	if (CheckSoundMem(SE_PlayerWalk_H)) StopSoundMem(SE_PlayerWalk_H);
 
-	return;
+	return Move_Id::NONE_KEY;
 }
 
 //プレイヤーの移動時のSE再生関数

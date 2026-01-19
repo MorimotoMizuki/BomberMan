@@ -43,6 +43,12 @@ int gEnemyPri{ Pri_Id::pENEMY };
 //爆弾のID設定用
 int gBombId{0};
 
+//爆弾を爆発させた個数
+int gBombExplosionNum{ 0 };
+
+//破壊可能ブロックの爆破フラグ
+bool gIsExplosionBlock{ false };
+
 //セーブデータを読み込むフラグ
 bool gIsLoadSaveData = false;
 
@@ -81,11 +87,6 @@ CGame::CGame(CManager* p) :CScene(p)
 
 	//BGMをループで再生
 	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
-
-	MapPoint s_p{ 1, 2 };
-	Point _p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
-	base.emplace_back((unique_ptr<BaseVector>) new CSpecial_Item(_p, s_p, Special_Item_Id::B_Panel));
-
 }
 
 //更新処理
@@ -122,6 +123,8 @@ int CGame::Update()
 		//SE再生
 		My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_AllEnemyKill);
 	}
+	if(gEnemySum != gKillEnemyNum)
+		IsGoalOpen = false;
 
 	//更新処理
 	for (int i = 0; i < base.size(); i++)

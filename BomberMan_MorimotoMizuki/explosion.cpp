@@ -63,6 +63,12 @@ CExplosion::~CExplosion()
 	//現在設置している爆弾の数 : 減少
 	gNowBombNum--;
 
+	//敵の全滅時に爆弾を爆発させた個数をカウント
+	if (gEnemySum == gKillEnemyNum)
+		gBombExplosionNum++;
+	else
+		gBombExplosionNum = 0;
+
 	for (int i = 0; i < EXPLOSION_IMG_NUM; i++)
 		DeleteGraph(ExplosionImgHandle[i]);
 

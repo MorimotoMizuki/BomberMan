@@ -5,7 +5,7 @@ CSpecial_Item::CSpecial_Item(Point p, MapPoint system_p, Special_Item_Id s_item_
 {
 	CBaseItem::Constructor(p, system_p); //ベースのコンストラクタ
 
-	LoadDivGraph("image\\hidden_character.png", ITEM_IMG_NUM, 5, 1, IMGSIZE16, IMGSIZE16, ItemImgHandle);
+	LoadDivGraph("image\\hidden_character.png", ITEM_IMG_NUM, 6, 1, IMGSIZE16, IMGSIZE16, ItemImgHandle);
 
 	SetItemFunction(); //各アイテムの関数設定
 

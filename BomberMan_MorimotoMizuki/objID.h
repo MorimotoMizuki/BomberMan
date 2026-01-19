@@ -56,8 +56,8 @@ enum Special_Item_Id
 //オブジェクト表示順番
 enum Pri_Id
 {
-	pGOAL,
 	pBLOCK,
+	pGOAL,
 	pITEM,
 	pBOMB,
 	pEXPLOSION,

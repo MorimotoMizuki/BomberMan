@@ -75,6 +75,8 @@ void CDoor::DoorExplosion(vector<unique_ptr<BaseVector>>& base)
 		base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, SystemPos));
 	}
 
+	DoorExplosionNum++; //ドア爆破回数カウント
+
 	IsDoorExplosion = false;
 	ExplosionCnt = 0;
 }

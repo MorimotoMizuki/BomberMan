@@ -83,7 +83,7 @@ Special_Item_Id CMap::LoadSpecialItemData(int stage_num)
 
 	if (!fp.fail())
 	{
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < SPECIAL_ITEM_VARIATION; i++)
 		{
 			getline(fp, str);//1s“Ç‚Ýž‚Ý
 			vector<string> strv = split(str, ',');//ƒJƒ“ƒ}‚Å•ªŠ„
@@ -91,7 +91,7 @@ Special_Item_Id CMap::LoadSpecialItemData(int stage_num)
 			{
 				if (stoi(strv.at(j)) == stage_num)
 				{
-					s_item_id = static_cast<Special_Item_Id>(stoi(strv.at(i)));
+					s_item_id = static_cast<Special_Item_Id>(i);
 
 					isBreak = true;
 					break;

@@ -79,6 +79,10 @@ CTitle::CTitle(CManager* p) :CScene(p)
 
 	LoadDivGraph("image\\ending_player.png", 8, 4, 2, IMGSIZE16, IMGSIZE16, EndingPlayer_img);
 
+	//char配列の初期化
+	std::fill(std::begin(KeyState), std::end(KeyState), 0);
+	std::fill(std::begin(PrevKeyState), std::end(PrevKeyState), 0);
+
 	//セーブデータ読み込み
 	if (gIsLoadSaveData == false)
 		LoadStatus();
@@ -225,6 +229,15 @@ int CTitle::Update()
 	case ScreenPhaseId::CONTINUE_screen:
 		UpdateKeyState();		//キーボード入力の更新
 		UpdatePasswordInput();	//キーボード入力
+
+		//点滅処理
+		FlashCnt++;
+		//一定フレーム後に点滅フラグ反転
+		if (FlashCnt > 30) {
+			IsFlashVisible = !IsFlashVisible;
+			FlashCnt = 0;
+		}
+
 		break;
 	//エンディング用スクリーン
 	case ScreenPhaseId::ENDING_screen:
@@ -360,6 +373,19 @@ void CTitle::Draw()
 			startPos = { startPos.x, startPos.y + 200.0f };
 			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), Password.c_str());
 			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), Password.c_str());
+
+			//点滅フラグtrue　と　パスワードが空白ではない場合
+			if (IsFlashVisible && !Password.empty()) {
+				//文字列全体の幅
+				float total_w = static_cast<float>(GetDrawStringWidth(Password.c_str(), Password.size())) * STRING_EXTEND_X;
+				//最後の1文字を取り出す
+				char last_char[2] = { Password.back(), '\0' };
+				//最後の1文字の幅
+				float char_w  = static_cast<float>(GetDrawStringWidth(last_char, 1)) * STRING_EXTEND_X;
+				//四角描画
+				DrawBox(startPos.x + total_w - char_w, startPos.y, startPos.x + total_w - char_w + char_w, startPos.y + 30, GetColor(255, 255, 255), true);
+			}
+
 			break;
 		}
 		case ScreenPhaseId::ENDING_screen:
@@ -430,6 +456,9 @@ void CTitle::UpdatePasswordInput()
 		{
 			if (Password.size() < PASSWORD_MAX)
 				Password.push_back((char)ch);
+
+			IsFlashVisible = false;
+			FlashCnt = 0;
 		}
 	}
 }

@@ -67,6 +67,9 @@ void CBlock::Draw()
 CBlock::~CBlock()
 {
 	if (tipNo == 1) {
+
+		gIsExplosionBlock = true; //破壊可能ブロックの爆破フラグ
+
 		for (int i = 0; i < CRASH_IMG_NUM; i++)
 			DeleteGraph(CrashAnimImgHandle[i]);
 	}

@@ -1,8 +1,8 @@
-/*
-* A-Star探索用プログラム
-* DXライブラKcomテンプレート用
-* 2次元マップの最短ルート検索用
-*/
+// A-Star探索用プログラム
+// DXライブラKcomテンプレート用
+// 2次元マップの最短ルート検索用
+
+
 //astar.h
 #pragma once
 #include "objBase.h"
