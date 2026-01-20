@@ -110,21 +110,21 @@ C:\dxlib\DxLib.h(5581,1): warning C4819: ファイルは、現在のコード �
 C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\astar.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
   (ソース ファイル 'game.cpp' をコンパイルしています)
   
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(143,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(170,19): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(170,19): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(170,50): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(170,50): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(195,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(195,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(196,43): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(196,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(200,59): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(200,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(201,45): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(201,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(206,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(206,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(207,44): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(207,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(163,37): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(191,19): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(191,19): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(191,50): warning C4838: 'int' から 'float' への変換には縮小変換が必要です
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(191,50): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(215,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(215,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(216,43): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(216,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(220,59): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(220,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(221,45): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(221,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(226,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(226,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(227,44): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\GA3\Desktop\BomberMan\BomberMan_MorimotoMizuki\game.cpp(227,33): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   BomberMan_MorimotoMizuki.vcxproj -> C:\Users\GA3\Desktop\BomberMan\x64\Debug\BomberMan_MorimotoMizuki.exe

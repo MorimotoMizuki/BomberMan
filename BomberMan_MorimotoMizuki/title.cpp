@@ -131,6 +131,8 @@ CTitle::CTitle(CManager* p) :CScene(p)
 			//エンディングBGMを単発で再生
 			My_PlaySoundMem(BGM_Ending, DX_PLAYTYPE_BACK, TRUE, MusicVolume::BGM_Ending);
 		}
+
+		gPlayerStatus.life++; //ライフを増やす
 	}
 	else
 	{
@@ -190,15 +192,6 @@ int CTitle::Update()
 				break;
 			}
 			case ScreenPhaseId::CONTINUE_screen: {
-
-				if (IsPassword) {
-					//ステージ移動状態にする
-					ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
-					//BGM が再生中なら停止
-					if (CheckSoundMem(BGM_Normal)) {
-						StopSoundMem(BGM_Normal);
-					}
-				}
 				break;
 			}
 		}
@@ -227,6 +220,16 @@ int CTitle::Update()
 		break;
 	//コンテニュー用スクリーン
 	case ScreenPhaseId::CONTINUE_screen:
+
+		if (IsPassword) {
+			//ステージ移動状態にする
+			ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
+			//BGM が再生中なら停止
+			if (CheckSoundMem(BGM_Normal)) {
+				StopSoundMem(BGM_Normal);
+			}
+		}
+
 		UpdateKeyState();		//キーボード入力の更新
 		UpdatePasswordInput();	//キーボード入力
 
@@ -447,12 +450,12 @@ void CTitle::UpdatePasswordInput()
 		//Enter : 確定
 		if (IsKeyTrigger(KEY_INPUT_RETURN))
 		{
-			if (Password.size() == PASSWORD_MAX) {
+			if (!Password.empty())
 				IsPassword = IsValidPassword(Password); //パスワード検証
-			}
 		}
 		//A～P のみ受け付ける
-		if (ch >= 'A' && ch <= 'P')
+		if ((ch >= 'A' && ch <= 'P') || 
+			(ch >= '0' && ch <= '9'))
 		{
 			if (Password.size() < PASSWORD_MAX)
 				Password.push_back((char)ch);
@@ -467,15 +470,58 @@ void CTitle::UpdatePasswordInput()
 bool CTitle::IsValidPassword(std::string& password)
 {
 	//文字数が違う場合はfalseで終了
-	if (password.size() != PASSWORD_MAX) return false;
+	//if (password.size() != PASSWORD_MAX) return false;
 
 	//文字が範囲内じゃない場合はfalseで終了
-	for (char c : password) {
-		if (c < 'A' || c > 'P')
-			return false;
+	//for (char c : password) {
+	//	if (c < 'A' || c > 'P')
+	//		return false;
+	//}
+
+	//数字かどうか判別
+	if (Is_Int_from_Str(password, PasswordOutStageNum))
+	{
+		//ステージにある場合はそのステージにする
+		if (gNowStageNum <= STAGE_SUM)
+			gNowStageNum = PasswordOutStageNum;
+
+		return true;
 	}
 
-	return true;
+	//パスワードと一致しているか判定
+	for (int i = 0; i < MY_PASSWORD.size(); i++)
+	{
+		if (password == MY_PASSWORD[i])
+		{
+			switch (i)
+			{
+				case Password_Id::SAIKYOU:
+				{
+					gPlayerStatus.bombPutNum			= 5;
+					gPlayerStatus.bombLevel				= 5;
+					gPlayerStatus.isBombPass			= true;
+					gPlayerStatus.isFlameBarrier		= true;
+					gPlayerStatus.isPerfectMan			= true;
+					gPlayerStatus.isRemoteController	= true;
+					gPlayerStatus.isWallPass			= true;
+					break;
+				}
+				
+			}
+		}
+	}
+
+	return false;
+}
+
+//std::string が int に変換できるか判別 : できる場合は outBValueに変換
+bool CTitle::Is_Int_from_Str(const std::string& password, int& outValue)
+{
+	//std::string が int に変換できる場合は変換
+	auto result = std::from_chars(password.data(), password.data() + password.size(), outValue);
+
+	//文字列全体が int に変換できたか判定
+	return result.ec == std::errc{} && result.ptr == password.data() + password.size();
 }
 
 //毎フレーム更新 : キー

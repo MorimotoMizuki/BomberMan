@@ -3,6 +3,10 @@
 #include "objBase.h"
 #include "CCamera.h"
 #include"map.h"
+#include<string>
+#include<string_view>
+#include<array>
+#include<charconv>
 
 class CTitle :public CScene
 {
@@ -30,6 +34,11 @@ private:
 	//エンディングからステージ移動するフレーム数
 	static constexpr auto ENDING_TO_STAGE_FRAME = 3 * 60;
 
+	//パスワード
+	static constexpr std::array<std::string_view, 1> MY_PASSWORD = {
+		"BBB",
+	};
+
 public:
 
 	enum TitleCommandId {
@@ -48,6 +57,10 @@ public:
 		GAMEOVER_screen,
 		CONTINUE_screen,
 		ENDING_screen,
+	};
+
+	enum Password_Id {
+		SAIKYOU,
 	};
 
 public:
@@ -81,12 +94,18 @@ public:
 	//押した瞬間判定 : キー
 	bool IsKeyTrigger(int key);
 
+	//std::string が int に変換できるか判別 : できる場合は outBValueに変換
+	bool Is_Int_from_Str(const std::string& password, int& outValue);
+
 	//マップManager
 	std::unique_ptr<CMap> map;
 
 	//CCamera* camera;//カメラオブジェクト
 
 private:
+
+	//パスワードで数字が入力されたときに保存する用
+	int PasswordOutStageNum{ 0 };
 
 	//タイトルロゴ画像ハンドル
 	int TitleRogo_img{ -1 };

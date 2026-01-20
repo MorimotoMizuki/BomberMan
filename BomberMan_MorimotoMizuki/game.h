@@ -40,4 +40,10 @@ public:
 	int BGM{ -1 };
 	//SE 全ての敵を倒した用
 	int SE_AllEnemyKill{ -1 };
+
+	//タブキー入力制限用
+	bool TabKeyCheck{ false };
+
+	//ゲームフェーズ保存用
+	GamePhaseId PrevGamePhase{ GamePhaseId::IDLE };
 };

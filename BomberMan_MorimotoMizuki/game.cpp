@@ -73,9 +73,6 @@ CGame::CGame(CManager* p) :CScene(p)
 	map->LoadMap();	//マップデータ読み込み
 	map->Map_Obj_Creation(base);//マップ生成
 
-	//敵の合計数を取得
-	//gEnemySum = map->GetStageEnemyTotal();
-
 	//プレイヤー生成
 	base.emplace_back((unique_ptr<BaseVector>)new CPlayer());
 
@@ -83,7 +80,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	gGamePhase = GamePhaseId::PLAING;
 
 	//タイマー設定
-	Time = 20 * 60;
+	Time = 200 * 60;
 
 	//BGMをループで再生
 	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
@@ -92,6 +89,36 @@ CGame::CGame(CManager* p) :CScene(p)
 //更新処理
 int CGame::Update()
 {
+	if (gGamePhase != GamePhaseId::PAUSE)
+	{
+		if (gGamePhase != PrevGamePhase)
+			PrevGamePhase = gGamePhase;
+	}
+
+	//タブキー入力
+	if (Key_Check(Move_Id::TAB_KEY) && !TabKeyCheck)
+	{
+		TabKeyCheck = true;
+
+		if (gGamePhase == GamePhaseId::GAMEOVER ||
+			gGamePhase == GamePhaseId::GAMECLEAR)
+			return 0;
+
+		if (gGamePhase == GamePhaseId::PAUSE)
+			gGamePhase = PrevGamePhase;
+		else
+			gGamePhase = GamePhaseId::PAUSE;
+
+		return 0;
+	}
+
+	//タブキー更新
+	TabKeyCheck = Key_Check(Move_Id::TAB_KEY);
+
+	//ポーズ中は終了
+	if (gGamePhase == GamePhaseId::PAUSE)
+		return 0;
+
 	if (gGamePhase == GamePhaseId::GAMEOVER || 
 		gGamePhase == GamePhaseId::GAMECLEAR)
 	{
@@ -135,6 +162,7 @@ int CGame::Update()
 	//オブジェクトのソート処理(クイックソート)
 	ObjSort_Quick(base, 0, base.size() - 1);
 
+	//制限時間オーバー
 	if (Time == 0 && !IsTimeOver)
 	{
 		IsTimeOver = true;
@@ -165,7 +193,6 @@ int CGame::Update()
 			//ポンタン生成
 			base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
 			pop_pontan++;
-
 		}
 	}
 	else

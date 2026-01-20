@@ -59,7 +59,10 @@ bool Key_Check(Move_Id move_id)
 	case B_KEY:
 		if (CheckHitKey(KEY_INPUT_B))
 			return true;
-
+		break;
+	case TAB_KEY:
+		if (CheckHitKey(KEY_INPUT_TAB))
+			return true;
 		break;
 	case ALL_KEY:
 		if (CheckHitKeyAll() || pad)

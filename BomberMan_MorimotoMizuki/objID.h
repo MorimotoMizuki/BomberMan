@@ -72,6 +72,7 @@ enum GamePhaseId
 	PLAING,
 	GAMEOVER,
 	GAMECLEAR,
+	PAUSE,
 };
 
 //爆発エフェクトID
@@ -98,6 +99,7 @@ enum Move_Id
 	LEFT_CLICK,	//マウス左クリック
 	ENTER,	//エンターキー
 	B_KEY,	//Bボタン
+	TAB_KEY,//タブキー
 	ALL_KEY,//全てのキー入力
 	NONE_KEY,
 };
