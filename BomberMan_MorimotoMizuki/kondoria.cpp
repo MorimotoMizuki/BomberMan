@@ -3,6 +3,10 @@
 
 CKondoria::CKondoria(Point p, MapPoint system_p)
 {
+	SPEED = 1.0f; //移動速度
+	SCORE = 1000;  //スコア
+	STOP_FRAME = 5; //停止フレーム
+
 	CBaseEnemy::Constructor(p, system_p); //ベースのコンストラクタ
 
 	//画像を分割
@@ -12,10 +16,6 @@ CKondoria::CKondoria(Point p, MapPoint system_p)
 
 	//死亡時画像の最初の一枚の設定
 	EnemyDeadImgHandle[0] = DerivationGraph(IMGSIZE32 * 4, IMGSIZE32 * 5, IMGSIZE32, IMGSIZE32, img);
-
-	SPEED = 1.0f; //移動速度
-	SCORE = 1000;  //スコア
-	STOP_FRAME = 5; //停止フレーム
 
 	//移動制限判定Obj_Id
 	HitMoveObj_Id.push_back(Obj_Id::BLOCK);
@@ -91,16 +91,4 @@ CKondoria::~CKondoria()
 
 	for (int i = 0; i < KONDORIA_IMG_NUM; i++)
 		DeleteGraph(ImgHandle[i]);
-}
-
-//敵の死亡時のパラメータ設定
-void CKondoria::SetEnemyDeadParameter()
-{
-	if (IsDead) return;
-
-	IsDead = true;
-	AnimIndex = 0;
-	AnimCnt = 0;
-	vec.x = 0.0f;
-	vec.y = 0.0f;
 }

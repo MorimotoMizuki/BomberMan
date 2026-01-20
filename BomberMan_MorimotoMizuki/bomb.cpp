@@ -96,7 +96,23 @@ void CBomb::ExplosionEffect(vector<unique_ptr<BaseVector>>& base, CPlayer* playe
 	//爆発エフェクト生成 
 	base.emplace_back((unique_ptr<BaseVector>)new CExplosion(pos, SystemPos, BombLevel));
 
-	FLAG = false;
+	//爆弾IDの削除
+	DeleteBombStack(player);
+
 	if (player != nullptr)
 		player->IsPutBomb = false;
+
+	FLAG = false;
+}
+
+//爆弾IDの削除
+void CBomb::DeleteBombStack(CPlayer* player)
+{
+	//爆弾のIDの要素をリストから削除
+	auto it = std::find(player->BombStack.begin(), player->BombStack.end(), GetBombID());
+
+	if (it != player->BombStack.end())
+		player->BombStack.erase(it);
+
+	gBombId--;
 }

@@ -87,6 +87,8 @@ void CNormalItem::ItemExplosionAction(vector<unique_ptr<BaseVector>>& base)
 			break;
 		}
 	}
+
+	FLAG = false; //アイテム削除
 }
 
 //各アイテムの関数設定

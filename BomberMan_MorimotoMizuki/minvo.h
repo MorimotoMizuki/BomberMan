@@ -25,9 +25,6 @@ public:
 	int Action(vector<unique_ptr<BaseVector>>&);
 	void Draw();
 
-	//敵の死亡時のパラメータ設定
-	void SetEnemyDeadParameter() override;
-
 private:
 
 	//画像ハンドル

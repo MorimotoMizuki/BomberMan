@@ -3,6 +3,10 @@
 
 CMinvo::CMinvo(Point p, MapPoint system_p)
 {
+	SPEED = 4.0f; //移動速度
+	SCORE = 800;  //スコア
+	STOP_FRAME = 10; //停止フレーム
+
 	CBaseEnemy::Constructor(p, system_p); //ベースのコンストラクタ
 
 	//画像を分割
@@ -12,10 +16,6 @@ CMinvo::CMinvo(Point p, MapPoint system_p)
 
 	//死亡時画像の最初の一枚の設定
 	EnemyDeadImgHandle[0] = DerivationGraph(IMGSIZE32 * 4, IMGSIZE32 * 4, IMGSIZE32, IMGSIZE32, img);
-
-	SPEED = 4.0f; //移動速度
-	SCORE = 800;  //スコア
-	STOP_FRAME = 10; //停止フレーム
 
 	//移動制限判定Obj_Id
 	HitMoveObj_Id.push_back(Obj_Id::BLOCK);
@@ -110,16 +110,4 @@ CMinvo::~CMinvo()
 
 	for (int i = 0; i < MINVO_IMG_NUM; i++)
 		DeleteGraph(ImgHandle[i]);
-}
-
-//敵の死亡時のパラメータ設定
-void CMinvo::SetEnemyDeadParameter()
-{
-	if (IsDead) return;
-
-	IsDead = true;
-	AnimIndex = 0;
-	AnimCnt = 0;
-	vec.x = 0.0f;
-	vec.y = 0.0f;
 }

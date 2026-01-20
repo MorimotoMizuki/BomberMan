@@ -35,6 +35,9 @@ public:
 	//”š’e‚ÌID‚ğæ“¾
 	int GetBombID() { return BombID; }
 
+	//”š’eID‚Ìíœ
+	void DeleteBombStack(CPlayer* player);
+
 private:
 
 	//”š’e‰æ‘œƒnƒ“ƒhƒ‹”z—ñ

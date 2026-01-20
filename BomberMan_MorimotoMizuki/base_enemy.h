@@ -61,7 +61,7 @@ public:
 	void TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackingPlayer, std::pair<bool, int> tracking_parameter, int randomParameter);
 
 	//敵の死亡時のパラメータ設定
-	virtual void SetEnemyDeadParameter() = 0;
+	void SetEnemyDeadParameter(int dead_enemy_num);
 
 	//スコア表示処理
 	void DrawScore();
@@ -87,6 +87,9 @@ public:
 	int STOP_FRAME = 0; //停止フレーム
 
 protected:
+
+	//敵のベースのスコア
+	int Default_Score{ 0 };
 
 	//敵の死亡時画像
 	int EnemyDeadImgHandle[5]{ 0,0,0,0,0 };
@@ -120,4 +123,7 @@ protected:
 
 	//移動方向許可フラグ配列
 	std::array<bool, 4> IsPermitDir{ true,true,true,true };
+
+	//プレイヤーの座標保存用
+	MapPoint PrevPlayerSystemPos{ 0,0 };
 };

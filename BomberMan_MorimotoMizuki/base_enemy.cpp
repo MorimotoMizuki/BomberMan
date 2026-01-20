@@ -22,6 +22,9 @@ void CBaseEnemy::Constructor(Point p, MapPoint system_p)
 	pri = gEnemyPri;
 	gEnemyPri++;
 
+	//敵のベースのスコア
+	Default_Score = SCORE;
+
 	gEnemySum++;
 }
 
@@ -67,6 +70,21 @@ void CBaseEnemy::EnemyInstantDead()
 {
 	FLAG = false;
 	gKillEnemyNum++;	//敵討伐数++
+}
+
+//敵の死亡時のパラメータ設定
+void CBaseEnemy::SetEnemyDeadParameter(int dead_enemy_num)
+{
+	if (IsDead) return;
+
+	IsDead = true;
+	AnimIndex = 0;
+	AnimCnt = 0;
+	vec.x = 0.0f;
+	vec.y = 0.0f;
+
+	//スコア増幅処理
+	SCORE += Default_Score * dead_enemy_num;
 }
 
 //爆弾と接触時の座標調整処理

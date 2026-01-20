@@ -110,7 +110,8 @@ void CPlayer::Draw()
 	//‰æ‘œ•`‰æ
 	DrawExtendGraph(pos.x, pos.y, pos.x + ImgWidth, pos.y + ImgHeight, PlayerImgHandle[AnimIndex], true);
 
-	DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "x:%d\ny:%d", SystemPos.x, SystemPos.y);
+	//DrawFormatString(pos.x, pos.y, GetColor(0, 0, 0), "x:%d\ny:%d", SystemPos.x, SystemPos.y);
+	
 }
 
 CPlayer::~CPlayer()
@@ -321,9 +322,6 @@ void CPlayer::PutExplosion(vector<unique_ptr<BaseVector>>& base)
 
 	IsPutBomb = true;
 
-	if (gNowBombNum == 0)
-		gBombId = 0;
-
 	BombStack.push_back(gBombId); //”š’e‚Ìİ’uŒÂ”‚ğID‚Æ‚µ‚Ä“o˜^
 
 	//Œ»İ‚Ìƒ}ƒbƒv‚É”š’e‚ğ”z’u
@@ -384,7 +382,6 @@ void CPlayer::RemoteControllerAction(vector<unique_ptr<BaseVector>>& base)
 			if (base[i]->ID == Obj_Id::BOMB && ((CBomb*)base[i].get())->GetBombID() == BombStack[0]) 
 			{
 				((CBomb*)base[i].get())->ExplosionEffect(base, this); //”š’e‚ğ”š”­‚³‚¹‚é
-				BombStack.erase(BombStack.begin()); //”š”­‚µ‚½ID‚ğíœ
 				return;
 			}
 		}

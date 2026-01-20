@@ -89,4 +89,7 @@ private:
 
 	//‰‰ñ‚Ì‚İ“–‚½‚è”»’èƒtƒ‰ƒO
 	bool IsHitOnce{ false };
+
+	//“G‚ğ“¯‚É“|‚µ‚½”
+	int ConcurrentKillEnemyNum{ 0 };
 };

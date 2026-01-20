@@ -39,8 +39,10 @@ int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)
 	HitAction(base);
 
 	//”š”­ƒAƒjƒ[ƒVƒ‡ƒ“ˆ—
-	if (!ExplosionAnim(EXPLOSION_ANIM_NUM, &AnimIndex))
+	if (!ExplosionAnim(EXPLOSION_ANIM_NUM, &AnimIndex)) 
+	{
 		FLAG = false;
+	}
 
 	return 0;
 }
@@ -113,7 +115,8 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 						{
 						//“G
 						case Obj_Id::ENEMY:
-							((CBaseEnemy*)base[i].get())->SetEnemyDeadParameter(); //“G€–Sˆ—
+							((CBaseEnemy*)base[i].get())->SetEnemyDeadParameter(ConcurrentKillEnemyNum); //“G€–Sˆ—
+							ConcurrentKillEnemyNum++;
 							break;
 						//”à
 						case Obj_Id::GOAL:
@@ -132,10 +135,6 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 						//”š’e : —U”šˆ—
 						case Obj_Id::BOMB:
 							((CBomb*)base[i].get())->ExplosionEffect(base, p);
-							//”š’e‚ÌID‚Ì—v‘f‚ğƒŠƒXƒg‚©‚çíœ
-							auto it = std::find(p->BombStack.begin(), p->BombStack.end(), ((CBomb*)base[i].get())->GetBombID());
-							if (it != p->BombStack.end())
-								p->BombStack.erase(it);
 							break;
 						}
 					}

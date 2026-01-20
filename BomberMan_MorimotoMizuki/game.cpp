@@ -83,7 +83,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	gGamePhase = GamePhaseId::PLAING;
 
 	//タイマー設定
-	Time = 200 * 60;
+	Time = 20 * 60;
 
 	//BGMをループで再生
 	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
@@ -123,8 +123,6 @@ int CGame::Update()
 		//SE再生
 		My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_AllEnemyKill);
 	}
-	if(gEnemySum != gKillEnemyNum)
-		IsGoalOpen = false;
 
 	//更新処理
 	for (int i = 0; i < base.size(); i++)
@@ -149,22 +147,25 @@ int CGame::Update()
 			}
 		}
 
+		int pop_pontan{ 0 };
 		//ポンタン生成
-		for (int i = 0; i < 5; i++) {
-
+		while (pop_pontan < 10)
+		{
 			//ランダムで生成する座標設定
 			MapPoint s_p{ 0,0 };
 			s_p.x = Range_Random_Number(1, MAP_CHIP_W - 1);
 			s_p.y = Range_Random_Number(1, MAP_CHIP_H - 1);
 
-			//空白ではない場合はコンテニュー
-			if (gNowMap[s_p.y][s_p.x] != -1) continue;
+			//通常ブロックの場合はコンテニュー
+			if (gNowMap[s_p.y][s_p.x] == Obj_Id::BLOCK) continue;
 
 			//システム座標から座標を計算
 			Point p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
 
 			//ポンタン生成
 			base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
+			pop_pontan++;
+
 		}
 	}
 	else
