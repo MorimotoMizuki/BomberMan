@@ -30,16 +30,21 @@ int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
 	{
 		Distance = p->Distance;
 
-		if (IsOpen){
-			//プレイヤーの座標がゴールの座標になった場合(許容範囲 : GOAL_IN_DISTANCE)
-			if ((pos.x >= p->m_pos.x && pos.x < p->m_pos.x + GOAL_IN_DISTANCE) &&
-				(pos.y >= p->m_pos.y && pos.y < p->m_pos.y + GOAL_IN_DISTANCE))
+		if (IsOpen)
+		{
+			//ドアの座標にクラッシュブロックではない場合
+			if (gNowMap[SystemPos.y][SystemPos.x] != Obj_Id::CRASH_BLOCK)
 			{
-				//SE再生
-				My_PlaySoundMem(SE_StageClear, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_StageClear);
+				//プレイヤーの座標がゴールの座標になった場合(許容範囲 : GOAL_IN_DISTANCE)
+				if ((pos.x >= p->m_pos.x && pos.x < p->m_pos.x + GOAL_IN_DISTANCE) &&
+					(pos.y >= p->m_pos.y && pos.y < p->m_pos.y + GOAL_IN_DISTANCE))
+				{
+					//SE再生
+					My_PlaySoundMem(SE_StageClear, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_StageClear);
 
-				//ゲームクリアに設定
-				gGamePhase = GamePhaseId::GAMECLEAR;
+					//ゲームクリアに設定
+					gGamePhase = GamePhaseId::GAMECLEAR;
+				}
 			}
 		}
 	}

@@ -10,6 +10,36 @@
 
 class CTitle :public CScene
 {
+public:
+
+	enum TitleCommandId {
+		START_COM,
+		CONTINUE_COM,
+	};
+
+	enum KeyId {
+		SPACE_key,
+		ENTER_key,
+	};
+
+	enum ScreenPhaseId {
+		TITLE_screen,
+		STAGE_TO_screen,
+		GAMEOVER_screen,
+		CONTINUE_screen,
+		ENDING_screen,
+	};
+
+	enum Password_Id {
+		SAIKYOU,
+	};
+
+	struct PasswordData
+	{
+		std::string_view password;
+		Password_Id id;
+	};
+
 private:
 
 	//三角形の移動幅
@@ -35,32 +65,8 @@ private:
 	static constexpr auto ENDING_TO_STAGE_FRAME = 3 * 60;
 
 	//パスワード
-	static constexpr std::array<std::string_view, 1> MY_PASSWORD = {
-		"BBB",
-	};
-
-public:
-
-	enum TitleCommandId {
-		START_COM,
-		CONTINUE_COM,
-	};
-
-	enum KeyId {
-		SPACE_key,
-		ENTER_key,
-	};
-
-	enum ScreenPhaseId {
-		TITLE_screen,
-		STAGE_TO_screen,
-		GAMEOVER_screen,
-		CONTINUE_screen,
-		ENDING_screen,
-	};
-
-	enum Password_Id {
-		SAIKYOU,
+	static constexpr std::array<PasswordData, 1> MY_PASSWORD = {
+		PasswordData{"BBB", Password_Id::SAIKYOU},
 	};
 
 public:
@@ -81,6 +87,7 @@ public:
 	void Draw();//描画処理
 
 	void LoadStatus();	//ステータスデータ読み込み
+	void LoadSuperStatus();	//最強ステータスデータ読み込み
 
 	//パスワード入力
 	void UpdatePasswordInput();
@@ -96,6 +103,15 @@ public:
 
 	//std::string が int に変換できるか判別 : できる場合は outBValueに変換
 	bool Is_Int_from_Str(const std::string& password, int& outValue);
+
+	//スペースキー処理関数
+	void SpaceKey_Action();
+
+	//エンターキー処理関数
+	void EnterKey_Action();
+
+	//エンディング処理
+	void EndingAction();
 
 	//マップManager
 	std::unique_ptr<CMap> map;

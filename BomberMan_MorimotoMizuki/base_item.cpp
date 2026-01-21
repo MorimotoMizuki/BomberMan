@@ -42,7 +42,8 @@ int CBaseItem::ItemAction(vector<unique_ptr<BaseVector>>& base)
 	//アイテム獲得処理
 	if (p->SystemPos.x == SystemPos.x && p->SystemPos.y == SystemPos.y)
 	{
-		ItemGetAction();
+		if (gNowMap[SystemPos.y][SystemPos.x] == Obj_Id::NONE)
+			ItemGetAction();
 	}
 
 	//アイテムの爆破 + 遅延処理

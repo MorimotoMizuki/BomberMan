@@ -3,10 +3,16 @@
 #include "objBase.h"
 #include "CCamera.h"
 #include"map.h"
+#include<array>
 
 class CGame :public CScene
 {
 private:
+
+	//通常ステージとボーナスステージの制限時間フレーム
+	static constexpr auto NORMAL_TIME = 200 * 60;
+	static constexpr auto BONUS_TIME  = 30 * 60;
+
 public:
 	//オブジェクト
 	//リスト
@@ -24,6 +30,15 @@ public:
 	int Update();//更新処理
 	void Draw();//描画処理
 
+	//ボーナスステージの敵の出現処理関数
+	void BonusStagePopEnemy();
+
+	//制限時間処理関数
+	void TimerAction();
+
+	//タブキーの処理関数: Pauseじゃない場合のゲーム状態
+	bool TabKey_Action(GamePhaseId change_game_phase);
+
 	//マップManager
 	std::unique_ptr<CMap> map;
 
@@ -38,12 +53,13 @@ public:
 
 	//BGMサウンド用
 	int BGM{ -1 };
+	//ボーナスステージBGM
+	int BGM_BonusStage{ -1 };
 	//SE 全ての敵を倒した用
 	int SE_AllEnemyKill{ -1 };
+	//ゲームクリア時
+	int SE_StageClear{ -1 };
 
 	//タブキー入力制限用
 	bool TabKeyCheck{ false };
-
-	//ゲームフェーズ保存用
-	GamePhaseId PrevGamePhase{ GamePhaseId::IDLE };
 };

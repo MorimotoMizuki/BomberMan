@@ -71,6 +71,9 @@ public:
 	//プレイヤーの移動時のSE再生関数
 	void PlayerMoveSound(int play_sound_handle, int stop_sound_handle, int sound_volume);
 
+	//プレイヤーのサウンドを止める
+	void StopPlayerSound();
+
 public:
 
 	//マップの位置

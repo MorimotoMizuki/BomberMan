@@ -56,9 +56,9 @@ enum Special_Item_Id
 //オブジェクト表示順番
 enum Pri_Id
 {
-	pBLOCK,
 	pGOAL,
 	pITEM,
+	pBLOCK,
 	pBOMB,
 	pEXPLOSION,
 	pPLAYER,
@@ -99,6 +99,7 @@ enum Move_Id
 	LEFT_CLICK,	//マウス左クリック
 	ENTER,	//エンターキー
 	B_KEY,	//Bボタン
+	T_KEY,	//Tボタン
 	TAB_KEY,//タブキー
 	ALL_KEY,//全てのキー入力
 	NONE_KEY,
@@ -124,6 +125,7 @@ enum LoadStatus_Id
 enum MusicVolume
 {
 	BGM_Stage			= 128,	//ステージプレイ中のBGM
+	BGM_Bonus			= 220,	//ボーナスステージのBGM
 	BGM_Title			= 128,	//タイトルの通常時のBGM
 	BGM_Ending			= 192,	//エンディング時のBGM
 	BGM_GameOver		= 128,	//ゲームオーバー時のBGM

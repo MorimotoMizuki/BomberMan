@@ -60,6 +60,10 @@ bool Key_Check(Move_Id move_id)
 		if (CheckHitKey(KEY_INPUT_B))
 			return true;
 		break;
+	case T_KEY:
+		if (CheckHitKey(KEY_INPUT_T))
+			return true;
+		break;
 	case TAB_KEY:
 		if (CheckHitKey(KEY_INPUT_TAB))
 			return true;
@@ -115,6 +119,19 @@ void ResetPlayerStatus()
 	gBombId			= 0;	//爆弾のID
 	gBombExplosionNum = 0;	//爆弾を爆発させた個数
 	gIsExplosionBlock = false;	//破壊可能ブロックの爆破フラグ
+}
+
+//プレイヤーのステータス最強
+void SuperPlayerStatus()
+{
+	gPlayerStatus.bombPutNum				= gSuperPlayerStatus.bombPutNum;
+	gPlayerStatus.bombLevel					= gSuperPlayerStatus.bombLevel;
+	gPlayerStatus.speed						= gSuperPlayerStatus.speed;
+	gPlayerStatus.isBombPass				= gSuperPlayerStatus.isBombPass;
+	gPlayerStatus.isFlameBarrier			= gSuperPlayerStatus.isFlameBarrier;
+	gPlayerStatus.isPerfectMan				= gSuperPlayerStatus.isPerfectMan;
+	gPlayerStatus.isRemoteController		= gSuperPlayerStatus.isRemoteController;
+	gPlayerStatus.isWallPass				= gSuperPlayerStatus.isWallPass;
 }
 
 //サウンド再生関数(MusicVolume : 音量0～255)

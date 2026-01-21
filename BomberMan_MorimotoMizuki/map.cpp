@@ -132,29 +132,33 @@ void CMap::LoadMap()
 //マップ生成
 void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 {
-	//クラッシュブロックをランダムで設定
-	SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
+	//ボーナスステージではない場合
+	if (!gIsBonusStage) 
+	{
+		//クラッシュブロックをランダムで設定
+		SetRandomCrashBlockInMap(CREATE_CRASH_BLOCK_PROBABILITY);
 
-	//敵のデータ読み込み
-	stage_enemy_data = LoadEnemyData(gNowStageNum);
+		//敵のデータ読み込み
+		stage_enemy_data = LoadEnemyData(gNowStageNum);
 
-	//アイテムのデータ読み込み
-	stage_item_data = LoadItemData(gNowStageNum);
+		//アイテムのデータ読み込み
+		stage_item_data = LoadItemData(gNowStageNum);
 
-	//スペシャルアイテムデータ読み込み
-	Special_Item_Id s_item_id = LoadSpecialItemData(gNowStageNum);
-	//スペシャルアイテムが出現するステージかを判定 : ある場合はスペシャルアイテムマネージャーを生成
-	if(s_item_id != Special_Item_Id::None_S)
-		base.emplace_back((unique_ptr<BaseVector>) new CSpecial_Item_Manager(s_item_id));
+		//スペシャルアイテムデータ読み込み
+		Special_Item_Id s_item_id = LoadSpecialItemData(gNowStageNum);
+		//スペシャルアイテムが出現するステージかを判定 : ある場合はスペシャルアイテムマネージャーを生成
+		if (s_item_id != Special_Item_Id::None_S)
+			base.emplace_back((unique_ptr<BaseVector>) new CSpecial_Item_Manager(s_item_id));
 
-	//敵を生成
-	SetRandomEnemy(stage_enemy_data);
+		//敵を生成
+		SetRandomEnemy(stage_enemy_data);
 
-	//ドアを設置する数を設定
-	SetDoorNum = SetRandomDoorInMap();
+		//ドアを設置する数を設定
+		SetDoorNum = SetRandomDoorInMap();
 
-	//アイテムを設置する数を設定
-	SetItemNum = SetRandomItemInMap(stage_item_data);
+		//アイテムを設置する数を設定
+		SetItemNum = SetRandomItemInMap(stage_item_data);
+	}
 
 	int crashBlockNum = 0;
 	bool isDoorSet = false;
@@ -254,10 +258,13 @@ void CMap::Map_Obj_Creation(vector<unique_ptr<BaseVector>>& base)
 			default:
 				break;
 			}
-			//ドアを生成
-			if (SetDoorNum == crashBlockNum && !isDoorSet) {
-				base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
-				isDoorSet = true;
+
+			if (!gIsBonusStage) {
+				//ドアを生成
+				if (SetDoorNum == crashBlockNum && !isDoorSet) {
+					base.emplace_back((unique_ptr<BaseVector>) new CDoor(p, s_p));
+					isDoorSet = true;
+				}
 			}
 		}
 	}

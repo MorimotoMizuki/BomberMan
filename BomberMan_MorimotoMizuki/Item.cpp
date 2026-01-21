@@ -128,7 +128,8 @@ void CNormalItem::RemoteControllerAction()
 //移動速度アップ				: ダル
 void CNormalItem::BootsAction()
 {
-	gPlayerStatus.speed += PLAYER_SPEED / 2;
+	if (gPlayerStatus.speed < MAX_SPEED)
+		gPlayerStatus.speed += PLAYER_SPEED / 2;
 	CBaseItem::DeleteItem();
 }
 //爆弾の上を歩けるようになる	: オバピー

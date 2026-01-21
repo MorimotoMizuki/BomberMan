@@ -23,5 +23,8 @@ void HitCheck_Box_Circle(BaseVector* a, BaseVector* b, float radius, float dista
 //プレイヤーのステータスをリセット
 void ResetPlayerStatus();
 
+//プレイヤーのステータス最強
+void SuperPlayerStatus();
+
 //サウンド再生関数
 void My_PlaySoundMem(int SoundHandle, int PlayType, int TopPositionFlag, int MusicVolume = 255);

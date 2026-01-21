@@ -126,6 +126,20 @@ CPlayer::~CPlayer()
 	DeleteSoundMem(SE_PlayerWalk_H);
 }
 
+//プレイヤーのサウンドを止める
+void CPlayer::StopPlayerSound()
+{
+	if (!CheckSoundMem(SE_PlayerWalk_W) && !CheckSoundMem(SE_PlayerWalk_H) &&
+		!CheckSoundMem(SE_PutBomb) && !CheckSoundMem(SE_PlayerDeadStart) && !CheckSoundMem(SE_PlayerDead))
+		return;
+
+	if (CheckSoundMem(SE_PlayerWalk_W))		StopSoundMem(SE_PlayerWalk_W);
+	if (CheckSoundMem(SE_PlayerWalk_H))		StopSoundMem(SE_PlayerWalk_H);
+	if (CheckSoundMem(SE_PutBomb))			StopSoundMem(SE_PutBomb);
+	if (CheckSoundMem(SE_PlayerDeadStart))	StopSoundMem(SE_PlayerDeadStart);
+	if (CheckSoundMem(SE_PlayerDead))		StopSoundMem(SE_PlayerDead);
+}
+
 //安全な座標かチェックする
 bool CPlayer::IsValidMapPos(MapPoint p)
 {
@@ -188,7 +202,8 @@ void CPlayer::PlayerHit(vector<unique_ptr<BaseVector>>& base)
 				if (SystemPos.x == ((CBaseEnemy*)base[i].get())->SystemPos.x &&
 					SystemPos.y == ((CBaseEnemy*)base[i].get())->SystemPos.y)
 				{
-					if(gPlayerStatus.isPerfectMan == false) //パーフェクトマンフラグが false の場合
+					//パーフェクトマンフラグが false の場合
+					if(gPlayerStatus.isPerfectMan == false && !gIsBonusStage)
 						SetPlayerDead(PlayerStateId::DEADplayer); //プレイヤー死亡
 				}
 			}

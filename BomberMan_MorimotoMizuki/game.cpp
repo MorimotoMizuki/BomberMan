@@ -19,6 +19,21 @@ PlayerStatus gPlayerStatus = {
 	false,	//火炎バリアフラグ
 	false,	//パーフェクトマンフラグ
 };
+
+//最強のプレイヤーのステータス
+PlayerStatus gSuperPlayerStatus = {
+	2,		//life
+	PLAYER_SPEED,	//speed
+	1,		//bombPutNum
+	1,		//bombLevel
+	0,		//スコア
+	false,	//リモコンフラグ
+	false,	//爆弾通過フラグ
+	false,	//壁通過フラグ
+	false,	//火炎バリアフラグ
+	false,	//パーフェクトマンフラグ
+};
+
 //現在の設置している爆弾の数
 int gNowBombNum = 0;
 
@@ -27,6 +42,9 @@ int gNowMap[MAP_CHIP_H + 1][MAP_CHIP_W + 1] = { 0 };
 
 //ゲームの状態
 GamePhaseId gGamePhase{ GamePhaseId::IDLE };
+
+//ボーナスステージフラグ
+bool gIsBonusStage{ false };
 
 //現在のステージ番号
 int gNowStageNum{ 1 };
@@ -62,6 +80,11 @@ CGame::CGame(CManager* p) :CScene(p)
 	BGM = LoadSoundMem("sound\\NormalBGM.wav");
 	SE_AllEnemyKill = LoadSoundMem("sound\\AllEnemyKnockDown.wav");
 
+	if (gIsBonusStage) {
+		SE_StageClear = LoadSoundMem("sound\\StageClear.wav");
+		BGM_BonusStage = LoadSoundMem("sound\\BonusStage.wav");
+	}
+
 	//敵の描画順番初期化
 	gEnemyPri = Pri_Id::pENEMY;
 
@@ -80,53 +103,57 @@ CGame::CGame(CManager* p) :CScene(p)
 	gGamePhase = GamePhaseId::PLAING;
 
 	//タイマー設定
-	Time = 200 * 60;
+	if (gIsBonusStage)		//ボーナスステージの場合は 30秒
+		Time = BONUS_TIME;
+	else
+		Time = NORMAL_TIME; //通常ステージの場合は 200秒
 
 	//BGMをループで再生
-	My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
+	if(gIsBonusStage)
+		My_PlaySoundMem(BGM_BonusStage, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Bonus);
+	else
+		My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
 }
 
 //更新処理
 int CGame::Update()
 {
-	if (gGamePhase != GamePhaseId::PAUSE)
+	switch (gGamePhase)
 	{
-		if (gGamePhase != PrevGamePhase)
-			PrevGamePhase = gGamePhase;
-	}
-
-	//タブキー入力
-	if (Key_Check(Move_Id::TAB_KEY) && !TabKeyCheck)
+	case PLAING:
 	{
-		TabKeyCheck = true;
+		if (gIsBonusStage)
+			BonusStagePopEnemy(); //ボーナスステージ時の敵の無限出現処理
 
-		if (gGamePhase == GamePhaseId::GAMEOVER ||
-			gGamePhase == GamePhaseId::GAMECLEAR)
-			return 0;
+		//タブキー処理
+		if (TabKey_Action(GamePhaseId::PLAING)) return 0;
 
-		if (gGamePhase == GamePhaseId::PAUSE)
-			gGamePhase = PrevGamePhase;
-		else
-			gGamePhase = GamePhaseId::PAUSE;
+		if (!gIsBonusStage) {
+			//敵の総数と敵を倒した数が等しくなった場合
+			if (gEnemySum == gKillEnemyNum && !IsGoalOpen)
+			{
+				CDoor* door = (CDoor*)Get_obj(base, GOAL);
+				if (door != nullptr) door->IsOpen = true;
 
-		return 0;
+				IsGoalOpen = true;
+
+				//SE再生
+				My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_AllEnemyKill);
+			}
+		}
+
+		//制限時間処理
+		TimerAction();
+		break;
 	}
-
-	//タブキー更新
-	TabKeyCheck = Key_Check(Move_Id::TAB_KEY);
-
-	//ポーズ中は終了
-	if (gGamePhase == GamePhaseId::PAUSE)
-		return 0;
-
-	if (gGamePhase == GamePhaseId::GAMEOVER || 
-		gGamePhase == GamePhaseId::GAMECLEAR)
+	case GAMEOVER:
+	case GAMECLEAR:
 	{
 		//BGMが再生していた場合は BGM を停止させる
 		if (CheckSoundMem(BGM))
 			StopSoundMem(BGM);
 
-		if(gGamePhase == GamePhaseId::GAMEOVER)
+		if (gGamePhase == GamePhaseId::GAMEOVER)
 			WaitTimer(2300); //2.3秒
 		else
 			WaitTimer(4300); //4.3秒
@@ -137,18 +164,30 @@ int CGame::Update()
 		manager->scene = new CTitle(manager);
 		return 0;
 	}
-
-	//敵の総数と敵を倒した数が等しくなった場合
-	if (gEnemySum == gKillEnemyNum && !IsGoalOpen)
+	case PAUSE:
 	{
-		CDoor* door = (CDoor*)Get_obj(base, GOAL);
-		if(door != nullptr)
-			door->IsOpen = true;
+		//タブキー処理
+		if (TabKey_Action(GamePhaseId::PLAING)) return 0;
+		//Tキー処理
+		if (Key_Check(Move_Id::T_KEY))
+		{
+			//BGMが再生していた場合は BGM を停止させる
+			if (CheckSoundMem(BGM))
+				StopSoundMem(BGM);
 
-		IsGoalOpen = true;
+			//シーンの削除
+			manager->Scene_Delete();
+			//タイトルシーンに移行 : シーンを作成
+			manager->scene = new CTitle(manager);
+			return 0;
+		}
 
-		//SE再生
-		My_PlaySoundMem(SE_AllEnemyKill, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_AllEnemyKill);
+		//プレイヤーを取得
+		CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
+		if (p != nullptr) p->StopPlayerSound();
+
+		return 0;
+	}
 	}
 
 	//更新処理
@@ -161,42 +200,6 @@ int CGame::Update()
 
 	//オブジェクトのソート処理(クイックソート)
 	ObjSort_Quick(base, 0, base.size() - 1);
-
-	//制限時間オーバー
-	if (Time == 0 && !IsTimeOver)
-	{
-		IsTimeOver = true;
-
-		//敵を全て削除
-		for (int i = 0; i < base.size(); i++)
-		{
-			if (base[i].get()->ID == Obj_Id::ENEMY) {
-				((CBaseEnemy*)base[i].get())->EnemyInstantDead();
-			}
-		}
-
-		int pop_pontan{ 0 };
-		//ポンタン生成
-		while (pop_pontan < 10)
-		{
-			//ランダムで生成する座標設定
-			MapPoint s_p{ 0,0 };
-			s_p.x = Range_Random_Number(1, MAP_CHIP_W - 1);
-			s_p.y = Range_Random_Number(1, MAP_CHIP_H - 1);
-
-			//通常ブロックの場合はコンテニュー
-			if (gNowMap[s_p.y][s_p.x] == Obj_Id::BLOCK) continue;
-
-			//システム座標から座標を計算
-			Point p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
-
-			//ポンタン生成
-			base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
-			pop_pontan++;
-		}
-	}
-	else
-		Time--; //タイマー
 
 	return 0;
 }
@@ -227,6 +230,14 @@ void CGame::Draw()
 		DrawExtendFormatString(timePos.x, timePos.y, 2.0f, 2.0f, GetColor(255, 255, 255), "TIME %d", Time / 60);
 	}
 
+	//ポーズ画面
+	if (gGamePhase == GamePhaseId::PAUSE) {
+
+		//タイトル画面への遷移方法描画
+		DrawExtendFormatString(0 + distance, 0 + distance, 2.0f, 2.0f, GetColor(0, 0, 0), "T_Key : Title");
+		DrawExtendFormatString(0, 0, 2.0f, 2.0f, GetColor(255, 255, 255), "T_Key : Title");
+	}
+
 	//vectorオブジェクトの描画
 	for (int i = 0; i < base.size(); i++)
 		if(base[i]->FLAG) base[i]->Draw();
@@ -236,4 +247,143 @@ CGame::~CGame()
 {
 	DeleteSoundMem(BGM);
 	DeleteSoundMem(SE_AllEnemyKill);
+
+	if (gIsBonusStage) {
+		DeleteSoundMem(SE_StageClear);
+		DeleteSoundMem(BGM_BonusStage);
+	}
+}
+
+//ボーナスステージの敵の出現処理関数
+void CGame::BonusStagePopEnemy()
+{
+	if (!gIsBonusStage) return;
+
+	//ボーナスステージの敵の最大出現数を超えていた場合は終了
+	if ((gEnemySum - gKillEnemyNum) > 8) return;
+
+	while (true)
+	{
+		//ランダムで生成する座標設定
+		MapPoint s_p{ 0,0 };
+		s_p.x = Range_Random_Number(1, MAP_CHIP_W - 1);
+		s_p.y = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+		//通常ブロックの場合はコンテニュー
+		if (gNowMap[s_p.y][s_p.x] == Obj_Id::BLOCK) continue;
+
+		//システム座標から座標を計算
+		Point p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
+
+		int enemy_pop_stage_num = 0;
+
+		for (int i = 0; i < BONUS_STAGE_NUM.size(); i++) {
+			if (gNowStageNum - 1 == BONUS_STAGE_NUM[i])
+				enemy_pop_stage_num = i;
+		}
+
+		//敵生成
+		switch (enemy_pop_stage_num)
+		{
+		case 0:
+			base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, s_p));
+			break;
+		case 1:
+			base.emplace_back((unique_ptr<BaseVector>) new COneal(p, s_p));
+			break;
+		case 2:
+			base.emplace_back((unique_ptr<BaseVector>) new CDahl(p, s_p));
+			break;
+		case 3:
+			base.emplace_back((unique_ptr<BaseVector>) new CMinvo(p, s_p));
+			break;
+		case 4:
+			base.emplace_back((unique_ptr<BaseVector>) new CKondoria(p, s_p));
+			break;
+		case 5:
+			base.emplace_back((unique_ptr<BaseVector>) new COvapee(p, s_p));
+			break;
+		case 6:
+			base.emplace_back((unique_ptr<BaseVector>) new CPass(p, s_p));
+			break;
+		case 7:
+		case 8:
+			base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
+			break;
+		}
+		return;
+	}
+}
+
+//制限時間処理関数
+void CGame::TimerAction()
+{
+	//制限時間オーバー
+	if (Time == 0)
+	{
+		if (IsTimeOver) return;
+
+		IsTimeOver = true;
+
+		if (gIsBonusStage) {
+
+			//BGMが再生していた場合は BGM を停止させる
+			if (CheckSoundMem(BGM_BonusStage))
+				StopSoundMem(BGM_BonusStage);
+			//SE再生
+			My_PlaySoundMem(SE_StageClear, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_StageClear);
+			gGamePhase = GamePhaseId::GAMECLEAR;
+		}
+		else {
+			//敵を全て削除
+			for (int i = 0; i < base.size(); i++)
+			{
+				if (base[i].get()->ID == Obj_Id::ENEMY) {
+					((CBaseEnemy*)base[i].get())->EnemyInstantDead();
+				}
+			}
+			int pop_pontan{ 0 };
+			//ポンタン生成
+			while (pop_pontan < 10)
+			{
+				//ランダムで生成する座標設定
+				MapPoint s_p{ 0,0 };
+				s_p.x = Range_Random_Number(1, MAP_CHIP_W - 1);
+				s_p.y = Range_Random_Number(1, MAP_CHIP_H - 1);
+
+				//通常ブロックの場合はコンテニュー
+				if (gNowMap[s_p.y][s_p.x] == Obj_Id::BLOCK) continue;
+
+				//システム座標から座標を計算
+				Point p{ s_p.x * CHIP_SIZE, s_p.y * CHIP_SIZE + WINDOW_HEADER };
+
+				//ポンタン生成
+				base.emplace_back((unique_ptr<BaseVector>) new CPontan(p, s_p));
+				pop_pontan++;
+			}
+		}
+	}
+	else
+		Time--; //タイマー
+}
+
+//タブキーの処理関数 : Pauseじゃない場合のゲーム状態
+bool CGame::TabKey_Action(GamePhaseId change_game_phase)
+{
+	//タブキー入力
+	if (Key_Check(Move_Id::TAB_KEY) && !TabKeyCheck)
+	{
+		TabKeyCheck = true;
+
+		if (gGamePhase == GamePhaseId::PAUSE)
+			gGamePhase = change_game_phase;
+		else
+			gGamePhase = GamePhaseId::PAUSE;
+
+		return true;
+	}
+
+	//タブキー更新
+	TabKeyCheck = Key_Check(Move_Id::TAB_KEY);
+	return false;
 }

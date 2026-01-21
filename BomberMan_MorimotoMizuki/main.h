@@ -8,6 +8,7 @@
 #include <memory>
 #include <time.h>
 #include <tuple>
+#include<array>
 
 #include "objID.h"
 
@@ -48,6 +49,9 @@ constexpr auto MAX_FIRE_POWER = 5;
 //爆弾を設置できる最大値
 constexpr auto MAX_PUT_BOMB_NUM = 10;
 
+//移動速度の最大値
+constexpr auto MAX_SPEED = 8;
+
 //敵の種類
 constexpr auto ENEMY_VARIATION = 8;
 
@@ -59,6 +63,11 @@ constexpr auto SPECIAL_ITEM_VARIATION = 6;
 
 //プレイヤーの初期スピード
 constexpr auto PLAYER_SPEED = 4.0f;
+
+//ボーナスステージのステージ番号
+constexpr std::array<int, 9> BONUS_STAGE_NUM = {
+	5, 10, 15, 20, 25, 30, 35, 44, 49
+};
 
 //2D用
  struct Point {
@@ -109,6 +118,10 @@ struct Vector3 {
 
 //プレイヤーのステータス
 extern PlayerStatus gPlayerStatus;
+
+//最強のプレイヤーのステータス
+extern PlayerStatus gSuperPlayerStatus;
+
 //現在設置している爆弾の数
 extern int gNowBombNum;
 
@@ -117,6 +130,9 @@ extern int gNowMap[MAP_CHIP_H + 1][MAP_CHIP_W + 1];
 
 //ゲームの状態
 extern GamePhaseId gGamePhase;
+
+//ボーナスステージフラグ
+extern bool gIsBonusStage;
 
 //現在のステージ番号
 extern int gNowStageNum;
