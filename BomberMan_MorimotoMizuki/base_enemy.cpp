@@ -376,6 +376,7 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackin
 			*isTrackingPlayer = false;
 			vec.x = 0.0f;
 			vec.y = 0.0f;
+			move_cnt = 0.0f;
 			return;
 		}
 
@@ -386,13 +387,31 @@ void CBaseEnemy::TrackingPlayerMove(CPlayer* p, float moveFrame, bool* isTrackin
 			vec.x = 0.0f;
 			vec.y = 0.0f;
 			*isTrackingPlayer = false;
+			move_cnt = 0.0f;
 			return;
 		}
 
-		vec_last_route.clear();
+		if (p->IsBombPosPlayer)
+		{
+			vec.x = 0.0f;
+			vec.y = 0.0f;
+			*isTrackingPlayer = false;
+			move_cnt = 0.0f;
+			return;
+		}
 
 		Cell goal{ p->SystemPos.x, p->SystemPos.y };
 		Cell start{ SystemPos.x, SystemPos.y };
+
+		vec_last_route.clear();
+
+		//ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚ªˆê’èˆÈã‚Ìê‡‚Í’ÇÕ‚µ‚È‚¢
+		float dis = DistanceF(goal.X, goal.Y, start.X, start.Y);
+		if (std::abs(dis) >= 7) {
+			*isTrackingPlayer = false;
+			move_cnt = 0.0f;
+			return;
+		}
 
 		MapPoint check_goal{ goal.X, goal.Y };
 		MapPoint check_start{ start.X, start.Y };

@@ -138,11 +138,15 @@ CTitle::CTitle(CManager* p) :CScene(p)
 		LoadSuperStatus();
 	}
 
+	gKillEnemyNum			= 0;	//倒した敵の数
+	gNowBombNum				= 0;	//設置した爆弾の数
+	gBombId					= 0;	//爆弾のID
+	gBombExplosionNum		= 0;	//爆弾を爆発させた個数
+	gIsExplosionBlock		= false;//破壊可能ブロックの爆破フラグ
+
 	//ハイスコア設定
 	if (gPlayerStatus.score > gHighScore)
 		gHighScore = gPlayerStatus.score;
-
-	ResetPlayerStatus(); //ステータスをリセット
 
 	//ゲームオーバーの場合
 	if (gGamePhase == GamePhaseId::GAMEOVER)
@@ -152,6 +156,8 @@ CTitle::CTitle(CManager* p) :CScene(p)
 			ScreenPhase = ScreenPhaseId::GAMEOVER_screen; //ゲームオーバースクリーンにする
 			gPlayerStatus.life = 2; //(仮) ライフ 2 設定
 			gPlayerStatus.score = 0;//スコア
+
+			ResetPlayerStatus(); //ステータスをリセット
 
 			//ゲームオーバーの BGM 再生
 			My_PlaySoundMem(BGM_GameOver, DX_PLAYTYPE_BACK, TRUE, MusicVolume::BGM_GameOver);
@@ -251,7 +257,7 @@ int CTitle::Update()
 		//点滅処理
 		FlashCnt++;
 		//一定フレーム後に点滅フラグ反転
-		if (FlashCnt > 30) {
+		if (FlashCnt > 60) {
 			IsFlashVisible = !IsFlashVisible;
 			FlashCnt = 0;
 		}
@@ -289,7 +295,7 @@ void CTitle::Draw()
 			DrawExtendGraph(64 * 1, 64 * 1,64 * 1 + 64 * 14, 64 * 1 + 64 * 8, TitleRogo_img, false);
 			Point startPos{ START_TRIANGLE_POS.x + 95.0f, START_TRIANGLE_POS.y };
 			//スタート描画
-			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "START");
+ 			DrawExtendFormatString(startPos.x + DISTANCE, startPos.y + DISTANCE, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(128, 128, 128), "START");
 			DrawExtendFormatString(startPos.x, startPos.y, STRING_EXTEND_X, STRING_EXTEND_Y, GetColor(255, 255, 255), "START");
 			//コンテニュー描画
 			startPos = { startPos.x, startPos.y + MOVE_WIDTH };

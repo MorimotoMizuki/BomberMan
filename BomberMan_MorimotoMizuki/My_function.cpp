@@ -98,27 +98,14 @@ void HitCheck_Box_Circle(BaseVector* a, BaseVector* b, float radius, float dista
 //プレイヤーのステータスをリセット
 void ResetPlayerStatus()
 {
-	switch (gGamePhase)
-	{
-	case GAMEOVER:
-		gPlayerStatus.bombLevel				= 1;				//爆弾の火力
-		gPlayerStatus.bombPutNum			= 1;				//爆弾の設置可能数
-		gPlayerStatus.speed					= PLAYER_SPEED;		//プレイヤーのスピード
-		gPlayerStatus.isBombPass			= false;			//↓アイテム能力 --------
-		gPlayerStatus.isFlameBarrier		= false;
-		gPlayerStatus.isPerfectMan			= false;
-		gPlayerStatus.isRemoteController	= false;
-		gPlayerStatus.isWallPass			= false;			//-----------------------
-		break;
-	case GAMECLEAR:
-		break;
-	}
-
-	gKillEnemyNum	= 0;	//倒した敵の数
-	gNowBombNum		= 0;	//設置した爆弾の数
-	gBombId			= 0;	//爆弾のID
-	gBombExplosionNum = 0;	//爆弾を爆発させた個数
-	gIsExplosionBlock = false;	//破壊可能ブロックの爆破フラグ
+	gPlayerStatus.bombLevel				= 1;				//爆弾の火力
+	gPlayerStatus.bombPutNum			= 1;				//爆弾の設置可能数
+	gPlayerStatus.speed					= PLAYER_SPEED;		//プレイヤーのスピード
+	gPlayerStatus.isBombPass			= false;			//↓アイテム能力 --------
+	gPlayerStatus.isFlameBarrier		= false;
+	gPlayerStatus.isPerfectMan			= false;
+	gPlayerStatus.isRemoteController	= false;
+	gPlayerStatus.isWallPass			= false;			//-----------------------
 }
 
 //プレイヤーのステータス最強

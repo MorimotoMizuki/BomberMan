@@ -55,6 +55,9 @@ int CPlayer::Action(vector<unique_ptr<BaseVector>>& base)
 		}
 	}
 
+	//爆弾とプレイヤーが同じ座標か判定
+	BombPos_to_Player(base);
+
 	//プレイヤーの移動処理
 	Move_Dir = PlayerMove();
 
@@ -399,6 +402,32 @@ void CPlayer::RemoteControllerAction(vector<unique_ptr<BaseVector>>& base)
 				((CBomb*)base[i].get())->ExplosionEffect(base, this); //爆弾を爆発させる
 				return;
 			}
+		}
+	}
+}
+
+//爆弾とプレイヤーが同じ座標か判定関数
+void CPlayer::BombPos_to_Player(vector<unique_ptr<BaseVector>>& base)
+{
+	//オブジェクトと判定
+	for (int i = 0; i < base.size(); i++)
+	{
+		//削除対象のオブジェクトはスキップ
+		if (!base[i]->FLAG || !base[i]->draw_flag)
+			continue;
+
+		//爆弾と同じ座標か判定
+		if (base[i]->ID == Obj_Id::BOMB)
+		{
+			MapPoint b_p{ base[i]->SystemPos.x, base[i]->SystemPos.y };
+
+			if (SystemPos.x == b_p.x && SystemPos.y == b_p.y)
+			{
+				IsBombPosPlayer = true;
+				return;
+			}
+			else
+				IsBombPosPlayer = false;
 		}
 	}
 }

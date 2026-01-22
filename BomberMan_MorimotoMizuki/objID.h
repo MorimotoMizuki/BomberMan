@@ -125,7 +125,7 @@ enum LoadStatus_Id
 enum MusicVolume
 {
 	BGM_Stage			= 128,	//ステージプレイ中のBGM
-	BGM_Bonus			= 220,	//ボーナスステージのBGM
+	BGM_Bonus			= 128,	//ボーナスステージのBGM
 	BGM_Title			= 128,	//タイトルの通常時のBGM
 	BGM_Ending			= 192,	//エンディング時のBGM
 	BGM_GameOver		= 128,	//ゲームオーバー時のBGM

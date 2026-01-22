@@ -84,7 +84,7 @@ public:
 
 	int SCORE = 0; //スコア
 
-	int STOP_FRAME = 0; //停止フレーム
+	int STOP_FRAME = 0; //停止フレーム : 数値が大きいほどランダム移動がスムーズ
 
 protected:
 

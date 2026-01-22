@@ -50,7 +50,7 @@ constexpr auto MAX_FIRE_POWER = 5;
 constexpr auto MAX_PUT_BOMB_NUM = 10;
 
 //移動速度の最大値
-constexpr auto MAX_SPEED = 8;
+constexpr auto MAX_SPEED = 6;
 
 //敵の種類
 constexpr auto ENEMY_VARIATION = 8;
@@ -62,7 +62,7 @@ constexpr auto ITEM_VARIATION = 8;
 constexpr auto SPECIAL_ITEM_VARIATION = 6;
 
 //プレイヤーの初期スピード
-constexpr auto PLAYER_SPEED = 4.0f;
+constexpr auto PLAYER_SPEED = 3.0f;
 
 //ボーナスステージのステージ番号
 constexpr std::array<int, 9> BONUS_STAGE_NUM = {

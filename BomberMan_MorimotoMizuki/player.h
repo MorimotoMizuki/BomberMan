@@ -74,6 +74,9 @@ public:
 	//プレイヤーのサウンドを止める
 	void StopPlayerSound();
 
+	//爆弾とプレイヤーが同じ座標か判定関数
+	void BombPos_to_Player(vector<unique_ptr<BaseVector>>& base);
+
 public:
 
 	//マップの位置
@@ -90,6 +93,9 @@ public:
 
 	//移動方向
 	Move_Id Move_Dir{ Move_Id::NONE_KEY };
+
+	//爆弾と同じ座標フラグ
+	bool IsBombPosPlayer{ false };
 
 private:
 

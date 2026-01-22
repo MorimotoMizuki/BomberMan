@@ -5,7 +5,7 @@ COneal::COneal(Point p, MapPoint system_p)
 {
 	SPEED = 3.0f; //移動速度
 	SCORE = 200;  //スコア
-	STOP_FRAME = 5; //停止フレーム
+	STOP_FRAME = 15; //停止フレーム
 
 	CBaseEnemy::Constructor(p, system_p); //ベースのコンストラクタ
 

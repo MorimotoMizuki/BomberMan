@@ -5,7 +5,7 @@ CPass::CPass(Point p, MapPoint system_p)
 {
 	SPEED = 4.0f; //移動速度
 	SCORE = 4000;  //スコア
-	STOP_FRAME = 5; //停止フレーム
+	STOP_FRAME = 10; //停止フレーム
 
 	CBaseEnemy::Constructor(p, system_p); //ベースのコンストラクタ
 
