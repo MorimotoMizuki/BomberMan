@@ -134,9 +134,12 @@ enum MusicVolume
 	SE_BombExplosion	= 128,	//爆弾の爆発時SE
 	SE_AllEnemyKill		= 128,	//全ての敵を倒した時のSE
 	SE_ItemGet			= 128,	//アイテム獲得時のSE
+	SE_SuperItemGet		= 128,	//アイテム獲得時のSE
 	SE_PutBomb			= 128,	//爆弾設置時のSE
 	SE_PlayerDeadStart	= 128,	//プレイヤーの死亡時の一番最初に鳴るSE
 	SE_PlayerDead		= 128,	//プレイヤーの死亡時の二番目に鳴るSE
 	SE_PlayerWalk_W		= 128,	//プレイヤーが横に歩く時のSE
 	SE_PlayerWalk_H		= 128,	//プレイヤーが縦に歩く時のSE
+	SE_PasswordClick	= 128,	//パスワード入力
+	SE_PasswordEnter	= 128,	//パスワード入力
 };

@@ -79,6 +79,7 @@ CGame::CGame(CManager* p) :CScene(p)
 	//サウンド読み込み
 	BGM = LoadSoundMem("sound\\NormalBGM.wav");
 	SE_AllEnemyKill = LoadSoundMem("sound\\AllEnemyKnockDown.wav");
+	SE_SuperItemGet = LoadSoundMem("sound\\InvincibleTime_Muteki.wav");
 
 	if (gIsBonusStage) {
 		SE_StageClear = LoadSoundMem("sound\\StageClear.wav");
@@ -142,6 +143,25 @@ int CGame::Update()
 			}
 		}
 
+		if (!IsSuperItemGet) {
+			CNormalItem* item = (CNormalItem*)Get_obj(base, ITEM);
+			if (item != nullptr) {
+				if (item->ItemGetId == Item_Id::FlameBarrier || item->ItemGetId == Item_Id::PerfectMan) {
+					//BGMが再生していた場合は BGM を停止させる
+					if (CheckSoundMem(BGM))
+						StopSoundMem(BGM);
+					//SE再生
+					My_PlaySoundMem(SE_SuperItemGet, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_SuperItemGet);
+					IsSuperItemGet = true;
+				}
+			}
+		}
+		else {
+			//スーパーアイテム獲得SEが鳴り終わった場合 : 通常BGM再生
+			if (!CheckSoundMem(SE_SuperItemGet) && !CheckSoundMem(BGM))
+				My_PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Stage);
+		}
+
 		//制限時間処理
 		TimerAction();
 		break;
@@ -152,6 +172,8 @@ int CGame::Update()
 		//BGMが再生していた場合は BGM を停止させる
 		if (CheckSoundMem(BGM))
 			StopSoundMem(BGM);
+		if (CheckSoundMem(SE_SuperItemGet))
+			StopSoundMem(SE_SuperItemGet);
 
 		if (gGamePhase == GamePhaseId::GAMEOVER)
 			WaitTimer(2300); //2.3秒
@@ -247,6 +269,7 @@ CGame::~CGame()
 {
 	DeleteSoundMem(BGM);
 	DeleteSoundMem(SE_AllEnemyKill);
+	DeleteSoundMem(SE_SuperItemGet);
 
 	if (gIsBonusStage) {
 		DeleteSoundMem(SE_StageClear);
@@ -370,6 +393,8 @@ void CGame::TimerAction()
 //タブキーの処理関数 : Pauseじゃない場合のゲーム状態
 bool CGame::TabKey_Action(GamePhaseId change_game_phase)
 {
+	if (gIsBonusStage) return false;
+
 	//タブキー入力
 	if (Key_Check(Move_Id::TAB_KEY) && !TabKeyCheck)
 	{

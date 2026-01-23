@@ -110,6 +110,7 @@ void CNormalItem::FirePowerAction()
 	if(gPlayerStatus.bombLevel < MAX_FIRE_POWER)
 		gPlayerStatus.bombLevel++;
 
+	ItemGetId = ItemID;
 	CBaseItem::DeleteItem();
 }
 //爆弾の置ける数アップ			: バロム
@@ -117,12 +118,18 @@ void CNormalItem::BombAction()
 {
 	if(gPlayerStatus.bombPutNum < MAX_PUT_BOMB_NUM)
 		gPlayerStatus.bombPutNum++;
+
+	ItemGetId = ItemID;
+
 	CBaseItem::DeleteItem();
 }
 //爆弾がBボタンで自由に爆発可能	: コンドリア
 void CNormalItem::RemoteControllerAction()
 {
 	gPlayerStatus.isRemoteController = true;
+
+	ItemGetId = ItemID;
+
 	CBaseItem::DeleteItem();
 }
 //移動速度アップ				: ダル
@@ -130,29 +137,44 @@ void CNormalItem::BootsAction()
 {
 	if (gPlayerStatus.speed < MAX_SPEED)
 		gPlayerStatus.speed += PLAYER_SPEED / 2;
+
+	ItemGetId = ItemID;
+
 	CBaseItem::DeleteItem();
 }
 //爆弾の上を歩けるようになる	: オバピー
 void CNormalItem::BombPassingAction()
 {
 	gPlayerStatus.isBombPass = true;
+
+	ItemGetId = ItemID;
+
 	CBaseItem::DeleteItem();
 }
 //壁の上を歩けるようになる		: ミンボー
 void CNormalItem::WallPassingAction()
 {
 	gPlayerStatus.isWallPass = true;
+
+	ItemGetId = ItemID;
+
 	CBaseItem::DeleteItem();
 }
 //爆風で死ななくなる			: バース
 void CNormalItem::FlameBarrierAction()
 {
 	gPlayerStatus.isFlameBarrier = true;
+
+	ItemGetId = ItemID;
+	
 	CBaseItem::DeleteItem();
 }
 //30秒間無敵になる				: ポンタン
 void CNormalItem::PerfectManAction()
 {
 	gPlayerStatus.isPerfectMan = true;
+
+	ItemGetId = ItemID;
+
 	CBaseItem::DeleteItem();
 }

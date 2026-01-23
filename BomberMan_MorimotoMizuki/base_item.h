@@ -40,6 +40,9 @@ public:
 	//アイテム爆破フラグ
 	bool IsItemExplosion{ false };
 
+	//アイテム獲得ID
+	Item_Id ItemGetId{ Item_Id::None };
+
 protected:
 
 	//アイテム獲得SE

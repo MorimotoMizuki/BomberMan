@@ -60,6 +60,11 @@ public:
 	//ゲームクリア時
 	int SE_StageClear{ -1 };
 
+	int SE_SuperItemGet{ -1 };
+
 	//タブキー入力制限用
 	bool TabKeyCheck{ false };
+
+	//パーフェクトマンと火炎バリア取得フラグ
+	bool IsSuperItemGet{ false };
 };

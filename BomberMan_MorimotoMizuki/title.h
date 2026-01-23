@@ -20,6 +20,7 @@ public:
 	enum KeyId {
 		SPACE_key,
 		ENTER_key,
+		ALL_key,
 	};
 
 	enum ScreenPhaseId {
@@ -154,7 +155,7 @@ private:
 	Point TrianglePos{ START_TRIANGLE_POS.x,START_TRIANGLE_POS.y };
 
 	//キー入力配列
-	bool PushKey[2]{ false, false };
+	bool PushKey[3]{ false, false, false };
 
 	//カウント
 	int TimerCnt{ 0 };
@@ -167,6 +168,8 @@ private:
 	//SE サウンド用
 	int SE_StageStart{ -1 }; //ステージスタート用
 	int SE_PlayerWalk{ -1 }; //プレイヤー歩行SE
+	int SE_PasswordClick{ -1 }; //パスワード入力
+	int SE_PasswordEnter{ -1 }; //パスワード入力
 
 	//ステージスタートSEフラグ
 	bool IsStageStartSE{ false };

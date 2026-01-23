@@ -121,6 +121,8 @@ CTitle::CTitle(CManager* p) :CScene(p)
 	BGM_Ending = LoadSoundMem("sound\\FiftyStageClear.wav");
 	SE_StageStart = LoadSoundMem("sound\\StageStart.wav");
 	SE_PlayerWalk = LoadSoundMem("sound\\Walk_Width.wav");
+	SE_PasswordClick = LoadSoundMem("sound\\PasswordClick.wav");
+	SE_PasswordEnter = LoadSoundMem("sound\\PasswordEnter.wav");
 
 	//画像読み込み
 	TitleRogo_img = LoadGraph("image\\title_rogo.png");
@@ -221,6 +223,15 @@ int CTitle::Update()
 	//各スクリーンの更新処理
 	switch (ScreenPhase)
 	{
+	//タイトル用スクリーン
+	case ScreenPhaseId::TITLE_screen:
+	{
+		if (!CheckSoundMem(BGM_Normal)) {
+			//通常BGMをループで再生
+			My_PlaySoundMem(BGM_Normal, DX_PLAYTYPE_LOOP, TRUE, MusicVolume::BGM_Title);
+		}
+		break;
+	}
 	//ステージ移動用スクリーン
 	case ScreenPhaseId::STAGE_TO_screen:
 		if (TimerCnt >= 3 * 60)
@@ -242,13 +253,13 @@ int CTitle::Update()
 	//コンテニュー用スクリーン
 	case ScreenPhaseId::CONTINUE_screen:
 
+		//BGM が再生中なら停止
+		if (CheckSoundMem(BGM_Normal)) {
+			StopSoundMem(BGM_Normal);
+		}
 		if (IsPassword) {
 			//ステージ移動状態にする
 			ScreenPhase = ScreenPhaseId::STAGE_TO_screen;
-			//BGM が再生中なら停止
-			if (CheckSoundMem(BGM_Normal)) {
-				StopSoundMem(BGM_Normal);
-			}
 		}
 
 		UpdateKeyState();		//キーボード入力の更新
@@ -406,6 +417,8 @@ CTitle::~CTitle()
 	DeleteSoundMem(BGM_GameOver);
 	DeleteSoundMem(BGM_Ending);
 	DeleteSoundMem(SE_StageStart);
+	DeleteSoundMem(SE_PasswordClick);
+	DeleteSoundMem(SE_PasswordEnter);
 
 	DeleteGraph(TitleRogo_img);
 }
@@ -428,24 +441,37 @@ void CTitle::UpdatePasswordInput()
 		{
 			if (!Password.empty())
 				Password.pop_back();
+
+			My_PlaySoundMem(SE_PasswordClick, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_PasswordClick);//SE 再生
 		}
 		//Enter : 確定
 		if (IsKeyTrigger(KEY_INPUT_RETURN))
 		{
 			if (!Password.empty())
 				IsPassword = IsValidPassword(Password); //パスワード検証
-		}
-		//A～P のみ受け付ける
-		if ((ch >= 'A' && ch <= 'P') || 
-			(ch >= '0' && ch <= '9'))
-		{
-			if (Password.size() < PASSWORD_MAX)
-				Password.push_back((char)ch);
 
-			IsFlashVisible = false;
-			FlashCnt = 0;
+			My_PlaySoundMem(SE_PasswordEnter, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_PasswordEnter);//SE 再生
+		}
+		if (Key_Check(Move_Id::ALL_KEY) && !PushKey[KeyId::ALL_key])
+		{
+			PushKey[KeyId::ALL_key] = true;
+
+			//A～P のみ受け付ける
+			if ((ch >= 'A' && ch <= 'P') ||
+				(ch >= '0' && ch <= '9'))
+			{
+				if (Password.size() < PASSWORD_MAX)
+					Password.push_back((char)ch);
+
+				My_PlaySoundMem(SE_PasswordClick, DX_PLAYTYPE_BACK, TRUE, MusicVolume::SE_PasswordClick);//SE 再生
+
+				IsFlashVisible = false;
+				FlashCnt = 0;
+			}
 		}
 	}
+
+	PushKey[KeyId::ALL_key] = Key_Check(Move_Id::ALL_KEY);
 }
 
 //パスワード検証
@@ -464,10 +490,15 @@ bool CTitle::IsValidPassword(std::string& password)
 	if (Is_Int_from_Str(password, PasswordOutStageNum))
 	{
 		//ステージにある場合はそのステージにする
-		if (gNowStageNum <= STAGE_SUM)
+		if (PasswordOutStageNum <= STAGE_SUM && PasswordOutStageNum > 0) {
 			gNowStageNum = PasswordOutStageNum;
-
-		return true;
+			return true;
+		}
+		else {
+			//文字をクリア
+			Password.clear();
+			return false;
+		}
 	}
 
 	//パスワードと一致しているか判定
@@ -538,6 +569,8 @@ void CTitle::SpaceKey_Action()
 		case ScreenPhaseId::CONTINUE_screen:
 			//タイトル画面にする
 			ScreenPhase = ScreenPhaseId::TITLE_screen;
+			//文字をクリア
+			Password.clear();
 			break;
 		}
 	}
