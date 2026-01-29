@@ -4,7 +4,15 @@
 
 CExplosion::CExplosion(Point p, MapPoint bombP, int bombLevel)
 {
+	img = LoadGraph("image\\explosion.png");
+
 	LoadDivGraph("image\\explosion.png", EXPLOSION_IMG_NUM, 4, 3, IMGSIZE16, IMGSIZE16, ExplosionImgHandle);
+
+	//画像を分割
+	for (int i = 0; i < EXPLOSION_EDGE_IMG_NUM / 2; i++) {
+		ExplosionEdgeImgHandle[i] = DerivationGraph(IMGSIZE16 * i, IMGSIZE16 * 3, IMGSIZE16, IMGSIZE16, img);
+		ExplosionEdgeImgHandle[i + 4] = DerivationGraph(IMGSIZE16 * i, IMGSIZE16 * 4, IMGSIZE16, IMGSIZE16, img);
+	}
 
 	SE_BombExplosion = LoadSoundMem("sound\\BombExplosion.wav");
 
@@ -34,6 +42,11 @@ int CExplosion::Action(vector<unique_ptr<BaseVector>>& base)
 	CPlayer* p = (CPlayer*)Get_obj(base, PLAYER);
 	if(p != nullptr)
 		Distance = p->Distance;
+
+	//プレイヤーを取得
+	CDoor* d = (CDoor*)Get_obj(base, GOAL);
+	if (d != nullptr)
+		DoorSystemPos = { d->SystemPos.x, d->SystemPos.y };
 
 	//当たり判定
 	HitAction(base);
@@ -73,6 +86,10 @@ CExplosion::~CExplosion()
 
 	for (int i = 0; i < EXPLOSION_IMG_NUM; i++)
 		DeleteGraph(ExplosionImgHandle[i]);
+	for (int i = 0; i < EXPLOSION_EDGE_IMG_NUM; i++)
+		DeleteGraph(ExplosionEdgeImgHandle[i]);
+
+	DeleteGraph(img);
 
 	DeleteSoundMem(SE_BombExplosion);
 }
@@ -123,7 +140,8 @@ void CExplosion::HitAction(vector<unique_ptr<BaseVector>>& base)
 							if (IsHitOnce) break;
 							if (gNowMap[obj_pos.y][obj_pos.x] == Obj_Id::CRASH_BLOCK) break;
 
-							((CDoor*)base[i].get())->IsDoorExplosion = true; //ドア爆破フラグtrue
+							if(gDoorExplosionEnemyNum == 0)
+								((CDoor*)base[i].get())->IsDoorExplosion = true; //ドア爆破フラグtrue
 							break;
 						//アイテム
 						case Obj_Id::ITEM:
@@ -242,20 +260,25 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 
 	ExplosionDir expDir{ ExplosionDir::UP_exp };
 
+	float reversePos[4]{ 0,ImgWidth,0,ImgHeight };
+
 	int cnt = 0;
 	std::tuple<Point, Point, int> data = std::make_tuple(Point{ 0,0 }, Point{ addPosX, addPosY }, 0);
-
 
 	//爆発開始位置からのずれを設定
 	if (dir == ExplosionEffectId::VERTICAL){
 		if (addPosY == -1) {	//上
 			std::get<0>(data).x = CHIP_SIZE / 2;
 			std::get<0>(data).y = 0;
+			reversePos[2] = ImgHeight;
+			reversePos[3] = 0;
 			expDir = ExplosionDir::UP_exp;
 		}
 		else{					//下
 			std::get<0>(data).x = CHIP_SIZE / 2;
 			std::get<0>(data).y = CHIP_SIZE;
+			reversePos[2] = 0;
+			reversePos[3] = ImgHeight;
 			expDir = ExplosionDir::DOWN_exp;
 		}
 	}
@@ -263,11 +286,15 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 		if (addPosX == -1) {	//左
 			std::get<0>(data).x = 0;
 			std::get<0>(data).y = CHIP_SIZE / 2;
+			reversePos[0] = 0;
+			reversePos[1] = ImgWidth;
 			expDir = ExplosionDir::LEFT_exp;
 		}
 		else {					//右
 			std::get<0>(data).x = CHIP_SIZE;
 			std::get<0>(data).y = CHIP_SIZE / 2;
+			reversePos[0] = ImgWidth;
+			reversePos[1] = 0;
 			expDir = ExplosionDir::RIGHT_exp;
 		}
 	}
@@ -278,24 +305,37 @@ std::tuple<Point,Point, int> CExplosion::DrawExplosion(float addPosX, float addP
 
 	for (int i = 0; i < num; i++)
 	{
-		//先の升目がブロックの場合は描画終了
-		if (gNowMap[systemPos.y][systemPos.x] == 0)
+		//先の升目がブロックか扉の場合は描画終了
+		if (gNowMap[systemPos.y][systemPos.x] == Obj_Id::BLOCK)
 		{
 			std::get<2>(data) = cnt;
 			return data;
 		}
-		if (gNowMap[systemPos.y][systemPos.x] == 1 ||
+		//先の升目がブロックか扉の場合は描画+1して描画終了
+		if (DoorSystemPos.x == systemPos.x && DoorSystemPos.y == systemPos.y)
+		{
+			std::get<2>(data) = cnt + 1;
+			return data;
+		}
+		if (gNowMap[systemPos.y][systemPos.x] == Obj_Id::CRASH_BLOCK ||
 			(CrashBlockPos[expDir].x == systemPos.x && CrashBlockPos[expDir].y == systemPos.y))
 		{
 			std::get<2>(data) = cnt + 1;
 			CrashBlockPos[expDir].x = systemPos.x; //破壊可能ブロックの座標保存
 			CrashBlockPos[expDir].y = systemPos.y; //破壊可能ブロックの座標保存
 			return data;
-		}	
+		}
 
-		//爆発描画
-		DrawExtendGraph(drawPos.x - Distance, drawPos.y, drawPos.x + ImgWidth - Distance, drawPos.y + ImgHeight,
-			ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex] + static_cast<int>(dir)], true);
+		if (i == num - 1) {
+			//爆発描画
+			DrawExtendGraph(drawPos.x - Distance + reversePos[0], drawPos.y + reversePos[2], drawPos.x - Distance + reversePos[1], drawPos.y + reversePos[3],
+				ExplosionEdgeImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex] + static_cast<int>(dir) - 4], true);
+		}
+		else {
+			//爆発描画
+			DrawExtendGraph(drawPos.x - Distance + reversePos[0], drawPos.y + reversePos[2], drawPos.x - Distance + reversePos[1], drawPos.y + reversePos[3],
+				ExplosionImgHandle[EXPLOSION_ANIM_ORDER[AnimIndex] + static_cast<int>(dir)], true);
+		}
 
 		//描画座標更新
 		drawPos.x += movePos.x;

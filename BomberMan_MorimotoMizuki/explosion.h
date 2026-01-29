@@ -17,6 +17,7 @@ public:
 
 	//爆発の画像の数
 	static constexpr auto EXPLOSION_IMG_NUM = 12;
+	static constexpr auto EXPLOSION_EDGE_IMG_NUM = 8;
 
 	//爆発アニメーションの順番
 	static constexpr int EXPLOSION_ANIM_ORDER[EXPLOSION_ANIM_NUM] = { 0,1,2,3,2,1,0 };
@@ -56,6 +57,8 @@ private:
 
 	//爆発の画像ハンドル配列
 	int ExplosionImgHandle[EXPLOSION_IMG_NUM];
+	int ExplosionEdgeImgHandle[EXPLOSION_EDGE_IMG_NUM];
+
 	//アニメーションの画像インデックス
 	int AnimIndex{ 0 };
 	//アニメーションカウント
@@ -92,4 +95,7 @@ private:
 
 	//敵を同時に倒した数
 	int ConcurrentKillEnemyNum{ 0 };
+
+	//ドアのシステム座標
+	MapPoint DoorSystemPos{ 0,0 };
 };

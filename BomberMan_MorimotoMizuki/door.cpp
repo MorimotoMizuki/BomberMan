@@ -15,6 +15,8 @@ CDoor::CDoor(Point p, MapPoint system_p)
 
 	ID  = Obj_Id::GOAL;
 	pri = Pri_Id::pGOAL;
+
+	gDoorExplosionEnemyNum = 0;
 }
 
 int CDoor::Action(vector<unique_ptr<BaseVector>>& base)
@@ -77,7 +79,8 @@ void CDoor::DoorExplosion(vector<unique_ptr<BaseVector>>& base)
 
 	for (int i = 0; i < 3; i++) {
 		//バロム生成
-		base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, SystemPos));
+		base.emplace_back((unique_ptr<BaseVector>) new CBallom(p, SystemPos, true));
+		gDoorExplosionEnemyNum++;
 	}
 
 	DoorExplosionNum++; //ドア爆破回数カウント

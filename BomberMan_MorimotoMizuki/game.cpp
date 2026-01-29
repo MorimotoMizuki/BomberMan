@@ -73,6 +73,9 @@ bool gIsLoadSaveData = false;
 //ハイスコア保存用
 int gHighScore{ 0 };
 
+//扉爆破で生成された敵配列
+int gDoorExplosionEnemyNum{ 0 };
+
 //コンストラクタ
 CGame::CGame(CManager* p) :CScene(p)
 {

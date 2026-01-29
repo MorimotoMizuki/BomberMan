@@ -1,7 +1,7 @@
 #include"obj.h"
 #include"function.h"
 
-CBallom::CBallom(Point p, MapPoint system_p)
+CBallom::CBallom(Point p, MapPoint system_p, bool is_door_exp)
 {
 	SPEED = 2.0f; //移動速度
 	SCORE = 100;  //スコア
@@ -16,6 +16,8 @@ CBallom::CBallom(Point p, MapPoint system_p)
 
 	//死亡時画像の最初の一枚の設定
 	EnemyDeadImgHandle[0] = DerivationGraph(IMGSIZE32 * 3, 0, IMGSIZE32, IMGSIZE32, img);
+
+	IsDoorExplosionEnemy = is_door_exp;
 
 	//移動制限判定Obj_Id
 	HitMoveObj_Id.push_back(Obj_Id::BLOCK);
@@ -82,6 +84,9 @@ void CBallom::Draw()
 CBallom::~CBallom()
 {
 	CBaseEnemy::Destructor(); //ベースのデストラクタ
+
+	if (IsDoorExplosionEnemy)
+		gDoorExplosionEnemyNum--;
 
 	for (int i = 0; i < BALLOM_IMG_NUM; i++)
 		DeleteGraph(BallomImgHandle[i]);

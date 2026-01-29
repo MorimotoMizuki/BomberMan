@@ -161,6 +161,9 @@ extern bool gIsLoadSaveData;
 //ハイスコア保存用
 extern int gHighScore;
 
+//扉爆破で生成された敵配列
+extern int gDoorExplosionEnemyNum;
+
 //カメラ情報クラス(main.h)
 //class CCameraInfo {
 //private:
